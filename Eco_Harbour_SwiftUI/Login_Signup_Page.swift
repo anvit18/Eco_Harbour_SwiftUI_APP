@@ -7,26 +7,42 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct Login_Signup_Page: View {
     
     @State private var username = ""
     @State private var password = ""
     @State private var wrongUsername = 0
     @State private var wrongPassword = 0
     @State private var showingNextScreen = false
+    @State private var showingSignUpScreen = false
     
     var body: some View {
         
-        NavigationView {
+        
             ZStack{
+                
                 Color.mainGreen.ignoresSafeArea()
+                
+                    
+                
                 Circle()
-                    .scale(1.7)
+                    .scale(1.8)
                     .foregroundColor(.white.opacity(0.15))
                 Circle()
-                    .scale(1.35)
+                    .scale(1.5)
                     .foregroundColor(.white)
                 VStack{
+                    
+                    //logo EcoHarbour
+                    HStack(spacing: 0){
+                        Text("Eco").font(.largeTitle)
+                            .bold()
+                            .foregroundColor(.green)
+                        Text("Harbour")
+                            .font(.largeTitle)
+                            .bold()
+                        
+                    }
                     Text("Login")
                         .font(.largeTitle)
                         .bold()
@@ -55,15 +71,31 @@ struct ContentView: View {
                     .background(Color.mainGreen)
                     .cornerRadius(10)
                     
-                    NavigationLink(destination: SecondView(), isActive: $showingNextScreen){
+                    NavigationLink(destination: homePageDashboard(), isActive: $showingNextScreen){
                         EmptyView()
                     }
-                    
+                    HStack{
+                        Spacer()
+                        Button("New User ?"){
+                            //add code
+                            showingSignUpScreen.toggle()
+                        }
+                        .foregroundColor(.blue)
+                        .background(.white)
+                        .padding(.horizontal, 40)
+                        .font(.callout)
+                        .frame(alignment: .trailing)
+                        .padding(.trailing, 8)
+                        
+                        NavigationLink(destination: signup_page(), isActive: $showingSignUpScreen){
+                            EmptyView()
+                        }
+                    }
                 }
                 
             }
-        }
-        .navigationBarHidden(true)
+        
+      //  .navigationBarHidden(false)
     }
     
     
@@ -81,6 +113,7 @@ struct ContentView: View {
         }
     }
 }
+
 #Preview {
-    ContentView()
+    Login_Signup_Page()
 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct Eco_Harbour_SwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LaunchScreen()
         }
     }
 }
