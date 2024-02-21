@@ -156,6 +156,7 @@ struct recordView: View {
                 
                 Button("Save") {
                     //showingNextScreen.toggle()
+                    printUserInput()
                 }
                 .foregroundColor(.white)
                 .frame(width: 130, height: 38)
@@ -422,11 +423,50 @@ struct recordView: View {
                     
                 }.padding(.bottom, 20)
                 //end of car type menu
+                
+            
+                   }
             }
             
         }
+    private func printUserInput() {
+        guard let selectedCategory = selectedCategory else {
+            print("Selected Category is nil.")
+            return
+        }
+
+        print("Selected Category for Record: \(selectedCategory)")
+        switch selectedCategory {
+        case "Car":
+            print("Car: \(car)")
+            print("Time Travelled: \(time)")
+            print("AC Switch: \(category1Fields.isACSwitchOn)")
+        case "Bus":
+            // Handle Bus category input
+            print("Bus: \(car)")
+            print("Time Travelled: \(time)")
+            print("AC Switch: \(category1Fields.isACSwitchOn)")
+            break
+        case "Train":
+            // Handle Train category input
+            print("Train: \(car)")
+            print("Time Travelled: \(time)")
+            print("AC Switch: \(category1Fields.isACSwitchOn)")
+            break
+        case "Car Pool":
+            print("Car Type: \(car)")
+            print("Time Travelled: \(time)")
+            print("AC Switch: \(category4Fields.isACSwitchOn)")
+            print("Number of Passengers: \(numberOfPassengers)")
+            print("Fuel Type: \(fuel)")
+        default:
+            break
+        }
     }
-}
+
+    }
+
+
 
 struct recordView_Previews: PreviewProvider {
     static var previews: some View {
