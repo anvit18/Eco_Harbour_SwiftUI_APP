@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  EasyMenus
-//
-//  Created by Federico on 11/11/2021.
-//
-
 import SwiftUI
 
 struct manualFilling: View {
@@ -15,18 +8,18 @@ struct manualFilling: View {
     @State private var vehicleAge = ""
     @State private var showingNextScreen = false
     @State private var bs_type = ""
+
     var body: some View {
         VStack {
-            
-            HStack(spacing: 0){
-                Text("Eco").font(.largeTitle)
+            HStack(spacing: 0) {
+                Text("Eco")
+                    .font(.largeTitle)
                     .bold()
                     .foregroundColor(.green)
                 Text("Harbour")
                     .font(.largeTitle)
                     .bold()
-                
-            }//.padding(.bottom, 20)
+            }
             //start of cartype menu
             HStack{
                 Text("Car Type :")
@@ -263,27 +256,37 @@ struct manualFilling: View {
                 
             }  
             .padding()
-            
-            Button("Next") {
-                showingNextScreen.toggle()
+
+            // Next Button
+                        Button("Next") {
+                            // Print the input data
+                            print("Car Type: \(car)")
+                            print("Fuel Type: \(fuel)")
+                            print("Car Mileage: \(carMileage)")
+                            print("Carbon Emission Type: \(bs_type)")
+                            print("Monthly Fuel Consumption: \(fuelConsumption)")
+                            print("Vehicle Age: \(vehicleAge)")
+
+                            // Toggle showingNextScreen to navigate to the next screen
+                            showingNextScreen.toggle()
+                        }
+                        .foregroundColor(.white)
+                        .frame(width: 201, height: 44)
+                        .background(Color.mainGreen)
+                        .cornerRadius(10)
+                        .padding(.top, 30)
+
+                        // NavigationLink to the next screen
+                        NavigationLink(destination: frequentlyUsedVehicles(), isActive: $showingNextScreen) {
+                            EmptyView()
+                        }
+                        .navigationBarTitle("Manual Entry Details")
+                    }
+                }
+
+                struct manualFilling_Previews: PreviewProvider {
+                    static var previews: some View {
+                        manualFilling()
+                    }
+                }
             }
-            .foregroundColor(.white)
-            .frame(width: 201, height: 44)
-            .background(Color.mainGreen)
-            .cornerRadius(10)
-           // .padding(.top, 30)
-            
-            NavigationLink(destination: frequentlyUsedVehicles(), isActive: $showingNextScreen) {
-                EmptyView()
-            }
-            
-            .navigationBarTitle("Manual Entry Details")
-        }
-    }
-    
-    struct manualFilling_Previews: PreviewProvider {
-        static var previews: some View {
-            manualFilling()
-        }
-    }
-}

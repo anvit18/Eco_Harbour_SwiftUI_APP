@@ -87,7 +87,7 @@ struct VehicleDetails: View {
                 }
                 .foregroundColor(.white)
                 .frame(width:201, height:44)
-                .background(Color.blue)
+                .background(Color.mainGreen)
                 .cornerRadius(10)
                 
                 NavigationLink(destination: homePageDashboard(), isActive: $showingNextScreen){

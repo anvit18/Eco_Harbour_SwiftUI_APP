@@ -7,6 +7,7 @@ struct privateVehicleDetails: View {
     @State private var showingFillManually = false
     @State private var showingWhyWeAsk = false
     @State private var isFirstVisit = true // Add a state variable to track the first visit
+    @State private var vehicleData: Data?
 
     var body: some View {
         VStack {
@@ -86,6 +87,8 @@ struct privateVehicleDetails: View {
             }
 
             Button("Next") {
+                // Perform API call and fetch data
+                fetchDataFromAPI()
                 showingNextScreen.toggle()
             }
             .foregroundColor(.white)
@@ -114,6 +117,42 @@ struct privateVehicleDetails: View {
                 dismissButton: .default(Text("Close"))
             )
         }
+    }
+    
+    // Function to fetch data from API
+    func fetchDataFromAPI() {
+        let headers = [
+            "content-type": "application/json",
+            "X-RapidAPI-Key": "SIGN-UP-FOR-KEY",
+            "X-RapidAPI-Host": "vehicle-rc-information.p.rapidapi.com"
+        ]
+
+        let parameters = ["VehicleNumber": vehicleNumber] as [String : Any]
+
+        let postData = try? JSONSerialization.data(withJSONObject: parameters, options: [])
+
+        guard let url = URL(string: "https://vehicle-rc-information.p.rapidapi.com/") else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.allHTTPHeaderFields = headers
+        request.httpBody = postData
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                DispatchQueue.main.async {
+                    vehicleData = data
+                    if let httpResponse = response as? HTTPURLResponse {
+                        print(httpResponse)
+                    }
+                    if let jsonString = String(data: data, encoding: .utf8) {
+                        print(jsonString)
+                    }
+                }
+                return
+            }
+            print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
+        }.resume()
     }
 }
 
