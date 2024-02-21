@@ -4,7 +4,7 @@ struct VehicleCategoryView: View {
     let category: String
     let imageNames: [String]
 
-    @State private var selectedImages: Set<String> = []
+    @Binding var selectedImages: Set<String>
 
     var body: some View {
         VStack {
@@ -58,6 +58,7 @@ struct VehicleCategoryView: View {
 
 struct frequentlyUsedVehicles: View {
     @State private var showingNextScreen = false
+    @State private var selectedImages: Set<String> = Set()
 
     let carImages = ["Private", "Cabs", "Carpool"]
     let busImages = ["Ordinary", "AC", "Deluxe"]
@@ -85,25 +86,37 @@ struct frequentlyUsedVehicles: View {
                 .font(.subheadline)
                 .padding(.bottom, 20)
 
-            VehicleCategoryView(category: "Cars :", imageNames: carImages)
-            VehicleCategoryView(category: "Buses :", imageNames: busImages)
-            VehicleCategoryView(category: "Trains :", imageNames: trainImages)
-            VehicleCategoryView(category: "Autos :", imageNames: autoImages)
+            VehicleCategoryView(category: "Cars :", imageNames: carImages, selectedImages: $selectedImages)
+            VehicleCategoryView(category: "Buses :", imageNames: busImages, selectedImages: $selectedImages)
+            VehicleCategoryView(category: "Trains :", imageNames: trainImages, selectedImages: $selectedImages)
+            VehicleCategoryView(category: "Autos :", imageNames: autoImages, selectedImages: $selectedImages)
+
+            NavigationLink(
+                destination: VehicleDetails(), // Replace with your desired destination
+                isActive: $showingNextScreen
+            ) {
+                EmptyView()
+            }
+            .isDetailLink(false)
 
             Button("Next") {
                 showingNextScreen.toggle()
+                printSelectedImages()
             }
             .foregroundColor(.white)
             .frame(width: 201, height: 44)
             .background(Color.mainGreen)
             .cornerRadius(10)
             .padding(.top, 30)
-
-            NavigationLink(destination: VehicleDetails(), isActive: $showingNextScreen) {
-                EmptyView()
-            }
         }
         .navigationBarTitle("Frequently Used Vehicles")
+    }
+
+    private func printSelectedImages() {
+        let selectedImagesArray = Array(selectedImages)
+        print("Selected Images: \(selectedImagesArray.joined(separator: ", "))")
+        // You can send this data to the backend here
+        // For simplicity, we are just printing it to the terminal
     }
 }
 
