@@ -89,7 +89,6 @@ struct homePageDashboard: View {
                 TabView {
                     
                     // Icon 1
-                    
                     dashboardView()
                         .tabItem {
                             Image(systemName: "house.circle.fill")
@@ -99,13 +98,29 @@ struct homePageDashboard: View {
                         }
                     
                     // Icon 2
-//                    historyView()
-//                        .tabItem {
-//                            Image(systemName: "leaf.fill")
-//                                .resizable()
-//                                .frame(width: 50, height: 50) // Adjust the icon size
-//                            Text("History")
-//                        }
+                    historyView(
+                                        selectedCategory: "",
+                                        selectedDate: Date(),
+                                        carType: "Medium",
+                                        carTime: "1 hr",
+                                        busType: "",
+                                        busTime: "",
+                                        trainType: "",
+                                        trainTime: "",
+                                        carPoolType: "",
+                                        carPoolTime: "",
+                                        autoType: "",
+                                        autoTime: "",
+                                        dummyVar: "",
+                                        fuel: "",
+                                        numberOfPassengers: ""
+                                    )
+                        .tabItem {
+                            Image(systemName: "leaf.fill")
+                                .resizable()
+                                .frame(width: 50, height: 50) // Adjust the icon size
+                            Text("History")
+                        }
                     
                     recordView()
                         .tabItem {

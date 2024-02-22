@@ -6,6 +6,7 @@ struct privateVehicleDetails: View {
     @State private var showingNextScreen = false
     @State private var showingFillManually = false
     @State private var showingWhyWeAsk = false
+    @State private var cityName = ""
     @State private var isFirstVisit = true // Add a state variable to track the first visit
 
     var body: some View {
@@ -22,7 +23,48 @@ struct privateVehicleDetails: View {
             .padding(.bottom, 50)
 
             // Your main content here
-
+            HStack {
+                Text("Enter City Name:")
+                    .offset(x: -80)
+                    .foregroundColor(.black)
+                    .background(.white)
+                    .padding(.horizontal, 10)
+                    .font(.headline)
+                    .frame(alignment: .trailing)
+            }
+            Menu {
+                Button("Cancel", role: .destructive) {
+                    // Do something
+                }
+                
+                Button {
+                    // do something
+                    cityName = "Pune"
+                }label: {
+                    Label("Pune", systemImage:  "sun.min.fill")
+                }
+                
+                Button {
+                    // Do something
+                    cityName = "Mumbai"
+                } label: {
+                    Label("Mumbai", systemImage: "sun.horizon.circle.fill")
+                }
+                Button {
+                    // Do something
+                    cityName = "Chennai"
+                } label: {
+                    Label("Chennai", systemImage: "sun.rain.fill")
+                }
+            } label: {
+                TextField("e.g. Chennai", text: $cityName)
+                    .padding(.leading,-160)
+                    .autocapitalization(.allCharacters)
+                    .frame(width: 300, height: 50)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+            }
+            
             HStack {
                 Text("Enter License Plate Number :")
                     .offset(x: -30)

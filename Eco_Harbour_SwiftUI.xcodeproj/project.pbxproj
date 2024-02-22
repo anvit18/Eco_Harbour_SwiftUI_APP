@@ -80,6 +80,7 @@
 		7F6C1F7B2B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eco_Harbour_SwiftUIUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7FBB4B3B2B874F6400728A3D /* recordDailyRenderCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recordDailyRenderCategory.swift; sourceTree = "<group>"; };
 		7FBB4B3D2B8758F800728A3D /* historyVIEW demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "historyVIEW demo.swift"; sourceTree = "<group>"; };
+		7FC0DED22B87C6A0002962BE /* Eco_Harbour_SwiftUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Eco_Harbour_SwiftUI.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +131,7 @@
 		7F6C1F5D2B5510BF00CBEC53 /* Eco_Harbour_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				7FC0DED22B87C6A0002962BE /* Eco_Harbour_SwiftUI.entitlements */,
 				7F29B2012B76A19100A55511 /* dashboardView.swift */,
 				7F29B20B2B76A19100A55511 /* frequentlyUsedVehicles.swift */,
 				7F29B2042B76A19100A55511 /* historyView.swift */,
@@ -491,10 +493,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Eco_Harbour_SwiftUI/Eco_Harbour_SwiftUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Eco_Harbour_SwiftUI/Preview Content\"";
-				DEVELOPMENT_TEAM = 77CGS54N35;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -520,10 +523,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Eco_Harbour_SwiftUI/Eco_Harbour_SwiftUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Eco_Harbour_SwiftUI/Preview Content\"";
-				DEVELOPMENT_TEAM = 77CGS54N35;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

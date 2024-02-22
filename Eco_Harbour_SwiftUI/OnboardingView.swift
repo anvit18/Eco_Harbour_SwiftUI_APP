@@ -11,22 +11,23 @@ struct OnboardingView: View {
     @State private var showingNextScreen = false
 
     var body: some View {
-        
+        ZStack {
+            Color(.white)
             VStack {
                 // Navigation Bar
                 NavigationLink(destination: Login_Signup_Page(), isActive: $showingNextScreen) {
                     EmptyView()
                 }
                 .hidden() // Hide the actual link, as it's triggered programmatically
-
+                
                 // Swipeable Image
                 Image(onboardingImages[currentImageIndex])
                     .resizable()
                     .scaledToFit()
                     .frame(width: 380, height: 600)
                     .clipped()
-                    //.border(Color.black)
-                    //.cornerRadius(8)
+                //.border(Color.black)
+                //.cornerRadius(8)
                     .gesture(
                         DragGesture()
                             .onEnded { gesture in
@@ -41,7 +42,7 @@ struct OnboardingView: View {
                                 }
                             }
                     )
-
+                
                 // Page Indicator
                 PageControl(numberOfPages: onboardingImages.count, currentPage: $currentImageIndex)
                     .padding(.top, 10)
@@ -61,8 +62,9 @@ struct OnboardingView: View {
                     EmptyView()
                 }
                 
-            
-            //.navigationBarHidden(true)
+                
+                //.navigationBarHidden(true)
+            }
         }
     }
 
