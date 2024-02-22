@@ -35,7 +35,7 @@ struct Login_Signup_Page: View {
                     
                     //logo EcoHarbour
                     HStack(spacing: 0){
-                        Text("EcoO00").font(.largeTitle)
+                        Text("Eco").font(.largeTitle)
                             .bold()
                             .foregroundColor(.green)
                         Text("Harbour")

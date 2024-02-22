@@ -4,6 +4,7 @@ struct VehicleCategoryView: View {
     let category: String
     let imageNames: [String]
 
+
     @Binding var selectedImages: Set<String>
 
     var body: some View {
@@ -92,12 +93,12 @@ struct frequentlyUsedVehicles: View {
             VehicleCategoryView(category: "Autos :", imageNames: autoImages, selectedImages: $selectedImages)
 
             NavigationLink(
-                destination: VehicleDetails(), // Replace with your desired destination
-                isActive: $showingNextScreen
-            ) {
-                EmptyView()
-            }
-            .isDetailLink(false)
+                destination: VehicleDetails(selectedVehicles: selectedImages),
+                        isActive: $showingNextScreen
+                    ) {
+                        EmptyView()
+                    }
+                    .isDetailLink(false)
 
             Button("Next") {
                 showingNextScreen.toggle()
