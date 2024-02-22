@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct Record : Identifiable {
+struct Record: Identifiable {
     let id = UUID()
     var date: Date
     var category: String
@@ -19,7 +19,19 @@ struct historyView: View {
     ]
 
     var body: some View {
-        NavigationView {
+        // NavigationView {
+        VStack {
+            HStack {
+                
+                Text("History")
+                    .font(.largeTitle)
+                    .bold()
+                    .padding(.leading, 20)
+                
+                Spacer()
+            }
+            .padding(.bottom, 20)
+            
             List {
                 ForEach(sampleData) { record in
                     NavigationLink(destination: RecordDetailsView(record: record)) {
@@ -27,7 +39,10 @@ struct historyView: View {
                     }
                 }
             }
-            .navigationTitle("History")
+           // .background(.white)
+            //.navigationTitle("History")
+            // }
+            //.navigationViewStyle(StackNavigationViewStyle()) // Use this line if you want the navigation style to be stack.
         }
     }
 }
@@ -61,35 +76,29 @@ struct RecordDetailsView: View {
     let record: Record
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 16) {
             Text("Record Details")
                 .font(.title)
-                .padding()
+                //.foregroundColor(.mainGreen)
 
-            Text("Date: \(formattedDate(for: record.date))")
-                .padding()
+            Divider()
 
-            Text("Category: \(record.category)")
-                .padding()
+            VStack(alignment: .leading, spacing: 8) {
+                DetailRow(title: "Date", value: formattedDate(for: record.date))
+                DetailRow(title: "Category", value: record.category)
+                DetailRow(title: "Vehicle Type", value: record.vehicleType)
+                DetailRow(title: "Time Travelled", value: record.timeTravelled)
+                DetailRow(title: "AC Switch", value: record.isACSwitchOn ? "On" : "Off")
 
-            Text("Vehicle Type: \(record.vehicleType)")
-                .padding()
+                if let numberOfPassengers = record.numberOfPassengers {
+                    DetailRow(title: "Number of Passengers", value: "\(numberOfPassengers)")
+                }
 
-            Text("Time Travelled: \(record.timeTravelled)")
-                .padding()
-
-            Text("AC Switch: \(record.isACSwitchOn ? "On" : "Off")")
-                .padding()
-
-            if let numberOfPassengers = record.numberOfPassengers {
-                Text("Number of Passengers: \(numberOfPassengers)")
-                    .padding()
+                if let fuelType = record.fuelType {
+                    DetailRow(title: "Fuel Type", value: fuelType)
+                }
             }
-
-            if let fuelType = record.fuelType {
-                Text("Fuel Type: \(fuelType)")
-                    .padding()
-            }
+            .padding(.horizontal, 20)
 
             Spacer()
         }
@@ -102,6 +111,26 @@ struct RecordDetailsView: View {
         return formatter.string(from: date)
     }
 }
+
+struct DetailRow: View {
+    let title: String
+    let value: String
+
+    var body: some View {
+        HStack {
+            Text(title)
+                .font(.headline)
+                //.foregroundColor(.mainGreen)
+
+            Spacer()
+
+            Text(value)
+                .font(.subheadline)
+                .foregroundColor(.primary)
+        }
+    }
+}
+
 
 struct historyView_Previews: PreviewProvider {
     static var previews: some View {

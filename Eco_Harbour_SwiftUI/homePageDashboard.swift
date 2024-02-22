@@ -87,6 +87,7 @@ struct homePageDashboard: View {
                
                 
                 TabView {
+                    
                     // Icon 1
                     
                     dashboardView()
