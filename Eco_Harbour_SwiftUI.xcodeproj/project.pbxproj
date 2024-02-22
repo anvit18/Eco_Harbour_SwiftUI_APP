@@ -30,6 +30,8 @@
 		7F6C1F702B5510C000CBEC53 /* Eco_Harbour_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C1F6F2B5510C000CBEC53 /* Eco_Harbour_SwiftUITests.swift */; };
 		7F6C1F7A2B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C1F792B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITests.swift */; };
 		7F6C1F7C2B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C1F7B2B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITestsLaunchTests.swift */; };
+		7FBB4B3C2B874F6400728A3D /* recordDailyRenderCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB4B3B2B874F6400728A3D /* recordDailyRenderCategory.swift */; };
+		7FBB4B3E2B8758F800728A3D /* historyVIEW demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB4B3D2B8758F800728A3D /* historyVIEW demo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,8 @@
 		7F6C1F752B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Eco_Harbour_SwiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6C1F792B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eco_Harbour_SwiftUIUITests.swift; sourceTree = "<group>"; };
 		7F6C1F7B2B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eco_Harbour_SwiftUIUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7FBB4B3B2B874F6400728A3D /* recordDailyRenderCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recordDailyRenderCategory.swift; sourceTree = "<group>"; };
+		7FBB4B3D2B8758F800728A3D /* historyVIEW demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "historyVIEW demo.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +133,7 @@
 				7F29B2012B76A19100A55511 /* dashboardView.swift */,
 				7F29B20B2B76A19100A55511 /* frequentlyUsedVehicles.swift */,
 				7F29B2042B76A19100A55511 /* historyView.swift */,
+				7FBB4B3D2B8758F800728A3D /* historyVIEW demo.swift */,
 				7F29B2052B76A19100A55511 /* homePageDashboard.swift */,
 				7F29B2082B76A19100A55511 /* LaunchScreen.swift */,
 				7F29B2032B76A19100A55511 /* Login_Signup_Page.swift */,
@@ -136,6 +141,7 @@
 				7F29B20C2B76A19100A55511 /* OnboardingView.swift */,
 				7F29B20A2B76A19100A55511 /* privateVehicleDetails.swift */,
 				7F29B2092B76A19100A55511 /* recordView.swift */,
+				7FBB4B3B2B874F6400728A3D /* recordDailyRenderCategory.swift */,
 				7F29B2072B76A19100A55511 /* SecondView.swift */,
 				7F29B1FE2B76A19100A55511 /* signup_page.swift */,
 				7F29B2002B76A19100A55511 /* testing_code.swift */,
@@ -308,6 +314,7 @@
 				7F29B2172B76A19100A55511 /* LaunchScreen.swift in Sources */,
 				7F29B20E2B76A19100A55511 /* manualFilling.swift in Sources */,
 				7F29B1FD2B76A15500A55511 /* color.swift in Sources */,
+				7FBB4B3E2B8758F800728A3D /* historyVIEW demo.swift in Sources */,
 				7F29B21B2B76A19100A55511 /* OnboardingView.swift in Sources */,
 				7F6C1F612B5510BF00CBEC53 /* ContentView.swift in Sources */,
 				7F29B2152B76A19100A55511 /* VehcileDetails_CarDetails.swift in Sources */,
@@ -317,6 +324,7 @@
 				7F29B2142B76A19100A55511 /* homePageDashboard.swift in Sources */,
 				7F29B2182B76A19100A55511 /* recordView.swift in Sources */,
 				7F29B21A2B76A19100A55511 /* frequentlyUsedVehicles.swift in Sources */,
+				7FBB4B3C2B874F6400728A3D /* recordDailyRenderCategory.swift in Sources */,
 				7F29B2112B76A19100A55511 /* VehicleDetails.swift in Sources */,
 				7F29B20D2B76A19100A55511 /* signup_page.swift in Sources */,
 				7F29B2132B76A19100A55511 /* historyView.swift in Sources */,
@@ -486,6 +494,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Eco_Harbour_SwiftUI/Preview Content\"";
+				DEVELOPMENT_TEAM = 77CGS54N35;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -514,6 +523,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Eco_Harbour_SwiftUI/Preview Content\"";
+				DEVELOPMENT_TEAM = 77CGS54N35;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

@@ -35,25 +35,38 @@ struct CategoryView: View {
 struct recordView: View {
     @State private var selectedCategory: String?
     
-    @State private var car = ""
-    @State private var time = ""
+    @State private var carType = ""
+    @State private var busType = ""
+    @State private var trainType = ""
+    @State private var autoType = ""
+    @State private var carPool = ""
+    @State private var carTime = ""
+    @State private var carPoolTime = ""
+    @State private var busTime = ""
+    @State private var autoTime = ""
+    @State private var trainTime = ""
     @State private var setDefault = false
     @State private var dummyVar = ""
     @State private var fuel = ""
     @State private var numberOfPassengers = ""
-
+    @State private var showingNextScreen = false
+    
+    // New state variable to store the selected date
+    @State private var selectedDate = Date()
+    
     let categories = [
         Category(name: "Car", systemImage: "car"),
         Category(name: "Bus", systemImage: "bus"),
         Category(name: "Train", systemImage: "train.side.rear.car"),
-        Category(name: "Car Pool", systemImage: "car.2.fill")
+        Category(name: "Car Pool", systemImage: "car.2.fill"),
+        Category(name: "Auto", systemImage: "car.circle")
     ]
-
+    
     struct Category {
         var name: String
         var systemImage: String
     }
-
+    
     struct CategoryFields {
         var numberOfPassengers = ""
         var vehicleSize = ""
@@ -61,12 +74,13 @@ struct recordView: View {
         var timeTravelled = ""
         var isACSwitchOn = false
     }
-
+    
     @State private var category1Fields = CategoryFields()
     @State private var category2Fields = CategoryFields()
     @State private var category3Fields = CategoryFields()
     @State private var category4Fields = CategoryFields()
-
+    @State private var category5Fields = CategoryFields()
+    
     var body: some View {
         VStack {
             ScrollView {
@@ -83,23 +97,61 @@ struct recordView: View {
                 .padding(.bottom, 20)
                 
                 HStack{
-                    Text(formattedCurrentDate())
-                        .font(.title2)
-                        .foregroundColor(.mainGreen.opacity(0.8))
-                        .bold()
-                        .padding()
-                        .underline()
+                    // DatePicker to select the date
+                    DatePicker("",
+                               selection: $selectedDate,
+                               in: ...Date(), // Restrict future dates
+                               displayedComponents: [.date]
+                    )
+                    .datePickerStyle(.compact)
+                    .frame(width: 200, height: 40)
+                    //.padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .padding(.leading,-60)
+                    .padding(.trailing,40)
                     
                     
                     Spacer()
+                    Button("History") {
+                        // Authenticate user
+                        showingNextScreen.toggle()
+                    }
+                    .font(.footnote)
+                    .frame(width: 80, height: 30)
+                    .background(Color.gray.opacity(0.2))
+                    .cornerRadius(10)
+                    .padding(.leading,-40)
+                    .padding(.trailing,50)
                     
-                    HStack {
-                        
+                    NavigationLink(destination: historyView(
+                        selectedCategory: selectedCategory ?? "",
+                                        selectedDate: selectedDate,
+                                        carType: carType,
+                                        carTime: carTime,
+                                        busType: busType,
+                                        busTime: busTime,
+                                        trainType: trainType,
+                                        trainTime: trainTime,
+                                       carPoolType: carPool,
+                                        carPoolTime: carPoolTime,
+                                        autoType: autoType,
+                                        autoTime: autoTime,
+                                        dummyVar: dummyVar,
+                                        fuel: fuel,
+                                        numberOfPassengers: numberOfPassengers
+                                    ), isActive: $showingNextScreen) {
+                                        EmptyView()
+                                    }
+                    
+                    
+                    
+                    HStack{
                         Toggle("Set Default", isOn: $setDefault)
-                        //.labelsHidden()
-                            .padding(.trailing, 20)
-                    }.padding(.leading,  50)
-                    
+                            .padding(.trailing, 10)
+                            .padding(.leading, 10)
+                        
+                    }.padding(.leading,-20)
                 }
                 
                 Text("Select the modes of transport you used today")
@@ -135,6 +187,7 @@ struct recordView: View {
             case "Bus": renderCategoryFields(fields: $category2Fields)
             case "Train": renderCategoryFields(fields: $category3Fields)
             case "Car Pool": renderCategoryFields(fields: $category4Fields)
+            case "Auto": renderCategoryFields(fields: $category5Fields)
             default: EmptyView()
             }
 
@@ -184,129 +237,548 @@ struct recordView: View {
                     .font(.subheadline)
                 Spacer()
             }.padding(.bottom, -10)
-            
-            Menu {
-                Button("Cancel", role: .destructive) {
-                    // Do something
-                }
-                
-                Button {
-                    // do something
-                    car = "Small"
-                }label: {
-                    Label("Small (1-3)", systemImage:  "car.side.fill")
-                }
-                
-                Button {
-                    // Do something
-                    car = "Medium"
-                } label: {
-                    Label("Medium (3-5)", systemImage: "suv.side.fill")
-                }
-                
-                Button {
-                    // Do something
-                    car = "Large"
-                } label: {
-                    Label("Large (5+)", systemImage: "truck.pickup.side.fill")
-                }
-            } label: {
-                TextField("e.g. Large" , text: $car){ //fields.vehicleSize){
+            if selectedCategory == "Car" {
+                Menu {
+                    Button("Cancel", role: .destructive) {
+                        // Do something
+                    }
                     
-                }
-                .multilineTextAlignment(.leading)
-                .padding(.leading,20)
-                .keyboardType(.numberPad)
-                .frame(width: 300, height: 50)
-                .foregroundColor(Color.black)
-                .background(Color.black.opacity(0.05))
-                .cornerRadius(10)
-                
-            }.padding(.bottom, 20)
-            
-            
-            
-            HStack{
-                Text("Time Travelled")
-                    .foregroundStyle(Color.mainGreen)
-                    .padding(.leading, 30)
-                    .padding(.bottom, 20)
-                    .font(.subheadline)
-                Spacer()
-            }.padding(.bottom, -10)
-            
-            Menu {
-                Button("Cancel", role: .destructive) {
-                    // Do something
-                }
-                
-                Button {
-                    // do something
-                    time = "30mins"
-                }label: {
-                    Label("30 Mins", systemImage:  "car.side.fill")
-                }
-                
-                Button {
-                    // Do something
-                    time = "1hr"
-                } label: {
-                    Label("1 Hr", systemImage: "suv.side.fill")
-                }
-                
-                Button {
-                    // Do something
-                    time = "2hr"
-                } label: {
-                    Label("2 Hrs", systemImage: "truck.pickup.side.fill")
-                }
-            } label: {
-                TextField("e.g. 4" , text: $time){ //fields.vehicleSize){
+                    Button {
+                        // do something
+                        carType = "Private"
+                    }label: {
+                        Label("Private", systemImage:  "car.side.fill")
+                    }
                     
-                }
-                .multilineTextAlignment(.leading)
-                .padding(.leading,20)
-                .keyboardType(.numberPad)
-                .frame(width: 300, height: 50)
-                .foregroundColor(Color.black)
-                .background(Color.black.opacity(0.05))
-                .cornerRadius(10)
-                
-            }.padding(.bottom, 20)
-            
-            
-            
-            ZStack {
-                TextField("" , text: $dummyVar){ //fields.vehicleSize){
+                    Button {
+                        // Do something
+                        carType = "Cab"
+                    } label: {
+                        Label("Cab", systemImage: "suv.side.fill")
+                    }
                     
-                }.multilineTextAlignment(.leading)
-                    .padding()
-                //.keyboardType(.numberPad)
+                } label: {
+                    TextField("e.g. Cab" , text: $carType){ //fields.vehicleSize){
+                        
+                    }
+                    .multilineTextAlignment(.leading)
+                    .padding(.leading,20)
+                    .keyboardType(.numberPad)
                     .frame(width: 300, height: 50)
                     .foregroundColor(Color.black)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
-                
-                HStack {
-                    Text("AC")
                     
-                    
+                }.padding(.bottom, 20)
+                HStack{
+                    Text("Time Travelled")
+                        .foregroundStyle(Color.mainGreen)
+                        .padding(.leading, 30)
+                        .padding(.bottom, 20)
+                        .font(.subheadline)
                     Spacer()
-                    
-                    Toggle("", isOn: fields.isACSwitchOn)
-                        .labelsHidden()
-                        .padding(.trailing, 50)
-                }.padding(.leading,  50)
-            }
-            .padding(.bottom, 20)
-            
-            
-            
-            
-            
-            
-            if selectedCategory == "Car Pool" {
+                }.padding(.bottom, -10)
                 
+                Menu {
+                    Button("Cancel", role: .destructive) {
+                        // Do something
+                    }
+                    
+                    Button {
+                        // do something
+                        carTime = "30mins"
+                    }label: {
+                        Label("30 Mins", systemImage:  "car.side.fill")
+                    }
+                    
+                    Button {
+                        // Do something
+                        carTime = "1hr"
+                    } label: {
+                        Label("1 Hr", systemImage: "suv.side.fill")
+                    }
+                    
+                    Button {
+                        // Do something
+                        carTime = "2hr"
+                    } label: {
+                        Label("2 Hrs", systemImage: "truck.pickup.side.fill")
+                    }
+                } label: {
+                    TextField("e.g. 4" , text: $carTime){ //fields.vehicleSize){
+                        
+                    }
+                    .multilineTextAlignment(.leading)
+                    .padding(.leading,20)
+                    .keyboardType(.numberPad)
+                    .frame(width: 300, height: 50)
+                    .foregroundColor(Color.black)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                    
+                }.padding(.bottom, 20)
+                
+                
+                
+                ZStack {
+                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
+                        
+                    }.multilineTextAlignment(.leading)
+                        .padding()
+                    //.keyboardType(.numberPad)
+                        .frame(width: 300, height: 50)
+                        .foregroundColor(Color.black)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                    
+                    HStack {
+                        Text("AC")
+                        
+                        
+                        Spacer()
+                        
+                        Toggle("", isOn: fields.isACSwitchOn)
+                            .labelsHidden()
+                            .padding(.trailing, 50)
+                    }.padding(.leading,  50)
+                }
+                .padding(.bottom, 20)
+            }
+            if selectedCategory == "Bus" {
+                Menu {
+                    Button("Cancel", role: .destructive) {
+                        // Do something
+                    }
+                    
+                    Button {
+                        // do something
+                        busType = "Ordinary"
+                    }label: {
+                        Label("Ordinary", systemImage:  "car.side.fill")
+                    }
+                    
+                    Button {
+                        // Do something
+                        busType = "AC"
+                    } label: {
+                        Label("AC", systemImage: "suv.side.fill")
+                    }
+                    
+                    Button {
+                        // Do something
+                        busType = "Deluxe"
+                    } label: {
+                        Label("Deluxe", systemImage: "truck.pickup.side.fill")
+                    }
+                } label: {
+                    TextField("e.g. Ordinary" , text: $busType){ //fields.vehicleSize){
+                        
+                    }
+                    .multilineTextAlignment(.leading)
+                    .padding(.leading,20)
+                    .keyboardType(.numberPad)
+                    .frame(width: 300, height: 50)
+                    .foregroundColor(Color.black)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                    
+                }.padding(.bottom, 20)
+                HStack{
+                    Text("Time Travelled")
+                        .foregroundStyle(Color.mainGreen)
+                        .padding(.leading, 30)
+                        .padding(.bottom, 20)
+                        .font(.subheadline)
+                    Spacer()
+                }.padding(.bottom, -10)
+                
+                Menu {
+                    Button("Cancel", role: .destructive) {
+                        // Do something
+                    }
+                    
+                    Button {
+                        // do something
+                        busTime = "30mins"
+                    }label: {
+                        Label("30 Mins", systemImage:  "car.side.fill")
+                    }
+                    
+                    Button {
+                        // Do something
+                        busTime = "1hr"
+                    } label: {
+                        Label("1 Hr", systemImage: "suv.side.fill")
+                    }
+                    
+                    Button {
+                        // Do something
+                        busTime = "2hr"
+                    } label: {
+                        Label("2 Hrs", systemImage: "truck.pickup.side.fill")
+                    }
+                } label: {
+                    TextField("e.g. 4" , text: $busTime){ //fields.vehicleSize){
+                        
+                    }
+                    .multilineTextAlignment(.leading)
+                    .padding(.leading,20)
+                    .keyboardType(.numberPad)
+                    .frame(width: 300, height: 50)
+                    .foregroundColor(Color.black)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                    
+                }.padding(.bottom, 20)
+                
+                
+                
+                ZStack {
+                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
+                        
+                    }.multilineTextAlignment(.leading)
+                        .padding()
+                    //.keyboardType(.numberPad)
+                        .frame(width: 300, height: 50)
+                        .foregroundColor(Color.black)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                    
+                    HStack {
+                        Text("AC")
+                        
+                        
+                        Spacer()
+                        
+                        Toggle("", isOn: fields.isACSwitchOn)
+                            .labelsHidden()
+                            .padding(.trailing, 50)
+                    }.padding(.leading,  50)
+                }
+                .padding(.bottom, 20)
+            }
+            if selectedCategory == "Train" {
+                Menu {
+                    Button("Cancel", role: .destructive) {
+                        // Do something
+                    }
+                    
+                    Button {
+                        // do something
+                        trainType = "Metro"
+                    }label: {
+                        Label("Metro", systemImage:  "car.side.fill")
+                    }
+                    
+                    Button {
+                        // Do something
+                        trainType = "Local"
+                    } label: {
+                        Label("Local", systemImage: "suv.side.fill")
+                    }
+                    
+                } label: {
+                    TextField("e.g. Local" , text: $trainType){ //fields.vehicleSize){
+                        
+                    }
+                    .multilineTextAlignment(.leading)
+                    .padding(.leading,20)
+                    .keyboardType(.numberPad)
+                    .frame(width: 300, height: 50)
+                    .foregroundColor(Color.black)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                    
+                }.padding(.bottom, 20)
+                HStack{
+                    Text("Time Travelled")
+                        .foregroundStyle(Color.mainGreen)
+                        .padding(.leading, 30)
+                        .padding(.bottom, 20)
+                        .font(.subheadline)
+                    Spacer()
+                }.padding(.bottom, -10)
+                
+                Menu {
+                    Button("Cancel", role: .destructive) {
+                        // Do something
+                    }
+                    
+                    Button {
+                        // do something
+                        trainTime = "30mins"
+                    }label: {
+                        Label("30 Mins", systemImage:  "car.side.fill")
+                    }
+                    
+                    Button {
+                        // Do something
+                        trainTime = "1hr"
+                    } label: {
+                        Label("1 Hr", systemImage: "suv.side.fill")
+                    }
+                    
+                    Button {
+                        // Do something
+                        trainTime = "2hr"
+                    } label: {
+                        Label("2 Hrs", systemImage: "truck.pickup.side.fill")
+                    }
+                } label: {
+                    TextField("e.g. 4" , text: $trainTime){ //fields.vehicleSize){
+                        
+                    }
+                    .multilineTextAlignment(.leading)
+                    .padding(.leading,20)
+                    .keyboardType(.numberPad)
+                    .frame(width: 300, height: 50)
+                    .foregroundColor(Color.black)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                    
+                }.padding(.bottom, 20)
+                
+                
+                
+                ZStack {
+                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
+                        
+                    }.multilineTextAlignment(.leading)
+                        .padding()
+                    //.keyboardType(.numberPad)
+                        .frame(width: 300, height: 50)
+                        .foregroundColor(Color.black)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                    
+                    HStack {
+                        Text("AC")
+                        
+                        
+                        Spacer()
+                        
+                        Toggle("", isOn: fields.isACSwitchOn)
+                            .labelsHidden()
+                            .padding(.trailing, 50)
+                    }.padding(.leading,  50)
+                }
+                .padding(.bottom, 20)
+            }
+            
+            if selectedCategory == "Auto" {
+                Menu {
+                    Button("Cancel", role: .destructive) {
+                        // Do something
+                    }
+                    
+                    Button {
+                        // do something
+                        autoType = "Pillion"
+                    }label: {
+                        Label("Pillion", systemImage:  "car.side.fill")
+                    }
+                    
+                    Button {
+                        // Do something
+                        autoType = "Share"
+                    } label: {
+                        Label("Share", systemImage: "suv.side.fill")
+                    }
+                    Button {
+                        // do something
+                        autoType = "Magic"
+                    }label: {
+                        Label("Magic", systemImage:  "car.side.fill")
+                    }
+                    
+                } label: {
+                    TextField("e.g. Share" , text: $autoType){ //fields.vehicleSize){
+                        
+                    }
+                    .multilineTextAlignment(.leading)
+                    .padding(.leading,20)
+                    .keyboardType(.numberPad)
+                    .frame(width: 300, height: 50)
+                    .foregroundColor(Color.black)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                    
+                }.padding(.bottom, 20)
+                HStack{
+                    Text("Time Travelled")
+                        .foregroundStyle(Color.mainGreen)
+                        .padding(.leading, 30)
+                        .padding(.bottom, 20)
+                        .font(.subheadline)
+                    Spacer()
+                }.padding(.bottom, -10)
+                
+                Menu {
+                    Button("Cancel", role: .destructive) {
+                        // Do something
+                    }
+                    
+                    Button {
+                        // do something
+                        autoTime = "30mins"
+                    }label: {
+                        Label("30 Mins", systemImage:  "car.side.fill")
+                    }
+                    
+                    Button {
+                        // Do something
+                        autoTime = "1hr"
+                    } label: {
+                        Label("1 Hr", systemImage: "suv.side.fill")
+                    }
+                    
+                    Button {
+                        // Do something
+                        autoTime = "2hr"
+                    } label: {
+                        Label("2 Hrs", systemImage: "truck.pickup.side.fill")
+                    }
+                } label: {
+                    TextField("e.g. 4" , text: $autoTime){ //fields.vehicleSize){
+                        
+                    }
+                    .multilineTextAlignment(.leading)
+                    .padding(.leading,20)
+                    .keyboardType(.numberPad)
+                    .frame(width: 300, height: 50)
+                    .foregroundColor(Color.black)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                    
+                }.padding(.bottom, 20)
+                
+                
+                
+                ZStack {
+                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
+                        
+                    }.multilineTextAlignment(.leading)
+                        .padding()
+                    //.keyboardType(.numberPad)
+                        .frame(width: 300, height: 50)
+                        .foregroundColor(Color.black)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                    
+                    HStack {
+                        Text("AC")
+                        
+                        
+                        Spacer()
+                        
+                        Toggle("", isOn: fields.isACSwitchOn)
+                            .labelsHidden()
+                            .padding(.trailing, 50)
+                    }.padding(.leading,  50)
+                }
+                .padding(.bottom, 20)
+            }
+           
+            if selectedCategory == "Car Pool" {
+                Menu {
+                    Button("Cancel", role: .destructive) {
+                        // Do something
+                    }
+                    
+                    Button {
+                        // do something
+                        carPool = "Car Pool"
+                    }label: {
+                        Label("Car Pool", systemImage:  "car.side.fill")
+                    }
+                    
+                    
+                } label: {
+                    TextField("Car Pool" , text: $carPool){ //fields.vehicleSize){
+                        
+                    }
+                    .multilineTextAlignment(.leading)
+                    .padding(.leading,20)
+                    .keyboardType(.numberPad)
+                    .frame(width: 300, height: 50)
+                    .foregroundColor(Color.black)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                    
+                }.padding(.bottom, 20)
+                HStack{
+                    Text("Time Travelled")
+                        .foregroundStyle(Color.mainGreen)
+                        .padding(.leading, 30)
+                        .padding(.bottom, 20)
+                        .font(.subheadline)
+                    Spacer()
+                }.padding(.bottom, -10)
+                
+                Menu {
+                    Button("Cancel", role: .destructive) {
+                        // Do something
+                    }
+                    
+                    Button {
+                        // do something
+                        carPoolTime = "30mins"
+                    }label: {
+                        Label("30 Mins", systemImage:  "car.side.fill")
+                    }
+                    
+                    Button {
+                        // Do something
+                        carPoolTime = "1hr"
+                    } label: {
+                        Label("1 Hr", systemImage: "suv.side.fill")
+                    }
+                    
+                    Button {
+                        // Do something
+                        carPoolTime = "2hr"
+                    } label: {
+                        Label("2 Hrs", systemImage: "truck.pickup.side.fill")
+                    }
+                } label: {
+                    TextField("e.g. 4" , text: $carPoolTime){ //fields.vehicleSize){
+                        
+                    }
+                    .multilineTextAlignment(.leading)
+                    .padding(.leading,20)
+                    .keyboardType(.numberPad)
+                    .frame(width: 300, height: 50)
+                    .foregroundColor(Color.black)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                    
+                }.padding(.bottom, 20)
+                
+                
+                
+                ZStack {
+                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
+                        
+                    }.multilineTextAlignment(.leading)
+                        .padding()
+                    //.keyboardType(.numberPad)
+                        .frame(width: 300, height: 50)
+                        .foregroundColor(Color.black)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                    
+                    HStack {
+                        Text("AC")
+                        
+                        
+                        Spacer()
+                        
+                        Toggle("", isOn: fields.isACSwitchOn)
+                            .labelsHidden()
+                            .padding(.trailing, 50)
+                    }.padding(.leading,  50)
+                }
+                .padding(.bottom, 20)
                 HStack{
                     Text("Number of Passengers")
                         .foregroundStyle(Color.mainGreen)
@@ -422,10 +894,9 @@ struct recordView: View {
                     .cornerRadius(10)
                     
                 }.padding(.bottom, 20)
-                //end of car type menu
-                
+            }
             
-                   }
+        
             }
             
         }
@@ -436,29 +907,34 @@ struct recordView: View {
         }
 
         print("Selected Category for Record: \(selectedCategory)")
+        print("Selected Date:\(selectedDate)")
         switch selectedCategory {
         case "Car":
-            print("Car: \(car)")
-            print("Time Travelled: \(time)")
+            print("Car: \(carType)")
+            print("Time Travelled: \(carTime)")
             print("AC Switch: \(category1Fields.isACSwitchOn)")
         case "Bus":
             // Handle Bus category input
-            print("Bus: \(car)")
-            print("Time Travelled: \(time)")
+            print("Bus: \(busType)")
+            print("Time Travelled: \(busTime)")
             print("AC Switch: \(category1Fields.isACSwitchOn)")
             break
         case "Train":
             // Handle Train category input
-            print("Train: \(car)")
-            print("Time Travelled: \(time)")
+            print("Train: \(trainType)")
+            print("Time Travelled: \(trainTime)")
             print("AC Switch: \(category1Fields.isACSwitchOn)")
             break
         case "Car Pool":
-            print("Car Type: \(car)")
-            print("Time Travelled: \(time)")
+            print("Car Type: \(carPool)")
+            print("Time Travelled: \(carPoolTime)")
             print("AC Switch: \(category4Fields.isACSwitchOn)")
             print("Number of Passengers: \(numberOfPassengers)")
             print("Fuel Type: \(fuel)")
+        case "Auto":
+            print("Auto Type: \(autoType)")
+            print("Time Travelled: \(autoTime)")
+            print("AC Switch: \(category4Fields.isACSwitchOn)")
         default:
             break
         }

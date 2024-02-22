@@ -99,13 +99,13 @@ struct homePageDashboard: View {
                         }
                     
                     // Icon 2
-                    historyView()
-                        .tabItem {
-                            Image(systemName: "leaf.fill")
-                                .resizable()
-                                .frame(width: 50, height: 50) // Adjust the icon size
-                            Text("History")
-                        }
+//                    historyView()
+//                        .tabItem {
+//                            Image(systemName: "leaf.fill")
+//                                .resizable()
+//                                .frame(width: 50, height: 50) // Adjust the icon size
+//                            Text("History")
+//                        }
                     
                     recordView()
                         .tabItem {
