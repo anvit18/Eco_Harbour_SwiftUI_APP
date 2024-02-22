@@ -98,29 +98,29 @@ struct homePageDashboard: View {
                         }
                     
                     // Icon 2
-                    historyView(
-                                        selectedCategory: "",
-                                        selectedDate: Date(),
-                                        carType: "Medium",
-                                        carTime: "1 hr",
-                                        busType: "",
-                                        busTime: "",
-                                        trainType: "",
-                                        trainTime: "",
-                                        carPoolType: "",
-                                        carPoolTime: "",
-                                        autoType: "",
-                                        autoTime: "",
-                                        dummyVar: "",
-                                        fuel: "",
-                                        numberOfPassengers: ""
-                                    )
-                        .tabItem {
-                            Image(systemName: "leaf.fill")
-                                .resizable()
-                                .frame(width: 50, height: 50) // Adjust the icon size
-                            Text("History")
-                        }
+//                    historyView(
+//                                        selectedCategory: "",
+//                                        selectedDate: Date(),
+//                                        carType: "",
+//                                        carTime: "",
+//                                        busType: "",
+//                                        busTime: "",
+//                                        trainType: "",
+//                                        trainTime: "",
+//                                        carPoolType: "",
+//                                        carPoolTime: "",
+//                                        autoType: "",
+//                                        autoTime: "",
+//                                        dummyVar: "",
+//                                        fuel: "",
+//                                        numberOfPassengers: ""
+//                                    )
+//                        .tabItem {
+//                            Image(systemName: "leaf.fill")
+//                                .resizable()
+//                                .frame(width: 50, height: 50) // Adjust the icon size
+//                            Text("History")
+//                        }
                     
                     recordView()
                         .tabItem {

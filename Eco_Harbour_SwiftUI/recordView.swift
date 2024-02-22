@@ -35,6 +35,7 @@ struct CategoryView: View {
 struct recordView: View {
     @State private var selectedCategory: String?
     
+    @State private var cityName = ""
     @State private var carType = ""
     @State private var busType = ""
     @State private var trainType = ""
@@ -96,6 +97,46 @@ struct recordView: View {
                 }
                 .padding(.bottom, 20)
                 
+                HStack {
+                    
+                    
+                   // Spacer()
+                    
+                    Menu {
+                        Button("Cancel", role: .destructive) {
+                            // Do something
+                        }
+                        
+                        Button {
+                            // do something
+                            cityName = "Pune"
+                        }label: {
+                            Label("Pune", systemImage:  "sun.min.fill")
+                        }
+                        
+                        Button {
+                            // Do something
+                            cityName = "Mumbai"
+                        } label: {
+                            Label("Mumbai", systemImage: "sun.horizon.circle.fill")
+                        }
+                        Button {
+                            // Do something
+                            cityName = "Chennai"
+                        } label: {
+                            Label("Chennai", systemImage: "sun.rain.fill")
+                        }
+                    } label: {
+                        TextField("Chennai", text: $cityName)
+                            .padding()
+                            .autocapitalization(.allCharacters)
+                            .frame(width: 350, height: 40)
+                            .background(Color.mainGreen.opacity(0.05))
+                            .cornerRadius(10)
+                    }
+                    
+                }.padding(.bottom,20)
+                
                 HStack{
                     // DatePicker to select the date
                     DatePicker("",
@@ -108,21 +149,22 @@ struct recordView: View {
                     //.padding()
                     .background(Color.white)
                     .cornerRadius(10)
-                    .padding(.leading,-60)
+                    .padding(.leading,-50)
                     .padding(.trailing,40)
                     
                     
-                    Spacer()
-                    Button("History") {
+                   Spacer()
+                    Button("History", systemImage: "clock.fill") {
                         // Authenticate user
                         showingNextScreen.toggle()
                     }
-                    .font(.footnote)
-                    .frame(width: 80, height: 30)
-                    .background(Color.gray.opacity(0.2))
+                    .font(.title2)
+                    .foregroundColor(.mainGreen)
+                    .frame(width: 180, height: 40)
+                    //.background(Color.gray.opacity(0.2))
                     .cornerRadius(10)
-                    .padding(.leading,-40)
-                    .padding(.trailing,50)
+                    //.padding(.leading,-40)
+                   // .padding(.trailing,50)
                     
                     NavigationLink(destination: historyView(
                         selectedCategory: selectedCategory ?? "",
@@ -145,13 +187,6 @@ struct recordView: View {
                                     }
                     
                     
-                    
-                    HStack{
-                        Toggle("Set Default", isOn: $setDefault)
-                            .padding(.trailing, 10)
-                            .padding(.leading, 10)
-                        
-                    }.padding(.leading,-20)
                 }
                 
                 Text("Select the modes of transport you used today")
