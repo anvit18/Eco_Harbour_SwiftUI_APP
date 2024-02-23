@@ -38,6 +38,7 @@ struct signup_page: View {
                         Text("Harbour")
                             .font(.largeTitle)
                             .bold()
+                            .foregroundColor(.black)
                         
                     }
                     Text("Sign Up")
@@ -82,6 +83,7 @@ struct signup_page: View {
                     TextField("Enter Email", text : $emailid)
                         .padding()
                         .frame(width: 300, height: 50)
+                        .foregroundColor(.gray)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
                         //.border(.red, width: CGFloat(wrongUsername))
@@ -89,6 +91,7 @@ struct signup_page: View {
                     SecureField("Enter Password", text : $password)
                         .padding()
                         .frame(width: 300, height: 50)
+                        .foregroundColor(.gray)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
                         //.border(.red, width: CGFloat(wrongPassword))
@@ -96,6 +99,7 @@ struct signup_page: View {
                     SecureField("Confirm Password", text : $password)
                         .padding()
                         .frame(width: 300, height: 50)
+                        .foregroundColor(.gray)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
                         //.border(.red, width: CGFloat(wrongPassword))

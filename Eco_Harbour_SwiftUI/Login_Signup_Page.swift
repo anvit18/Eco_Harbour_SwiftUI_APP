@@ -40,6 +40,7 @@ struct Login_Signup_Page: View {
                             .foregroundColor(.green)
                         Text("Harbour")
                             .font(.largeTitle)
+                            .foregroundColor(.black)
                             .bold()
                         
                     }
@@ -52,12 +53,14 @@ struct Login_Signup_Page: View {
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
+                        .foregroundColor(.gray)
                         .cornerRadius(10)
                         .border(.red, width: CGFloat(wrongUsername))
                     
                     SecureField("Password", text : $password)
                         .padding()
                         .frame(width: 300, height: 50)
+                        .foregroundColor(.gray)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
                         .border(.red, width: CGFloat(wrongPassword))

@@ -35,6 +35,14 @@ struct CategoryView: View {
 struct recordView: View {
     @State private var selectedCategory: String?
     
+    @State private var showStepper = false
+    
+    @State var carDistance: Int = 0
+    @State var busDistance: Int = 0
+    @State var trainDistance: Int = 0
+    @State var carPoolDistance: Int = 0
+    @State var autoDistance: Int = 0
+    
     @State private var showAlert = false
     @State private var cityName = ""
     @State private var carType = ""
@@ -42,11 +50,6 @@ struct recordView: View {
     @State private var trainType = ""
     @State private var autoType = ""
     @State private var carPool = ""
-    @State private var carTime = ""
-    @State private var carPoolTime = ""
-    @State private var busTime = ""
-    @State private var autoTime = ""
-    @State private var trainTime = ""
     @State private var setDefault = false
     @State private var dummyVar = ""
     @State private var fuel = ""
@@ -171,15 +174,15 @@ struct recordView: View {
                         selectedCategory: selectedCategory ?? "",
                                         selectedDate: selectedDate,
                                         carType: carType,
-                                        carTime: carTime,
+                                        carDistance: carDistance,
                                         busType: busType,
-                                        busTime: busTime,
+                                        busDistance: busDistance,
                                         trainType: trainType,
-                                        trainTime: trainTime,
+                                        trainDistance: trainDistance,
                                        carPoolType: carPool,
-                                        carPoolTime: carPoolTime,
+                                        carPoolDistance: carPoolDistance,
                                         autoType: autoType,
-                                        autoTime: autoTime,
+                                        autoDistance: autoDistance,
                                         dummyVar: dummyVar,
                                         fuel: fuel,
                                         numberOfPassengers: numberOfPassengers
@@ -316,53 +319,38 @@ struct recordView: View {
                     .cornerRadius(10)
                     
                 }.padding(.bottom, 20)
+                
+                
                 HStack{
-                    Text("Time Travelled")
+                    Text("Distance Travelled :")
                         .foregroundStyle(Color.mainGreen)
                         .padding(.leading, 30)
                         .padding(.bottom, 20)
                         .font(.subheadline)
+                        
                     Spacer()
                 }.padding(.bottom, -10)
+                    
+                    
+                    
                 
-                Menu {
-                    Button("Cancel", role: .destructive) {
-                        // Do something
-                    }
-                    
-                    Button {
-                        // do something
-                        carTime = "30mins"
-                    }label: {
-                        Label("30 Mins", systemImage:  "car.side.fill")
-                    }
-                    
-                    Button {
-                        // Do something
-                        carTime = "1hr"
-                    } label: {
-                        Label("1 Hr", systemImage: "suv.side.fill")
-                    }
-                    
-                    Button {
-                        // Do something
-                        carTime = "2hr"
-                    } label: {
-                        Label("2 Hrs", systemImage: "truck.pickup.side.fill")
-                    }
-                } label: {
-                    TextField("e.g. 4" , text: $carTime){ //fields.vehicleSize){
-                        
-                    }
-                    .multilineTextAlignment(.leading)
-                    .padding(.leading,20)
-                    .keyboardType(.numberPad)
-                    .frame(width: 300, height: 50)
-                    .foregroundColor(Color.black)
-                    .background(Color.black.opacity(0.05))
-                    .cornerRadius(10)
-                    
-                }.padding(.bottom, 20)
+               
+                    VStack {
+                        Stepper(value: $carDistance, in: 0...100) {
+                                                                    Text("\(carDistance) KMS")
+                                                                }
+                                                                .padding(.horizontal)
+                                                                
+                                                            }.multilineTextAlignment(.leading)
+                        .padding(.leading,20)
+                       
+                        .keyboardType(.numberPad)
+                        .frame(width: 300, height: 50)
+                        .foregroundColor(Color.black)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                        .padding(.bottom,20)
+                                                        
                 
                 
                 
@@ -430,54 +418,35 @@ struct recordView: View {
                     
                 }.padding(.bottom, 20)
                 HStack{
-                    Text("Time Travelled")
+                    Text("Distance Travelled :")
                         .foregroundStyle(Color.mainGreen)
                         .padding(.leading, 30)
                         .padding(.bottom, 20)
                         .font(.subheadline)
+                        
                     Spacer()
                 }.padding(.bottom, -10)
+                    
+                    
+                    
                 
-                Menu {
-                    Button("Cancel", role: .destructive) {
-                        // Do something
-                    }
-                    
-                    Button {
-                        // do something
-                        busTime = "30mins"
-                    }label: {
-                        Label("30 Mins", systemImage:  "car.side.fill")
-                    }
-                    
-                    Button {
-                        // Do something
-                        busTime = "1hr"
-                    } label: {
-                        Label("1 Hr", systemImage: "suv.side.fill")
-                    }
-                    
-                    Button {
-                        // Do something
-                        busTime = "2hr"
-                    } label: {
-                        Label("2 Hrs", systemImage: "truck.pickup.side.fill")
-                    }
-                } label: {
-                    TextField("e.g. 4" , text: $busTime){ //fields.vehicleSize){
-                        
-                    }
-                    .multilineTextAlignment(.leading)
-                    .padding(.leading,20)
-                    .keyboardType(.numberPad)
-                    .frame(width: 300, height: 50)
-                    .foregroundColor(Color.black)
-                    .background(Color.black.opacity(0.05))
-                    .cornerRadius(10)
-                    
-                }.padding(.bottom, 20)
-                
-                
+              
+                    VStack {
+                        Stepper(value: $busDistance, in: 0...100) {
+                                                                    Text("\(busDistance) KMS")
+                                                                }
+                                                                .padding(.horizontal)
+                                                                
+                                                            }.multilineTextAlignment(.leading)
+                        .padding(.leading,20)
+                       
+                        .keyboardType(.numberPad)
+                        .frame(width: 300, height: 50)
+                        .foregroundColor(Color.black)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                        .padding(.bottom,20)
+                                                        
                 
                 ZStack {
                     TextField("" , text: $dummyVar){ //fields.vehicleSize){
@@ -536,55 +505,38 @@ struct recordView: View {
                     .cornerRadius(10)
                     
                 }.padding(.bottom, 20)
+                
+                
                 HStack{
-                    Text("Time Travelled")
+                    Text("Distance Travelled :")
                         .foregroundStyle(Color.mainGreen)
                         .padding(.leading, 30)
                         .padding(.bottom, 20)
                         .font(.subheadline)
+                        
                     Spacer()
                 }.padding(.bottom, -10)
+                    
+                    
+                    
                 
-                Menu {
-                    Button("Cancel", role: .destructive) {
-                        // Do something
-                    }
-                    
-                    Button {
-                        // do something
-                        trainTime = "30mins"
-                    }label: {
-                        Label("30 Mins", systemImage:  "car.side.fill")
-                    }
-                    
-                    Button {
-                        // Do something
-                        trainTime = "1hr"
-                    } label: {
-                        Label("1 Hr", systemImage: "suv.side.fill")
-                    }
-                    
-                    Button {
-                        // Do something
-                        trainTime = "2hr"
-                    } label: {
-                        Label("2 Hrs", systemImage: "truck.pickup.side.fill")
-                    }
-                } label: {
-                    TextField("e.g. 4" , text: $trainTime){ //fields.vehicleSize){
-                        
-                    }
-                    .multilineTextAlignment(.leading)
-                    .padding(.leading,20)
-                    .keyboardType(.numberPad)
-                    .frame(width: 300, height: 50)
-                    .foregroundColor(Color.black)
-                    .background(Color.black.opacity(0.05))
-                    .cornerRadius(10)
-                    
-                }.padding(.bottom, 20)
-                
-                
+               
+                    VStack {
+                        Stepper(value: $trainDistance, in: 0...200, step:5) {
+                                                                    Text("\(trainDistance) KMS")
+                                                                }
+                                                                .padding(.horizontal)
+                                                                
+                                                            }.multilineTextAlignment(.leading)
+                        .padding(.leading,20)
+                       
+                        .keyboardType(.numberPad)
+                        .frame(width: 300, height: 50)
+                        .foregroundColor(Color.black)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                        .padding(.bottom,20)
+                                                
                 
                 ZStack {
                     TextField("" , text: $dummyVar){ //fields.vehicleSize){
@@ -650,53 +602,38 @@ struct recordView: View {
                     .cornerRadius(10)
                     
                 }.padding(.bottom, 20)
+                
+                
                 HStack{
-                    Text("Time Travelled")
+                    Text("Distance Travelled :")
                         .foregroundStyle(Color.mainGreen)
                         .padding(.leading, 30)
                         .padding(.bottom, 20)
                         .font(.subheadline)
+                        
                     Spacer()
                 }.padding(.bottom, -10)
+                    
+                    
+                    
                 
-                Menu {
-                    Button("Cancel", role: .destructive) {
-                        // Do something
-                    }
-                    
-                    Button {
-                        // do something
-                        autoTime = "30mins"
-                    }label: {
-                        Label("30 Mins", systemImage:  "car.side.fill")
-                    }
-                    
-                    Button {
-                        // Do something
-                        autoTime = "1hr"
-                    } label: {
-                        Label("1 Hr", systemImage: "suv.side.fill")
-                    }
-                    
-                    Button {
-                        // Do something
-                        autoTime = "2hr"
-                    } label: {
-                        Label("2 Hrs", systemImage: "truck.pickup.side.fill")
-                    }
-                } label: {
-                    TextField("e.g. 4" , text: $autoTime){ //fields.vehicleSize){
-                        
-                    }
-                    .multilineTextAlignment(.leading)
-                    .padding(.leading,20)
-                    .keyboardType(.numberPad)
-                    .frame(width: 300, height: 50)
-                    .foregroundColor(Color.black)
-                    .background(Color.black.opacity(0.05))
-                    .cornerRadius(10)
-                    
-                }.padding(.bottom, 20)
+               
+                    VStack {
+                        Stepper(value: $autoDistance, in: 0...100) {
+                                                                    Text("\(autoDistance) KMS")
+                                                                }
+                                                                .padding(.horizontal)
+                                                                
+                                                            }.multilineTextAlignment(.leading)
+                        .padding(.leading,20)
+                       
+                        .keyboardType(.numberPad)
+                        .frame(width: 300, height: 50)
+                        .foregroundColor(Color.black)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                        .padding(.bottom,20)
+                                                
                 
                 
                 
@@ -752,53 +689,38 @@ struct recordView: View {
                     .cornerRadius(10)
                     
                 }.padding(.bottom, 20)
+                
+                
                 HStack{
-                    Text("Time Travelled")
+                    Text("Distance Travelled :")
                         .foregroundStyle(Color.mainGreen)
                         .padding(.leading, 30)
                         .padding(.bottom, 20)
                         .font(.subheadline)
+                        
                     Spacer()
                 }.padding(.bottom, -10)
+                    
+                    
+                    
                 
-                Menu {
-                    Button("Cancel", role: .destructive) {
-                        // Do something
-                    }
-                    
-                    Button {
-                        // do something
-                        carPoolTime = "30mins"
-                    }label: {
-                        Label("30 Mins", systemImage:  "car.side.fill")
-                    }
-                    
-                    Button {
-                        // Do something
-                        carPoolTime = "1hr"
-                    } label: {
-                        Label("1 Hr", systemImage: "suv.side.fill")
-                    }
-                    
-                    Button {
-                        // Do something
-                        carPoolTime = "2hr"
-                    } label: {
-                        Label("2 Hrs", systemImage: "truck.pickup.side.fill")
-                    }
-                } label: {
-                    TextField("e.g. 4" , text: $carPoolTime){ //fields.vehicleSize){
-                        
-                    }
-                    .multilineTextAlignment(.leading)
-                    .padding(.leading,20)
-                    .keyboardType(.numberPad)
-                    .frame(width: 300, height: 50)
-                    .foregroundColor(Color.black)
-                    .background(Color.black.opacity(0.05))
-                    .cornerRadius(10)
-                    
-                }.padding(.bottom, 20)
+               
+                    VStack {
+                        Stepper(value: $carPoolDistance, in: 0...100) {
+                                                                    Text("\(carPoolDistance) KMS")
+                                                                }
+                                                                .padding(.horizontal)
+                                                                
+                                                            }.multilineTextAlignment(.leading)
+                        .padding(.leading,20)
+                       
+                        .keyboardType(.numberPad)
+                        .frame(width: 300, height: 50)
+                        .foregroundColor(Color.black)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                        .padding(.bottom,20)
+                                                
                 
                 
                 
@@ -957,29 +879,29 @@ struct recordView: View {
         switch selectedCategory {
         case "Car":
             print("Car: \(carType)")
-            print("Time Travelled: \(carTime)")
+            print("Distance Travelled: \(carDistance)")
             print("AC Switch: \(category1Fields.isACSwitchOn)")
         case "Bus":
             // Handle Bus category input
             print("Bus: \(busType)")
-            print("Time Travelled: \(busTime)")
+            print("Distance Travelled: \(busDistance)")
             print("AC Switch: \(category1Fields.isACSwitchOn)")
             break
         case "Train":
             // Handle Train category input
             print("Train: \(trainType)")
-            print("Time Travelled: \(trainTime)")
+            print("Distance Travelled: \(trainDistance)")
             print("AC Switch: \(category1Fields.isACSwitchOn)")
             break
         case "Car Pool":
             print("Car Type: \(carPool)")
-            print("Time Travelled: \(carPoolTime)")
+            print("Distance Travelled: \(carPoolDistance)")
             print("AC Switch: \(category4Fields.isACSwitchOn)")
             print("Number of Passengers: \(numberOfPassengers)")
             print("Fuel Type: \(fuel)")
         case "Auto":
             print("Auto Type: \(autoType)")
-            print("Time Travelled: \(autoTime)")
+            print("Distance Travelled: \(autoDistance)")
             print("AC Switch: \(category4Fields.isACSwitchOn)")
         default:
             break

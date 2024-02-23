@@ -5,15 +5,15 @@ struct Record: Identifiable {
     var selectedCategory: String
     var selectedDate: Date
     var carType: String
-    var carTime: String
+    var carDistance: String  // Changed variable name
     var busType: String
-    var busTime: String
+    var busDistance: String  // Changed variable name
     var trainType: String
-    var trainTime: String
+    var trainDistance: String  // Changed variable name
     var carPoolType: String
-    var carPoolTime: String
+    var carPoolDistance: String  // Changed variable name
     var autoType: String
-    var autoTime: String
+    var autoDistance: String  // Changed variable name
     var dummyVar: String
     var fuel: String
     var numberOfPassengers: String
@@ -21,21 +21,21 @@ struct Record: Identifiable {
 
 struct historyView: View {
     let records: [Record]
-
     @State private var selectedDate = Date()
+    @State private var showAlert = false  // Added state for showing the alert
 
     init(selectedCategory: String,
          selectedDate: Date,
          carType: String,
-         carTime: String,
+         carDistance: Int,  // Changed variable name
          busType: String,
-         busTime: String,
+         busDistance: Int,  // Changed variable name
          trainType: String,
-         trainTime: String,
+         trainDistance: Int,  // Changed variable name
          carPoolType: String,
-         carPoolTime: String,
+         carPoolDistance: Int,  // Changed variable name
          autoType: String,
-         autoTime: String,
+         autoDistance: Int,  // Changed variable name
          dummyVar: String,
          fuel: String,
          numberOfPassengers: String) {
@@ -44,62 +44,64 @@ struct historyView: View {
         var filteredRecords: [Record] = []
 
         // Add Car record if it has data
-        if !carType.isEmpty || !carTime.isEmpty {
-            filteredRecords.append(Record(selectedCategory: "Car", selectedDate: selectedDate, carType: carType, carTime: carTime, busType: "", busTime: "", trainType: "", trainTime: "", carPoolType: "", carPoolTime: "", autoType: "", autoTime: "", dummyVar: "", fuel: "", numberOfPassengers: ""))
+        // Add Car record if it has data
+        if !carType.isEmpty || (carDistance != 0) {
+            filteredRecords.append(Record(selectedCategory: "Car", selectedDate: selectedDate, carType: carType, carDistance: String(carDistance), busType: "", busDistance: "0", trainType: "", trainDistance: "0", carPoolType: "", carPoolDistance: "0", autoType: "", autoDistance: "0", dummyVar: "", fuel: "", numberOfPassengers: ""))
         }
 
         // Add Bus record if it has data
-        if !busType.isEmpty || !busTime.isEmpty {
-            filteredRecords.append(Record(selectedCategory: "Bus", selectedDate: selectedDate, carType: "", carTime: "", busType: busType, busTime: busTime, trainType: "", trainTime: "", carPoolType: "", carPoolTime: "", autoType: "", autoTime: "", dummyVar: "", fuel: "", numberOfPassengers: ""))
+        if !busType.isEmpty || (busDistance != 0) {
+            filteredRecords.append(Record(selectedCategory: "Bus", selectedDate: selectedDate, carType: "", carDistance: "", busType: busType, busDistance: String(busDistance), trainType: "", trainDistance: "0", carPoolType: "", carPoolDistance: "0", autoType: "", autoDistance: "0", dummyVar: "", fuel: "", numberOfPassengers: ""))
         }
 
         // Add Train record if it has data
-        if !trainType.isEmpty || !trainTime.isEmpty {
-            filteredRecords.append(Record(selectedCategory: "Train", selectedDate: selectedDate, carType: "", carTime: "", busType: "", busTime: "", trainType: trainType, trainTime: trainTime, carPoolType: "", carPoolTime: "", autoType: "", autoTime: "", dummyVar: "", fuel: "", numberOfPassengers: ""))
+        if !trainType.isEmpty || (trainDistance != 0) {
+            filteredRecords.append(Record(selectedCategory: "Train", selectedDate: selectedDate, carType: "", carDistance: "", busType: "", busDistance: "", trainType: trainType, trainDistance: String(trainDistance), carPoolType: "", carPoolDistance: "0", autoType: "", autoDistance: "0", dummyVar: "", fuel: "", numberOfPassengers: ""))
         }
 
         // Add Car Pool record if it has data
-        if !carPoolType.isEmpty || !carPoolTime.isEmpty || !numberOfPassengers.isEmpty || !fuel.isEmpty {
-            filteredRecords.append(Record(selectedCategory: "Car Pool", selectedDate: selectedDate, carType: "", carTime: "", busType: "", busTime: "", trainType: "", trainTime: "", carPoolType: carPoolType, carPoolTime: carPoolTime, autoType: "", autoTime: "", dummyVar: "", fuel: fuel, numberOfPassengers: numberOfPassengers))
+        if !carPoolType.isEmpty || (carPoolDistance != 0) || !numberOfPassengers.isEmpty || !fuel.isEmpty {
+            filteredRecords.append(Record(selectedCategory: "Car Pool", selectedDate: selectedDate, carType: "", carDistance: "", busType: "", busDistance: "", trainType: "", trainDistance: "", carPoolType: carPoolType, carPoolDistance: String(carPoolDistance), autoType: "", autoDistance: "0", dummyVar: "", fuel: fuel, numberOfPassengers: numberOfPassengers))
         }
 
         // Add Auto record if it has data
-        if !autoType.isEmpty || !autoTime.isEmpty {
-            filteredRecords.append(Record(selectedCategory: "Auto", selectedDate: selectedDate, carType: "", carTime: "", busType: "", busTime: "", trainType: "", trainTime: "", carPoolType: "", carPoolTime: "", autoType: autoType, autoTime: autoTime, dummyVar: "", fuel: "", numberOfPassengers: ""))
+        if !autoType.isEmpty || (autoDistance != 0) {
+            filteredRecords.append(Record(selectedCategory: "Auto", selectedDate: selectedDate, carType: "", carDistance: "", busType: "", busDistance: "", trainType: "", trainDistance: "", carPoolType: "", carPoolDistance: "", autoType: autoType, autoDistance: String(autoDistance), dummyVar: "", fuel: "", numberOfPassengers: ""))
         }
+
 
         self.records = filteredRecords
     }
 
     var body: some View {
         //NavigationView {
-            VStack {
-//                DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
-//                    .datePickerStyle(GraphicalDatePickerStyle())
-//                    .padding(.vertical, 10)
+        VStack {
+        //                DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
+        //                    .datePickerStyle(GraphicalDatePickerStyle())
+        //                    .padding(.vertical, 10)
 
-                HStack {
-                    Text("History")
-                        .font(.largeTitle)
-                        .bold()
-                        .padding(.leading, 20)
+                        HStack {
+                            Text("History")
+                                .font(.largeTitle)
+                                .bold()
+                                .padding(.leading, 20)
 
-                    Spacer()
-                }
-                .padding(.bottom, 20)
+                            Spacer()
+                        }
+                        .padding(.bottom, 20)
 
-                List {
-                    ForEach(records) { record in
-                        NavigationLink(destination: RecordDetailsView(record: record)) {
-                            HistoryRow(record: record)
+                        List {
+                            ForEach(records) { record in
+                                NavigationLink(destination: RecordDetailsView(record: record)) {
+                                    HistoryRow(record: record)
+                                }
+                            }
                         }
                     }
-                }
+                    //.navigationTitle("History")
+                
             }
-            //.navigationTitle("History")
-        
-    }
-}
+        }
 
 struct HistoryRow: View {
     let record: Record
@@ -118,8 +120,8 @@ struct HistoryRow: View {
                     .foregroundColor(.secondary)
             }
 
-            if !record.carTime.isEmpty {
-                Text("Car Time: \(record.carTime)")
+            if !record.carDistance.isEmpty {
+                Text("Car Distance: \(record.carDistance)")
                     .foregroundColor(.secondary)
             }
 
@@ -129,8 +131,8 @@ struct HistoryRow: View {
                         .foregroundColor(.secondary)
                 }
 
-                if !record.carPoolTime.isEmpty {
-                    Text("Car Pool Time: \(record.carPoolTime)")
+                if !record.carPoolDistance.isEmpty {
+                    Text("Car Pool Distance: \(record.carPoolDistance)")
                         .foregroundColor(.secondary)
                 }
 
@@ -150,8 +152,8 @@ struct HistoryRow: View {
                     .foregroundColor(.secondary)
             }
 
-            if !record.busTime.isEmpty {
-                Text("Bus Time: \(record.busTime)")
+            if !record.busDistance.isEmpty {
+                Text("Bus Distance: \(record.busDistance)")
                     .foregroundColor(.secondary)
             }
 
@@ -160,8 +162,8 @@ struct HistoryRow: View {
                     .foregroundColor(.secondary)
             }
 
-            if !record.autoTime.isEmpty {
-                Text("Auto Time: \(record.autoTime)")
+            if !record.autoDistance.isEmpty {
+                Text("Auto Distance: \(record.autoDistance)")
                     .foregroundColor(.secondary)
             }
         }
@@ -195,8 +197,8 @@ struct RecordDetailsView: View {
                     DetailRow(title: "Car Type", value: record.carType)
                 }
 
-                if !record.carTime.isEmpty {
-                    DetailRow(title: "Car Time", value: record.carTime)
+                if !record.carDistance.isEmpty {
+                    DetailRow(title: "Car Distance", value: record.carDistance)
                 }
 
                 if record.selectedCategory == "Car Pool" {
@@ -204,8 +206,8 @@ struct RecordDetailsView: View {
                         DetailRow(title: "Car Pool Type", value: record.carPoolType)
                     }
 
-                    if !record.carPoolTime.isEmpty {
-                        DetailRow(title: "Car Pool Time", value: record.carPoolTime)
+                    if !record.carPoolDistance.isEmpty {
+                        DetailRow(title: "Car Pool Distance", value: record.carPoolDistance)
                     }
 
                     if let passengers = Int(record.numberOfPassengers) {
@@ -221,24 +223,24 @@ struct RecordDetailsView: View {
                     DetailRow(title: "Bus Type", value: record.busType)
                 }
 
-                if !record.busTime.isEmpty {
-                    DetailRow(title: "Bus Time", value: record.busTime)
+                if !record.busDistance.isEmpty {
+                    DetailRow(title: "Bus Distance", value: record.busDistance)
                 }
 
                 if !record.trainType.isEmpty {
                     DetailRow(title: "Train Type", value: record.trainType)
                 }
 
-                if !record.trainTime.isEmpty {
-                    DetailRow(title: "Train Time", value: record.trainTime)
+                if !record.trainDistance.isEmpty {
+                    DetailRow(title: "Train Distance", value: record.trainDistance)
                 }
 
                 if !record.autoType.isEmpty {
                     DetailRow(title: "Auto Type", value: record.autoType)
                 }
 
-                if !record.autoTime.isEmpty {
-                    DetailRow(title: "Auto Time", value: record.autoTime)
+                if !record.autoDistance.isEmpty {
+                    DetailRow(title: "Auto Distance", value: record.autoDistance)
                 }
             }
             .padding(.horizontal, 20)
@@ -279,15 +281,15 @@ struct historyView_Previews: PreviewProvider {
             selectedCategory: "Car",
             selectedDate: Date(),
             carType: "Medium",
-            carTime: "1 hr",
+            carDistance: 0,
             busType: "",
-            busTime: "",
+            busDistance: 0,
             trainType: "",
-            trainTime: "",
+            trainDistance: 0,
             carPoolType: "",
-            carPoolTime: "",
+            carPoolDistance: 0,
             autoType: "",
-            autoTime: "",
+            autoDistance: 0,
             dummyVar: "",
             fuel: "",
             numberOfPassengers: ""
