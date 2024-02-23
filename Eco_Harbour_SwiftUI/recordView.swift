@@ -35,6 +35,7 @@ struct CategoryView: View {
 struct recordView: View {
     @State private var selectedCategory: String?
     
+    @State private var showAlert = false
     @State private var cityName = ""
     @State private var carType = ""
     @State private var busType = ""
@@ -243,14 +244,24 @@ struct recordView: View {
 //                }
                 
                 Button("Save") {
-                    //showingNextScreen.toggle()
-                    printUserInput()
-                }
-                .foregroundColor(.white)
-                .frame(width: 130, height: 38)
-                .background(Color.mainGreen)
-                .cornerRadius(10)
-                .padding(.top, 30)
+                                   // Add your logic for saving data or performing an action
+                                   printUserInput()
+
+                                   // Show the alert
+                                   showAlert = true
+                               }
+                               .foregroundColor(.white)
+                               .frame(width: 130, height: 38)
+                               .background(Color.mainGreen)
+                               .cornerRadius(10)
+                               .padding(.top, 30)
+                               // Add the alert
+                               .alert(isPresented: $showAlert) {
+                                   Alert(
+                                       title: Text("Data Logged Successfully!"),
+                                       dismissButton: .default(Text("OK"))
+                                   )
+                               }
 
 //                NavigationLink(destination: frequentlyUsedVehicles(), isActive: $showingNextScreen) {
 //                    EmptyView()
