@@ -32,6 +32,7 @@
 		7F6C1F7C2B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C1F7B2B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITestsLaunchTests.swift */; };
 		7FBB4B3C2B874F6400728A3D /* recordDailyRenderCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB4B3B2B874F6400728A3D /* recordDailyRenderCategory.swift */; };
 		7FBB4B3E2B8758F800728A3D /* historyVIEW demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB4B3D2B8758F800728A3D /* historyVIEW demo.swift */; };
+		7FC0DED42B8B84D5002962BE /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC0DED32B8B84D5002962BE /* UserData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		7FBB4B3B2B874F6400728A3D /* recordDailyRenderCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recordDailyRenderCategory.swift; sourceTree = "<group>"; };
 		7FBB4B3D2B8758F800728A3D /* historyVIEW demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "historyVIEW demo.swift"; sourceTree = "<group>"; };
 		7FC0DED22B87C6A0002962BE /* Eco_Harbour_SwiftUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Eco_Harbour_SwiftUI.entitlements; sourceTree = "<group>"; };
+		7FC0DED32B8B84D5002962BE /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 				7F29B2042B76A19100A55511 /* historyView.swift */,
 				7FBB4B3D2B8758F800728A3D /* historyVIEW demo.swift */,
 				7F29B2052B76A19100A55511 /* homePageDashboard.swift */,
+				7FC0DED32B8B84D5002962BE /* UserData.swift */,
 				7F29B2082B76A19100A55511 /* LaunchScreen.swift */,
 				7F29B2032B76A19100A55511 /* Login_Signup_Page.swift */,
 				7F29B1FF2B76A19100A55511 /* manualFilling.swift */,
@@ -322,6 +325,7 @@
 				7F29B2152B76A19100A55511 /* VehcileDetails_CarDetails.swift in Sources */,
 				7F29B2102B76A19100A55511 /* dashboardView.swift in Sources */,
 				7F29B20F2B76A19100A55511 /* testing_code.swift in Sources */,
+				7FC0DED42B8B84D5002962BE /* UserData.swift in Sources */,
 				7F29B2192B76A19100A55511 /* privateVehicleDetails.swift in Sources */,
 				7F29B2142B76A19100A55511 /* homePageDashboard.swift in Sources */,
 				7F29B2182B76A19100A55511 /* recordView.swift in Sources */,

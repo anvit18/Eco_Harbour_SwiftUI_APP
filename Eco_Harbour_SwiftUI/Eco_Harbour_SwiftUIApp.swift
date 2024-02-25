@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct Eco_Harbour_SwiftUIApp: App {
+    
+    @StateObject private var userData = UserData()
+
     var body: some Scene {
         WindowGroup {
             LaunchScreen()
+                .environmentObject(userData)
         }
     }
 }

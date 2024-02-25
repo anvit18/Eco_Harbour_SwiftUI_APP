@@ -2,6 +2,8 @@ import SwiftUI
 
 struct homePageDashboard: View {
     
+    @EnvironmentObject private var userData: UserData
+    
     let privateDistance: Int
         let cabsDistance: Int
         let carpoolDistance: Int
@@ -13,6 +15,8 @@ struct homePageDashboard: View {
         let ordinaryDistance: Int
         let acDistance: Int
         let deluxeDistance: Int
+    
+    //let userEmission: Double
     
     let nationalAverageEmission: Double = 1910
     var userCarbonEmission: Double = 2100
@@ -146,6 +150,7 @@ struct homePageDashboard: View {
                 .accentColor(.mainGreen)
                 // .background(Color.mainGreen) // Set the background color to mainGreen
                 .edgesIgnoringSafeArea(.all)
+                .environmentObject(userData)
                 
                 
                 
@@ -157,6 +162,6 @@ struct homePageDashboard: View {
     
 struct homePageDashboard_Previews: PreviewProvider {
         static var previews: some View {
-            homePageDashboard(privateDistance: 0, cabsDistance: 0, carpoolDistance: 0, localTrainDistance: 0, metroDistance: 0, pillionDistance: 0, sharingDistance: 0, magicDistance: 0, ordinaryDistance: 0, acDistance: 0, deluxeDistance: 0)
+            homePageDashboard(privateDistance : 0, cabsDistance: 0, carpoolDistance: 0, localTrainDistance: 0, metroDistance: 0, pillionDistance: 0, sharingDistance: 0, magicDistance: 0, ordinaryDistance: 0, acDistance: 0, deluxeDistance: 0)
         }
     }

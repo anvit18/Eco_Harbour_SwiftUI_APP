@@ -69,6 +69,10 @@ struct BarView: View {
 
 struct dashboardView: View {
     
+    @EnvironmentObject private var userData: UserData
+    
+    //let userEmission : Double
+    
     let privateDistance: Int
         let cabsDistance: Int
         let carpoolDistance: Int
@@ -98,7 +102,7 @@ struct dashboardView: View {
     
     // User and national average emissions
     let nationalAverageEmission = 625
-    let userEmissions = 1360
+    //let userEmissions = userEmission
     
     // Bars data
     @State private var bars = Bar.sampleBars
@@ -152,6 +156,10 @@ struct dashboardView: View {
                             .chartLegend(position: .bottom, spacing: 20)
                             .frame(height: 350)
                             .chartXAxis(.hidden)
+                            .onAppear {
+                                // Use the userEmission here or any additional setup when the view appears
+                                print("User Emission on Appear: \(userData.userEmission)")
+                            }
                             
                             VStack {
                                 Text("Carbon Emissions")
@@ -163,7 +171,7 @@ struct dashboardView: View {
                                     .foregroundStyle(.gray)
                                 
                                 HStack(spacing: 0) {
-                                    Text("\(userEmissions) ")
+                                    Text("\(Int(userData.userEmission)) ")
                                     Text("CO").foregroundStyle(Color.green)
                                     Text("2").foregroundStyle(Color.green)
                                         .baselineOffset(-10)
@@ -188,7 +196,7 @@ struct dashboardView: View {
                             .frame(height:48)
                             .chartXAxis(.hidden)
                             
-                            Text("Your emissions are \(userEmissions/nationalAverageEmission)x the national average. You need to lower down!")
+                            Text("Your emissions are \(Int(userData.userEmission)/nationalAverageEmission)x the national average. You need to lower down!")
                                 .font(.subheadline)
                                 .foregroundColor(.black)
                                 .padding(.top, 10)
@@ -270,5 +278,6 @@ struct dashboardView: View {
 struct dashboardView_Previews: PreviewProvider {
     static var previews: some View {
         dashboardView(privateDistance: 0, cabsDistance: 0, carpoolDistance: 0, localTrainDistance: 0, metroDistance: 0, pillionDistance: 0, sharingDistance: 0, magicDistance: 0, ordinaryDistance: 0, acDistance: 0, deluxeDistance: 0)
+            .environmentObject(UserData())
     }
 }

@@ -1,6 +1,11 @@
 import SwiftUI
 
 struct VehicleDetails: View {
+    
+    
+    @EnvironmentObject private var userData: UserData
+
+    
     let selectedVehicles: Set<String>
     @State private var selectedTime = Date()
     @State private var showingNextScreen = false
@@ -57,6 +62,8 @@ struct VehicleDetails: View {
                    (Double(acDistance) * acFactor) +
                    (Double(deluxeDistance) * deluxeFactor)
         }
+    
+    
 
     
     var body: some View {
@@ -371,6 +378,8 @@ struct VehicleDetails: View {
                     
                     print("User Emission: \(userEmissions)")
                     
+                    userData.userEmission = userEmissions
+                    
                 }
                 .foregroundColor(.white)
                 .frame(width:201, height:44)
@@ -393,10 +402,9 @@ struct VehicleDetails: View {
                     .background(Color.mainGreen)
                     .cornerRadius(10)
                     
-                NavigationLink(destination: homePageDashboard(privateDistance: privateDistance, cabsDistance: cabsDistance, carpoolDistance: carpoolDistance, localTrainDistance: localTrainDistance, metroDistance: metroDistance, pillionDistance: pillionDistance, sharingDistance: sharingDistance, magicDistance: magicDistance, ordinaryDistance: ordinaryDistance, acDistance: acDistance, deluxeDistance: deluxeDistance), isActive: $showingNextScreen){
-                                EmptyView()
-                            }
-                    
+                NavigationLink(destination: homePageDashboard(privateDistance: Int(userEmissions), cabsDistance: privateDistance, carpoolDistance: cabsDistance, localTrainDistance: carpoolDistance, metroDistance: localTrainDistance, pillionDistance: metroDistance, sharingDistance: pillionDistance, magicDistance: sharingDistance, ordinaryDistance: magicDistance, acDistance: ordinaryDistance, deluxeDistance: acDistance), isActive: $showingNextScreen) {
+                    EmptyView()
+                }
                 }.navigationTitle("Vehicle Details")
                     .navigationBarTitle("Details")
             }
