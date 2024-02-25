@@ -4,6 +4,7 @@ struct VehicleDetails: View {
     let selectedVehicles: Set<String>
     @State private var selectedTime = Date()
     @State private var showingNextScreen = false
+    @State private var showAlert = false
     
     // Distance variables
     @State private var privateDistance: Int = 0
@@ -18,6 +19,20 @@ struct VehicleDetails: View {
     @State private var acDistance: Int = 0
     @State private var deluxeDistance: Int = 0
     
+    // Emission Factor Variables, set dummy for now
+      @State private var privateFactor: Double = 10
+      @State private var cabsFactor: Double = 11
+      @State private var carpoolFactor: Double = 12
+      @State private var localTrainFactor: Double = 13
+      @State private var metroFactor: Double = 14
+      @State private var pillionFactor: Double = 15
+      @State private var sharingFactor: Double = 16
+      @State private var magicFactor: Double = 17
+      @State private var ordinaryFactor: Double = 18
+      @State private var acFactor: Double = 19
+      @State private var deluxeFactor: Double = 20
+    
+    
     @State private var showPrivateStepper = false
     @State private var showCabsStepper = false
     @State private var showCarpoolStepper = false
@@ -29,6 +44,19 @@ struct VehicleDetails: View {
     @State private var showOrdinaryStepper = false
     @State private var showACStepper = false
     @State private var showDeluxeStepper = false
+    
+    var userEmissions: Double {
+            return (Double(privateDistance) * privateFactor) +
+                   (Double(cabsDistance) * cabsFactor) +
+                   (Double(localTrainDistance) * localTrainFactor) +
+                   (Double(metroDistance) * metroFactor) +
+                   (Double(pillionDistance) * pillionFactor) +
+                   (Double(sharingDistance) * sharingFactor) +
+                   (Double(magicDistance) * magicFactor) +
+                   (Double(ordinaryDistance) * ordinaryFactor) +
+                   (Double(acDistance) * acFactor) +
+                   (Double(deluxeDistance) * deluxeFactor)
+        }
 
     
     var body: some View {
@@ -326,6 +354,8 @@ struct VehicleDetails: View {
                     }
                 }
                 Button("Save") {
+                    
+                    showAlert = true
                     //authenticate user
                     print("Private Distance Travelled: \(privateDistance)")
                     print("Cabs Distance Travelled: \(cabsDistance)")
@@ -339,11 +369,19 @@ struct VehicleDetails: View {
                     print("AC Distance Travelled: \(acDistance)")
                     print("Deluxe Distance Travelled: \(deluxeDistance)")
                     
+                    print("User Emission: \(userEmissions)")
+                    
                 }
                 .foregroundColor(.white)
                 .frame(width:201, height:44)
                 .background(Color.mainGreen)
                 .cornerRadius(10)
+                .alert(isPresented: $showAlert) {
+                    Alert(
+                        title: Text("Data Logged Successfully!"),
+                        dismissButton: .default(Text("OK"))
+                    )
+                }
                     
                     Button("Next") {
                         //authenticate user
