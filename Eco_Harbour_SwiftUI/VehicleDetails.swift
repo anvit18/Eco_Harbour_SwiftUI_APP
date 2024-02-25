@@ -85,14 +85,14 @@ struct VehicleDetails: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 24, height: 24)
-                                            Text("Distance Travelled")
+                                            Text("Private Car")
                                             Spacer()
                                         }.onTapGesture {
                                             showPrivateStepper.toggle()
                                         }
                                         if showPrivateStepper{
                                             VStack {
-                                                Stepper(value: $privateDistance, in: 0...1000) {
+                                                Stepper(value: $privateDistance, in: 0...1000, step: 5) {
                                                     Text("Distance: \(privateDistance) km")
                                                 }
                                                 .padding(.horizontal)
@@ -110,14 +110,14 @@ struct VehicleDetails: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 24, height: 24)
-                                            Text("Distance Travelled")
+                                            Text("Cab")
                                             Spacer()
                                         }.onTapGesture {
                                             showCabsStepper.toggle()
                                         }
                                         if showCabsStepper {
                                             VStack {
-                                                Stepper(value: $cabsDistance, in: 0...1000) {
+                                                Stepper(value: $cabsDistance, in: 0...1000, step: 5) {
                                                     Text("Distance: \(cabsDistance) km")
                                                 }
                                                 .padding(.horizontal)
@@ -134,14 +134,14 @@ struct VehicleDetails: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 24, height: 24)
-                                            Text("Distance Travelled")
+                                            Text("Car Pool")
                                             Spacer()
                                         }.onTapGesture {
                                             showCarpoolStepper.toggle()
                                         }
                                         if showCarpoolStepper {
                                             VStack {
-                                                Stepper(value: $carpoolDistance, in: 0...1000) {
+                                                Stepper(value: $carpoolDistance, in: 0...1000, step: 5) {
                                                     Text("Distance: \(carpoolDistance) km")
                                                 }
                                                 .padding(.horizontal)
@@ -163,14 +163,14 @@ struct VehicleDetails: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 24, height: 24)
-                                            Text("Distance Travelled")
+                                            Text("Ordinary Bus")
                                             Spacer()
                                         }.onTapGesture {
                                             showOrdinaryStepper.toggle()
                                         }
                                         if showOrdinaryStepper {
                                             VStack {
-                                                Stepper(value: $ordinaryDistance, in: 0...1000) {
+                                                Stepper(value: $ordinaryDistance, in: 0...1000, step: 10) {
                                                     Text("Distance: \(ordinaryDistance) km")
                                                 }
                                                 .padding(.horizontal)
@@ -187,14 +187,14 @@ struct VehicleDetails: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 24, height: 24)
-                                            Text("Distance Travelled")
+                                            Text("AC Bus")
                                             Spacer()
                                         }.onTapGesture {
                                             showACStepper.toggle()
                                         }
                                         if showACStepper {
                                             VStack {
-                                                Stepper(value: $acDistance, in: 0...1000) {
+                                                Stepper(value: $acDistance, in: 0...1000, step: 10) {
                                                     Text("Distance: \(acDistance) km")
                                                 }
                                                 .padding(.horizontal)
@@ -212,14 +212,14 @@ struct VehicleDetails: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 24, height: 24)
-                                            Text("Distance Travelled")
+                                            Text("Deluxe Bus")
                                             Spacer()
                                         }.onTapGesture {
                                             showDeluxeStepper.toggle()
                                         }
                                         if showDeluxeStepper {
                                             VStack {
-                                                Stepper(value: $deluxeDistance, in: 0...1000) {
+                                                Stepper(value: $deluxeDistance, in: 0...1000, step: 10) {
                                                     Text("Distance: \(deluxeDistance) km")
                                                 }
                                                 .padding(.horizontal)
@@ -241,14 +241,14 @@ struct VehicleDetails: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 24, height: 24)
-                                            Text("Distance Travelled")
+                                            Text("Local Train")
                                             Spacer()
                                         }.onTapGesture {
                                             showLocalTrainStepper.toggle()
                                         }
                                         if showLocalTrainStepper {
                                             VStack {
-                                                Stepper(value: $localTrainDistance, in: 0...1000) {
+                                                Stepper(value: $localTrainDistance, in: 0...1000, step: 7) {
                                                     Text("Distance: \(localTrainDistance) km")
                                                 }
                                                 .padding(.horizontal)
@@ -265,14 +265,14 @@ struct VehicleDetails: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 24, height: 24)
-                                            Text("Distance Travelled")
+                                            Text("Metro Distance")
                                             Spacer()
                                         }.onTapGesture {
                                             showMetroStepper.toggle()
                                         }
                                         if showMetroStepper {
                                             VStack {
-                                                Stepper(value: $metroDistance, in: 0...1000) {
+                                                Stepper(value: $metroDistance, in: 0...1000, step: 8) {
                                                     Text("Distance: \(metroDistance) km")
                                                 }
                                                 .padding(.horizontal)
@@ -294,14 +294,14 @@ struct VehicleDetails: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 24, height: 24)
-                                            Text("Distance Travelled")
+                                            Text("Pillion Auto")
                                             Spacer()
                                         }.onTapGesture {
                                             showPillionStepper.toggle()
                                         }
                                         if showPillionStepper {
                                             VStack {
-                                                Stepper(value: $pillionDistance, in: 0...1000) {
+                                                Stepper(value: $pillionDistance, in: 0...1000,  step: 8) {
                                                     Text("Distance: \(pillionDistance) km")
                                                 }
                                                 .padding(.horizontal)
@@ -318,14 +318,14 @@ struct VehicleDetails: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 24, height: 24)
-                                            Text("Distance Travelled")
+                                            Text("Sharing Auto")
                                             Spacer()
                                         }.onTapGesture {
                                             showSharingStepper.toggle()
                                         }
                                         if showSharingStepper {
                                             VStack {
-                                                Stepper(value: $sharingDistance, in: 0...1000) {
+                                                Stepper(value: $sharingDistance, in: 0...1000, step: 5) {
                                                     Text("Distance: \(sharingDistance) km")
                                                 }
                                                 .padding(.horizontal)
@@ -342,14 +342,14 @@ struct VehicleDetails: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 24, height: 24)
-                                            Text("Distance Travelled")
+                                            Text("Magic Auto")
                                             Spacer()
                                         }.onTapGesture {
                                             showMagicStepper.toggle()
                                         }
                                         if showMagicStepper {
                                             VStack {
-                                                Stepper(value: $magicDistance, in: 0...1000) {
+                                                Stepper(value: $magicDistance, in: 0...1000,  step: 5) {
                                                     Text("Distance: \(magicDistance) km")
                                                 }
                                                 .padding(.horizontal)

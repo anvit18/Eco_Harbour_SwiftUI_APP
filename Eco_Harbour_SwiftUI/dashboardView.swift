@@ -94,10 +94,12 @@ struct dashboardView: View {
 //
 //        }
     
-    @State private var macros: [MacroData] = [
-        .init(name: "You", value:1360),
-        .init(name: "National Avg", value:625)
-    ]
+    private var macros: [MacroData] {
+        return
+        [
+            .init(name: "You", value:Int(userData.userEmission)),
+            .init(name: "National Avg", value:625)
+        ]}
     // Chart data
 //    var emissionsData = [
 //        CarbonEmissionByVehicle(vehicleType: "Pvt. Car", emissions: 380, color: .red),
