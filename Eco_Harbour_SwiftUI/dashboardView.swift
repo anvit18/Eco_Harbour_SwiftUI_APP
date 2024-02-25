@@ -69,8 +69,10 @@ struct BarView: View {
 
 struct dashboardView: View {
     
-    @EnvironmentObject private var userData: UserData
+    //@State private var shouldUpdateEmissionsData = false
     
+    @EnvironmentObject private var userData: UserData
+    @EnvironmentObject var distanceViewModel: DistanceViewModel
     //let userEmission : Double
     
     let privateDistance: Int
@@ -85,21 +87,50 @@ struct dashboardView: View {
         let acDistance: Int
         let deluxeDistance: Int
         
-    
+    let cabEmissions = 300
+//    var car: Double {
+//            // Access the privateVdistance property and calculate emissions
+//        return Double(distanceViewModel._privateVDistance.wrappedValue) * 11
+//
+//        }
     
     @State private var macros: [MacroData] = [
         .init(name: "You", value:1360),
         .init(name: "National Avg", value:625)
     ]
     // Chart data
-    var emissionsData = [
-        CarbonEmissionByVehicle(vehicleType: "Pvt. Car", emissions: 250, color: .red),
-        CarbonEmissionByVehicle(vehicleType: "Cab", emissions: 300, color: .indigo),
-        CarbonEmissionByVehicle(vehicleType: "Auto", emissions: 180, color: .orange),
-        CarbonEmissionByVehicle(vehicleType: "Local Train", emissions: 100, color: .purple),
-        CarbonEmissionByVehicle(vehicleType: "AC Bus", emissions: 400, color: .cyan),
-    ]
+//    var emissionsData = [
+//        CarbonEmissionByVehicle(vehicleType: "Pvt. Car", emissions: 380, color: .red),
+//        CarbonEmissionByVehicle(vehicleType: "Cab", emissions: 300, color: .indigo),
+//        CarbonEmissionByVehicle(vehicleType: "Auto", emissions: 180, color: .orange),
+//        CarbonEmissionByVehicle(vehicleType: "Local Train", emissions: 100, color: .purple),
+//        CarbonEmissionByVehicle(vehicleType: "AC Bus", emissions: 400, color: .cyan),
+//    ]
     
+    
+    @State private var emissionsData: [CarbonEmissionByVehicle] = []
+
+       func updateEmissionsData() {
+           let privateCarEmissions = distanceViewModel.privateVDistance * 20
+           let cabEmissions = distanceViewModel.cabsVDistance * 18
+           let carPoolEmissions = distanceViewModel.carpoolVDistance * 16
+           let localTrainEmissions = distanceViewModel.localTrainVDistance * 4
+           let metroEmissions = distanceViewModel.metroVDistance * 8
+           let pillionEmissions = distanceViewModel.pillionVDistance * 13
+           let sharingEmissions = distanceViewModel.sharingVDistance * 7
+           let magicEmissions = distanceViewModel.magicVDistance * 9
+           let ordinaryEmissions = distanceViewModel.ordinaryVDistance * 3
+           let deluxeEmissions = distanceViewModel.deluxeVDistance * 5
+           let acEmissions = distanceViewModel.acVDistance * 10
+           
+           emissionsData = [
+               CarbonEmissionByVehicle(vehicleType: "Car", emissions: privateCarEmissions + cabEmissions + carPoolEmissions, color: .red),
+               CarbonEmissionByVehicle(vehicleType: "Auto", emissions: pillionEmissions + sharingEmissions + magicEmissions, color: .indigo),
+               CarbonEmissionByVehicle(vehicleType: "Bus", emissions: sharingEmissions + acEmissions + deluxeEmissions, color: .orange),
+               CarbonEmissionByVehicle(vehicleType: "Local Train", emissions: localTrainEmissions + metroEmissions, color: .purple),
+               //CarbonEmissionByVehicle(vehicleType: "", emissions: acBusEmissions, color: .cyan),
+           ]
+       }
     // User and national average emissions
     let nationalAverageEmission = 625
     //let userEmissions = userEmission
@@ -118,6 +149,7 @@ struct dashboardView: View {
         ZStack {
             VStack {
                 ScrollView {
+                 
                     // Greetings and user information
                     HStack {
                         Text("Greetings, \(userName)!")
@@ -159,6 +191,7 @@ struct dashboardView: View {
                             .onAppear {
                                 // Use the userEmission here or any additional setup when the view appears
                                 print("User Emission on Appear: \(userData.userEmission)")
+                                print("check: \(distanceViewModel.privateVDistance) \(distanceViewModel.cabsVDistance) \(distanceViewModel.localTrainVDistance)")
                             }
                             
                             VStack {
@@ -269,6 +302,10 @@ struct dashboardView: View {
                 .padding(.bottom, 50)
                 
                 // Bar chart for additional data
+                .onAppear {
+                    //shouldUpdateEmissionsData.toggle()
+                    updateEmissionsData()
+                                    }
                
             }
         }
@@ -279,5 +316,6 @@ struct dashboardView_Previews: PreviewProvider {
     static var previews: some View {
         dashboardView(privateDistance: 0, cabsDistance: 0, carpoolDistance: 0, localTrainDistance: 0, metroDistance: 0, pillionDistance: 0, sharingDistance: 0, magicDistance: 0, ordinaryDistance: 0, acDistance: 0, deluxeDistance: 0)
             .environmentObject(UserData())
+            .environmentObject(DistanceViewModel())
     }
 }

@@ -4,6 +4,7 @@ struct VehicleDetails: View {
     
     
     @EnvironmentObject private var userData: UserData
+    @EnvironmentObject private var distanceViewModel : DistanceViewModel
 
     
     let selectedVehicles: Set<String>
@@ -25,17 +26,17 @@ struct VehicleDetails: View {
     @State private var deluxeDistance: Int = 0
     
     // Emission Factor Variables, set dummy for now
-      @State private var privateFactor: Double = 10
-      @State private var cabsFactor: Double = 11
-      @State private var carpoolFactor: Double = 12
-      @State private var localTrainFactor: Double = 13
-      @State private var metroFactor: Double = 14
-      @State private var pillionFactor: Double = 15
-      @State private var sharingFactor: Double = 16
-      @State private var magicFactor: Double = 17
-      @State private var ordinaryFactor: Double = 18
-      @State private var acFactor: Double = 19
-      @State private var deluxeFactor: Double = 20
+      @State private var privateFactor: Double = 20
+      @State private var cabsFactor: Double = 18
+      @State private var carpoolFactor: Double = 16
+      @State private var localTrainFactor: Double = 4
+      @State private var metroFactor: Double = 8
+      @State private var pillionFactor: Double = 13
+      @State private var sharingFactor: Double = 7
+      @State private var magicFactor: Double = 9
+      @State private var ordinaryFactor: Double = 4
+      @State private var acFactor: Double = 10
+      @State private var deluxeFactor: Double = 5
     
     
     @State private var showPrivateStepper = false
@@ -379,6 +380,17 @@ struct VehicleDetails: View {
                     print("User Emission: \(userEmissions)")
                     
                     userData.userEmission = userEmissions
+                    distanceViewModel.privateVDistance = privateDistance
+                    distanceViewModel.cabsVDistance = cabsDistance
+                    distanceViewModel.carpoolVDistance = carpoolDistance
+                    distanceViewModel.localTrainVDistance = localTrainDistance
+                    distanceViewModel.metroVDistance = metroDistance
+                    distanceViewModel.pillionVDistance = pillionDistance
+                    distanceViewModel.sharingVDistance = sharingDistance
+                    distanceViewModel.magicVDistance = magicDistance
+                    distanceViewModel.ordinaryVDistance = ordinaryDistance
+                    distanceViewModel.acVDistance = acDistance
+                    distanceViewModel.deluxeVDistance = deluxeDistance
                     
                 }
                 .foregroundColor(.white)

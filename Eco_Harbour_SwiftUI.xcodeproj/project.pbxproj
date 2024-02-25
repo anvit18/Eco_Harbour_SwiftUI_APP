@@ -33,6 +33,7 @@
 		7FBB4B3C2B874F6400728A3D /* recordDailyRenderCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB4B3B2B874F6400728A3D /* recordDailyRenderCategory.swift */; };
 		7FBB4B3E2B8758F800728A3D /* historyVIEW demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB4B3D2B8758F800728A3D /* historyVIEW demo.swift */; };
 		7FC0DED42B8B84D5002962BE /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC0DED32B8B84D5002962BE /* UserData.swift */; };
+		7FC0DED62B8BBF4C002962BE /* DistanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC0DED52B8BBF4C002962BE /* DistanceViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		7FBB4B3D2B8758F800728A3D /* historyVIEW demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "historyVIEW demo.swift"; sourceTree = "<group>"; };
 		7FC0DED22B87C6A0002962BE /* Eco_Harbour_SwiftUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Eco_Harbour_SwiftUI.entitlements; sourceTree = "<group>"; };
 		7FC0DED32B8B84D5002962BE /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		7FC0DED52B8BBF4C002962BE /* DistanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				7FBB4B3D2B8758F800728A3D /* historyVIEW demo.swift */,
 				7F29B2052B76A19100A55511 /* homePageDashboard.swift */,
 				7FC0DED32B8B84D5002962BE /* UserData.swift */,
+				7FC0DED52B8BBF4C002962BE /* DistanceViewModel.swift */,
 				7F29B2082B76A19100A55511 /* LaunchScreen.swift */,
 				7F29B2032B76A19100A55511 /* Login_Signup_Page.swift */,
 				7F29B1FF2B76A19100A55511 /* manualFilling.swift */,
@@ -333,6 +336,7 @@
 				7FBB4B3C2B874F6400728A3D /* recordDailyRenderCategory.swift in Sources */,
 				7F29B2112B76A19100A55511 /* VehicleDetails.swift in Sources */,
 				7F29B20D2B76A19100A55511 /* signup_page.swift in Sources */,
+				7FC0DED62B8BBF4C002962BE /* DistanceViewModel.swift in Sources */,
 				7F29B2132B76A19100A55511 /* historyView.swift in Sources */,
 				7F29B2162B76A19100A55511 /* SecondView.swift in Sources */,
 				7F29B2122B76A19100A55511 /* Login_Signup_Page.swift in Sources */,

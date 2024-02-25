@@ -3,6 +3,7 @@ import SwiftUI
 struct homePageDashboard: View {
     
     @EnvironmentObject private var userData: UserData
+    @EnvironmentObject var distanceViewModel: DistanceViewModel
     
     let privateDistance: Int
         let cabsDistance: Int
@@ -151,6 +152,7 @@ struct homePageDashboard: View {
                 // .background(Color.mainGreen) // Set the background color to mainGreen
                 .edgesIgnoringSafeArea(.all)
                 .environmentObject(userData)
+                .environmentObject(distanceViewModel)
                 
                 
                 
