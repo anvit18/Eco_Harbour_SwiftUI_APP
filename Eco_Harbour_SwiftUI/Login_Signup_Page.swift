@@ -74,7 +74,7 @@ struct Login_Signup_Page: View {
                     .background(Color.mainGreen)
                     .cornerRadius(10)
                     
-                    NavigationLink(destination: homePageDashboard(), isActive: $showingNextScreen){
+                    NavigationLink(destination: Text("Hola"), isActive: $showingNextScreen){
                         EmptyView()
                     }
                     HStack{

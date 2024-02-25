@@ -1,6 +1,9 @@
 import SwiftUI
 import Charts
 
+
+
+
 struct CarbonEmissionByVehicle: Identifiable {
     var id = UUID().uuidString
     var vehicleType: String
@@ -65,6 +68,21 @@ struct BarView: View {
 }
 
 struct dashboardView: View {
+    
+    let privateDistance: Int
+        let cabsDistance: Int
+        let carpoolDistance: Int
+        let localTrainDistance: Int
+        let metroDistance: Int
+        let pillionDistance: Int
+        let sharingDistance: Int
+        let magicDistance: Int
+        let ordinaryDistance: Int
+        let acDistance: Int
+        let deluxeDistance: Int
+        
+    
+    
     @State private var macros: [MacroData] = [
         .init(name: "You", value:1360),
         .init(name: "National Avg", value:625)
@@ -92,6 +110,7 @@ struct dashboardView: View {
     @State private var text = "Info"
     
     var body: some View {
+        
         ZStack {
             VStack {
                 ScrollView {
@@ -211,6 +230,19 @@ struct dashboardView: View {
                         
                         Button("Log Data + ") {
                             // Authenticate user
+                            //printing all variables
+                            print("Private Distance Travelled: \(privateDistance)")
+                            print("Cabs Distance Travelled: \(cabsDistance)")
+                            print("Carpool Distance Travelled: \(carpoolDistance)")
+                            print("Local Train Distance Travelled: \(localTrainDistance)")
+                            print("Metro Distance Travelled: \(metroDistance)")
+                            print("Pillion Distance Travelled: \(pillionDistance)")
+                            print("Sharing Distance Travelled: \(sharingDistance)")
+                            print("Magic Distance Travelled: \(magicDistance)")
+                            print("Ordinary Distance Travelled: \(ordinaryDistance)")
+                            print("AC Distance Travelled: \(acDistance)")
+                            print("Deluxe Distance Travelled: \(deluxeDistance)")
+
                             showingNextScreen.toggle()
                         }
                         .font(.headline)
@@ -237,6 +269,6 @@ struct dashboardView: View {
 
 struct dashboardView_Previews: PreviewProvider {
     static var previews: some View {
-        dashboardView()
+        dashboardView(privateDistance: 0, cabsDistance: 0, carpoolDistance: 0, localTrainDistance: 0, metroDistance: 0, pillionDistance: 0, sharingDistance: 0, magicDistance: 0, ordinaryDistance: 0, acDistance: 0, deluxeDistance: 0)
     }
 }

@@ -2,6 +2,18 @@ import SwiftUI
 
 struct homePageDashboard: View {
     
+    let privateDistance: Int
+        let cabsDistance: Int
+        let carpoolDistance: Int
+        let localTrainDistance: Int
+        let metroDistance: Int
+        let pillionDistance: Int
+        let sharingDistance: Int
+        let magicDistance: Int
+        let ordinaryDistance: Int
+        let acDistance: Int
+        let deluxeDistance: Int
+    
     let nationalAverageEmission: Double = 1910
     var userCarbonEmission: Double = 2100
     @State private var isActionSheetPresented = false
@@ -89,7 +101,7 @@ struct homePageDashboard: View {
                 TabView {
                     
                     // Icon 1
-                    dashboardView()
+                    dashboardView(privateDistance: 0, cabsDistance: 0, carpoolDistance: 0, localTrainDistance: 0, metroDistance: 0, pillionDistance: 0, sharingDistance: 0, magicDistance: 0, ordinaryDistance: 0, acDistance: 0, deluxeDistance: 0)
                         .tabItem {
                             Image(systemName: "house.circle.fill")
                                 .resizable()
@@ -145,7 +157,6 @@ struct homePageDashboard: View {
     
 struct homePageDashboard_Previews: PreviewProvider {
         static var previews: some View {
-            homePageDashboard()
+            homePageDashboard(privateDistance: 0, cabsDistance: 0, carpoolDistance: 0, localTrainDistance: 0, metroDistance: 0, pillionDistance: 0, sharingDistance: 0, magicDistance: 0, ordinaryDistance: 0, acDistance: 0, deluxeDistance: 0)
         }
     }
-

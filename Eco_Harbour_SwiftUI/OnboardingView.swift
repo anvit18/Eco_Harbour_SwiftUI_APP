@@ -4,7 +4,7 @@ import SwiftUI
 
 struct OnboardingView: View {
     // Images for onboarding
-    let onboardingImages = ["onboard1", "onboard2"]
+    let onboardingImages = ["onboard1 1", "onboard2 1"]
 
     // State variables to track the current image index and whether to show the next screen
     @State private var currentImageIndex = 0
@@ -15,16 +15,13 @@ struct OnboardingView: View {
             Color(.white)
             VStack {
                 // Navigation Bar
-                NavigationLink(destination: Login_Signup_Page(), isActive: $showingNextScreen) {
-                    EmptyView()
-                }
-                .hidden() // Hide the actual link, as it's triggered programmatically
-                
+                 // Hide the actual link, as it's triggered programmatically
+                Spacer()
                 // Swipeable Image
                 Image(onboardingImages[currentImageIndex])
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 380, height: 600)
+                    .frame(width: 400, height: 600)
                     .clipped()
                 //.border(Color.black)
                 //.cornerRadius(8)
@@ -45,7 +42,7 @@ struct OnboardingView: View {
                 
                 // Page Indicator
                 PageControl(numberOfPages: onboardingImages.count, currentPage: $currentImageIndex)
-                    .padding(.top, 10)
+                    .padding(.top, -60)
                     .padding(.bottom, 20)
                 
                 Button("Get Started") {
@@ -57,6 +54,7 @@ struct OnboardingView: View {
                 .frame(width:201, height:44)
                 .background(Color.mainGreen)
                 .cornerRadius(10)
+                .padding(.top, -60)
                 
                 NavigationLink(destination: Login_Signup_Page(), isActive: $showingNextScreen){
                     EmptyView()

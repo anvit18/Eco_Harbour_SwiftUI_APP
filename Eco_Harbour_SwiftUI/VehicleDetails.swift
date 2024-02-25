@@ -36,16 +36,6 @@ struct VehicleDetails: View {
             Color.gray.opacity(0.1).ignoresSafeArea()
             
             VStack {
-                HStack {
-                    
-                    Text("Enter Distance Travelled")
-                        .font(.title)
-                        .bold()
-                        .padding(.leading, 20)
-                    
-                    Spacer()
-                }
-                .padding(.bottom, 10)
                 
                 Form {
                     
@@ -59,7 +49,7 @@ struct VehicleDetails: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 24, height: 24)
-                                            Text("Private Car")
+                                            Text("Distance Travelled")
                                             Spacer()
                                         }.onTapGesture {
                                             showPrivateStepper.toggle()
@@ -84,7 +74,7 @@ struct VehicleDetails: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 24, height: 24)
-                                            Text("Cab")
+                                            Text("Distance Travelled")
                                             Spacer()
                                         }.onTapGesture {
                                             showCabsStepper.toggle()
@@ -108,7 +98,7 @@ struct VehicleDetails: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 24, height: 24)
-                                            Text("Carpool")
+                                            Text("Distance Travelled")
                                             Spacer()
                                         }.onTapGesture {
                                             showCarpoolStepper.toggle()
@@ -137,7 +127,7 @@ struct VehicleDetails: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 24, height: 24)
-                                            Text("Ordinary Bus")
+                                            Text("Distance Travelled")
                                             Spacer()
                                         }.onTapGesture {
                                             showOrdinaryStepper.toggle()
@@ -161,7 +151,7 @@ struct VehicleDetails: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 24, height: 24)
-                                            Text("AC Bus")
+                                            Text("Distance Travelled")
                                             Spacer()
                                         }.onTapGesture {
                                             showACStepper.toggle()
@@ -186,7 +176,7 @@ struct VehicleDetails: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 24, height: 24)
-                                            Text("Deluxe Bus")
+                                            Text("Distance Travelled")
                                             Spacer()
                                         }.onTapGesture {
                                             showDeluxeStepper.toggle()
@@ -215,7 +205,7 @@ struct VehicleDetails: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 24, height: 24)
-                                            Text("Local Train")
+                                            Text("Distance Travelled")
                                             Spacer()
                                         }.onTapGesture {
                                             showLocalTrainStepper.toggle()
@@ -239,7 +229,7 @@ struct VehicleDetails: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 24, height: 24)
-                                            Text("Metro")
+                                            Text("Distance Travelled")
                                             Spacer()
                                         }.onTapGesture {
                                             showMetroStepper.toggle()
@@ -268,7 +258,7 @@ struct VehicleDetails: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 24, height: 24)
-                                            Text("Pillion Auto")
+                                            Text("Distance Travelled")
                                             Spacer()
                                         }.onTapGesture {
                                             showPillionStepper.toggle()
@@ -292,7 +282,7 @@ struct VehicleDetails: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 24, height: 24)
-                                            Text("Sharing Auto")
+                                            Text("Distance Travelled")
                                             Spacer()
                                         }.onTapGesture {
                                             showSharingStepper.toggle()
@@ -316,7 +306,7 @@ struct VehicleDetails: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 24, height: 24)
-                                            Text("Magic Auto")
+                                            Text("Distance Travelled")
                                             Spacer()
                                         }.onTapGesture {
                                             showMagicStepper.toggle()
@@ -335,9 +325,27 @@ struct VehicleDetails: View {
                         }
                     }
                 }
+                Button("Save") {
+                    //authenticate user
+                    print("Private Distance Travelled: \(privateDistance)")
+                    print("Cabs Distance Travelled: \(cabsDistance)")
+                    print("Carpool Distance Travelled: \(carpoolDistance)")
+                    print("Local Train Distance Travelled: \(localTrainDistance)")
+                    print("Metro Distance Travelled: \(metroDistance)")
+                    print("Pillion Distance Travelled: \(pillionDistance)")
+                    print("Sharing Distance Travelled: \(sharingDistance)")
+                    print("Magic Distance Travelled: \(magicDistance)")
+                    print("Ordinary Distance Travelled: \(ordinaryDistance)")
+                    print("AC Distance Travelled: \(acDistance)")
+                    print("Deluxe Distance Travelled: \(deluxeDistance)")
+                    
+                }
+                .foregroundColor(.white)
+                .frame(width:201, height:44)
+                .background(Color.mainGreen)
+                .cornerRadius(10)
                     
                     Button("Next") {
-                        print("Private Distance Travelled: \(privateDistance)")
                         //authenticate user
                         showingNextScreen.toggle()
                         
@@ -347,9 +355,9 @@ struct VehicleDetails: View {
                     .background(Color.mainGreen)
                     .cornerRadius(10)
                     
-                    NavigationLink(destination: homePageDashboard(), isActive: $showingNextScreen){
-                        EmptyView()
-                    }
+                NavigationLink(destination: homePageDashboard(privateDistance: privateDistance, cabsDistance: cabsDistance, carpoolDistance: carpoolDistance, localTrainDistance: localTrainDistance, metroDistance: metroDistance, pillionDistance: pillionDistance, sharingDistance: sharingDistance, magicDistance: magicDistance, ordinaryDistance: ordinaryDistance, acDistance: acDistance, deluxeDistance: deluxeDistance), isActive: $showingNextScreen){
+                                EmptyView()
+                            }
                     
                 }.navigationTitle("Vehicle Details")
                     .navigationBarTitle("Details")
