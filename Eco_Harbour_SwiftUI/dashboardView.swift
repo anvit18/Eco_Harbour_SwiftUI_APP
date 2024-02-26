@@ -126,10 +126,10 @@ struct dashboardView: View {
            let acEmissions = distanceViewModel.acVDistance * 10
            
            emissionsData = [
-               CarbonEmissionByVehicle(vehicleType: "Car", emissions: privateCarEmissions + cabEmissions + carPoolEmissions, color: .red),
-               CarbonEmissionByVehicle(vehicleType: "Auto", emissions: pillionEmissions + sharingEmissions + magicEmissions, color: .indigo),
-               CarbonEmissionByVehicle(vehicleType: "Bus", emissions: sharingEmissions + acEmissions + deluxeEmissions, color: .orange),
-               CarbonEmissionByVehicle(vehicleType: "Local Train", emissions: localTrainEmissions + metroEmissions, color: .purple),
+               CarbonEmissionByVehicle(vehicleType: "Car", emissions: privateCarEmissions + cabEmissions + carPoolEmissions, color: .blue),
+               CarbonEmissionByVehicle(vehicleType: "Auto", emissions: pillionEmissions + sharingEmissions + magicEmissions, color: .green),
+               CarbonEmissionByVehicle(vehicleType: "Bus", emissions: ordinaryEmissions + acEmissions + deluxeEmissions, color: .orange),
+               CarbonEmissionByVehicle(vehicleType: "Train", emissions: localTrainEmissions + metroEmissions, color: .purple),
                //CarbonEmissionByVehicle(vehicleType: "", emissions: acBusEmissions, color: .cyan),
            ]
        }
@@ -177,7 +177,7 @@ struct dashboardView: View {
                             // Chart showing emissions breakdown
                             Chart {
                                 ForEach(emissionsData) { data in
-                                    SectorMark(angle: .value("Emissions", data.emissions), innerRadius: .ratio(0.66), angularInset: 1.5)
+                                    SectorMark(angle: .value("Emissions", data.emissions), innerRadius: .ratio(0.69), angularInset: 1.5)
                                         .cornerRadius(9)
                                         .foregroundStyle(data.color)
                                         .annotation(position: .overlay) {
@@ -206,7 +206,7 @@ struct dashboardView: View {
                                     .foregroundStyle(.gray)
                                 
                                 HStack(spacing: 0) {
-                                    Text("\(Int(userData.userEmission)) ")
+                                    Text("\(Int(userData.userEmission)) kg")
                                     Text("CO").foregroundStyle(Color.green)
                                     Text("2").foregroundStyle(Color.green)
                                         .baselineOffset(-10)
@@ -225,8 +225,14 @@ struct dashboardView: View {
                                 .padding(.top, 20)
                         
                             Chart(macros, id:\.name){
-                                macro in BarMark(x: .value("Macros", macro.value), stacking: .normalized  )
-                                    .foregroundStyle(by:.value("Name", macro.name))
+                                macro in BarMark(x: .value("Macros", macro.value), stacking: .normalized )
+                                    .foregroundStyle(by:.value("Name", macro.name)
+                                    )
+                                    .annotation(position: .overlay) {
+                                        Text("\(macro.value)").bold()
+                                            .foregroundStyle(.white)
+                                    }
+                                    .foregroundStyle(by: .value("Emission", macro.name))
                             }
                             .frame(height:48)
                             .chartXAxis(.hidden)

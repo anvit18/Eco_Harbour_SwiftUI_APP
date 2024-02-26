@@ -200,7 +200,7 @@ struct VehicleDetails: View {
                                                 .padding(.horizontal)
                                             }
                                         }
-
+                                        
                                     }
                                 }
                             }
@@ -361,48 +361,49 @@ struct VehicleDetails: View {
                         }
                     }
                 }
-                Button("Save") {
-                    
-                    showAlert = true
-                    //authenticate user
-                    print("Private Distance Travelled: \(privateDistance)")
-                    print("Cabs Distance Travelled: \(cabsDistance)")
-                    print("Carpool Distance Travelled: \(carpoolDistance)")
-                    print("Local Train Distance Travelled: \(localTrainDistance)")
-                    print("Metro Distance Travelled: \(metroDistance)")
-                    print("Pillion Distance Travelled: \(pillionDistance)")
-                    print("Sharing Distance Travelled: \(sharingDistance)")
-                    print("Magic Distance Travelled: \(magicDistance)")
-                    print("Ordinary Distance Travelled: \(ordinaryDistance)")
-                    print("AC Distance Travelled: \(acDistance)")
-                    print("Deluxe Distance Travelled: \(deluxeDistance)")
-                    
-                    print("User Emission: \(userEmissions)")
-                    
-                    userData.userEmission = userEmissions
-                    distanceViewModel.privateVDistance = privateDistance
-                    distanceViewModel.cabsVDistance = cabsDistance
-                    distanceViewModel.carpoolVDistance = carpoolDistance
-                    distanceViewModel.localTrainVDistance = localTrainDistance
-                    distanceViewModel.metroVDistance = metroDistance
-                    distanceViewModel.pillionVDistance = pillionDistance
-                    distanceViewModel.sharingVDistance = sharingDistance
-                    distanceViewModel.magicVDistance = magicDistance
-                    distanceViewModel.ordinaryVDistance = ordinaryDistance
-                    distanceViewModel.acVDistance = acDistance
-                    distanceViewModel.deluxeVDistance = deluxeDistance
-                    
-                }
-                .foregroundColor(.white)
-                .frame(width:201, height:44)
-                .background(Color.mainGreen)
-                .cornerRadius(10)
-                .alert(isPresented: $showAlert) {
-                    Alert(
-                        title: Text("Data Logged Successfully!"),
-                        dismissButton: .default(Text("OK"))
-                    )
-                }
+                HStack {
+                    Button("Save") {
+                        
+                        showAlert = true
+                        //authenticate user
+                        print("Private Distance Travelled: \(privateDistance)")
+                        print("Cabs Distance Travelled: \(cabsDistance)")
+                        print("Carpool Distance Travelled: \(carpoolDistance)")
+                        print("Local Train Distance Travelled: \(localTrainDistance)")
+                        print("Metro Distance Travelled: \(metroDistance)")
+                        print("Pillion Distance Travelled: \(pillionDistance)")
+                        print("Sharing Distance Travelled: \(sharingDistance)")
+                        print("Magic Distance Travelled: \(magicDistance)")
+                        print("Ordinary Distance Travelled: \(ordinaryDistance)")
+                        print("AC Distance Travelled: \(acDistance)")
+                        print("Deluxe Distance Travelled: \(deluxeDistance)")
+                        
+                        print("User Emission: \(userEmissions)")
+                        
+                        userData.userEmission = userEmissions
+                        distanceViewModel.privateVDistance = privateDistance
+                        distanceViewModel.cabsVDistance = cabsDistance
+                        distanceViewModel.carpoolVDistance = carpoolDistance
+                        distanceViewModel.localTrainVDistance = localTrainDistance
+                        distanceViewModel.metroVDistance = metroDistance
+                        distanceViewModel.pillionVDistance = pillionDistance
+                        distanceViewModel.sharingVDistance = sharingDistance
+                        distanceViewModel.magicVDistance = magicDistance
+                        distanceViewModel.ordinaryVDistance = ordinaryDistance
+                        distanceViewModel.acVDistance = acDistance
+                        distanceViewModel.deluxeVDistance = deluxeDistance
+                        
+                    }
+                    .foregroundColor(.white)
+                    .frame(width:180, height:44)
+                    .background(Color.mainGreen)
+                    .cornerRadius(10)
+                    .alert(isPresented: $showAlert) {
+                        Alert(
+                            title: Text("Data Logged Successfully!"),
+                            dismissButton: .default(Text("OK"))
+                        )
+                    }
                     
                     Button("Next") {
                         //authenticate user
@@ -410,16 +411,17 @@ struct VehicleDetails: View {
                         
                     }
                     .foregroundColor(.white)
-                    .frame(width:201, height:44)
+                    .frame(width:180, height:44)
                     .background(Color.mainGreen)
                     .cornerRadius(10)
                     
-                NavigationLink(destination: homePageDashboard(privateDistance: Int(userEmissions), cabsDistance: privateDistance, carpoolDistance: cabsDistance, localTrainDistance: carpoolDistance, metroDistance: localTrainDistance, pillionDistance: metroDistance, sharingDistance: pillionDistance, magicDistance: sharingDistance, ordinaryDistance: magicDistance, acDistance: ordinaryDistance, deluxeDistance: acDistance), isActive: $showingNextScreen) {
-                    EmptyView()
-                }
+                    NavigationLink(destination: homePageDashboard(privateDistance: Int(userEmissions), cabsDistance: privateDistance, carpoolDistance: cabsDistance, localTrainDistance: carpoolDistance, metroDistance: localTrainDistance, pillionDistance: metroDistance, sharingDistance: pillionDistance, magicDistance: sharingDistance, ordinaryDistance: magicDistance, acDistance: ordinaryDistance, deluxeDistance: acDistance), isActive: $showingNextScreen) {
+                        EmptyView()
+                    }
                 }.navigationTitle("Vehicle Details")
                     .navigationBarTitle("Details")
             }
+        }
         }
     }
     

@@ -66,10 +66,7 @@ struct homePageDashboard: View {
                                     },
                                     .default(Text("Account")) {
                                         //userName = "Rahul"
-                                        // Add your action for Rohan
-                                    },
-                                    .default(Text("Dark Mode")) {
-                                        //userName = "Anvit"
+                                        userName = "Vishal"
                                         // Add your action for Rohan
                                     },
                                     
@@ -165,5 +162,6 @@ struct homePageDashboard: View {
 struct homePageDashboard_Previews: PreviewProvider {
         static var previews: some View {
             homePageDashboard(privateDistance : 0, cabsDistance: 0, carpoolDistance: 0, localTrainDistance: 0, metroDistance: 0, pillionDistance: 0, sharingDistance: 0, magicDistance: 0, ordinaryDistance: 0, acDistance: 0, deluxeDistance: 0)
+
         }
     }
