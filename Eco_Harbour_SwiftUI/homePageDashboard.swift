@@ -60,16 +60,11 @@ struct homePageDashboard: View {
                             }
                             .actionSheet(isPresented: $isActionSheetPresented) {
                                 ActionSheet(title: Text("Choose Option"), buttons: [
-                                    .default(Text("Profile")) {
+                                    .default(Text("Settings")) {
                                         //userName = "Vishal"
                                         // Add your action for Priya
                                     },
-                                    .default(Text("Account")) {
-                                        //userName = "Rahul"
-                                        userName = "Vishal"
-                                        // Add your action for Rohan
-                                    },
-                                    
+
                                     .default(
                                         Text("Add Account")) {
                                         showingLoginScreen.toggle()
