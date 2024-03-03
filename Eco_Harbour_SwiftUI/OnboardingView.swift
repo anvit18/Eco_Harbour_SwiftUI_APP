@@ -45,14 +45,14 @@ struct OnboardingView: View {
                     .padding(.top, -60)
                     .padding(.bottom, 20)
                 
-                Button("Get Started") {
+                Button("Skip") {
                     //authenticate user
                     showingNextScreen.toggle()
                     
                 }
-                .foregroundColor(.white)
+                .foregroundColor(.blue)
                 .frame(width:201, height:44)
-                .background(Color.mainGreen)
+                .background(Color.white)
                 .cornerRadius(10)
                 .padding(.top, -60)
                 

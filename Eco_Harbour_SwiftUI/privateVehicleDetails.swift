@@ -39,23 +39,24 @@ struct privateVehicleDetails: View {
                 
                 Button {
                     // do something
-                    cityName = "Pune"
+                    cityName = "Chennai"
                 }label: {
-                    Label("Pune", systemImage:  "sun.min.fill")
+                    Label("Chennai", systemImage:  "")
                 }
                 
                 Button {
                     // Do something
                     cityName = "Mumbai"
                 } label: {
-                    Label("Mumbai", systemImage: "sun.horizon.circle.fill")
-                }
+                    Label("Mumbai", systemImage: "")
+                }.disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                 Button {
                     // Do something
-                    cityName = "Chennai"
+                    cityName = "Pune"
                 } label: {
-                    Label("Chennai", systemImage: "sun.rain.fill")
-                }
+                    Label("Pune", systemImage:"")
+                }.disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                
             } label: {
                 TextField("e.g. Chennai", text: $cityName)
                     .padding(.leading,-160)
@@ -84,44 +85,45 @@ struct privateVehicleDetails: View {
 
             HStack {
                 Spacer()
-                Button("Why we ask for this ?") {
-                    //add code
-                    showingWhyWeAsk.toggle()
-                }
-                .foregroundColor(.mainGreen)
-                .underline(true, color: .mainGreen)
-                .background(.white)
-                .padding(.horizontal, 40)
-                .font(.callout)
-                .frame(alignment: .trailing)
-                .padding(.trailing, 8)
+//                Button("Why we ask for this ?") {
+//                    //add code
+//                    showingWhyWeAsk.toggle()
+//                }
+//                .foregroundColor(.mainGreen)
+//                .underline(true, color: .mainGreen)
+//                .background(.white)
+//                .padding(.horizontal, 40)
+//                .font(.callout)
+//                .frame(alignment: .trailing)
+//                .padding(.trailing, 8)
 
                 NavigationLink(destination: SecondView(), isActive: $showingWhyWeAsk) {
                     EmptyView()
                 }
             }
 
-            Text("------------ or ------------")
-                .font(.footnote)
-                .foregroundColor(Color.gray)
-                .padding(.top, 20)
-                .padding(.bottom, 30)
+//            Text("------------ or ------------")
+//                .font(.footnote)
+//                .foregroundColor(Color.gray)
+//                .padding(.top, 20)
+//                .padding(.bottom, 30)
 
-            Text("Not comfortable sharing License Plate number ? You can input all the details manually instead of us fetching it from your license plate number.")
-                .foregroundColor(.black)
-                .background(.white)
-                .padding(.horizontal, 60)
-                .font(.caption)
-                .padding(.bottom, 10)
+//            Text("Not comfortable sharing License Plate number ? You can input all the details manually instead of us fetching it from your license plate number.")
+//                .foregroundColor(.black)
+//                .background(.white)
+//                .padding(.horizontal, 60)
+//                .font(.caption)
+//                .padding(.bottom, 10)
+//                .padding(.top,20)
 
-            Button("Fill Manually ") {
+            Button("Fill Vehicle Details Manually ") {
                 showingFillManually.toggle()
             }
             .foregroundColor(.blue)
             .background(.white)
             .underline()
             .padding(.horizontal, 30)
-            .font(.title2)
+            .padding(.top,30)
 
             NavigationLink(destination: manualFilling(), isActive: $showingFillManually) {
                 EmptyView()
@@ -134,7 +136,7 @@ struct privateVehicleDetails: View {
             .frame(width: 201, height: 44)
             .background(Color.mainGreen)
             .cornerRadius(10)
-            .padding(.top, 30)
+            .padding(.top, 10)
 
             NavigationLink(destination: frequentlyUsedVehicles(), isActive: $showingNextScreen) {
                 EmptyView()

@@ -54,6 +54,7 @@ struct VehicleDetails: View {
     var userEmissions: Double {
             return (Double(privateDistance) * privateFactor) +
                    (Double(cabsDistance) * cabsFactor) +
+                   (Double(carpoolDistance) * carpoolFactor) +
                    (Double(localTrainDistance) * localTrainFactor) +
                    (Double(metroDistance) * metroFactor) +
                    (Double(pillionDistance) * pillionFactor) +
@@ -170,7 +171,7 @@ struct VehicleDetails: View {
                                         }
                                         if showOrdinaryStepper {
                                             VStack {
-                                                Stepper(value: $ordinaryDistance, in: 0...1000, step: 10) {
+                                                Stepper(value: $ordinaryDistance, in: 0...1000, step: 5) {
                                                     Text("Distance: \(ordinaryDistance) km")
                                                 }
                                                 .padding(.horizontal)
@@ -194,7 +195,7 @@ struct VehicleDetails: View {
                                         }
                                         if showACStepper {
                                             VStack {
-                                                Stepper(value: $acDistance, in: 0...1000, step: 10) {
+                                                Stepper(value: $acDistance, in: 0...1000, step: 5) {
                                                     Text("Distance: \(acDistance) km")
                                                 }
                                                 .padding(.horizontal)
@@ -219,7 +220,7 @@ struct VehicleDetails: View {
                                         }
                                         if showDeluxeStepper {
                                             VStack {
-                                                Stepper(value: $deluxeDistance, in: 0...1000, step: 10) {
+                                                Stepper(value: $deluxeDistance, in: 0...1000, step: 5) {
                                                     Text("Distance: \(deluxeDistance) km")
                                                 }
                                                 .padding(.horizontal)
@@ -248,7 +249,7 @@ struct VehicleDetails: View {
                                         }
                                         if showLocalTrainStepper {
                                             VStack {
-                                                Stepper(value: $localTrainDistance, in: 0...1000, step: 7) {
+                                                Stepper(value: $localTrainDistance, in: 0...1000, step: 5) {
                                                     Text("Distance: \(localTrainDistance) km")
                                                 }
                                                 .padding(.horizontal)
@@ -272,7 +273,7 @@ struct VehicleDetails: View {
                                         }
                                         if showMetroStepper {
                                             VStack {
-                                                Stepper(value: $metroDistance, in: 0...1000, step: 8) {
+                                                Stepper(value: $metroDistance, in: 0...1000, step: 5) {
                                                     Text("Distance: \(metroDistance) km")
                                                 }
                                                 .padding(.horizontal)
@@ -301,7 +302,7 @@ struct VehicleDetails: View {
                                         }
                                         if showPillionStepper {
                                             VStack {
-                                                Stepper(value: $pillionDistance, in: 0...1000,  step: 8) {
+                                                Stepper(value: $pillionDistance, in: 0...1000,  step: 5) {
                                                     Text("Distance: \(pillionDistance) km")
                                                 }
                                                 .padding(.horizontal)

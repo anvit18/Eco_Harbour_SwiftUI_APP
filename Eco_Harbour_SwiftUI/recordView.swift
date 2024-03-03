@@ -33,8 +33,51 @@ struct CategoryView: View {
 }
 
 struct recordView: View {
-    @State private var selectedCategory: String?
+//    Temp
+    @EnvironmentObject private var userData: UserData
+    @EnvironmentObject private var distanceViewModel : DistanceViewModel
     
+    
+    @State private var privateDistance: Int = 0
+        @State private var cabsDistance: Int = 0
+        @State private var carpoolDistance: Int = 0
+        @State private var localTrainDistance: Int = 0
+        @State private var metroDistance: Int = 0
+        @State private var pillionDistance: Int = 0
+        @State private var sharingDistance: Int = 0
+        @State private var magicDistance: Int = 0
+        @State private var ordinaryDistance: Int = 0
+        @State private var acDistance: Int = 0
+        @State private var deluxeDistance: Int = 0
+    
+    // Emission Factor Variables, set dummy for now
+      @State private var privateFactor: Double = 20
+      @State private var cabsFactor: Double = 18
+      @State private var carpoolFactor: Double = 16
+      @State private var localTrainFactor: Double = 4
+      @State private var metroFactor: Double = 8
+      @State private var pillionFactor: Double = 13
+      @State private var sharingFactor: Double = 7
+      @State private var magicFactor: Double = 9
+      @State private var ordinaryFactor: Double = 4
+      @State private var acFactor: Double = 10
+      @State private var deluxeFactor: Double = 5
+    
+    var userEmissions: Double {
+            return (Double(privateDistance) * privateFactor) +
+                   (Double(cabsDistance) * cabsFactor) +
+                   (Double(carpoolDistance) * carpoolFactor) +
+                   (Double(localTrainDistance) * localTrainFactor) +
+                   (Double(metroDistance) * metroFactor) +
+                   (Double(pillionDistance) * pillionFactor) +
+                   (Double(sharingDistance) * sharingFactor) +
+                   (Double(magicDistance) * magicFactor) +
+                   (Double(ordinaryDistance) * ordinaryFactor) +
+                   (Double(acDistance) * acFactor) +
+                   (Double(deluxeDistance) * deluxeFactor)
+        }
+    
+    @State private var selectedCategory: String?
     @State private var showStepper = false
     
     @State var carDistance: Int = 0
@@ -113,23 +156,23 @@ struct recordView: View {
                         
                         Button {
                             // do something
-                            cityName = "Pune"
+                            cityName = "Chennai"
                         }label: {
-                            Label("Pune", systemImage:  "sun.min.fill")
+                            Label("Chennai", systemImage:  "")
                         }
                         
                         Button {
                             // Do something
                             cityName = "Mumbai"
                         } label: {
-                            Label("Mumbai", systemImage: "sun.horizon.circle.fill")
-                        }
+                            Label("Mumbai", systemImage: "")
+                        }.disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                         Button {
                             // Do something
-                            cityName = "Chennai"
+                            cityName = "Pune"
                         } label: {
-                            Label("Chennai", systemImage: "sun.rain.fill")
-                        }
+                            Label("Pune", systemImage: "")
+                        }.disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                     } label: {
                         TextField("Chennai", text: $cityName)
                             .padding()
@@ -170,23 +213,7 @@ struct recordView: View {
                     //.padding(.leading,-40)
                    // .padding(.trailing,50)
                     
-                    NavigationLink(destination: historyView(
-                        selectedCategory: selectedCategory ?? "",
-                                        selectedDate: selectedDate,
-                                        carType: carType,
-                                        carDistance: carDistance,
-                                        busType: busType,
-                                        busDistance: busDistance,
-                                        trainType: trainType,
-                                        trainDistance: trainDistance,
-                                       carPoolType: carPool,
-                                        carPoolDistance: carPoolDistance,
-                                        autoType: autoType,
-                                        autoDistance: autoDistance,
-                                        dummyVar: dummyVar,
-                                        fuel: fuel,
-                                        numberOfPassengers: numberOfPassengers
-                                    ), isActive: $showingNextScreen) {
+                    NavigationLink(destination: HistoryView(), isActive: $showingNextScreen) {
                                         EmptyView()
                                     }
                     
@@ -196,6 +223,8 @@ struct recordView: View {
                 Text("Select the modes of transport you used today")
                     .font(.subheadline)
                     .foregroundStyle(Color.gray)
+                    .padding(.top,20)
+                    .padding(.bottom,-10)
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 20) {
@@ -249,6 +278,7 @@ struct recordView: View {
                 Button("Save") {
                                    // Add your logic for saving data or performing an action
                                    printUserInput()
+                                   saveUserInput()
 
                                    // Show the alert
                                    showAlert = true
@@ -907,8 +937,105 @@ struct recordView: View {
             break
         }
     }
+    
+    
+    
+    
+    private func saveUserInput() {
+        // Check if category is car
+        if selectedCategory == "Car" {
+            // Check car type
+            switch carType {
+            case "Private":
+                privateDistance = carDistance
+            case "Cab":
+                cabsDistance = carDistance
+            default:
+                break
+            }
+        }
+        
+        //Check if category is carpool
+        if selectedCategory=="Car Pool"{
+            carpoolDistance = carPoolDistance
+        }
+        
+        // Check if category is train
+        if selectedCategory == "Train" {
+            // Check train type
+            switch trainType {
+            case "Local":
+                localTrainDistance = trainDistance
+            case "Metro":
+                metroDistance = trainDistance
+            default:
+                // Handle other train types
+                break
+            }
+        }
+        
+        if selectedCategory == "Auto" {
+            // Check train type
+            switch autoType {
+            case "Pillion":
+                pillionDistance = autoDistance
+            case "Sharing":
+                sharingDistance = autoDistance
+            case "Magic":
+                magicDistance = autoDistance
+            default:
+                // Handle other train types
+                break
+            }
+        }
+        if selectedCategory == "Bus" {
+            // Check train type
+            switch busType {
+            case "Ordinary":
+                print("Ordinary selected!!!!!!")
+            case "AC":
+                acDistance = busDistance
+            case "Deluxe":
+                deluxeDistance = busDistance
+            default:
+                // Handle other train types
+                break
+            }
+        }
+        
+        // Add similar logic for other categories and vehicle types
+        
+        // Print updated distances (optional)
+        print("car Distance: \(carDistance)")
+        print("car pool Distance: \(carPoolDistance)")
+        print("bus Distance: \(busDistance)")
+        print("auto Distance: \(autoDistance)")
+        print("train Distance: \(trainDistance)")
+        // Print other distances as needed
+        
+        
+        
+        userData.userEmission = userEmissions
+        userData.datePicked = selectedDate
+        distanceViewModel.privateVDistance = privateDistance
+        distanceViewModel.cabsVDistance = cabsDistance
+        distanceViewModel.carpoolVDistance = carpoolDistance
+        distanceViewModel.localTrainVDistance = localTrainDistance
+        distanceViewModel.metroVDistance = metroDistance
+        distanceViewModel.pillionVDistance = pillionDistance
+        distanceViewModel.sharingVDistance = sharingDistance
+        distanceViewModel.magicVDistance = magicDistance
+        distanceViewModel.ordinaryVDistance = ordinaryDistance
+        distanceViewModel.acVDistance = acDistance
+        distanceViewModel.deluxeVDistance = deluxeDistance
+    }
+    
+    
+    
 
     }
+
+
 
 
 

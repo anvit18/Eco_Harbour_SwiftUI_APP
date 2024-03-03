@@ -165,12 +165,13 @@ struct dashboardView: View {
                     .padding(.bottom, -35)
                     
                     // User's carbon footprint breakdown chart
-                    Image("transport_vector")
-                        .resizable()
-                        .frame(width: 240, height: 140)
+//                    Image("transport_vector")
+//                        .resizable()
+//                        .frame(width: 240, height: 140)
                     
-                    Text("Your average monthly carbon footprint is")
+                    Text("Your average daily carbon footprint is")
                         .font(.subheadline)
+                        .padding(.top, 45)
                     
                     VStack {
                         ZStack {
