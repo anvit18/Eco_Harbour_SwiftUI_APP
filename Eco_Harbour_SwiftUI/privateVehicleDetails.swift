@@ -116,9 +116,10 @@ struct privateVehicleDetails: View {
 //                .padding(.bottom, 10)
 //                .padding(.top,20)
 
-            Button("Fill Vehicle Details Manually ") {
+            Button("Enter Private Vehicle Details") {
                 showingFillManually.toggle()
             }
+            
             .foregroundColor(.blue)
             //.bold()
             .background(.white)
@@ -132,18 +133,18 @@ struct privateVehicleDetails: View {
                 EmptyView()
             }
 
-            Button("Next") {
-                showingNextScreen.toggle()
-            }
-            .foregroundColor(.white)
-            .frame(width: 201, height: 44)
-            .background(Color.mainGreen)
-            .cornerRadius(10)
-            .padding(.top, 10)
-
-            NavigationLink(destination: frequentlyUsedVehicles(), isActive: $showingNextScreen) {
-                EmptyView()
-            }
+//            Button("Skip") {
+//                showingNextScreen.toggle()
+//            }
+//            .foregroundColor(.white)
+//            .frame(width: 201, height: 44)
+//            .background(Color.mainGreen)
+//            .cornerRadius(10)
+//            .padding(.top, 10)
+//
+//            NavigationLink(destination: frequentlyUsedVehicles(), isActive: $showingNextScreen) {
+//                EmptyView()
+//            }
         }
         .navigationBarTitle("Private Vehicle Details")
         // Use .onAppear to trigger the dialog only on the first visit
