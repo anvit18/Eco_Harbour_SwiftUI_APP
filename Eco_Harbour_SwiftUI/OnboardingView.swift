@@ -61,7 +61,7 @@ struct OnboardingView: View {
                 }
                 
                 
-                //.navigationBarHidden(true)
+                .navigationBarHidden(true)
             }
         }
     }

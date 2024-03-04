@@ -11,6 +11,8 @@ struct VehicleDetails: View {
     @State private var selectedTime = Date()
     @State private var showingNextScreen = false
     @State private var showAlert = false
+    @State private var isShowingNotification = false
+    @State private var notificationText: String?
     
     // Distance variables
     @State private var privateDistance: Int = 0
@@ -88,17 +90,16 @@ struct VehicleDetails: View {
                                                 .frame(width: 24, height: 24)
                                             Text("Private Car")
                                             Spacer()
-                                        }.onTapGesture {
-                                            showPrivateStepper.toggle()
-                                        }
-                                        if showPrivateStepper{
-                                            VStack {
-                                                Stepper(value: $privateDistance, in: 0...1000, step: 5) {
-                                                    Text("Distance: \(privateDistance) km")
-                                                }
-                                                .padding(.horizontal)
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Stepper(value: $privateDistance, in: 0...1000, step: 5) {
+                                                Text(" \(privateDistance) km")
+                                                    .padding(.trailing,-85)
                                             }
                                         }
+                                        
                                         
                                     }
                                 }
@@ -113,17 +114,21 @@ struct VehicleDetails: View {
                                                 .frame(width: 24, height: 24)
                                             Text("Cab")
                                             Spacer()
-                                        }.onTapGesture {
-                                            showCabsStepper.toggle()
-                                        }
-                                        if showCabsStepper {
-                                            VStack {
-                                                Stepper(value: $cabsDistance, in: 0...1000, step: 5) {
-                                                    Text("Distance: \(cabsDistance) km")
-                                                }
-                                                .padding(.horizontal)
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            //Spacer()
+                                            Stepper(value: $cabsDistance, in: 0...1000, step: 5) {
+                                                Text("   \(cabsDistance) km")
+                                                    .padding(.trailing,-170)
                                             }
                                         }
+                                        
                                     }
                                 }
                             }
@@ -137,17 +142,18 @@ struct VehicleDetails: View {
                                                 .frame(width: 24, height: 24)
                                             Text("Car Pool")
                                             Spacer()
-                                        }.onTapGesture {
-                                            showCarpoolStepper.toggle()
-                                        }
-                                        if showCarpoolStepper {
-                                            VStack {
-                                                Stepper(value: $carpoolDistance, in: 0...1000, step: 5) {
-                                                    Text("Distance: \(carpoolDistance) km")
-                                                }
-                                                .padding(.horizontal)
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Stepper(value: $carpoolDistance, in: 0...1000, step: 5) {
+                                                Text(" \(carpoolDistance) km")
+                                                    .padding(.trailing,-115)
                                             }
                                         }
+                                        
                                     }
                                 }
                             }
@@ -166,15 +172,12 @@ struct VehicleDetails: View {
                                                 .frame(width: 24, height: 24)
                                             Text("Ordinary Bus")
                                             Spacer()
-                                        }.onTapGesture {
-                                            showOrdinaryStepper.toggle()
-                                        }
-                                        if showOrdinaryStepper {
-                                            VStack {
-                                                Stepper(value: $ordinaryDistance, in: 0...1000, step: 5) {
-                                                    Text("Distance: \(ordinaryDistance) km")
-                                                }
-                                                .padding(.horizontal)
+                                            Spacer()
+                                           
+                                            Spacer()
+                                            Stepper(value: $ordinaryDistance, in: 0...1000, step: 5) {
+                                                Text(" \(ordinaryDistance) km")
+                                                    .padding(.trailing,-95)
                                             }
                                         }
                                     }
@@ -190,17 +193,20 @@ struct VehicleDetails: View {
                                                 .frame(width: 24, height: 24)
                                             Text("AC Bus")
                                             Spacer()
-                                        }.onTapGesture {
-                                            showACStepper.toggle()
-                                        }
-                                        if showACStepper {
-                                            VStack {
-                                                Stepper(value: $acDistance, in: 0...1000, step: 5) {
-                                                    Text("Distance: \(acDistance) km")
-                                                }
-                                                .padding(.horizontal)
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Stepper(value: $acDistance, in: 0...1000, step: 5) {
+                                                Text(" \(acDistance) km")
+                                                    .padding(.trailing,-125)
                                             }
                                         }
+                                        
                                         
                                     }
                                 }
@@ -215,16 +221,15 @@ struct VehicleDetails: View {
                                                 .frame(width: 24, height: 24)
                                             Text("Deluxe Bus")
                                             Spacer()
-                                        }.onTapGesture {
-                                            showDeluxeStepper.toggle()
-                                        }
-                                        if showDeluxeStepper {
-                                            VStack {
-                                                Stepper(value: $deluxeDistance, in: 0...1000, step: 5) {
-                                                    Text("Distance: \(deluxeDistance) km")
-                                                }
-                                                .padding(.horizontal)
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Stepper(value: $deluxeDistance, in: 0...1000, step: 5) {
+                                                Text(" \(deluxeDistance) km")
+                                                    .padding(.trailing,-70)
                                             }
+                                            
                                         }
                                     }
                                 }
@@ -244,15 +249,14 @@ struct VehicleDetails: View {
                                                 .frame(width: 24, height: 24)
                                             Text("Local Train")
                                             Spacer()
-                                        }.onTapGesture {
-                                            showLocalTrainStepper.toggle()
-                                        }
-                                        if showLocalTrainStepper {
-                                            VStack {
-                                                Stepper(value: $localTrainDistance, in: 0...1000, step: 5) {
-                                                    Text("Distance: \(localTrainDistance) km")
-                                                }
-                                                .padding(.horizontal)
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Stepper(value: $localTrainDistance, in: 0...1000, step: 5) {
+                                                Text(" \(localTrainDistance) km")
+                                                    .padding(.trailing,-75)
                                             }
                                         }
                                     }
@@ -268,17 +272,16 @@ struct VehicleDetails: View {
                                                 .frame(width: 24, height: 24)
                                             Text("Metro Distance")
                                             Spacer()
-                                        }.onTapGesture {
-                                            showMetroStepper.toggle()
-                                        }
-                                        if showMetroStepper {
-                                            VStack {
-                                                Stepper(value: $metroDistance, in: 0...1000, step: 5) {
-                                                    Text("Distance: \(metroDistance) km")
-                                                }
-                                                .padding(.horizontal)
+                                            Spacer()
+                                            
+                                            //Spacer()
+                                            Stepper(value: $metroDistance, in: 0...1000, step: 5) {
+                                                Text(" \(metroDistance) km")
+                                                    .padding(.trailing,-45)
                                             }
+
                                         }
+                                        
                                     }
                                 }
                             }
@@ -297,15 +300,13 @@ struct VehicleDetails: View {
                                                 .frame(width: 24, height: 24)
                                             Text("Pillion Auto")
                                             Spacer()
-                                        }.onTapGesture {
-                                            showPillionStepper.toggle()
-                                        }
-                                        if showPillionStepper {
-                                            VStack {
-                                                Stepper(value: $pillionDistance, in: 0...1000,  step: 5) {
-                                                    Text("Distance: \(pillionDistance) km")
-                                                }
-                                                .padding(.horizontal)
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Stepper(value: $pillionDistance, in: 0...1000,  step: 5) {
+                                                Text(" \(pillionDistance) km")
+                                                    .padding(.trailing,-75)
                                             }
                                         }
                                     }
@@ -321,15 +322,12 @@ struct VehicleDetails: View {
                                                 .frame(width: 24, height: 24)
                                             Text("Sharing Auto")
                                             Spacer()
-                                        }.onTapGesture {
-                                            showSharingStepper.toggle()
-                                        }
-                                        if showSharingStepper {
-                                            VStack {
-                                                Stepper(value: $sharingDistance, in: 0...1000, step: 5) {
-                                                    Text("Distance: \(sharingDistance) km")
-                                                }
-                                                .padding(.horizontal)
+                                           
+                                            Spacer()
+                                            Spacer()
+                                            Stepper(value: $sharingDistance, in: 0...1000, step: 5) {
+                                                Text(" \(sharingDistance) km")
+                                                    .padding(.trailing,-65)
                                             }
                                         }
                                     }
@@ -345,15 +343,13 @@ struct VehicleDetails: View {
                                                 .frame(width: 24, height: 24)
                                             Text("Magic Auto")
                                             Spacer()
-                                        }.onTapGesture {
-                                            showMagicStepper.toggle()
-                                        }
-                                        if showMagicStepper {
-                                            VStack {
-                                                Stepper(value: $magicDistance, in: 0...1000,  step: 5) {
-                                                    Text("Distance: \(magicDistance) km")
-                                                }
-                                                .padding(.horizontal)
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Spacer()
+                                            Stepper(value: $magicDistance, in: 0...1000,  step: 5) {
+                                                Text(" \(magicDistance) km")
+                                                    .padding(.trailing, -65)
                                             }
                                         }
                                     }
@@ -362,10 +358,62 @@ struct VehicleDetails: View {
                         }
                     }
                 }
-                HStack {
-                    Button("Save") {
+                //                    Button("") {
+                //
+                //                        showAlert = true
+                //                        //authenticate user
+                //                        print("Private Distance Travelled: \(privateDistance)")
+                //                        print("Cabs Distance Travelled: \(cabsDistance)")
+                //                        print("Carpool Distance Travelled: \(carpoolDistance)")
+                //                        print("Local Train Distance Travelled: \(localTrainDistance)")
+                //                        print("Metro Distance Travelled: \(metroDistance)")
+                //                        print("Pillion Distance Travelled: \(pillionDistance)")
+                //                        print("Sharing Distance Travelled: \(sharingDistance)")
+                //                        print("Magic Distance Travelled: \(magicDistance)")
+                //                        print("Ordinary Distance Travelled: \(ordinaryDistance)")
+                //                        print("AC Distance Travelled: \(acDistance)")
+                //                        print("Deluxe Distance Travelled: \(deluxeDistance)")
+                //
+                //                        print("User Emission: \(userEmissions)")
+                //
+                //                        userData.userEmission = userEmissions
+                //                        distanceViewModel.privateVDistance = privateDistance
+                //                        distanceViewModel.cabsVDistance = cabsDistance
+                //                        distanceViewModel.carpoolVDistance = carpoolDistance
+                //                        distanceViewModel.localTrainVDistance = localTrainDistance
+                //                        distanceViewModel.metroVDistance = metroDistance
+                //                        distanceViewModel.pillionVDistance = pillionDistance
+                //                        distanceViewModel.sharingVDistance = sharingDistance
+                //                        distanceViewModel.magicVDistance = magicDistance
+                //                        distanceViewModel.ordinaryVDistance = ordinaryDistance
+                //                        distanceViewModel.acVDistance = acDistance
+                //                        distanceViewModel.deluxeVDistance = deluxeDistance
+                //
+                //                    }
+                //                    .foregroundColor(.white)
+                //                    .frame(width:180, height:44)
+                //                    .background(Color.mainGreen)
+                //                    .cornerRadius(10)
+                //                    .alert(isPresented: $showAlert) {
+                //                        Alert(
+                //                            title: Text("Data Logged Successfully!"),
+                //                            dismissButton: .default(Text("OK"))
+                //                        )
+                //                    }
+            
+                    
+      Button("Next") {
+                        //authenticate user
+//                        Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
+//                                                isShowingNotification = false
+//                                                notificationText = nil
+//
+//                                                // Navigate to the next screen here
+//                                                showingNextScreen.toggle()
+//                                            }
+                        showingNextScreen.toggle()
                         
-                        showAlert = true
+                       // showAlert = true
                         //authenticate user
                         print("Private Distance Travelled: \(privateDistance)")
                         print("Cabs Distance Travelled: \(cabsDistance)")
@@ -394,27 +442,36 @@ struct VehicleDetails: View {
                         distanceViewModel.acVDistance = acDistance
                         distanceViewModel.deluxeVDistance = deluxeDistance
                         
-                    }
-                    .foregroundColor(.white)
-                    .frame(width:180, height:44)
-                    .background(Color.mainGreen)
-                    .cornerRadius(10)
-                    .alert(isPresented: $showAlert) {
-                        Alert(
-                            title: Text("Data Logged Successfully!"),
-                            dismissButton: .default(Text("OK"))
-                        )
-                    }
-                    
-                    Button("Next") {
-                        //authenticate user
-                        showingNextScreen.toggle()
+//                        notificationText = "Data logged successfully!"
+//                                            isShowingNotification = true
                         
                     }
                     .foregroundColor(.white)
                     .frame(width:180, height:44)
                     .background(Color.mainGreen)
                     .cornerRadius(10)
+//                    .alert(isPresented: $showAlert) {
+//                        Alert(
+//                            title: Text("Data Logged Successfully!"),
+//                            dismissButton: .default(Text("OK"))
+//                        )
+//                    }
+//                if isShowingNotification {
+//                    NotificationView(text: notificationText ?? "", onClose: {
+//                        // Close notification when tapped
+//                        isShowingNotification = false
+//                        notificationText = nil
+//                        
+//                        // Navigate to the next screen here
+//                        showingNextScreen.toggle()
+//                    })
+//                    .frame(maxWidth: .infinity)
+//                    //.background(Color.mainGreen.opacity(0.7))
+//                    .foregroundColor(.white)
+//                    .transition(.move(edge: .top))
+//                    .animation(.easeInOut)
+//                    .edgesIgnoringSafeArea(.top)
+//                }
                     
                     NavigationLink(destination: homePageDashboard(privateDistance: Int(userEmissions), cabsDistance: privateDistance, carpoolDistance: cabsDistance, localTrainDistance: carpoolDistance, metroDistance: localTrainDistance, pillionDistance: metroDistance, sharingDistance: pillionDistance, magicDistance: sharingDistance, ordinaryDistance: magicDistance, acDistance: ordinaryDistance, deluxeDistance: acDistance), isActive: $showingNextScreen) {
                         EmptyView()
@@ -424,8 +481,35 @@ struct VehicleDetails: View {
             }
         }
         }
-    }
     
+
+//struct NotificationView: View {
+//    var text: String
+//    var onClose: () -> Void
+//
+//    var body: some View {
+//        HStack {
+//            Text(text)
+//                .foregroundColor(.white)
+//                .padding()
+//                .background(Color.mainGreen.opacity(0.8))
+//                .cornerRadius(10)
+//
+//            Spacer()
+//
+//            Button(action: {
+//                onClose()
+//            }) {
+//                Image(systemName: "xmark.circle.fill")
+//                    .foregroundColor(.white)
+//            }
+//            .padding()
+//        }
+//        .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
+//    }
+//}
+
+
     struct VehicleDetails_Previews: PreviewProvider {
         static var previews: some View {
             VehicleDetails(selectedVehicles: ["Private", "Cabs", "Carpool","AC","Ordinary","Deluxe","",])

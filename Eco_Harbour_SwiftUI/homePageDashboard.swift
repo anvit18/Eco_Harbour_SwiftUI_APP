@@ -100,36 +100,20 @@ struct homePageDashboard: View {
                     // Icon 1
                     dashboardView(privateDistance: 0, cabsDistance: 0, carpoolDistance: 0, localTrainDistance: 0, metroDistance: 0, pillionDistance: 0, sharingDistance: 0, magicDistance: 0, ordinaryDistance: 0, acDistance: 0, deluxeDistance: 0)
                         .tabItem {
-                            Image(systemName: "house.circle.fill")
+                            Image(systemName: "house.fill")
                                 .resizable()
                                 .frame(width: 50, height: 50) // Adjust the icon size
                             Text("Home")
                         }
                     
-                    // Icon 2
-//                    historyView(
-//                                        selectedCategory: "",
-//                                        selectedDate: Date(),
-//                                        carType: "",
-//                                        carTime: "",
-//                                        busType: "",
-//                                        busTime: "",
-//                                        trainType: "",
-//                                        trainTime: "",
-//                                        carPoolType: "",
-//                                        carPoolTime: "",
-//                                        autoType: "",
-//                                        autoTime: "",
-//                                        dummyVar: "",
-//                                        fuel: "",
-//                                        numberOfPassengers: ""
-//                                    )
-//                        .tabItem {
-//                            Image(systemName: "leaf.fill")
-//                                .resizable()
-//                                .frame(width: 50, height: 50) // Adjust the icon size
-//                            Text("History")
-//                        }
+                     //Icon 2
+                    HistoryView()
+                        .tabItem {
+                            Image(systemName: "clock")
+                                .resizable()
+                                .frame(width: 50, height: 50) // Adjust the icon size
+                            Text("History")
+                        }
                     
                     recordView()
                         .tabItem {

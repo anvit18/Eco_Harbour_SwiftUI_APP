@@ -66,25 +66,25 @@ struct privateVehicleDetails: View {
                     .cornerRadius(10)
             }
             
-            HStack {
-                Text("Enter License Plate Number :")
-                    .offset(x: -30)
-                    .foregroundColor(.black)
-                    .background(.white)
-                    .padding(.horizontal, 60)
-                    .font(.headline)
-                    .frame(alignment: .trailing)
-            }
+//            HStack {
+//                Text("Enter License Plate Number :")
+//                    .offset(x: -30)
+//                    .foregroundColor(.black)
+//                    .background(.white)
+//                    .padding(.horizontal, 60)
+//                    .font(.headline)
+//                    .frame(alignment: .trailing)
+//            }
+//
+//            TextField("e.g. MH 11 CG 6199", text: $vehicleNumber)
+//                .padding()
+//                .autocapitalization(.allCharacters)
+//                .frame(width: 300, height: 50)
+//                .background(Color.black.opacity(0.05))
+//                .cornerRadius(10)
 
-            TextField("e.g. MH 11 CG 6199", text: $vehicleNumber)
-                .padding()
-                .autocapitalization(.allCharacters)
-                .frame(width: 300, height: 50)
-                .background(Color.black.opacity(0.05))
-                .cornerRadius(10)
-
-            HStack {
-                Spacer()
+           // HStack {
+             //   Spacer()
 //                Button("Why we ask for this ?") {
 //                    //add code
 //                    showingWhyWeAsk.toggle()
@@ -97,10 +97,10 @@ struct privateVehicleDetails: View {
 //                .frame(alignment: .trailing)
 //                .padding(.trailing, 8)
 
-                NavigationLink(destination: SecondView(), isActive: $showingWhyWeAsk) {
-                    EmptyView()
-                }
-            }
+//                NavigationLink(destination: SecondView(), isActive: $showingWhyWeAsk) {
+//                    EmptyView()
+//                }
+//            }
 
 //            Text("------------ or ------------")
 //                .font(.footnote)
@@ -120,10 +120,13 @@ struct privateVehicleDetails: View {
                 showingFillManually.toggle()
             }
             .foregroundColor(.blue)
+            //.bold()
             .background(.white)
             .underline()
+            .font(.title2)
             .padding(.horizontal, 30)
             .padding(.top,30)
+            .padding(.bottom,30)
 
             NavigationLink(destination: manualFilling(), isActive: $showingFillManually) {
                 EmptyView()

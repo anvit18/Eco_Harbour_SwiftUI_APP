@@ -162,16 +162,16 @@ struct dashboardView: View {
                         
                         Spacer()
                     }
-                    .padding(.bottom, -35)
+                    .padding(.bottom, -15)
                     
                     // User's carbon footprint breakdown chart
-//                    Image("transport_vector")
-//                        .resizable()
-//                        .frame(width: 240, height: 140)
+                 Image("transport_vector")
+                        .resizable()
+                        .frame(width: 240, height: 140)
                     
                     Text("Your average daily carbon footprint is")
                         .font(.subheadline)
-                        .padding(.top, 45)
+                        .padding(.top, 15)
                     
                     VStack {
                         ZStack {
@@ -245,38 +245,38 @@ struct dashboardView: View {
                         }
                         .padding()
                         
-                        HStack(alignment: .bottom) {
-                            ForEach(bars) { bar in
-                                VStack {
-                                    ZStack {
-                                        Rectangle()
-                                            .foregroundColor(bar.color)
-                                            .frame(width: 35, height: CGFloat(bar.value), alignment: .bottom)
-                                            .opacity(selectedID == bar.id ? 0.5 : 1.0)
-                                            .cornerRadius(6)
-                                            .onTapGesture {
-                                                self.selectedID = bar.id
-                                                self.text = "Value: \(Int(bar.value))"
-                                            }
-                                        
-                                        Text("\(Int(bar.value))")
-                                            .foregroundColor(.white)
-                                    }
-                                    Text(bar.day)
-                                }
-                            }
-                        }
-                        .frame(height: 240, alignment: .bottom)
-                        .padding(20)
-                        .background(.thinMaterial)
-                        .cornerRadius(6)
-                        // Additional buttons and navigation
-                        Button("Refresh")  {
-                            withAnimation {
-                                self.bars = Bar.sampleBars
-                            }
-                        }
-                        .padding()
+//                        HStack(alignment: .bottom) {
+//                            ForEach(bars) { bar in
+//                                VStack {
+//                                    ZStack {
+//                                        Rectangle()
+//                                            .foregroundColor(bar.color)
+//                                            .frame(width: 35, height: CGFloat(bar.value), alignment: .bottom)
+//                                            .opacity(selectedID == bar.id ? 0.5 : 1.0)
+//                                            .cornerRadius(6)
+//                                            .onTapGesture {
+//                                                self.selectedID = bar.id
+//                                                self.text = "Value: \(Int(bar.value))"
+//                                            }
+//                                        
+//                                        Text("\(Int(bar.value))")
+//                                            .foregroundColor(.white)
+//                                    }
+//                                    Text(bar.day)
+//                                }
+//                            }
+//                        }
+//                        .frame(height: 240, alignment: .bottom)
+//                        .padding(20)
+//                        .background(.thinMaterial)
+//                        .cornerRadius(6)
+//                        // Additional buttons and navigation
+//                        Button("Refresh")  {
+//                            withAnimation {
+//                                self.bars = Bar.sampleBars
+//                            }
+//                        }
+//                        .padding()
                         
                         Button("Log Data + ") {
                             // Authenticate user

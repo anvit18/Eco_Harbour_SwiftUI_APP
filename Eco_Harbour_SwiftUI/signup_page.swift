@@ -123,7 +123,7 @@ struct signup_page: View {
                 
             }
 //        }
-//        .navigationBarHidden(true)
+ .navigationBarHidden(true)
     }
     
     //function to be edited for signup

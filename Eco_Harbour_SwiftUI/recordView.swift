@@ -366,7 +366,7 @@ struct recordView: View {
                 
                
                     VStack {
-                        Stepper(value: $carDistance, in: 0...100) {
+                        Stepper(value: $carDistance, in: 0...100, step: 5) {
                                                                     Text("\(carDistance) KMS")
                                                                 }
                                                                 .padding(.horizontal)
@@ -462,7 +462,7 @@ struct recordView: View {
                 
               
                     VStack {
-                        Stepper(value: $busDistance, in: 0...100) {
+                        Stepper(value: $busDistance, in: 0...100, step: 7) {
                                                                     Text("\(busDistance) KMS")
                                                                 }
                                                                 .padding(.horizontal)
@@ -649,7 +649,7 @@ struct recordView: View {
                 
                
                     VStack {
-                        Stepper(value: $autoDistance, in: 0...100) {
+                        Stepper(value: $autoDistance, in: 0...100, step: 5) {
                                                                     Text("\(autoDistance) KMS")
                                                                 }
                                                                 .padding(.horizontal)
@@ -736,7 +736,7 @@ struct recordView: View {
                 
                
                     VStack {
-                        Stepper(value: $carPoolDistance, in: 0...100) {
+                        Stepper(value: $carPoolDistance, in: 0...100, step: 5) {
                                                                     Text("\(carPoolDistance) KMS")
                                                                 }
                                                                 .padding(.horizontal)
@@ -992,7 +992,7 @@ struct recordView: View {
             // Check train type
             switch busType {
             case "Ordinary":
-                print("Ordinary selected!!!!!!")
+                ordinaryDistance=busDistance
             case "AC":
                 acDistance = busDistance
             case "Deluxe":

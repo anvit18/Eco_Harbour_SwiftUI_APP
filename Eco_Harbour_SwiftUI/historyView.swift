@@ -5,76 +5,44 @@ struct HistoryView: View {
     @EnvironmentObject var distanceViewModel: DistanceViewModel
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 16) {
             Text("History")
                 .font(.title)
                 .fontWeight(.bold)
                 .padding(.top)
                 .padding(.leading)
-                .frame(maxWidth: .infinity, alignment: .leading) // Align title to left
-            
-            // Display the date picked at the top left corner
-            if userData.datePicked != nil{
-                Text("Date: \(formattedDate(userData.datePicked!))")
-                    .padding(.leading)
-                    .frame(maxWidth: .infinity, alignment: .leading) // Align date to left
+            ScrollView {
+                // Display the date picked at the top left corner
+                if userData.datePicked != nil {
+                    Text("Date: \(formattedDate(userData.datePicked!))")
+                        .padding(.leading)
+                }
+                
+                // Display vehicle distance data in a tabular form
+                VStack(alignment: .leading, spacing: 16) {
+                    
+                    ForEach(vehicleData.filter { $0.1 != 0 }, id: \.0) { (vehicleType, distance) in
+                        HStack {
+                            Text(vehicleType)
+                                .font(.headline)
+                            
+                            Spacer()
+                            
+                            Text("Distance: \(distance) km")
+                                .foregroundColor(.secondary)
+                        }
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .shadow(radius: 2)
+                    }
+                    //}
+                }
+                .padding()
             }
-            
-            
-            // Display vehicle distance data below the date
-            // Display vehicle distance data below the date
-            VStack(alignment: .leading) {
-                if distanceViewModel.privateVDistance != 0 {
-                    Text("Private Car Distance: \(distanceViewModel.privateVDistance)")
-                        .frame(maxWidth: .infinity, alignment: .leading) // Align text to left
-                }
-                if distanceViewModel.cabsVDistance != 0 {
-                    Text("Cab Distance: \(distanceViewModel.cabsVDistance)")
-                        .frame(maxWidth: .infinity, alignment: .leading) // Align text to left
-                }
-                if distanceViewModel.carpoolVDistance != 0 {
-                    Text("Car Pool Distance: \(distanceViewModel.carpoolVDistance)")
-                        .frame(maxWidth: .infinity, alignment: .leading) // Align text to left
-                }
-                if distanceViewModel.localTrainVDistance != 0 {
-                    Text("Local Train Distance: \(distanceViewModel.localTrainVDistance)")
-                        .frame(maxWidth: .infinity, alignment: .leading) // Align text to left
-                }
-                if distanceViewModel.metroVDistance != 0 {
-                    Text("Metro Distance: \(distanceViewModel.metroVDistance)")
-                        .frame(maxWidth: .infinity, alignment: .leading) // Align text to left
-                }
-                if distanceViewModel.pillionVDistance != 0 {
-                    Text("Pillion Auto Distance: \(distanceViewModel.pillionVDistance)")
-                        .frame(maxWidth: .infinity, alignment: .leading) // Align text to left
-                }
-                if distanceViewModel.sharingVDistance != 0 {
-                    Text("Sharing Auto Distance: \(distanceViewModel.sharingVDistance)")
-                        .frame(maxWidth: .infinity, alignment: .leading) // Align text to left
-                }
-                if distanceViewModel.magicVDistance != 0 {
-                    Text("Magic Auto Distance: \(distanceViewModel.magicVDistance)")
-                        .frame(maxWidth: .infinity, alignment: .leading) // Align text to left
-                }
-                if distanceViewModel.ordinaryVDistance != 0 {
-                    Text("Ordinary Bus Distance: \(distanceViewModel.ordinaryVDistance)")
-                        .frame(maxWidth: .infinity, alignment: .leading) // Align text to left
-                }
-                if distanceViewModel.acVDistance != 0 {
-                    Text("AC Bus Distance: \(distanceViewModel.acVDistance)")
-                        .frame(maxWidth: .infinity, alignment: .leading) // Align text to left
-                }
-                if distanceViewModel.deluxeVDistance != 0 {
-                    Text("Deluxe Bus Distance: \(distanceViewModel.deluxeVDistance)")
-                        .frame(maxWidth: .infinity, alignment: .leading) // Align text to left
-                }
-            }
-            .padding()
-            .frame(maxWidth: .infinity, alignment: .leading) // Align VStack to left
-
-            
             Spacer()
         }
+        .padding()
     }
     
     // Function to format the date
@@ -83,6 +51,23 @@ struct HistoryView: View {
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         return formatter.string(from: date)
+    }
+    
+    // Define the data for vehicles
+    private var vehicleData: [(String, Int)] {
+        [
+            ("Private Car", distanceViewModel.privateVDistance),
+            ("Cab", distanceViewModel.cabsVDistance),
+            ("Car Pool", distanceViewModel.carpoolVDistance),
+            ("Local Train", distanceViewModel.localTrainVDistance),
+            ("Metro", distanceViewModel.metroVDistance),
+            ("Pillion Auto", distanceViewModel.pillionVDistance),
+            ("Sharing Auto", distanceViewModel.sharingVDistance),
+            ("Magic Auto", distanceViewModel.magicVDistance),
+            ("Ordinary Bus", distanceViewModel.ordinaryVDistance),
+            ("AC Bus", distanceViewModel.acVDistance),
+            ("Deluxe Bus", distanceViewModel.deluxeVDistance)
+        ]
     }
 }
 

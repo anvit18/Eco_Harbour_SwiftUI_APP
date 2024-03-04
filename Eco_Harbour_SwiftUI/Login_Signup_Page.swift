@@ -98,7 +98,7 @@ struct Login_Signup_Page: View {
                 
             }
         
-      //  .navigationBarHidden(false)
+            .navigationBarHidden(true)
     }
     
     
