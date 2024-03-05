@@ -67,7 +67,7 @@
 		7F29B20A2B76A19100A55511 /* privateVehicleDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = privateVehicleDetails.swift; sourceTree = "<group>"; };
 		7F29B20B2B76A19100A55511 /* frequentlyUsedVehicles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = frequentlyUsedVehicles.swift; sourceTree = "<group>"; };
 		7F29B20C2B76A19100A55511 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		7F6C1F5B2B5510BF00CBEC53 /* Eco_Harbour_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eco_Harbour_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F6C1F5B2B5510BF00CBEC53 /* EcoTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EcoTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6C1F5E2B5510BF00CBEC53 /* Eco_Harbour_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eco_Harbour_SwiftUIApp.swift; sourceTree = "<group>"; };
 		7F6C1F602B5510BF00CBEC53 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7F6C1F622B5510C000CBEC53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -121,7 +121,7 @@
 		7F6C1F5C2B5510BF00CBEC53 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7F6C1F5B2B5510BF00CBEC53 /* Eco_Harbour_SwiftUI.app */,
+				7F6C1F5B2B5510BF00CBEC53 /* EcoTrack.app */,
 				7F6C1F6B2B5510C000CBEC53 /* Eco_Harbour_SwiftUITests.xctest */,
 				7F6C1F752B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITests.xctest */,
 			);
@@ -200,7 +200,7 @@
 			);
 			name = Eco_Harbour_SwiftUI;
 			productName = Eco_Harbour_SwiftUI;
-			productReference = 7F6C1F5B2B5510BF00CBEC53 /* Eco_Harbour_SwiftUI.app */;
+			productReference = 7F6C1F5B2B5510BF00CBEC53 /* EcoTrack.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7F6C1F6A2B5510C000CBEC53 /* Eco_Harbour_SwiftUITests */ = {
@@ -511,7 +511,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "EcoHarbour.Eco-Harbour-SwiftUI";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EcoTrack;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -541,7 +541,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "EcoHarbour.Eco-Harbour-SwiftUI";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EcoTrack;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -113,7 +113,7 @@ struct frequentlyUsedVehicles: View {
                 .frame(width: 201, height: 44)
                 .background(Color.mainGreen)
                 .cornerRadius(10)
-                .padding(.top, 30)
+                .padding(.top, 10)
             }
             .navigationBarTitle("Frequently Used Vehicles")
         }
