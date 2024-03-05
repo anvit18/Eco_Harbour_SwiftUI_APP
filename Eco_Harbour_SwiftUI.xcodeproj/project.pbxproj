@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F011F192B975F1600C7958C /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F011F182B975F1600C7958C /* SplashScreen.swift */; };
 		7F29B1FD2B76A15500A55511 /* color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29B1FC2B76A15500A55511 /* color.swift */; };
 		7F29B20D2B76A19100A55511 /* signup_page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29B1FE2B76A19100A55511 /* signup_page.swift */; };
 		7F29B20E2B76A19100A55511 /* manualFilling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29B1FF2B76A19100A55511 /* manualFilling.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F011F182B975F1600C7958C /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		7F29B1FC2B76A15500A55511 /* color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = color.swift; sourceTree = "<group>"; };
 		7F29B1FE2B76A19100A55511 /* signup_page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signup_page.swift; sourceTree = "<group>"; };
 		7F29B1FF2B76A19100A55511 /* manualFilling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = manualFilling.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				7F29B2082B76A19100A55511 /* LaunchScreen.swift */,
 				7F29B2032B76A19100A55511 /* Login_Signup_Page.swift */,
 				7F29B1FF2B76A19100A55511 /* manualFilling.swift */,
+				7F011F182B975F1600C7958C /* SplashScreen.swift */,
 				7F29B20C2B76A19100A55511 /* OnboardingView.swift */,
 				7F29B20A2B76A19100A55511 /* privateVehicleDetails.swift */,
 				7F29B2092B76A19100A55511 /* recordView.swift */,
@@ -322,6 +325,7 @@
 				7F29B2152B76A19100A55511 /* VehcileDetails_CarDetails.swift in Sources */,
 				7F29B2102B76A19100A55511 /* dashboardView.swift in Sources */,
 				7FC0DED42B8B84D5002962BE /* UserData.swift in Sources */,
+				7F011F192B975F1600C7958C /* SplashScreen.swift in Sources */,
 				7F29B2192B76A19100A55511 /* privateVehicleDetails.swift in Sources */,
 				7F29B2142B76A19100A55511 /* homePageDashboard.swift in Sources */,
 				7F29B2182B76A19100A55511 /* recordView.swift in Sources */,

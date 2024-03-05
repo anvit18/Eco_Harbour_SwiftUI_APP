@@ -15,7 +15,7 @@ struct Eco_Harbour_SwiftUIApp: App {
 
     var body: some Scene {
         WindowGroup {
-            LaunchScreen()
+            SplashScreen()
                 .environmentObject(userData)
                 .environmentObject(distanceViewModel)
         }
