@@ -62,7 +62,7 @@ struct BarView: View {
                 .cornerRadius(6)
             
             Text("\(Int(value))")
-                .foregroundColor(.white)
+                .foregroundColor(.black)
         }
     }
 }
@@ -149,6 +149,7 @@ struct dashboardView: View {
     var body: some View {
         
         ZStack {
+            Color.white.ignoresSafeArea()
             VStack {
                 ScrollView {
                  
@@ -171,6 +172,7 @@ struct dashboardView: View {
                     
                     Text("Your average daily carbon footprint is")
                         .font(.subheadline)
+                        .foregroundColor(.black)
                         .padding(.top, 15)
                     
                     VStack {
@@ -189,6 +191,7 @@ struct dashboardView: View {
                                 }
                             }
                             .chartLegend(position: .bottom, spacing: 20)
+                            .foregroundColor(.black)
                             .frame(height: 350)
                             .chartXAxis(.hidden)
                             .onAppear {
@@ -200,6 +203,7 @@ struct dashboardView: View {
                             VStack {
                                 Text("Carbon Emissions")
                                     .font(.title2)
+                                    .foregroundColor(.black)
                                     .fontWeight(.semibold)
                                 
                                 Text("Daily breakdown")
@@ -207,7 +211,7 @@ struct dashboardView: View {
                                     .foregroundStyle(.gray)
                                 
                                 HStack(spacing: 0) {
-                                    Text("\(Int(userData.userEmission)) kg")
+                                    Text("\(Int(userData.userEmission)) kg").foregroundColor(.black)
                                     Text("CO").foregroundStyle(Color.green)
                                     Text("2").foregroundStyle(Color.green)
                                         .baselineOffset(-10)
@@ -222,6 +226,7 @@ struct dashboardView: View {
                         VStack {
                             Text("Comparison with National Average")
                                 .font(.title2)
+                                .foregroundColor(.black)
                                 .fontWeight(.semibold)
                                 .padding(.top, 20)
                         

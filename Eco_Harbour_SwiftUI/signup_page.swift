@@ -35,7 +35,7 @@ struct signup_page: View {
                         Text("Eco").font(.largeTitle)
                             .bold()
                             .foregroundColor(.green)
-                        Text("Harbour")
+                        Text("Track")
                             .font(.largeTitle)
                             .bold()
                             .foregroundColor(.black)

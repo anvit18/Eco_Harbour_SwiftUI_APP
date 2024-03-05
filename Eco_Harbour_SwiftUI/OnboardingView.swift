@@ -12,7 +12,7 @@ struct OnboardingView: View {
 
     var body: some View {
         ZStack {
-            Color(.white)
+            Color.white.ignoresSafeArea()
             VStack {
                 // Navigation Bar
                  // Hide the actual link, as it's triggered programmatically

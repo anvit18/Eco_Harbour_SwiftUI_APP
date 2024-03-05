@@ -29,17 +29,17 @@ struct homePageDashboard: View {
         
         ZStack {
             
-            //Color.mainGreen.opacity(0.1).ignoresSafeArea()
+            Color.white.ignoresSafeArea()
             VStack {
                 HStack(spacing: 0) {
                     Text("Eco")
                         .font(.largeTitle)
                         .bold()
-                        .foregroundColor(.black)
+                        .foregroundColor(.green)
                         .padding(.leading, 20)
                     
-                    Text("Harbour")
-                        .foregroundStyle(Color.green)
+                    Text("Track")
+                        .foregroundStyle(Color.black)
                         .font(.largeTitle)
                         .bold()
                     
@@ -96,14 +96,15 @@ struct homePageDashboard: View {
                
                 
                 TabView {
+                    //Color.white.ignoresSafeArea()
                     
                     // Icon 1
                     dashboardView(privateDistance: 0, cabsDistance: 0, carpoolDistance: 0, localTrainDistance: 0, metroDistance: 0, pillionDistance: 0, sharingDistance: 0, magicDistance: 0, ordinaryDistance: 0, acDistance: 0, deluxeDistance: 0)
                         .tabItem {
                             Image(systemName: "house.fill")
-                                .resizable()
+                                .resizable().foregroundColor(.black)
                                 .frame(width: 50, height: 50) // Adjust the icon size
-                            Text("Home")
+                            Text("Home").foregroundColor(.black)
                         }
                     
                      //Icon 2
@@ -111,17 +112,20 @@ struct homePageDashboard: View {
                         .tabItem {
                             Image(systemName: "clock")
                                 .resizable()
+                                .foregroundColor(.black)
                                 .frame(width: 50, height: 50) // Adjust the icon size
                             Text("History")
+                                .foregroundColor(.black)
                         }
                     
                     recordView()
                         .tabItem {
                             Image(systemName: "plus.app.fill")
                                 .resizable()
+                                .foregroundColor(.black)
                                 .frame(width: 50, height: 50)
                             // Adjust the icon size
-                            Text("Record")
+                            Text("Record").foregroundColor(.black)
                         }
                 }
                 .accentColor(.mainGreen)

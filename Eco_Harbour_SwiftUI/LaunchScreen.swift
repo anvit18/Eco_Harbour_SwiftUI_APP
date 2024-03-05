@@ -16,10 +16,24 @@ struct LaunchScreen: View {
                 
                 VStack {
                     
-                    Image("screen1bg") // Replace with your background image name
+                    Image("screen1bg 1") // Replace with your background image name
                         .resizable()
                         .scaledToFit()
                         .ignoresSafeArea()
+                    
+                    HStack(spacing: 0) {
+                        Text("Eco")
+                            .font(.largeTitle)
+                            .bold()
+                            .foregroundColor(.white)
+                            .padding(.leading, 20)
+                        
+                        Text("Track")
+                            .foregroundStyle(Color.green)
+                            .font(.largeTitle)
+                            .bold()
+                    }
+                    
                     
                     Button("Get Started") {
                         //authenticate user

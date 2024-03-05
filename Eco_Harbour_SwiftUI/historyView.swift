@@ -5,44 +5,51 @@ struct HistoryView: View {
     @EnvironmentObject var distanceViewModel: DistanceViewModel
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("History")
-                .font(.title)
-                .fontWeight(.bold)
-                .padding(.top)
-                .padding(.leading)
-            ScrollView {
-                // Display the date picked at the top left corner
-                if userData.datePicked != nil {
-                    Text("Date: \(formattedDate(userData.datePicked!))")
-                        .padding(.leading)
-                }
-                
-                // Display vehicle distance data in a tabular form
-                VStack(alignment: .leading, spacing: 16) {
-                    
-                    ForEach(vehicleData.filter { $0.1 != 0 }, id: \.0) { (vehicleType, distance) in
-                        HStack {
-                            Text(vehicleType)
-                                .font(.headline)
-                            
-                            Spacer()
-                            
-                            Text("Distance: \(distance) km")
-                                .foregroundColor(.secondary)
-                        }
-                        .padding()
-                        .background(Color.white)
-                        .cornerRadius(10)
-                        .shadow(radius: 2)
+        ZStack{
+            Color.white.ignoresSafeArea()
+            
+            VStack(alignment: .leading, spacing: 16) {
+                Text("History")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+                    .padding(.top)
+                    .padding(.leading)
+                ScrollView {
+                    // Display the date picked at the top left corner
+                    if userData.datePicked != nil {
+                        Text("Date: \(formattedDate(userData.datePicked!))")
+                            .padding(.leading)
+                            .foregroundColor(.black)
                     }
-                    //}
+                    
+                    // Display vehicle distance data in a tabular form
+                    VStack(alignment: .leading, spacing: 16) {
+                        
+                        ForEach(vehicleData.filter { $0.1 != 0 }, id: \.0) { (vehicleType, distance) in
+                            HStack {
+                                Text(vehicleType)
+                                    .font(.headline)
+                                    .foregroundColor(.black)
+                                
+                                Spacer()
+                                
+                                Text("Distance: \(distance) km")
+                                    .foregroundColor(.black)
+                            }
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            .shadow(radius: 2)
+                        }
+                        //}
+                    }
+                    .padding()
                 }
-                .padding()
+                Spacer()
             }
-            Spacer()
+            .padding()
         }
-        .padding()
     }
     
     // Function to format the date

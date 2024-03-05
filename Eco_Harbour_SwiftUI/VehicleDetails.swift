@@ -76,7 +76,9 @@ struct VehicleDetails: View {
             
             VStack {
                 
+                
                 Form {
+                  //  Color.white.ignoresSafeArea()
                     
                     if selectedVehicles.contains("Private") || selectedVehicles.contains("Cabs") || selectedVehicles.contains("Carpool") {
                         Section(header: Text("Cars")) {
