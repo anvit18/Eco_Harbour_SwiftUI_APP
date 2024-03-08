@@ -115,7 +115,7 @@ struct signup_page: View {
                     .cornerRadius(10)
                     
                     
-                    NavigationLink(destination: privateVehicleDetails(), isActive: $showingNextScreen){
+                    NavigationLink(destination: HistoryView(), isActive: $showingNextScreen){
                         EmptyView()
                     }
                     

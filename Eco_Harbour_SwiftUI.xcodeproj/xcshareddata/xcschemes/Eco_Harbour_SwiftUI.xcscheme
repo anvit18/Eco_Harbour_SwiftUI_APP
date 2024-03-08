@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7F6C1F5A2B5510BF00CBEC53"
-               BuildableName = "Eco_Harbour_SwiftUI.app"
+               BuildableName = "EcoTrack.app"
                BlueprintName = "Eco_Harbour_SwiftUI"
                ReferencedContainer = "container:Eco_Harbour_SwiftUI.xcodeproj">
             </BuildableReference>
@@ -68,7 +68,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7F6C1F5A2B5510BF00CBEC53"
-            BuildableName = "Eco_Harbour_SwiftUI.app"
+            BuildableName = "EcoTrack.app"
             BlueprintName = "Eco_Harbour_SwiftUI"
             ReferencedContainer = "container:Eco_Harbour_SwiftUI.xcodeproj">
          </BuildableReference>
@@ -85,7 +85,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7F6C1F5A2B5510BF00CBEC53"
-            BuildableName = "Eco_Harbour_SwiftUI.app"
+            BuildableName = "EcoTrack.app"
             BlueprintName = "Eco_Harbour_SwiftUI"
             ReferencedContainer = "container:Eco_Harbour_SwiftUI.xcodeproj">
          </BuildableReference>

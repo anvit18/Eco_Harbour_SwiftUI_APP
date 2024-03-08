@@ -56,7 +56,7 @@ struct OnboardingView: View {
                 .cornerRadius(10)
                 .padding(.top, -60)
                 
-                NavigationLink(destination: Login_Signup_Page(), isActive: $showingNextScreen){
+                NavigationLink(destination: privateVehicleDetails(), isActive: $showingNextScreen){
                     EmptyView()
                 }
                 
