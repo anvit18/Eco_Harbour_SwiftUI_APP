@@ -11,7 +11,7 @@ struct SplashScreen: View {
             VStack {
                 // Add your app logo or any content you want to display on the splash screen
                 HStack(spacing: 0) {
-                    Text("Eco")
+                    Text("Ec")
                         .font(.system(size: 60, weight: .bold, design: .default))
                         .foregroundColor(.white)
                         .padding(.leading, 20)
