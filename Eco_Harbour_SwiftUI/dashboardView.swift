@@ -143,6 +143,7 @@ struct dashboardView: View {
     
     // Additional state variables
     @State private var showingNextScreen = false
+    @State private var showingEmissionHistoryScreen = false
     @State private var userName = "Anvit"
     @State private var text = "Info"
     
@@ -166,9 +167,9 @@ struct dashboardView: View {
                     .padding(.bottom, -15)
                     
                     // User's carbon footprint breakdown chart
-                 Image("transport_vector")
-                        .resizable()
-                        .frame(width: 240, height: 140)
+//                 Image("transport_vector")
+//                        .resizable()
+//                        .frame(width: 240, height: 140)
                     
                     Text("Your average daily carbon footprint is")
                         .font(.subheadline)
@@ -224,6 +225,22 @@ struct dashboardView: View {
                         
                         // Stat: National Average vs User Emissions
                         VStack {
+                            
+                            Button("View Statistics"){
+                                showingEmissionHistoryScreen.toggle()
+                            }
+                            .font(.headline)
+                            .foregroundColor(.black)
+                            .frame(width: 351, height: 44)
+                            .background(Color.gray.opacity(0.2))
+                            .cornerRadius(10)
+                            .padding(.top, 20)
+                            
+                            
+                            NavigationLink(destination: EmissionHistoryView(), isActive: $showingEmissionHistoryScreen) {
+                                EmptyView()
+                            }
+                            
                             Text("Comparison with National Average")
                                 .font(.title2)
                                 .foregroundColor(.black)
@@ -250,32 +267,32 @@ struct dashboardView: View {
                         }
                         .padding()
                         
-//                        HStack(alignment: .bottom) {
-//                            ForEach(bars) { bar in
-//                                VStack {
-//                                    ZStack {
-//                                        Rectangle()
-//                                            .foregroundColor(bar.color)
-//                                            .frame(width: 35, height: CGFloat(bar.value), alignment: .bottom)
-//                                            .opacity(selectedID == bar.id ? 0.5 : 1.0)
-//                                            .cornerRadius(6)
-//                                            .onTapGesture {
-//                                                self.selectedID = bar.id
-//                                                self.text = "Value: \(Int(bar.value))"
-//                                            }
-//                                        
-//                                        Text("\(Int(bar.value))")
-//                                            .foregroundColor(.white)
-//                                    }
-//                                    Text(bar.day)
-//                                }
-//                            }
-//                        }
-//                        .frame(height: 240, alignment: .bottom)
-//                        .padding(20)
-//                        .background(.thinMaterial)
-//                        .cornerRadius(6)
-//                        // Additional buttons and navigation
+                        HStack(alignment: .bottom) {
+                            ForEach(bars) { bar in
+                                VStack {
+                                    ZStack {
+                                        Rectangle()
+                                            .foregroundColor(bar.color)
+                                            .frame(width: 35, height: CGFloat(bar.value), alignment: .bottom)
+                                            .opacity(selectedID == bar.id ? 0.5 : 1.0)
+                                            .cornerRadius(6)
+                                            .onTapGesture {
+                                                self.selectedID = bar.id
+                                                self.text = "Value: \(Int(bar.value))"
+                                            }
+                                        
+                                        Text("\(Int(bar.value))")
+                                            .foregroundColor(.white)
+                                    }
+                                    Text(bar.day)
+                                }
+                            }
+                        }
+                        .frame(height: 240, alignment: .bottom)
+                        .padding(20)
+                        .background(.thinMaterial)
+                        .cornerRadius(6)
+                        // Additional buttons and navigation
 //                        Button("Refresh")  {
 //                            withAnimation {
 //                                self.bars = Bar.sampleBars

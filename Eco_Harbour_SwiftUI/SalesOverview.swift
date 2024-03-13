@@ -1,18 +1,42 @@
-//
-//  SalesOverview.swift
-//  Eco_Harbour_SwiftUI
-//
-//  Created by user1 on 13/03/24.
-//
+/*
+See the LICENSE.txt file for this sample’s licensing information.
 
+Abstract:
+Sales Overview definitions.
+*/
+
+import Charts
 import SwiftUI
+
+struct SalesOverviewChart: View {
+    var body: some View {
+        Chart(SalesData.last30Days, id: \.day) {
+            BarMark(
+                x: .value("Day", $0.day, unit: .day),
+                y: .value("Sales", $0.sales)
+            )
+        }
+        .chartXAxis(.hidden)
+        .chartYAxis(.hidden)
+    }
+}
 
 struct SalesOverview: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading) {
+            Text("Total Sales")
+                .font(.callout)
+                .foregroundStyle(.secondary)
+            Text("\(SalesData.last30DaysTotal, format: .number) Pancakes")
+                .font(.title2.bold())
+
+            SalesOverviewChart()
+                .frame(height: 100)
+        }
     }
 }
 
 #Preview {
     SalesOverview()
+        .padding()
 }
