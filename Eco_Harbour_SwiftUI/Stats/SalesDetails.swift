@@ -16,7 +16,7 @@ struct DailySalesChart: View {
             ForEach(SalesData.last365Days, id: \.day) {
                 BarMark(
                     x: .value("Day", $0.day, unit: .day),
-                    y: .value("Sales", $0.sales)
+                    y: .value("Emissions", $0.sales)
                 )
             }
             .foregroundStyle(.blue)
@@ -44,7 +44,7 @@ struct MonthlySalesChart: View {
         Chart(SalesData.last12Months, id: \.month) {
             BarMark(
                 x: .value("Month", $0.month, unit: .month),
-                y: .value("Sales", $0.sales)
+                y: .value("Emissions", $0.sales)
             )
         }
         .chartXAxis {
@@ -80,13 +80,13 @@ struct SalesDetails: View {
                 TimeRangePicker(value: $timeRange)
                     .padding(.bottom)
 
-                Text("Total Sales")
+                Text("Total Emissions")
                     .font(.callout)
                     .foregroundStyle(.secondary)
 
                 switch timeRange {
                 case .last30Days:
-                    Text("\(SalesData.salesInPeriod(in: scrollPositionStart...scrollPositionEnd), format: .number) Pancakes")
+                    Text("\(SalesData.salesInPeriod(in: scrollPositionStart...scrollPositionEnd), format: .number) Carbon Emissions")
                         .font(.title2.bold())
                         .foregroundColor(.primary)
                     
@@ -97,7 +97,7 @@ struct SalesDetails: View {
                     DailySalesChart(scrollPosition: $scrollPositionStart)
                         .frame(height: 240)
                 case .last12Months:
-                    Text("\(SalesData.last12MonthsTotal, format: .number) Pancakes")
+                    Text("\(SalesData.last12MonthsTotal, format: .number) Emissions")
                         .font(.title2.bold())
                         .foregroundColor(.primary)
 
@@ -116,7 +116,7 @@ struct SalesDetails: View {
         }
         .listStyle(.plain)
         #if !os(macOS)
-        .navigationBarTitle("Total Sales", displayMode: .inline)
+        .navigationBarTitle("Total Emissions", displayMode: .inline)
         #endif
         .navigationDestination(for: [Transaction].self) { transactions in
             TransactionsView(transactions: transactions)

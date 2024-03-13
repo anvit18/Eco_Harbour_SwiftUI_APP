@@ -226,20 +226,6 @@ struct dashboardView: View {
                         // Stat: National Average vs User Emissions
                         VStack {
                             
-                            Button("View Statistics"){
-                                showingEmissionHistoryScreen.toggle()
-                            }
-                            .font(.headline)
-                            .foregroundColor(.black)
-                            .frame(width: 351, height: 44)
-                            .background(Color.gray.opacity(0.2))
-                            .cornerRadius(10)
-                            .padding(.top, 20)
-                            
-                            
-                            NavigationLink(destination: EmissionHistoryView(), isActive: $showingEmissionHistoryScreen) {
-                                EmptyView()
-                            }
                             
                             Text("Comparison with National Average")
                                 .font(.title2)
@@ -299,6 +285,22 @@ struct dashboardView: View {
 //                            }
 //                        }
 //                        .padding()
+                        
+                        Button("View Statistics"){
+                            showingEmissionHistoryScreen.toggle()
+                        }
+                        .font(.headline)
+                        .foregroundColor(.black)
+                        .frame(width: 351, height: 44)
+                        .background(Color.gray.opacity(0.2))
+                        .cornerRadius(10)
+                        .padding(.top, 20)
+                        
+                        
+                        NavigationLink(destination: EmissionHistoryView(), isActive: $showingEmissionHistoryScreen) {
+                            EmptyView()
+                        }
+                        
                         
                         Button("Log Data + ") {
                             // Authenticate user

@@ -13,7 +13,7 @@ struct SalesOverviewChart: View {
         Chart(SalesData.last30Days, id: \.day) {
             BarMark(
                 x: .value("Day", $0.day, unit: .day),
-                y: .value("Sales", $0.sales)
+                y: .value("Emissions", $0.sales)
             )
         }
         .chartXAxis(.hidden)
@@ -24,10 +24,10 @@ struct SalesOverviewChart: View {
 struct SalesOverview: View {
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Total Sales")
+            Text("Total Emissions")
                 .font(.callout)
                 .foregroundStyle(.secondary)
-            Text("\(SalesData.last30DaysTotal, format: .number) Pancakes")
+            Text("\(SalesData.last30DaysTotal, format: .number) Carbon Emissions")
                 .font(.title2.bold())
 
             SalesOverviewChart()

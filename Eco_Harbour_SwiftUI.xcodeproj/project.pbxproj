@@ -159,17 +159,7 @@
 			children = (
 				7FC0DED22B87C6A0002962BE /* Eco_Harbour_SwiftUI.entitlements */,
 				7F29B2012B76A19100A55511 /* dashboardView.swift */,
-				7FBED33A2BA16A74004C5A68 /* EmissionHistoryView.swift */,
-				7FBED3502BA1CC06004C5A68 /* Data.swift */,
-				7FBED34C2BA1CB5A004C5A68 /* PlotAreaStyling.swift */,
-				7FBED34A2BA1CAB7004C5A68 /* SalesMinMaxAverage.swift */,
-				7FBED34E2BA1CBE8004C5A68 /* Utils.swift */,
-				7FBED33E2BA1CA46004C5A68 /* SalesOverview.swift */,
-				7FBED3402BA1CA53004C5A68 /* SalesDetails.swift */,
-				7FBED3422BA1CA60004C5A68 /* StylesOverview.swift */,
-				7FBED3442BA1CA6D004C5A68 /* StylesDetails.swift */,
-				7FBED3462BA1CA83004C5A68 /* LocationOverview.swift */,
-				7FBED3482BA1CA93004C5A68 /* LocationDetails.swift */,
+				7FBED3522BA1CF76004C5A68 /* Stats */,
 				7FBED33C2BA16D2D004C5A68 /* TopEmissionsView.swift */,
 				7F29B20B2B76A19100A55511 /* frequentlyUsedVehicles.swift */,
 				7F29B2042B76A19100A55511 /* historyView.swift */,
@@ -220,6 +210,24 @@
 				7F6C1F7B2B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITestsLaunchTests.swift */,
 			);
 			path = Eco_Harbour_SwiftUIUITests;
+			sourceTree = "<group>";
+		};
+		7FBED3522BA1CF76004C5A68 /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				7FBED33A2BA16A74004C5A68 /* EmissionHistoryView.swift */,
+				7FBED3502BA1CC06004C5A68 /* Data.swift */,
+				7FBED34C2BA1CB5A004C5A68 /* PlotAreaStyling.swift */,
+				7FBED34A2BA1CAB7004C5A68 /* SalesMinMaxAverage.swift */,
+				7FBED34E2BA1CBE8004C5A68 /* Utils.swift */,
+				7FBED33E2BA1CA46004C5A68 /* SalesOverview.swift */,
+				7FBED3402BA1CA53004C5A68 /* SalesDetails.swift */,
+				7FBED3422BA1CA60004C5A68 /* StylesOverview.swift */,
+				7FBED3442BA1CA6D004C5A68 /* StylesDetails.swift */,
+				7FBED3462BA1CA83004C5A68 /* LocationOverview.swift */,
+				7FBED3482BA1CA93004C5A68 /* LocationDetails.swift */,
+			);
+			path = Stats;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -562,7 +570,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "EcoHarbour.Eco-Harbour-SwiftUI";
+				PRODUCT_BUNDLE_IDENTIFIER = "Eco-Harbour-SwiftUI";
 				PRODUCT_NAME = EcoTrack;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -592,7 +600,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "EcoHarbour.Eco-Harbour-SwiftUI";
+				PRODUCT_BUNDLE_IDENTIFIER = "Eco-Harbour-SwiftUI";
 				PRODUCT_NAME = EcoTrack;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

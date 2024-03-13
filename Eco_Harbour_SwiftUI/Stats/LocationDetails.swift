@@ -56,8 +56,10 @@ struct LocationDetailsChart: View {
     }
 
     let colorPerCity: [String: Color] = [
-        "San Francisco": .purple,
-        "Cupertino": .green
+        "Car": .red,
+        "Train": .blue,
+        "Bus": .purple,
+        "Auto": .green
     ]
 
     var body: some View {
@@ -66,11 +68,11 @@ struct LocationDetailsChart: View {
                 ForEach(series.sales, id: \.day) { element in
                     LineMark(
                         x: .value("Day", element.day, unit: .day),
-                        y: .value("Sales", element.sales)
+                        y: .value("Emissions", element.sales)
                     )
                 }
-                .foregroundStyle(by: .value("City", series.city))
-                .symbol(by: .value("City", series.city))
+                .foregroundStyle(by: .value("Vehicle Type", series.city))
+                .symbol(by: .value("Vehicle Type", series.city))
                 .interpolationMethod(.catmullRom)
             }
             
@@ -125,8 +127,10 @@ struct LocationDetailsChart: View {
         }
         .chartForegroundStyleScale { colorPerCity[$0]! }
         .chartSymbolScale([
-            "San Francisco": Circle().strokeBorder(lineWidth: 2),
-            "Cupertino": Square().strokeBorder(lineWidth: 2)
+            "Car": Square().strokeBorder(lineWidth: 2),
+            "Bus": Circle().strokeBorder(lineWidth: 2),
+            "Auto": Square().strokeBorder(lineWidth: 2),
+            "Train": Circle().strokeBorder(lineWidth: 2)
         ])
         .chartXAxis {
             AxisMarks(values: .stride(by: .day)) { _ in
@@ -158,12 +162,12 @@ struct LocationDetailsChart: View {
                                     .foregroundColor(colorPerCity[salesInfo.city])
                                     .blendMode(colorScheme == .light ? .plusDarker : .normal)
                                 
-                                    Text("sales")
+                                    Text("KG CO2 Emissions")
                                         .font(preTitleFont)
                                         .foregroundStyle(.secondary)
                             }
                             HStack(spacing: 6) {
-                                if salesInfo.city == "San Francisco" {
+                                if salesInfo.city == "Bus" || salesInfo.city == "Train" {
                                     legendCircle
                                 } else {
                                     legendSquare
@@ -213,7 +217,7 @@ struct LocationDetailsChart: View {
                                         .foregroundStyle(.secondary)
                             }
                             HStack(spacing: 6) {
-                                if salesInfo.city == "San Francisco" {
+                                if salesInfo.city == "Bus" || salesInfo.city == "Train" {
                                     legendCircle
                                 } else {
                                     legendSquare
@@ -304,15 +308,15 @@ struct LocationDetails: View {
         case .last12Months:
             time = "12 months"
         }
-        return Text("On average, \(sales) pancakes were sold on \(weekday)s in \(city) in the past \(time).")
+        return Text("On average, \(sales) KG CO2 was emitted on \(weekday)s in \(city) in the past \(time).")
     }
 
     var title: some View {
         VStack(alignment: .leading) {
-            Text("Day + Location With Most Sales")
+            Text("Day + Vehicle Type With Most Emissions")
                 .font(preTitleFont)
                 .foregroundStyle(.secondary)
-            Text("Sundays in San Francisco")
+            Text("Sundays in Chennai")
                 .font(titleFont)
         }
     }
@@ -328,14 +332,29 @@ struct LocationDetails: View {
                     HStack {
                         HStack(spacing: 5) {
                             legendSquare
-                            Text("Cupertino")
+                            Text("Car")
                                 .font(labelFont)
                                 .foregroundStyle(.secondary)
                         }
                         
                         HStack(spacing: 5) {
                             legendCircle
-                            Text("San Francisco")
+                            Text("Auto")
+                                .font(labelFont)
+                                .foregroundStyle(.secondary)
+                        }
+                        
+                        
+                        HStack(spacing: 5) {
+                            legendCircle
+                            Text("Train")
+                                .font(labelFont)
+                                .foregroundStyle(.secondary)
+                        }
+                        
+                        HStack(spacing: 5) {
+                            legendCircle
+                            Text("Bus")
                                 .font(labelFont)
                                 .foregroundStyle(.secondary)
                         }
@@ -373,7 +392,7 @@ struct LocationDetails: View {
         }
         .listStyle(.plain)
         #if !os(macOS)
-        .navigationBarTitle("Day + Location", displayMode: .inline)
+        .navigationBarTitle("Day + Emissions", displayMode: .inline)
         #endif
         .navigationDestination(for: [Transaction].self) { transactions in
             TransactionsView(transactions: transactions)

@@ -42,7 +42,7 @@ struct StylesDetailsChart: View {
     var body: some View {
         Chart(data, id: \.name) { element in
             SectorMark(
-                angle: .value("Sales", element.sales),
+                angle: .value("Emissions", element.sales),
                 innerRadius: .ratio(0.618),
                 angularInset: 1.5
             )
@@ -63,14 +63,14 @@ struct StylesDetailsChart: View {
             GeometryReader { geometry in
                 let frame = geometry[chartProxy.plotFrame!]
                 VStack {
-                    Text("Most Sold Style")
+                    Text("Most Emissions from")
                         .font(.callout)
                         .foregroundStyle(.secondary)
                         .opacity(selectedStyle == nil || selectedStyle?.name == mostSold.name ? 1 : 0)
                     Text(selectedStyle?.name ?? mostSold.name)
                         .font(.title2.bold())
                         .foregroundColor(.primary)
-                    Text((selectedStyle?.sales.formatted() ?? mostSold.sales.formatted()) + " sold")
+                    Text((selectedStyle?.sales.formatted() ?? mostSold.sales.formatted()) + " Kg CO2")
                         .font(.callout)
                         .foregroundStyle(.secondary)
                 }
@@ -120,7 +120,7 @@ struct StylesDetails: View {
         }
         .listStyle(.plain)
         #if !os(macOS)
-        .navigationBarTitle("Style", displayMode: .inline)
+        .navigationBarTitle("", displayMode: .inline)
         #endif
         .navigationDestination(for: [Transaction].self) { transactions in
             TransactionsView(transactions: transactions)

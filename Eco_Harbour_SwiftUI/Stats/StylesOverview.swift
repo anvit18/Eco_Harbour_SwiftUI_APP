@@ -12,7 +12,7 @@ struct StylesOverviewChart: View {
     var body: some View {
         Chart(TopStyleData.last30Days, id: \.name) { element in
             SectorMark(
-                angle: .value("Sales", element.sales),
+                angle: .value("Emissions", element.sales),
                 innerRadius: .ratio(0.618),
                 angularInset: 1
             )
@@ -29,7 +29,7 @@ struct StylesOverviewChart: View {
 struct StylesOverview: View {
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Most Sold Style")
+            Text("Most Emissions From")
                 .foregroundStyle(.secondary)
             Text(TopStyleData.last30Days.first!.name)
                 .font(.title2.bold())

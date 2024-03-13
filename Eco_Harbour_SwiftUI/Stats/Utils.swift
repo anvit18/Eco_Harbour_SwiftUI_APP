@@ -42,7 +42,7 @@ let transactions = [
 
 struct TransactionsLink: View {
     var body: some View {
-        NavigationLink("Show Transactions", value: transactions)
+        NavigationLink("Show Emissions", value: transactions)
     }
 }
 
@@ -52,10 +52,10 @@ struct TransactionsView: View {
     var body: some View {
         List {
             ForEach(transactions) { _ in
-                HStack { Text("Year Month Day"); Text("Style"); Spacer(); Text("123") }
+                HStack { Text("Year Month Day"); Text("Emissions"); Spacer(); Text("123") }
             }
         }
         .redacted(reason: .placeholder)
-        .navigationTitle("Transactions")
+        .navigationTitle("Emissions")
     }
 }

@@ -18,22 +18,18 @@ func date(year: Int, month: Int, day: Int = 1) -> Date {
 struct TopStyleData {
     /// Sales by pancake style for the last 30 days, sorted by amount.
     static let last30Days = [
-        (name: "Cachapa", sales: 916),
-        (name: "Injera", sales: 820),
-        (name: "Crêpe", sales: 610),
-        (name: "Jian Bing", sales: 350),
-        (name: "Dosa", sales: 144),
-        (name: "American", sales: 66)
+        (name: "Car", sales: 916),
+        (name: "Bus", sales: 820),
+        (name: "Auto", sales: 610),
+        (name: "Train", sales: 350),
     ]
 
     /// Sales by pancake style for the last 12 months, sorted by amount.
     static let last12Months = [
-        (name: "Cachapa", sales: 9631),
-        (name: "Crêpe", sales: 6200),
-        (name: "Injera", sales: 7891),
-        (name: "Jian Bing", sales: 3300),
-        (name: "American", sales: 700),
-        (name: "Dosa", sales: 1400)
+        (name: "Car", sales: 9631),
+        (name: "Bus", sales: 6200),
+        (name: "Auti", sales: 7891),
+        (name: "Train", sales: 3300),
     ]
 }
 
@@ -167,7 +163,7 @@ struct LocationData {
 
     /// Sales by location and weekday for the last 30 days.
     static let last30Days: [Series] = [
-        .init(city: "Cupertino", sales: [
+        .init(city: "Car", sales: [
             (day: date(year: 2022, month: 5, day: 2), sales: 54),
             (day: date(year: 2022, month: 5, day: 3), sales: 42),
             (day: date(year: 2022, month: 5, day: 4), sales: 88),
@@ -177,34 +173,55 @@ struct LocationData {
             (day: date(year: 2022, month: 5, day: 8), sales: 67)
 
         ]),
-        .init(city: "San Francisco", sales: [
-            (day: date(year: 2022, month: 5, day: 2), sales: 81),
-            (day: date(year: 2022, month: 5, day: 3), sales: 90),
+        .init(city: "Train", sales: [
+            (day: date(year: 2022, month: 5, day: 2), sales: 32),
+            (day: date(year: 2022, month: 5, day: 3), sales: 19),
+            (day: date(year: 2022, month: 5, day: 4), sales: 50),
+            (day: date(year: 2022, month: 5, day: 5), sales: 32),
+            (day: date(year: 2022, month: 5, day: 6), sales: 44),
+            (day: date(year: 2022, month: 5, day: 7), sales: 64),
+            (day: date(year: 2022, month: 5, day: 8), sales: 77)
+        ]),
+        .init(city: "Bus", sales: [
+            (day: date(year: 2022, month: 5, day: 2), sales: 43),
+            (day: date(year: 2022, month: 5, day: 3), sales: 30),
             (day: date(year: 2022, month: 5, day: 4), sales: 52),
-            (day: date(year: 2022, month: 5, day: 5), sales: 72),
-            (day: date(year: 2022, month: 5, day: 6), sales: 84),
-            (day: date(year: 2022, month: 5, day: 7), sales: 84),
-            (day: date(year: 2022, month: 5, day: 8), sales: 137)
+            (day: date(year: 2022, month: 5, day: 5), sales: 52),
+            (day: date(year: 2022, month: 5, day: 6), sales: 24),
+            (day: date(year: 2022, month: 5, day: 7), sales: 64),
+            (day: date(year: 2022, month: 5, day: 8), sales: 17)
+        ]),
+        .init(city: "Auto", sales: [
+            (day: date(year: 2022, month: 5, day: 2), sales: 60),
+            (day: date(year: 2022, month: 5, day: 3), sales: 90),
+            (day: date(year: 2022, month: 5, day: 4), sales: 82),
+            (day: date(year: 2022, month: 5, day: 5), sales: 62),
+            (day: date(year: 2022, month: 5, day: 6), sales: 94),
+            (day: date(year: 2022, month: 5, day: 7), sales: 74),
+            (day: date(year: 2022, month: 5, day: 8), sales: 117)
         ])
     ]
 
     /// The best weekday and location for the last 30 days.
     static let last30DaysBest = (
-        city: "San Francisco",
+        city: "Car + Auto + Bus + Train",
         weekday: date(year: 2022, month: 5, day: 8),
         sales: 137
     )
+    
+    
 
     /// The best weekday and location for the last 12 months.
     static let last12MonthsBest = (
-        city: "San Francisco",
+        city: "Car + Auto + Bus + Train",
         weekday: date(year: 2022, month: 5, day: 8),
         sales: 113
     )
+    
 
     /// Sales by location and weekday for the last 12 months.
     static let last12Months: [Series] = [
-        .init(city: "Cupertino", sales: [
+        .init(city: "Car", sales: [
             (day: date(year: 2022, month: 5, day: 2), sales: 64),
             (day: date(year: 2022, month: 5, day: 3), sales: 60),
             (day: date(year: 2022, month: 5, day: 4), sales: 47),
@@ -213,7 +230,25 @@ struct LocationData {
             (day: date(year: 2022, month: 5, day: 7), sales: 105),
             (day: date(year: 2022, month: 5, day: 8), sales: 67)
         ]),
-        .init(city: "San Francisco", sales: [
+        .init(city: "Bus", sales: [
+            (day: date(year: 2022, month: 5, day: 2), sales: 44),
+            (day: date(year: 2022, month: 5, day: 3), sales: 67),
+            (day: date(year: 2022, month: 5, day: 4), sales: 27),
+            (day: date(year: 2022, month: 5, day: 5), sales: 65),
+            (day: date(year: 2022, month: 5, day: 6), sales: 85),
+            (day: date(year: 2022, month: 5, day: 7), sales: 15),
+            (day: date(year: 2022, month: 5, day: 8), sales: 37)
+        ]),
+        .init(city: "Auto", sales: [
+            (day: date(year: 2022, month: 5, day: 2), sales: 84),
+            (day: date(year: 2022, month: 5, day: 3), sales: 62),
+            (day: date(year: 2022, month: 5, day: 4), sales: 32),
+            (day: date(year: 2022, month: 5, day: 5), sales: 15),
+            (day: date(year: 2022, month: 5, day: 6), sales: 95),
+            (day: date(year: 2022, month: 5, day: 7), sales: 15),
+            (day: date(year: 2022, month: 5, day: 8), sales: 97)
+        ]),
+        .init(city: "Train", sales: [
             (day: date(year: 2022, month: 5, day: 2), sales: 57),
             (day: date(year: 2022, month: 5, day: 3), sales: 56),
             (day: date(year: 2022, month: 5, day: 4), sales: 66),

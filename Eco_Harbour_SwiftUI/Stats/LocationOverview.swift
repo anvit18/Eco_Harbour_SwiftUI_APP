@@ -18,11 +18,11 @@ struct LocationOverviewChart: View {
                 ForEach(series.sales, id: \.day) { element in
                     LineMark(
                         x: .value("Day", element.day, unit: .day),
-                        y: .value("Sales", element.sales)
+                        y: .value("Emissions", element.sales)
                     )
                 }
-                .foregroundStyle(by: .value("City", series.city))
-                .symbol(by: .value("City", series.city))
+                .foregroundStyle(by: .value("Vehicle Type", series.city))
+                .symbol(by: .value("Vehicle Type", series.city))
             }
             .interpolationMethod(.catmullRom)
             .lineStyle(StrokeStyle(lineWidth: lineWidth))
@@ -30,18 +30,22 @@ struct LocationOverviewChart: View {
 
             PointMark(
                 x: .value("Day", LocationData.last30DaysBest.weekday, unit: .day),
-                y: .value("Sales", LocationData.last30DaysBest.sales)
+                y: .value("Emissions", LocationData.last30DaysBest.sales)
             )
             .foregroundStyle(.purple)
             .symbolSize(symbolSize)
         }
         .chartForegroundStyleScale([
-            "San Francisco": .purple,
-            "Cupertino": .green
+            "Car": .red,
+            "Train": .blue,
+            "Bus": .purple,
+            "Auto": .green
         ])
         .chartSymbolScale([
-            "San Francisco": Circle().strokeBorder(lineWidth: lineWidth),
-            "Cupertino": Square().strokeBorder(lineWidth: lineWidth)
+            "Car": Square().strokeBorder(lineWidth: lineWidth),
+            "Bus": Circle().strokeBorder(lineWidth: lineWidth),
+            "Auto": Square().strokeBorder(lineWidth: lineWidth),
+            "Train": Circle().strokeBorder(lineWidth: lineWidth)
         ])
         .chartXAxis {
             AxisMarks(values: .stride(by: .day)) { _ in
@@ -59,9 +63,9 @@ struct LocationOverviewChart: View {
 struct LocationOverview: View {
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Day + Location with Most Sales")
+            Text("Day + Vehicle with Most Emissions")
                 .foregroundStyle(.secondary)
-            Text("Sundays in San Francisco")
+            Text("Sundays' Emissions")
                 .font(.title2.bold())
             LocationOverviewChart()
                 .frame(height: 100)
