@@ -30,6 +30,7 @@
 		7F6C1F702B5510C000CBEC53 /* Eco_Harbour_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C1F6F2B5510C000CBEC53 /* Eco_Harbour_SwiftUITests.swift */; };
 		7F6C1F7A2B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C1F792B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITests.swift */; };
 		7F6C1F7C2B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C1F7B2B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITestsLaunchTests.swift */; };
+		7FA3AE372BA6A7CD0091CF45 /* SignInEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3AE362BA6A7CD0091CF45 /* SignInEmailView.swift */; };
 		7FBB4B3C2B874F6400728A3D /* recordDailyRenderCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB4B3B2B874F6400728A3D /* recordDailyRenderCategory.swift */; };
 		7FBB4B3E2B8758F800728A3D /* historyVIEW demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB4B3D2B8758F800728A3D /* historyVIEW demo.swift */; };
 		7FC0DED42B8B84D5002962BE /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC0DED32B8B84D5002962BE /* UserData.swift */; };
@@ -89,6 +90,7 @@
 		7F6C1F752B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Eco_Harbour_SwiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6C1F792B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eco_Harbour_SwiftUIUITests.swift; sourceTree = "<group>"; };
 		7F6C1F7B2B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eco_Harbour_SwiftUIUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7FA3AE362BA6A7CD0091CF45 /* SignInEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailView.swift; sourceTree = "<group>"; };
 		7FBB4B3B2B874F6400728A3D /* recordDailyRenderCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recordDailyRenderCategory.swift; sourceTree = "<group>"; };
 		7FBB4B3D2B8758F800728A3D /* historyVIEW demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "historyVIEW demo.swift"; sourceTree = "<group>"; };
 		7FC0DED22B87C6A0002962BE /* Eco_Harbour_SwiftUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Eco_Harbour_SwiftUI.entitlements; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				E3F24CA32B9E4D5D00DA780D /* AuthenticationManager.swift */,
 				E3F24CA52B9E558700DA780D /* RootView.swift */,
 				E3F24CA72B9E5B7300DA780D /* SettingsView.swift */,
+				7FA3AE362BA6A7CD0091CF45 /* SignInEmailView.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				7F29B2162B76A19100A55511 /* SecondView.swift in Sources */,
 				7F29B2122B76A19100A55511 /* Login_Signup_Page.swift in Sources */,
 				7F6C1F5F2B5510BF00CBEC53 /* Eco_Harbour_SwiftUIApp.swift in Sources */,
+				7FA3AE372BA6A7CD0091CF45 /* SignInEmailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

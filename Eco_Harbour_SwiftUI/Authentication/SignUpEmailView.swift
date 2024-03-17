@@ -12,7 +12,7 @@ final class SignUpEmailViewModel: ObservableObject{
     @Published var email=""
     @Published var password=""
     
-    func signIn() async throws{
+    func signUp() async throws{
         guard !email.isEmpty, !password.isEmpty else{
             print("No email or pass found.")
             return
@@ -41,9 +41,12 @@ struct SignUpEmailView: View {
             
             Button{
                 Task{
+                    
+                    // For sign up
                     do{
-                        try await viewModel.signIn()
+                        try await viewModel.signUp()
                         showSignInView=false
+                        return
                     }catch{
                         print("error \(error)")
                     }

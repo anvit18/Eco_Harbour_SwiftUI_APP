@@ -17,7 +17,18 @@ struct AuthenticationView: View {
             NavigationLink{
                 SignUpEmailView(showSignInView: $showSignInView)
             } label:{
-                Text("Sign Up with email")
+                Text("Sign Up")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(height: 55)
+                    .background(Color.blue)
+                    .cornerRadius(10)
+            }
+            
+            NavigationLink{
+                SignInEmailView(showSignInView: $showSignInView)
+            } label:{
+                Text("Log in")
                     .font(.headline)
                     .foregroundColor(.white)
                     .frame(height: 55)
@@ -27,7 +38,7 @@ struct AuthenticationView: View {
             Spacer()
         }
         .padding()
-        .navigationTitle("Sign Up")
+        .navigationTitle("Authentication")
     }
 }
 
