@@ -8,7 +8,7 @@
 import SwiftUI
 
 @MainActor
-final class SignInEmailViewModel: ObservableObject{
+final class SignUpEmailViewModel: ObservableObject{
     @Published var email=""
     @Published var password=""
     
@@ -32,7 +32,7 @@ final class SignInEmailViewModel: ObservableObject{
 
 struct SignInEmailView: View {
     
-    @StateObject private var viewModel=SignInEmailViewModel()
+    @StateObject private var viewModel=SignUpEmailViewModel()
     
     var body: some View {
         VStack{
@@ -48,7 +48,7 @@ struct SignInEmailView: View {
             Button{
                 viewModel.signIn()
             } label:{
-                Text("Sign in")
+                Text("Sign up")
                     .font(.headline)
                     .foregroundColor(.white)
                     .frame(height: 55)
@@ -58,7 +58,7 @@ struct SignInEmailView: View {
             Spacer()
         }
         .padding()
-        .navigationTitle("Sign in with email")
+        .navigationTitle("Sign up with email")
     }
 }
 
