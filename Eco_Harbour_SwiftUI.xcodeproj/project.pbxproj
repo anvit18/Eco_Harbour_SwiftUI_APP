@@ -39,7 +39,7 @@
 		E3F24C982B9E464300DA780D /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E3F24C972B9E464300DA780D /* FirebaseAnalyticsSwift */; };
 		E3F24C9B2B9E49C200DA780D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E3F24C9A2B9E49C200DA780D /* FirebaseAuth */; };
 		E3F24C9E2B9E4A8B00DA780D /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F24C9D2B9E4A8B00DA780D /* AuthenticationView.swift */; };
-		E3F24CA22B9E4BBC00DA780D /* SignInEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F24CA12B9E4BBC00DA780D /* SignInEmailView.swift */; };
+		E3F24CA22B9E4BBC00DA780D /* SignUpEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F24CA12B9E4BBC00DA780D /* SignUpEmailView.swift */; };
 		E3F24CA42B9E4D5D00DA780D /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F24CA32B9E4D5D00DA780D /* AuthenticationManager.swift */; };
 		E3F24CA62B9E558700DA780D /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F24CA52B9E558700DA780D /* RootView.swift */; };
 		E3F24CA82B9E5B7300DA780D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F24CA72B9E5B7300DA780D /* SettingsView.swift */; };
@@ -96,7 +96,7 @@
 		7FC0DED52B8BBF4C002962BE /* DistanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceViewModel.swift; sourceTree = "<group>"; };
 		E3F24C922B9E444C00DA780D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E3F24C9D2B9E4A8B00DA780D /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
-		E3F24CA12B9E4BBC00DA780D /* SignInEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailView.swift; sourceTree = "<group>"; };
+		E3F24CA12B9E4BBC00DA780D /* SignUpEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmailView.swift; sourceTree = "<group>"; };
 		E3F24CA32B9E4D5D00DA780D /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		E3F24CA52B9E558700DA780D /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		E3F24CA72B9E5B7300DA780D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -221,7 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				E3F24C9D2B9E4A8B00DA780D /* AuthenticationView.swift */,
-				E3F24CA12B9E4BBC00DA780D /* SignInEmailView.swift */,
+				E3F24CA12B9E4BBC00DA780D /* SignUpEmailView.swift */,
 				E3F24CA32B9E4D5D00DA780D /* AuthenticationManager.swift */,
 				E3F24CA52B9E558700DA780D /* RootView.swift */,
 				E3F24CA72B9E5B7300DA780D /* SettingsView.swift */,
@@ -388,7 +388,7 @@
 				7F29B20D2B76A19100A55511 /* signup_page.swift in Sources */,
 				7FC0DED62B8BBF4C002962BE /* DistanceViewModel.swift in Sources */,
 				E3F24C9E2B9E4A8B00DA780D /* AuthenticationView.swift in Sources */,
-				E3F24CA22B9E4BBC00DA780D /* SignInEmailView.swift in Sources */,
+				E3F24CA22B9E4BBC00DA780D /* SignUpEmailView.swift in Sources */,
 				E3F24CA82B9E5B7300DA780D /* SettingsView.swift in Sources */,
 				7F29B2132B76A19100A55511 /* historyView.swift in Sources */,
 				E3F24CA62B9E558700DA780D /* RootView.swift in Sources */,
