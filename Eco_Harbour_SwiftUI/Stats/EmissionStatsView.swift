@@ -3,10 +3,10 @@ import SwiftUI
 struct EmissionsStatsView: View {
     var body: some View {
         TabView {
-            EmissionsStatsOverview()
-                .tabItem {
-                    Label("Overview", systemImage: "chart.bar.xaxis")
-                }
+//            EmissionsStatsOverview()
+//                .tabItem {
+//                    Label("Overview", systemImage: "chart.bar.xaxis")
+//                }
 
             EmissionsStatsDetails()
                 .tabItem {

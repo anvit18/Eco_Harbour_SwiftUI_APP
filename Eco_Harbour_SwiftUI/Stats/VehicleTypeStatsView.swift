@@ -3,10 +3,10 @@ import SwiftUI
 struct VehicleTypeStatsView: View {
     var body: some View {
         TabView {
-            VehicleTypeOverview()
-                .tabItem {
-                    Label("Overview", systemImage: "chart.bar.xaxis")
-                }
+//            VehicleTypeOverview()
+//                .tabItem {
+//                    Label("Overview", systemImage: "chart.bar.xaxis")
+//                }
 
             VehicleTypeDetails()
                 .tabItem {

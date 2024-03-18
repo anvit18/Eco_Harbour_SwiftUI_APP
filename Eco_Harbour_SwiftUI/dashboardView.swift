@@ -324,6 +324,7 @@ struct dashboardView: View {
                                 
                                 Button("Login") {
                                     // Handle login action
+                                    userLoggedIn.toggle()
                                 }
                                 .font(.headline)
                                 .foregroundColor(.white)

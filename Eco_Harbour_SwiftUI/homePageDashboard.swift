@@ -24,7 +24,7 @@ struct homePageDashboard: View {
     @State private var isActionSheetPresented = false
     @State private var showingLoginScreen = false
     @State private var userName  = "Anvit"
-    @State private var userLoggedIn = false
+    @State private var userLoggedIn = true
     
     var body: some View {
         
