@@ -24,6 +24,7 @@ struct homePageDashboard: View {
     @State private var isActionSheetPresented = false
     @State private var showingLoginScreen = false
     @State private var userName  = "Anvit"
+    @State private var userLoggedIn = false
     
     var body: some View {
         
@@ -60,10 +61,11 @@ struct homePageDashboard: View {
                             }
                             .actionSheet(isPresented: $isActionSheetPresented) {
                                 ActionSheet(title: Text("Choose Option"), buttons: [
-//                                    .default(Text("Settings")) {
-//                                        //userName = "Vishal"
-//                                        // Add your action for Priya
-//                                    },
+                                    .default(Text("Add Account")) {
+                                        showingLoginScreen.toggle()
+                                        //userName = "Vishal"
+                                        // Add your action for Priya
+                                    },
 
 //                                    .default(
 //                                        Text("Add Account")) {
@@ -107,7 +109,6 @@ struct homePageDashboard: View {
                             Text("Home").foregroundColor(.black)
                         }
                     
-                     //Icon 2
                     HistoryView()
                         .tabItem {
                             Image(systemName: "clock")
@@ -127,14 +128,24 @@ struct homePageDashboard: View {
                             // Adjust the icon size
                             Text("Record").foregroundColor(.black)
                         }
+                    
+                        .accentColor(.mainGreen)
+                    // .background(Color.mainGreen) // Set the background color to mainGreen
+                        .edgesIgnoringSafeArea(.all)
+                        .environmentObject(userData)
+                        .environmentObject(distanceViewModel)
+                    
+                    if(userLoggedIn){
+                        //Icon 2
+                        
+                        
+                        
+                        
+                    }
+                    else{
+                        
+                    }
                 }
-                .accentColor(.mainGreen)
-                // .background(Color.mainGreen) // Set the background color to mainGreen
-                .edgesIgnoringSafeArea(.all)
-                .environmentObject(userData)
-                .environmentObject(distanceViewModel)
-                
-                
                 
             }.navigationBarHidden(true)
         }
@@ -145,6 +156,7 @@ struct homePageDashboard: View {
 struct homePageDashboard_Previews: PreviewProvider {
         static var previews: some View {
             homePageDashboard(privateDistance : 0, cabsDistance: 0, carpoolDistance: 0, localTrainDistance: 0, metroDistance: 0, pillionDistance: 0, sharingDistance: 0, magicDistance: 0, ordinaryDistance: 0, acDistance: 0, deluxeDistance: 0)
-
+                .environmentObject(UserData())
+                .environmentObject(DistanceViewModel())
         }
     }

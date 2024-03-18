@@ -100,6 +100,7 @@ struct recordView: View {
     @State private var fuel = ""
     @State private var numberOfPassengers = ""
     @State private var showingNextScreen = false
+    @State private var userLoggedIn = false
     
     // New state variable to store the selected date
     @State private var selectedDate = Date()
@@ -148,104 +149,134 @@ struct recordView: View {
                         Spacer()
                     }
                     .padding(.bottom, 20)
-                    
-                    HStack {
-                        
-                        
-                        // Spacer()
-                        
-                        Menu {
-                            Button("Cancel", role: .destructive) {
-                                // Do something
+                    if(userLoggedIn){
+                        HStack {
+                            
+                            
+                            // Spacer()
+                            
+                            Menu {
+                                Button("Cancel", role: .destructive) {
+                                    // Do something
+                                }
+                                
+                                Button {
+                                    // do something
+                                    cityName = "Chennai"
+                                }label: {
+                                    Label("Chennai", systemImage:  "")
+                                }
+                                
+                                Button {
+                                    // Do something
+                                    cityName = "Mumbai"
+                                } label: {
+                                    Label("Mumbai", systemImage: "")
+                                }.disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                                Button {
+                                    // Do something
+                                    cityName = "Pune"
+                                } label: {
+                                    Label("Pune", systemImage: "")
+                                }.disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                            } label: {
+                                TextField("Chennai", text: $cityName)
+                                    .padding()
+                                    .autocapitalization(.allCharacters)
+                                    .frame(width: 350, height: 40)
+                                    .foregroundColor(.black)
+                                    .background(Color.mainGreen.opacity(0.05))
+                                    .cornerRadius(10)
                             }
                             
-                            Button {
-                                // do something
-                                cityName = "Chennai"
-                            }label: {
-                                Label("Chennai", systemImage:  "")
+                        }.padding(.bottom,20)
+                        
+                        HStack{
+                            // DatePicker to select the date
+                            DatePicker("",
+                                       selection: $selectedDate,
+                                       in: ...Date(), // Restrict future dates
+                                       displayedComponents: [.date]
+                            )
+                            .datePickerStyle(.compact)
+                            .frame(width: 200, height: 40)
+                            //.padding()
+                            .background(Color.white)
+                            .foregroundColor(.black)
+                            .cornerRadius(10)
+                            .padding(.leading,-50)
+                            .padding(.trailing,40)
+                            
+                            
+                            Spacer()
+                            Button("History", systemImage: "clock.fill") {
+                                // Authenticate user
+                                showingNextScreen.toggle()
+                            }
+                            .font(.title2)
+                            .foregroundColor(.mainGreen)
+                            .frame(width: 180, height: 40)
+                            //.background(Color.gray.opacity(0.2))
+                            .cornerRadius(10)
+                            //.padding(.leading,-40)
+                            // .padding(.trailing,50)
+                            
+                            NavigationLink(destination: HistoryView(), isActive: $showingNextScreen) {
+                                EmptyView()
                             }
                             
-                            Button {
-                                // Do something
-                                cityName = "Mumbai"
-                            } label: {
-                                Label("Mumbai", systemImage: "")
-                            }.disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                            Button {
-                                // Do something
-                                cityName = "Pune"
-                            } label: {
-                                Label("Pune", systemImage: "")
-                            }.disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                        } label: {
-                            TextField("Chennai", text: $cityName)
-                                .padding()
-                                .autocapitalization(.allCharacters)
-                                .frame(width: 350, height: 40)
-                                .foregroundColor(.black)
-                                .background(Color.mainGreen.opacity(0.05))
-                                .cornerRadius(10)
+                            
                         }
                         
-                    }.padding(.bottom,20)
-                    
-                    HStack{
-                        // DatePicker to select the date
-                        DatePicker("",
-                                   selection: $selectedDate,
-                                   in: ...Date(), // Restrict future dates
-                                   displayedComponents: [.date]
-                        )
-                        .datePickerStyle(.compact)
-                        .frame(width: 200, height: 40)
-                        //.padding()
-                        .background(Color.white)
-                        .foregroundColor(.black)
-                        .cornerRadius(10)
-                        .padding(.leading,-50)
-                        .padding(.trailing,40)
+                        Text("Select the modes of transport you used today")
+                            .font(.subheadline)
+                            .foregroundStyle(Color.gray)
+                            .padding(.top,20)
+                            .padding(.bottom,-10)
                         
-                        
-                        Spacer()
-                        Button("History", systemImage: "clock.fill") {
-                            // Authenticate user
-                            showingNextScreen.toggle()
-                        }
-                        .font(.title2)
-                        .foregroundColor(.mainGreen)
-                        .frame(width: 180, height: 40)
-                        //.background(Color.gray.opacity(0.2))
-                        .cornerRadius(10)
-                        //.padding(.leading,-40)
-                        // .padding(.trailing,50)
-                        
-                        NavigationLink(destination: HistoryView(), isActive: $showingNextScreen) {
-                            EmptyView()
-                        }
-                        
-                        
-                    }
-                    
-                    Text("Select the modes of transport you used today")
-                        .font(.subheadline)
-                        .foregroundStyle(Color.gray)
-                        .padding(.top,20)
-                        .padding(.bottom,-10)
-                    
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 20) {
-                            ForEach(categories, id: \.name) { category in
-                                CategoryView(category: category.name, systemImage: category.systemImage, selectedCategory: $selectedCategory)
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 20) {
+                                ForEach(categories, id: \.name) { category in
+                                    CategoryView(category: category.name, systemImage: category.systemImage, selectedCategory: $selectedCategory)
+                                }
                             }
+                            .padding()
                         }
-                        .padding()
+                        
+                        renderInputSection()
+                            .padding()
                     }
-                    
-                    renderInputSection()
-                        .padding()
-                }
-                .navigationBarTitle("Record Emissions")
+                    else {
+                        VStack {
+                            HStack{
+                                Text("Login for Daily Records, Streaks, and Stats")
+                                    .font(.headline)
+                                    .foregroundColor(.black)
+                                    .multilineTextAlignment(.center)
+                                    .padding()
+                                Spacer()
+                                Image(systemName: "person.circle.fill")
+                                    .font(.system(size: 60))
+                                    .foregroundColor(.gray)
+                                    .padding(.bottom, 20)
+                            }
+                            
+                            Button("Login") {
+                                // Handle login action
+                            }
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .frame(width: 351, height: 41)
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                            .padding(.bottom, 20)
+                        }.background(Color.red.opacity(0.1))
+
+                    }
+
+                    }
+                        .navigationBarTitle("Record Emissions")
+                
             }
         }
     }

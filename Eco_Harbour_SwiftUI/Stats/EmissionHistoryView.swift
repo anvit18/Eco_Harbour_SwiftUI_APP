@@ -7,8 +7,8 @@ struct EmissionHistoryView: View {
     // Sample data for top emissions bar chart
     private enum Destinations {
         case empty
-        case sales
-        case styles
+        case emissions
+        case vehicleType
         case locations
         case salesMinMaxAverage
         case background
@@ -20,13 +20,13 @@ struct EmissionHistoryView: View {
         NavigationSplitView {
             List(selection: $selection) {
                 Section {
-                    NavigationLink(value: Destinations.sales) {
-                        SalesOverview()
+                    NavigationLink(value: Destinations.emissions) {
+                        EmissionsStatsOverview()
                     }
                 }
                 Section {
-                    NavigationLink(value: Destinations.styles) {
-                        StylesOverview()
+                    NavigationLink(value: Destinations.vehicleType) {
+                        VehicleTypeOverview()
                     }
                 }
                 Section {
@@ -35,10 +35,10 @@ struct EmissionHistoryView: View {
                     }
                 }
                 
-                Section("Additional examples") {
-                    NavigationLink("Daily Average, Min, Max", value: Destinations.salesMinMaxAverage)
-                    NavigationLink("Plot Area Styling", value: Destinations.background)
-                }
+//                Section("Additional examples") {
+//                    NavigationLink("Daily Average, Min, Max", value: Destinations.salesMinMaxAverage)
+//                    NavigationLink("Plot Area Styling", value: Destinations.background)
+//                }
             }
             .navigationBarBackButtonHidden(true)
 #if !os(macOS)
@@ -48,8 +48,8 @@ struct EmissionHistoryView: View {
             NavigationStack {
                 switch selection ?? .empty {
                 case .empty: Text("Select data to view.")
-                case .sales: SalesDetails()
-                case .styles: StylesDetails()
+                case .emissions: EmissionsStatsView()
+                case .vehicleType: VehicleTypeStatsView()
                 case .locations: LocationDetails()
                 case .salesMinMaxAverage: SalesMinMaxAverage()
                 case .background: ChartWithBackground()

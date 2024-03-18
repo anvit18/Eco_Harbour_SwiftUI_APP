@@ -76,23 +76,23 @@ struct dashboardView: View {
     //let userEmission : Double
     
     let privateDistance: Int
-        let cabsDistance: Int
-        let carpoolDistance: Int
-        let localTrainDistance: Int
-        let metroDistance: Int
-        let pillionDistance: Int
-        let sharingDistance: Int
-        let magicDistance: Int
-        let ordinaryDistance: Int
-        let acDistance: Int
-        let deluxeDistance: Int
-        
+    let cabsDistance: Int
+    let carpoolDistance: Int
+    let localTrainDistance: Int
+    let metroDistance: Int
+    let pillionDistance: Int
+    let sharingDistance: Int
+    let magicDistance: Int
+    let ordinaryDistance: Int
+    let acDistance: Int
+    let deluxeDistance: Int
+    
     let cabEmissions = 300
-//    var car: Double {
-//            // Access the privateVdistance property and calculate emissions
-//        return Double(distanceViewModel._privateVDistance.wrappedValue) * 11
-//
-//        }
+    //    var car: Double {
+    //            // Access the privateVdistance property and calculate emissions
+    //        return Double(distanceViewModel._privateVDistance.wrappedValue) * 11
+    //
+    //        }
     
     private var macros: [MacroData] {
         return
@@ -101,38 +101,38 @@ struct dashboardView: View {
             .init(name: "National Avg", value:625)
         ]}
     // Chart data
-//    var emissionsData = [
-//        CarbonEmissionByVehicle(vehicleType: "Pvt. Car", emissions: 380, color: .red),
-//        CarbonEmissionByVehicle(vehicleType: "Cab", emissions: 300, color: .indigo),
-//        CarbonEmissionByVehicle(vehicleType: "Auto", emissions: 180, color: .orange),
-//        CarbonEmissionByVehicle(vehicleType: "Local Train", emissions: 100, color: .purple),
-//        CarbonEmissionByVehicle(vehicleType: "AC Bus", emissions: 400, color: .cyan),
-//    ]
+    //    var emissionsData = [
+    //        CarbonEmissionByVehicle(vehicleType: "Pvt. Car", emissions: 380, color: .red),
+    //        CarbonEmissionByVehicle(vehicleType: "Cab", emissions: 300, color: .indigo),
+    //        CarbonEmissionByVehicle(vehicleType: "Auto", emissions: 180, color: .orange),
+    //        CarbonEmissionByVehicle(vehicleType: "Local Train", emissions: 100, color: .purple),
+    //        CarbonEmissionByVehicle(vehicleType: "AC Bus", emissions: 400, color: .cyan),
+    //    ]
     
     
     @State private var emissionsData: [CarbonEmissionByVehicle] = []
-
-       func updateEmissionsData() {
-           let privateCarEmissions = distanceViewModel.privateVDistance * 20
-           let cabEmissions = distanceViewModel.cabsVDistance * 18
-           let carPoolEmissions = distanceViewModel.carpoolVDistance * 16
-           let localTrainEmissions = distanceViewModel.localTrainVDistance * 4
-           let metroEmissions = distanceViewModel.metroVDistance * 8
-           let pillionEmissions = distanceViewModel.pillionVDistance * 13
-           let sharingEmissions = distanceViewModel.sharingVDistance * 7
-           let magicEmissions = distanceViewModel.magicVDistance * 9
-           let ordinaryEmissions = distanceViewModel.ordinaryVDistance * 3
-           let deluxeEmissions = distanceViewModel.deluxeVDistance * 5
-           let acEmissions = distanceViewModel.acVDistance * 10
-           
-           emissionsData = [
-               CarbonEmissionByVehicle(vehicleType: "Car", emissions: privateCarEmissions + cabEmissions + carPoolEmissions, color: .blue),
-               CarbonEmissionByVehicle(vehicleType: "Auto", emissions: pillionEmissions + sharingEmissions + magicEmissions, color: .green),
-               CarbonEmissionByVehicle(vehicleType: "Bus", emissions: ordinaryEmissions + acEmissions + deluxeEmissions, color: .orange),
-               CarbonEmissionByVehicle(vehicleType: "Train", emissions: localTrainEmissions + metroEmissions, color: .purple),
-               //CarbonEmissionByVehicle(vehicleType: "", emissions: acBusEmissions, color: .cyan),
-           ]
-       }
+    
+    func updateEmissionsData() {
+        let privateCarEmissions = distanceViewModel.privateVDistance * 20
+        let cabEmissions = distanceViewModel.cabsVDistance * 18
+        let carPoolEmissions = distanceViewModel.carpoolVDistance * 16
+        let localTrainEmissions = distanceViewModel.localTrainVDistance * 4
+        let metroEmissions = distanceViewModel.metroVDistance * 8
+        let pillionEmissions = distanceViewModel.pillionVDistance * 13
+        let sharingEmissions = distanceViewModel.sharingVDistance * 7
+        let magicEmissions = distanceViewModel.magicVDistance * 9
+        let ordinaryEmissions = distanceViewModel.ordinaryVDistance * 3
+        let deluxeEmissions = distanceViewModel.deluxeVDistance * 5
+        let acEmissions = distanceViewModel.acVDistance * 10
+        
+        emissionsData = [
+            CarbonEmissionByVehicle(vehicleType: "Car", emissions: privateCarEmissions + cabEmissions + carPoolEmissions, color: .blue),
+            CarbonEmissionByVehicle(vehicleType: "Auto", emissions: pillionEmissions + sharingEmissions + magicEmissions, color: .green),
+            CarbonEmissionByVehicle(vehicleType: "Bus", emissions: ordinaryEmissions + acEmissions + deluxeEmissions, color: .orange),
+            CarbonEmissionByVehicle(vehicleType: "Train", emissions: localTrainEmissions + metroEmissions, color: .purple),
+            //CarbonEmissionByVehicle(vehicleType: "", emissions: acBusEmissions, color: .cyan),
+        ]
+    }
     // User and national average emissions
     let nationalAverageEmission = 625
     //let userEmissions = userEmission
@@ -146,6 +146,7 @@ struct dashboardView: View {
     @State private var showingEmissionHistoryScreen = false
     @State private var userName = "Anvit"
     @State private var text = "Info"
+    @State private var userLoggedIn = false
     
     var body: some View {
         
@@ -153,7 +154,7 @@ struct dashboardView: View {
             Color.white.ignoresSafeArea()
             VStack {
                 ScrollView {
-                 
+                    
                     // Greetings and user information
                     HStack {
                         Text("Greetings, \(userName)!")
@@ -167,9 +168,9 @@ struct dashboardView: View {
                     .padding(.bottom, -15)
                     
                     // User's carbon footprint breakdown chart
-//                 Image("transport_vector")
-//                        .resizable()
-//                        .frame(width: 240, height: 140)
+                    //                 Image("transport_vector")
+                    //                        .resizable()
+                    //                        .frame(width: 240, height: 140)
                     
                     Text("Your average daily carbon footprint is")
                         .font(.subheadline)
@@ -232,7 +233,7 @@ struct dashboardView: View {
                                 .foregroundColor(.black)
                                 .fontWeight(.semibold)
                                 .padding(.top, 20)
-                        
+                            
                             Chart(macros, id:\.name){
                                 macro in BarMark(x: .value("Macros", macro.value), stacking: .normalized )
                                     .foregroundStyle(by:.value("Name", macro.name)
@@ -253,55 +254,86 @@ struct dashboardView: View {
                         }
                         .padding()
                         
-                        HStack(alignment: .bottom) {
-                            ForEach(bars) { bar in
-                                VStack {
-                                    ZStack {
-                                        Rectangle()
-                                            .foregroundColor(bar.color)
-                                            .frame(width: 35, height: CGFloat(bar.value), alignment: .bottom)
-                                            .opacity(selectedID == bar.id ? 0.5 : 1.0)
-                                            .cornerRadius(6)
-                                            .onTapGesture {
-                                                self.selectedID = bar.id
-                                                self.text = "Value: \(Int(bar.value))"
-                                            }
-                                        
-                                        Text("\(Int(bar.value))")
-                                            .foregroundColor(.white)
+                        
+                        if(userLoggedIn){
+                            HStack(alignment: .bottom) {
+                                ForEach(bars) { bar in
+                                    VStack {
+                                        ZStack {
+                                            Rectangle()
+                                                .foregroundColor(bar.color)
+                                                .frame(width: 35, height: CGFloat(bar.value), alignment: .bottom)
+                                                .opacity(selectedID == bar.id ? 0.5 : 1.0)
+                                                .cornerRadius(6)
+                                                .onTapGesture {
+                                                    self.selectedID = bar.id
+                                                    self.text = "Value: \(Int(bar.value))"
+                                                }
+                                            
+                                            Text("\(Int(bar.value))")
+                                                .foregroundColor(.white)
+                                        }
+                                        Text(bar.day)
                                     }
-                                    Text(bar.day)
                                 }
                             }
+                            .frame(height: 240, alignment: .bottom)
+                            .padding(20)
+                            .background(.thinMaterial)
+                            .cornerRadius(6)
+                            // Additional buttons and navigation
+                            //                        Button("Refresh")  {
+                            //                            withAnimation {
+                            //                                self.bars = Bar.sampleBars
+                            //                            }
+                            //                        }
+                            //                        .padding()
+                            
+                            Button("View Statistics"){
+                                showingEmissionHistoryScreen.toggle()
+                            }
+                            .font(.headline)
+                            .foregroundColor(.black)
+                            .frame(width: 351, height: 44)
+                            .background(Color.gray.opacity(0.2))
+                            .cornerRadius(10)
+                            .padding(.top, 20)
+                            
+                            
+                            NavigationLink(destination: EmissionHistoryView(), isActive: $showingEmissionHistoryScreen) {
+                                EmptyView()
+                            }
+                            
+                            
+                            
                         }
-                        .frame(height: 240, alignment: .bottom)
-                        .padding(20)
-                        .background(.thinMaterial)
-                        .cornerRadius(6)
-                        // Additional buttons and navigation
-//                        Button("Refresh")  {
-//                            withAnimation {
-//                                self.bars = Bar.sampleBars
-//                            }
-//                        }
-//                        .padding()
-                        
-                        Button("View Statistics"){
-                            showingEmissionHistoryScreen.toggle()
+                        else {
+                            VStack {
+                                HStack{
+                                    Text("Login for Daily Records, Streaks, and Stats")
+                                        .font(.headline)
+                                        .foregroundColor(.black)
+                                        .multilineTextAlignment(.center)
+                                        .padding()
+                                    Spacer()
+                                    Image(systemName: "person.circle.fill")
+                                        .font(.system(size: 60))
+                                        .foregroundColor(.gray)
+                                        .padding(.bottom, 20)
+                                }
+                                
+                                Button("Login") {
+                                    // Handle login action
+                                }
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .frame(width: 351, height: 41)
+                                .background(Color.blue)
+                                .cornerRadius(10)
+                                .padding(.bottom, 20)
+                            }.background(Color.red.opacity(0.1))
+
                         }
-                        .font(.headline)
-                        .foregroundColor(.black)
-                        .frame(width: 351, height: 44)
-                        .background(Color.gray.opacity(0.2))
-                        .cornerRadius(10)
-                        .padding(.top, 20)
-                        
-                        
-                        NavigationLink(destination: EmissionHistoryView(), isActive: $showingEmissionHistoryScreen) {
-                            EmptyView()
-                        }
-                        
-                        
                         Button("Log Data + ") {
                             // Authenticate user
                             //printing all variables
@@ -316,12 +348,12 @@ struct dashboardView: View {
                             print("Ordinary Distance Travelled: \(ordinaryDistance)")
                             print("AC Distance Travelled: \(acDistance)")
                             print("Deluxe Distance Travelled: \(deluxeDistance)")
-
+                            
                             showingNextScreen.toggle()
                         }
                         .font(.headline)
                         .foregroundColor(.black)
-                        .frame(width: 201, height: 44)
+                        .frame(width: 351, height: 44)
                         .background(Color.gray.opacity(0.2))
                         .cornerRadius(10)
                         .padding(.top, 20)
@@ -329,26 +361,26 @@ struct dashboardView: View {
                         NavigationLink(destination: recordView(), isActive: $showingNextScreen) {
                             EmptyView()
                         }
+                        //.padding()
                     }
-                    .padding()
+                    .padding(.bottom, 50)
+                    
+                    // Bar chart for additional data
+                    .onAppear {
+                        //shouldUpdateEmissionsData.toggle()
+                        updateEmissionsData()
+                        // }
+                    }
                 }
-                .padding(.bottom, 50)
-                
-                // Bar chart for additional data
-                .onAppear {
-                    //shouldUpdateEmissionsData.toggle()
-                    updateEmissionsData()
-                                    }
-               
             }
         }
     }
-}
-
-struct dashboardView_Previews: PreviewProvider {
-    static var previews: some View {
-        dashboardView(privateDistance: 0, cabsDistance: 0, carpoolDistance: 0, localTrainDistance: 0, metroDistance: 0, pillionDistance: 0, sharingDistance: 0, magicDistance: 0, ordinaryDistance: 0, acDistance: 0, deluxeDistance: 0)
-            .environmentObject(UserData())
-            .environmentObject(DistanceViewModel())
+    
+    struct dashboardView_Previews: PreviewProvider {
+        static var previews: some View {
+            dashboardView(privateDistance: 0, cabsDistance: 0, carpoolDistance: 0, localTrainDistance: 0, metroDistance: 0, pillionDistance: 0, sharingDistance: 0, magicDistance: 0, ordinaryDistance: 0, acDistance: 0, deluxeDistance: 0)
+                .environmentObject(UserData())
+                .environmentObject(DistanceViewModel())
+        }
     }
 }

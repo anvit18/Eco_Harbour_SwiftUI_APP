@@ -43,6 +43,12 @@
 		7FBED34D2BA1CB5A004C5A68 /* PlotAreaStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBED34C2BA1CB5A004C5A68 /* PlotAreaStyling.swift */; };
 		7FBED34F2BA1CBE8004C5A68 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBED34E2BA1CBE8004C5A68 /* Utils.swift */; };
 		7FBED3512BA1CC06004C5A68 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBED3502BA1CC06004C5A68 /* Data.swift */; };
+		7FBED3972BA5AAD5004C5A68 /* EmissionStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBED3962BA5AAD5004C5A68 /* EmissionStats.swift */; };
+		7FBED3992BA5AAF6004C5A68 /* EmissionStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBED3982BA5AAF6004C5A68 /* EmissionStatsView.swift */; };
+		7FBED39B2BA5AF55004C5A68 /* VehicleTypeStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBED39A2BA5AF55004C5A68 /* VehicleTypeStats.swift */; };
+		7FBED39D2BA5AF67004C5A68 /* VehicleTypeStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBED39C2BA5AF67004C5A68 /* VehicleTypeStatsView.swift */; };
+		7FBED39F2BA5BCC8004C5A68 /* DayWiseStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBED39E2BA5BCC8004C5A68 /* DayWiseStats.swift */; };
+		7FBED3A12BA5BCD9004C5A68 /* DayWiseStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBED3A02BA5BCD9004C5A68 /* DayWiseStatsView.swift */; };
 		7FC0DED42B8B84D5002962BE /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC0DED32B8B84D5002962BE /* UserData.swift */; };
 		7FC0DED62B8BBF4C002962BE /* DistanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC0DED52B8BBF4C002962BE /* DistanceViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -104,6 +110,12 @@
 		7FBED34C2BA1CB5A004C5A68 /* PlotAreaStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotAreaStyling.swift; sourceTree = "<group>"; };
 		7FBED34E2BA1CBE8004C5A68 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		7FBED3502BA1CC06004C5A68 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		7FBED3962BA5AAD5004C5A68 /* EmissionStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmissionStats.swift; sourceTree = "<group>"; };
+		7FBED3982BA5AAF6004C5A68 /* EmissionStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmissionStatsView.swift; sourceTree = "<group>"; };
+		7FBED39A2BA5AF55004C5A68 /* VehicleTypeStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleTypeStats.swift; sourceTree = "<group>"; };
+		7FBED39C2BA5AF67004C5A68 /* VehicleTypeStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleTypeStatsView.swift; sourceTree = "<group>"; };
+		7FBED39E2BA5BCC8004C5A68 /* DayWiseStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWiseStats.swift; sourceTree = "<group>"; };
+		7FBED3A02BA5BCD9004C5A68 /* DayWiseStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWiseStatsView.swift; sourceTree = "<group>"; };
 		7FC0DED22B87C6A0002962BE /* Eco_Harbour_SwiftUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Eco_Harbour_SwiftUI.entitlements; sourceTree = "<group>"; };
 		7FC0DED32B8B84D5002962BE /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		7FC0DED52B8BBF4C002962BE /* DistanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceViewModel.swift; sourceTree = "<group>"; };
@@ -216,6 +228,12 @@
 			isa = PBXGroup;
 			children = (
 				7FBED33A2BA16A74004C5A68 /* EmissionHistoryView.swift */,
+				7FBED3962BA5AAD5004C5A68 /* EmissionStats.swift */,
+				7FBED3982BA5AAF6004C5A68 /* EmissionStatsView.swift */,
+				7FBED39A2BA5AF55004C5A68 /* VehicleTypeStats.swift */,
+				7FBED39C2BA5AF67004C5A68 /* VehicleTypeStatsView.swift */,
+				7FBED39E2BA5BCC8004C5A68 /* DayWiseStats.swift */,
+				7FBED3A02BA5BCD9004C5A68 /* DayWiseStatsView.swift */,
 				7FBED3502BA1CC06004C5A68 /* Data.swift */,
 				7FBED34C2BA1CB5A004C5A68 /* PlotAreaStyling.swift */,
 				7FBED34A2BA1CAB7004C5A68 /* SalesMinMaxAverage.swift */,
@@ -364,10 +382,14 @@
 				7F29B20E2B76A19100A55511 /* manualFilling.swift in Sources */,
 				7F29B1FD2B76A15500A55511 /* color.swift in Sources */,
 				7FBED3492BA1CA93004C5A68 /* LocationDetails.swift in Sources */,
+				7FBED39F2BA5BCC8004C5A68 /* DayWiseStats.swift in Sources */,
 				7FBED3512BA1CC06004C5A68 /* Data.swift in Sources */,
+				7FBED3992BA5AAF6004C5A68 /* EmissionStatsView.swift in Sources */,
 				7FBB4B3E2B8758F800728A3D /* historyVIEW demo.swift in Sources */,
 				7F29B21B2B76A19100A55511 /* OnboardingView.swift in Sources */,
+				7FBED39D2BA5AF67004C5A68 /* VehicleTypeStatsView.swift in Sources */,
 				7FBED34D2BA1CB5A004C5A68 /* PlotAreaStyling.swift in Sources */,
+				7FBED3A12BA5BCD9004C5A68 /* DayWiseStatsView.swift in Sources */,
 				7FBED3472BA1CA83004C5A68 /* LocationOverview.swift in Sources */,
 				7FBED3452BA1CA6D004C5A68 /* StylesDetails.swift in Sources */,
 				7F6C1F612B5510BF00CBEC53 /* ContentView.swift in Sources */,
@@ -376,6 +398,7 @@
 				7F29B2102B76A19100A55511 /* dashboardView.swift in Sources */,
 				7FC0DED42B8B84D5002962BE /* UserData.swift in Sources */,
 				7F011F192B975F1600C7958C /* SplashScreen.swift in Sources */,
+				7FBED3972BA5AAD5004C5A68 /* EmissionStats.swift in Sources */,
 				7FBED33D2BA16D2D004C5A68 /* TopEmissionsView.swift in Sources */,
 				7FBED3432BA1CA60004C5A68 /* StylesOverview.swift in Sources */,
 				7F29B2192B76A19100A55511 /* privateVehicleDetails.swift in Sources */,
@@ -392,6 +415,7 @@
 				7F29B2162B76A19100A55511 /* SecondView.swift in Sources */,
 				7FBED33F2BA1CA46004C5A68 /* SalesOverview.swift in Sources */,
 				7F29B2122B76A19100A55511 /* Login_Signup_Page.swift in Sources */,
+				7FBED39B2BA5AF55004C5A68 /* VehicleTypeStats.swift in Sources */,
 				7F6C1F5F2B5510BF00CBEC53 /* Eco_Harbour_SwiftUIApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

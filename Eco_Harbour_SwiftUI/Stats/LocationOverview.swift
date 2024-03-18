@@ -99,7 +99,7 @@ struct Square: ChartSymbolShape, InsettableShape {
         // size the diamond symbol so it perceptually matches with
         // the circle.
         let scaleAdjustment: CGFloat = 0.75
-        return CGRect(x: 0.5 - scaleAdjustment / 2, y: 0.5 - scaleAdjustment / 2, width: scaleAdjustment, height: scaleAdjustment)
+         return CGRect(x: 0.5 - scaleAdjustment / 2, y: 0.5 - scaleAdjustment / 2, width: scaleAdjustment, height: scaleAdjustment)
     }
 }
 

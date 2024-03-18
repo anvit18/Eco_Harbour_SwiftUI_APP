@@ -36,22 +36,37 @@ struct manualFilling: View {
                         Button("Cancel", role: .destructive) {
                         }
                         Button {
-                            vehicleType = "Small"
+                            vehicleType = "Hatchback"
                         }label: {
-                            Label("Small (1-3)", systemImage:  "car.side.fill")
+                            Label("Hatchback", systemImage:  "car.side.fill")
                         }
                         Button {
-                            vehicleType = "Medium"
-                        } label: {
-                            Label("Medium (3-5)", systemImage: "suv.side.fill")
+                            vehicleType = "MUV"
+                        }label: {
+                            Label("MUV", systemImage:  "car.side.fill")
                         }
                         Button {
-                            vehicleType = "Large"
+                            vehicleType = "Pickup Truck"
+                        }label: {
+                            Label("Pickup Truck", systemImage:  "car.side.fill")
+                        }
+                        Button {
+                            vehicleType = "Sedan"
                         } label: {
-                            Label("Large (5+)", systemImage: "truck.pickup.side.fill")
+                            Label("Sedan", systemImage: "suv.side.fill")
+                        }
+                        Button {
+                            vehicleType = "SUV"
+                        } label: {
+                            Label("SUV", systemImage: "truck.pickup.side.fill")
+                        }
+                        Button {
+                            vehicleType = "Electric"
+                        } label: {
+                            Label("Electric", systemImage: "truck.pickup.side.fill")
                         }
                     } label: {
-                        TextField("e.g. Large" , text: $vehicleType){
+                        TextField("e.g. SUV" , text: $vehicleType){
                         }
                         .multilineTextAlignment(.leading)
                         .padding(.leading,20)
