@@ -31,6 +31,12 @@
 		7F6C1F7A2B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C1F792B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITests.swift */; };
 		7F6C1F7C2B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C1F7B2B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITestsLaunchTests.swift */; };
 		7FA3AE372BA6A7CD0091CF45 /* SignInEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3AE362BA6A7CD0091CF45 /* SignInEmailView.swift */; };
+		7FA3AE392BA838BD0091CF45 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7FA3AE382BA838BD0091CF45 /* FirebaseFirestore */; };
+		7FA3AE3B2BA838BD0091CF45 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7FA3AE3A2BA838BD0091CF45 /* FirebaseFirestoreSwift */; };
+		7FA3AE412BA83B6B0091CF45 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3AE402BA83B6B0091CF45 /* SettingsViewModel.swift */; };
+		7FA3AE432BA83B9D0091CF45 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3AE422BA83B9D0091CF45 /* AuthenticationViewModel.swift */; };
+		7FA3AE452BA83BD60091CF45 /* SignUpEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3AE442BA83BD60091CF45 /* SignUpEmailViewModel.swift */; };
+		7FA3AE472BA83C000091CF45 /* SignInEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3AE462BA83C000091CF45 /* SignInEmailViewModel.swift */; };
 		7FBB4B3C2B874F6400728A3D /* recordDailyRenderCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB4B3B2B874F6400728A3D /* recordDailyRenderCategory.swift */; };
 		7FBB4B3E2B8758F800728A3D /* historyVIEW demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB4B3D2B8758F800728A3D /* historyVIEW demo.swift */; };
 		7FC0DED42B8B84D5002962BE /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC0DED32B8B84D5002962BE /* UserData.swift */; };
@@ -91,6 +97,10 @@
 		7F6C1F792B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eco_Harbour_SwiftUIUITests.swift; sourceTree = "<group>"; };
 		7F6C1F7B2B5510C000CBEC53 /* Eco_Harbour_SwiftUIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eco_Harbour_SwiftUIUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7FA3AE362BA6A7CD0091CF45 /* SignInEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailView.swift; sourceTree = "<group>"; };
+		7FA3AE402BA83B6B0091CF45 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		7FA3AE422BA83B9D0091CF45 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		7FA3AE442BA83BD60091CF45 /* SignUpEmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmailViewModel.swift; sourceTree = "<group>"; };
+		7FA3AE462BA83C000091CF45 /* SignInEmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailViewModel.swift; sourceTree = "<group>"; };
 		7FBB4B3B2B874F6400728A3D /* recordDailyRenderCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recordDailyRenderCategory.swift; sourceTree = "<group>"; };
 		7FBB4B3D2B8758F800728A3D /* historyVIEW demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "historyVIEW demo.swift"; sourceTree = "<group>"; };
 		7FC0DED22B87C6A0002962BE /* Eco_Harbour_SwiftUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Eco_Harbour_SwiftUI.entitlements; sourceTree = "<group>"; };
@@ -109,7 +119,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FA3AE3B2BA838BD0091CF45 /* FirebaseFirestoreSwift in Frameworks */,
 				E3F24C982B9E464300DA780D /* FirebaseAnalyticsSwift in Frameworks */,
+				7FA3AE392BA838BD0091CF45 /* FirebaseFirestore in Frameworks */,
 				E3F24C9B2B9E49C200DA780D /* FirebaseAuth in Frameworks */,
 				E3F24C962B9E464300DA780D /* FirebaseAnalytics in Frameworks */,
 			);
@@ -180,6 +192,7 @@
 				7F6C1F5E2B5510BF00CBEC53 /* Eco_Harbour_SwiftUIApp.swift */,
 				7F6C1F602B5510BF00CBEC53 /* ContentView.swift */,
 				7F6C1F622B5510C000CBEC53 /* Assets.xcassets */,
+				7FA3AE3C2BA83A210091CF45 /* Core */,
 				E3F24C9C2B9E4A2700DA780D /* Authentication */,
 				E3F24C922B9E444C00DA780D /* GoogleService-Info.plist */,
 				7F6C1F642B5510C000CBEC53 /* Preview Content */,
@@ -212,6 +225,46 @@
 			path = Eco_Harbour_SwiftUIUITests;
 			sourceTree = "<group>";
 		};
+		7FA3AE3C2BA83A210091CF45 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				E3F24CA52B9E558700DA780D /* RootView.swift */,
+				7FA3AE3E2BA83A990091CF45 /* Settings */,
+				7FA3AE3D2BA83A720091CF45 /* Authentication */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		7FA3AE3D2BA83A720091CF45 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				E3F24C9D2B9E4A8B00DA780D /* AuthenticationView.swift */,
+				7FA3AE422BA83B9D0091CF45 /* AuthenticationViewModel.swift */,
+				7FA3AE3F2BA83AA90091CF45 /* Subviews */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		7FA3AE3E2BA83A990091CF45 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E3F24CA72B9E5B7300DA780D /* SettingsView.swift */,
+				7FA3AE402BA83B6B0091CF45 /* SettingsViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		7FA3AE3F2BA83AA90091CF45 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				E3F24CA12B9E4BBC00DA780D /* SignUpEmailView.swift */,
+				7FA3AE442BA83BD60091CF45 /* SignUpEmailViewModel.swift */,
+				7FA3AE362BA6A7CD0091CF45 /* SignInEmailView.swift */,
+				7FA3AE462BA83C000091CF45 /* SignInEmailViewModel.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
 		E3F24C992B9E468400DA780D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,12 +275,7 @@
 		E3F24C9C2B9E4A2700DA780D /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				E3F24C9D2B9E4A8B00DA780D /* AuthenticationView.swift */,
-				E3F24CA12B9E4BBC00DA780D /* SignUpEmailView.swift */,
 				E3F24CA32B9E4D5D00DA780D /* AuthenticationManager.swift */,
-				E3F24CA52B9E558700DA780D /* RootView.swift */,
-				E3F24CA72B9E5B7300DA780D /* SettingsView.swift */,
-				7FA3AE362BA6A7CD0091CF45 /* SignInEmailView.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -252,6 +300,8 @@
 				E3F24C952B9E464300DA780D /* FirebaseAnalytics */,
 				E3F24C972B9E464300DA780D /* FirebaseAnalyticsSwift */,
 				E3F24C9A2B9E49C200DA780D /* FirebaseAuth */,
+				7FA3AE382BA838BD0091CF45 /* FirebaseFirestore */,
+				7FA3AE3A2BA838BD0091CF45 /* FirebaseFirestoreSwift */,
 			);
 			productName = Eco_Harbour_SwiftUI;
 			productReference = 7F6C1F5B2B5510BF00CBEC53 /* Eco_Harbour_SwiftUI.app */;
@@ -377,16 +427,20 @@
 				7FBB4B3E2B8758F800728A3D /* historyVIEW demo.swift in Sources */,
 				7F29B21B2B76A19100A55511 /* OnboardingView.swift in Sources */,
 				7F6C1F612B5510BF00CBEC53 /* ContentView.swift in Sources */,
+				7FA3AE432BA83B9D0091CF45 /* AuthenticationViewModel.swift in Sources */,
 				7F29B2152B76A19100A55511 /* VehcileDetails_CarDetails.swift in Sources */,
 				7F29B2102B76A19100A55511 /* dashboardView.swift in Sources */,
 				7F29B20F2B76A19100A55511 /* testing_code.swift in Sources */,
 				7FC0DED42B8B84D5002962BE /* UserData.swift in Sources */,
 				7F29B2192B76A19100A55511 /* privateVehicleDetails.swift in Sources */,
+				7FA3AE452BA83BD60091CF45 /* SignUpEmailViewModel.swift in Sources */,
 				7F29B2142B76A19100A55511 /* homePageDashboard.swift in Sources */,
 				7F29B2182B76A19100A55511 /* recordView.swift in Sources */,
 				E3F24CA42B9E4D5D00DA780D /* AuthenticationManager.swift in Sources */,
 				7F29B21A2B76A19100A55511 /* frequentlyUsedVehicles.swift in Sources */,
+				7FA3AE472BA83C000091CF45 /* SignInEmailViewModel.swift in Sources */,
 				7FBB4B3C2B874F6400728A3D /* recordDailyRenderCategory.swift in Sources */,
+				7FA3AE412BA83B6B0091CF45 /* SettingsViewModel.swift in Sources */,
 				7F29B2112B76A19100A55511 /* VehicleDetails.swift in Sources */,
 				7F29B20D2B76A19100A55511 /* signup_page.swift in Sources */,
 				7FC0DED62B8BBF4C002962BE /* DistanceViewModel.swift in Sources */,
@@ -739,6 +793,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7FA3AE382BA838BD0091CF45 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3F24C942B9E464300DA780D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		7FA3AE3A2BA838BD0091CF45 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3F24C942B9E464300DA780D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
 		E3F24C952B9E464300DA780D /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E3F24C942B9E464300DA780D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

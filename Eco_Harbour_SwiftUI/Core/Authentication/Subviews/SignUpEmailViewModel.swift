@@ -6,3 +6,19 @@
 //
 
 import Foundation
+
+@MainActor
+final class SignUpEmailViewModel: ObservableObject{
+    @Published var email=""
+    @Published var password=""
+    
+    func signUp() async throws{
+        guard !email.isEmpty, !password.isEmpty else{
+            print("No email or pass found.")
+            return
+        }
+        
+        try await AuthenticationManager.shared.createUser(email: email, password: password)
+        
+    }
+}

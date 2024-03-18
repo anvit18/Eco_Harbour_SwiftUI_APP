@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-@MainActor
-final class settingsViewModel:ObservableObject{
-    func signOut() throws{
-        try AuthenticationManager.shared.signOut()
-    }
-}
 
 struct SettingsView: View {
     
