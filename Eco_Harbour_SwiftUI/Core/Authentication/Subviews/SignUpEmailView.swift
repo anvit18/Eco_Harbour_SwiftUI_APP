@@ -74,8 +74,26 @@ struct SignUpEmailView: View {
                         .background(Color.mainGreen)
                         .cornerRadius(10)
                 }
+                
+                HStack{
+                    Spacer()
+                    NavigationLink{
+                        SignInEmailView(showSignInView: $showSignInView)
+                    } label:{
+                        Text("Already a User? Log In")
+                            .foregroundColor(.blue)
+                            .background(.white)
+                            .padding(.horizontal, 40)
+                            .font(.callout)
+                            .frame(alignment: .trailing)
+                            .padding(.trailing, 8)
+                    }
+                    
+                    
+                }
+                
                 Spacer()
-            }.padding(.top,200)
+            }.padding(.top,170)
             
             
         }

@@ -87,7 +87,7 @@ struct Login_Signup_Page: View {
                     }
                     HStack{
                         Spacer()
-                        Button("New User ?"){
+                        Button("New User? Sign up"){
                             //add code
                             showingSignUpScreen.toggle()
                         }
