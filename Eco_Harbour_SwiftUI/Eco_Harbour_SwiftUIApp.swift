@@ -6,15 +6,22 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct Eco_Harbour_SwiftUIApp: App {
     
     @StateObject private var userData = UserData()
     @StateObject private var distanceViewModel = DistanceViewModel()
+    
+    init(){
+        FirebaseApp.configure()
+        print("Firebase configured")
+    }
 
     var body: some Scene {
         WindowGroup {
+//            RootView()
             LaunchScreen()
                 .environmentObject(userData)
                 .environmentObject(distanceViewModel)
