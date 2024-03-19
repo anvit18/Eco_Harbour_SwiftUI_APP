@@ -1,9 +1,4 @@
-//
-//  RootView.swift
-//  Eco_Harbour_SwiftUI
-//
-//  Created by Sarthak_AppDev on 11/03/24.
-//
+
 
 import SwiftUI
 

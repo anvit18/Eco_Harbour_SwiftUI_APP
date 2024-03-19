@@ -7,34 +7,79 @@ struct CategoryView: View {
     @Binding var selectedCategory: String?
 
     var body: some View {
-        
-        
-        Button(action: {
-            selectedCategory = category
-        }) {
-            VStack {
-                Image(systemName: systemImage)
-                    .font(.system(size: 40))
-                    .foregroundColor(.black)
-                    .frame(width: 60, height: 40)
-                    .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
-                
-                Text(category)
-                    .font(.headline)
-                    .foregroundColor(.black)
+        //ZStack {
+            
+            
+            Button(action: {
+                selectedCategory = category
+            }) {
+                VStack {
+                    Image(systemName: systemImage)
+                        .font(.system(size: 40))
+                        .foregroundColor(.black)
+                        .frame(width: 60, height: 40)
+                        .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
+                    
+                    Text(category)
+                        .font(.headline)
+                        .foregroundColor(.black)
+                }
+                .padding()
+                .background(selectedCategory == category ? Color.green : Color.green.opacity(0.2))
+                //.cornerRadius(10)
             }
-            .padding()
-            .background(selectedCategory == category ? Color.green : Color.green.opacity(0.2))
-            //.cornerRadius(10)
+            .frame(width: 100, height: 80)
+            .cornerRadius(13)
         }
-        .frame(width: 100, height: 80)
-        .cornerRadius(13)
-    }
+ //   }
 }
 
 struct recordView: View {
-    @State private var selectedCategory: String?
+//    Temp
+    @EnvironmentObject private var userData: UserData
+    @EnvironmentObject private var distanceViewModel : DistanceViewModel
     
+    
+    @State private var privateDistance: Int = 0
+        @State private var cabsDistance: Int = 0
+        @State private var carpoolDistance: Int = 0
+        @State private var localTrainDistance: Int = 0
+        @State private var metroDistance: Int = 0
+        @State private var pillionDistance: Int = 0
+        @State private var sharingDistance: Int = 0
+        @State private var magicDistance: Int = 0
+        @State private var ordinaryDistance: Int = 0
+        @State private var acDistance: Int = 0
+        @State private var deluxeDistance: Int = 0
+    
+    // Emission Factor Variables, set dummy for now
+      @State private var privateFactor: Double = 20
+      @State private var cabsFactor: Double = 18
+      @State private var carpoolFactor: Double = 16
+      @State private var localTrainFactor: Double = 4
+      @State private var metroFactor: Double = 8
+      @State private var pillionFactor: Double = 13
+      @State private var sharingFactor: Double = 7
+      @State private var magicFactor: Double = 9
+      @State private var ordinaryFactor: Double = 4
+      @State private var acFactor: Double = 10
+      @State private var deluxeFactor: Double = 5
+    
+    var userEmissions: Double {
+            return (Double(privateDistance) * privateFactor) +
+                   (Double(cabsDistance) * cabsFactor) +
+                   (Double(carpoolDistance) * carpoolFactor) +
+                   (Double(localTrainDistance) * localTrainFactor) +
+                   (Double(metroDistance) * metroFactor) +
+                   (Double(pillionDistance) * pillionFactor) +
+                   (Double(sharingDistance) * sharingFactor) +
+                   (Double(magicDistance) * magicFactor) +
+                   (Double(ordinaryDistance) * ordinaryFactor) +
+                   (Double(acDistance) * acFactor) +
+                   (Double(deluxeDistance) * deluxeFactor)
+        }
+    
+    @State private var selectedCategory: String?
     @State private var showStepper = false
     
     @State var carDistance: Int = 0
@@ -55,6 +100,7 @@ struct recordView: View {
     @State private var fuel = ""
     @State private var numberOfPassengers = ""
     @State private var showingNextScreen = false
+    @State private var userLoggedIn = false
     
     // New state variable to store the selected date
     @State private var selectedDate = Date()
@@ -87,129 +133,152 @@ struct recordView: View {
     @State private var category5Fields = CategoryFields()
     
     var body: some View {
-        VStack {
-            ScrollView {
-                
-                HStack {
+        ZStack{
+            Color.white.ignoresSafeArea()
+            VStack {
+                ScrollView {
                     
-                    Text("Record Emissions")
-                        .font(.largeTitle)
-                        .bold()
-                        .padding(.leading, 20)
-                    
-                    Spacer()
-                }
-                .padding(.bottom, 20)
-                
-                HStack {
-                    
-                    
-                   // Spacer()
-                    
-                    Menu {
-                        Button("Cancel", role: .destructive) {
-                            // Do something
-                        }
+                    HStack {
                         
-                        Button {
-                            // do something
-                            cityName = "Pune"
-                        }label: {
-                            Label("Pune", systemImage:  "sun.min.fill")
-                        }
+                        Text("Record Emissions")
+                            .font(.largeTitle)
+                            .foregroundColor(.black)
+                            .bold()
+                            .padding(.leading, 20)
                         
-                        Button {
-                            // Do something
-                            cityName = "Mumbai"
-                        } label: {
-                            Label("Mumbai", systemImage: "sun.horizon.circle.fill")
-                        }
-                        Button {
-                            // Do something
-                            cityName = "Chennai"
-                        } label: {
-                            Label("Chennai", systemImage: "sun.rain.fill")
-                        }
-                    } label: {
-                        TextField("Chennai", text: $cityName)
-                            .padding()
-                            .autocapitalization(.allCharacters)
-                            .frame(width: 350, height: 40)
-                            .background(Color.mainGreen.opacity(0.05))
+                        Spacer()
+                    }
+                    .padding(.bottom, 20)
+                    if(userLoggedIn){
+                        HStack {
+                            
+                            
+                            // Spacer()
+                            
+                            Menu {
+                                Button("Cancel", role: .destructive) {
+                                    // Do something
+                                }
+                                
+                                Button {
+                                    // do something
+                                    cityName = "Chennai"
+                                }label: {
+                                    Label("Chennai", systemImage:  "")
+                                }
+                                
+                                Button {
+                                    // Do something
+                                    cityName = "Mumbai"
+                                } label: {
+                                    Label("Mumbai", systemImage: "")
+                                }.disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                                Button {
+                                    // Do something
+                                    cityName = "Pune"
+                                } label: {
+                                    Label("Pune", systemImage: "")
+                                }.disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                            } label: {
+                                TextField("Chennai", text: $cityName)
+                                    .padding()
+                                    .autocapitalization(.allCharacters)
+                                    .frame(width: 350, height: 40)
+                                    .foregroundColor(.black)
+                                    .background(Color.mainGreen.opacity(0.05))
+                                    .cornerRadius(10)
+                            }
+                            
+                        }.padding(.bottom,20)
+                        
+                        HStack{
+                            // DatePicker to select the date
+                            DatePicker("",
+                                       selection: $selectedDate,
+                                       in: ...Date(), // Restrict future dates
+                                       displayedComponents: [.date]
+                            )
+                            .datePickerStyle(.compact)
+                            .frame(width: 200, height: 40)
+                            //.padding()
+                            .background(Color.white)
+                            .foregroundColor(.black)
                             .cornerRadius(10)
-                    }
-                    
-                }.padding(.bottom,20)
-                
-                HStack{
-                    // DatePicker to select the date
-                    DatePicker("",
-                               selection: $selectedDate,
-                               in: ...Date(), // Restrict future dates
-                               displayedComponents: [.date]
-                    )
-                    .datePickerStyle(.compact)
-                    .frame(width: 200, height: 40)
-                    //.padding()
-                    .background(Color.white)
-                    .cornerRadius(10)
-                    .padding(.leading,-50)
-                    .padding(.trailing,40)
-                    
-                    
-                   Spacer()
-                    Button("History", systemImage: "clock.fill") {
-                        // Authenticate user
-                        showingNextScreen.toggle()
-                    }
-                    .font(.title2)
-                    .foregroundColor(.mainGreen)
-                    .frame(width: 180, height: 40)
-                    //.background(Color.gray.opacity(0.2))
-                    .cornerRadius(10)
-                    //.padding(.leading,-40)
-                   // .padding(.trailing,50)
-                    
-                    NavigationLink(destination: historyView(
-                        selectedCategory: selectedCategory ?? "",
-                                        selectedDate: selectedDate,
-                                        carType: carType,
-                                        carDistance: carDistance,
-                                        busType: busType,
-                                        busDistance: busDistance,
-                                        trainType: trainType,
-                                        trainDistance: trainDistance,
-                                       carPoolType: carPool,
-                                        carPoolDistance: carPoolDistance,
-                                        autoType: autoType,
-                                        autoDistance: autoDistance,
-                                        dummyVar: dummyVar,
-                                        fuel: fuel,
-                                        numberOfPassengers: numberOfPassengers
-                                    ), isActive: $showingNextScreen) {
-                                        EmptyView()
-                                    }
-                    
-                    
-                }
-                
-                Text("Select the modes of transport you used today")
-                    .font(.subheadline)
-                    .foregroundStyle(Color.gray)
-                
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 20) {
-                        ForEach(categories, id: \.name) { category in
-                            CategoryView(category: category.name, systemImage: category.systemImage, selectedCategory: $selectedCategory)
+                            .padding(.leading,-50)
+                            .padding(.trailing,40)
+                            
+                            
+                            Spacer()
+                            Button("History", systemImage: "clock.fill") {
+                                // Authenticate user
+                                showingNextScreen.toggle()
+                            }
+                            .font(.title2)
+                            .foregroundColor(.mainGreen)
+                            .frame(width: 180, height: 40)
+                            //.background(Color.gray.opacity(0.2))
+                            .cornerRadius(10)
+                            //.padding(.leading,-40)
+                            // .padding(.trailing,50)
+                            
+                            NavigationLink(destination: HistoryView(), isActive: $showingNextScreen) {
+                                EmptyView()
+                            }
+                            
+                            
                         }
+                        
+                        Text("Select the modes of transport you used today")
+                            .font(.subheadline)
+                            .foregroundStyle(Color.gray)
+                            .padding(.top,20)
+                            .padding(.bottom,-10)
+                        
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 20) {
+                                ForEach(categories, id: \.name) { category in
+                                    CategoryView(category: category.name, systemImage: category.systemImage, selectedCategory: $selectedCategory)
+                                }
+                            }
+                            .padding()
+                        }
+                        
+                        renderInputSection()
+                            .padding()
                     }
-                    .padding()
-                }
+                    else {
+                        VStack {
+                            HStack{
+                                Text("Login for Daily Records, Streaks, and Stats")
+                                    .font(.headline)
+                                    .foregroundColor(.black)
+                                    .multilineTextAlignment(.center)
+                                    .padding()
+                                Spacer()
+                                Image(systemName: "person.circle.fill")
+                                    .font(.system(size: 60))
+                                    .foregroundColor(.gray)
+                                    .padding(.bottom, 20)
+                            }
+                            
+                            Button("Login") {
+                                // Handle login action
+                                userLoggedIn.toggle()
+                            }
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .frame(width: 351, height: 41)
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                            .padding(.bottom, 20)
+                        }.background(Color.red.opacity(0.1))
+
+                    }
+
+                    }
+                        .navigationBarTitle("Record Emissions")
                 
-                renderInputSection()
-                    .padding()
             }
-            .navigationBarTitle("Record Emissions")
         }
     }
     
@@ -249,6 +318,7 @@ struct recordView: View {
                 Button("Save") {
                                    // Add your logic for saving data or performing an action
                                    printUserInput()
+                                   saveUserInput()
 
                                    // Show the alert
                                    showAlert = true
@@ -336,7 +406,7 @@ struct recordView: View {
                 
                
                     VStack {
-                        Stepper(value: $carDistance, in: 0...100) {
+                        Stepper(value: $carDistance, in: 0...100, step: 5) {
                                                                     Text("\(carDistance) KMS")
                                                                 }
                                                                 .padding(.horizontal)
@@ -366,7 +436,7 @@ struct recordView: View {
                         .cornerRadius(10)
                     
                     HStack {
-                        Text("AC")
+                        Text("AC").foregroundColor(.black)
                         
                         
                         Spacer()
@@ -432,7 +502,7 @@ struct recordView: View {
                 
               
                     VStack {
-                        Stepper(value: $busDistance, in: 0...100) {
+                        Stepper(value: $busDistance, in: 0...100, step: 7) {
                                                                     Text("\(busDistance) KMS")
                                                                 }
                                                                 .padding(.horizontal)
@@ -619,7 +689,7 @@ struct recordView: View {
                 
                
                     VStack {
-                        Stepper(value: $autoDistance, in: 0...100) {
+                        Stepper(value: $autoDistance, in: 0...100, step: 5) {
                                                                     Text("\(autoDistance) KMS")
                                                                 }
                                                                 .padding(.horizontal)
@@ -706,7 +776,7 @@ struct recordView: View {
                 
                
                     VStack {
-                        Stepper(value: $carPoolDistance, in: 0...100) {
+                        Stepper(value: $carPoolDistance, in: 0...100, step: 5) {
                                                                     Text("\(carPoolDistance) KMS")
                                                                 }
                                                                 .padding(.horizontal)
@@ -907,8 +977,105 @@ struct recordView: View {
             break
         }
     }
+    
+    
+    
+    
+    private func saveUserInput() {
+        // Check if category is car
+        if selectedCategory == "Car" {
+            // Check car type
+            switch carType {
+            case "Private":
+                privateDistance = carDistance
+            case "Cab":
+                cabsDistance = carDistance
+            default:
+                break
+            }
+        }
+        
+        //Check if category is carpool
+        if selectedCategory=="Car Pool"{
+            carpoolDistance = carPoolDistance
+        }
+        
+        // Check if category is train
+        if selectedCategory == "Train" {
+            // Check train type
+            switch trainType {
+            case "Local":
+                localTrainDistance = trainDistance
+            case "Metro":
+                metroDistance = trainDistance
+            default:
+                // Handle other train types
+                break
+            }
+        }
+        
+        if selectedCategory == "Auto" {
+            // Check train type
+            switch autoType {
+            case "Pillion":
+                pillionDistance = autoDistance
+            case "Sharing":
+                sharingDistance = autoDistance
+            case "Magic":
+                magicDistance = autoDistance
+            default:
+                // Handle other train types
+                break
+            }
+        }
+        if selectedCategory == "Bus" {
+            // Check train type
+            switch busType {
+            case "Ordinary":
+                ordinaryDistance=busDistance
+            case "AC":
+                acDistance = busDistance
+            case "Deluxe":
+                deluxeDistance = busDistance
+            default:
+                // Handle other train types
+                break
+            }
+        }
+        
+        // Add similar logic for other categories and vehicle types
+        
+        // Print updated distances (optional)
+        print("car Distance: \(carDistance)")
+        print("car pool Distance: \(carPoolDistance)")
+        print("bus Distance: \(busDistance)")
+        print("auto Distance: \(autoDistance)")
+        print("train Distance: \(trainDistance)")
+        // Print other distances as needed
+        
+        
+        
+        userData.userEmission = userEmissions
+        userData.datePicked = selectedDate
+        distanceViewModel.privateVDistance = privateDistance
+        distanceViewModel.cabsVDistance = cabsDistance
+        distanceViewModel.carpoolVDistance = carpoolDistance
+        distanceViewModel.localTrainVDistance = localTrainDistance
+        distanceViewModel.metroVDistance = metroDistance
+        distanceViewModel.pillionVDistance = pillionDistance
+        distanceViewModel.sharingVDistance = sharingDistance
+        distanceViewModel.magicVDistance = magicDistance
+        distanceViewModel.ordinaryVDistance = ordinaryDistance
+        distanceViewModel.acVDistance = acDistance
+        distanceViewModel.deluxeVDistance = deluxeDistance
+    }
+    
+    
+    
 
     }
+
+
 
 
 
