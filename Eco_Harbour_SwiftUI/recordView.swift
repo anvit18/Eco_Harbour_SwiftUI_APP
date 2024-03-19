@@ -282,7 +282,7 @@ struct recordView: View {
             case "Auto": renderCategoryFields(fields: $category5Fields)
             default: EmptyView()
             }
-
+            
             //Spacer()
             HStack {
                 Button("Cancel") {
@@ -294,35 +294,35 @@ struct recordView: View {
                 .cornerRadius(10)
                 .padding(.top, 10)
                 .padding(.trailing, 40)
-
-//                NavigationLink(destination: frequentlyUsedVehicles(), isActive: $showingNextScreen) {
-//                    EmptyView()
-//                }
+                
+                //                NavigationLink(destination: frequentlyUsedVehicles(), isActive: $showingNextScreen) {
+                //                    EmptyView()
+                //                }
                 
                 Button("Save") {
-                                   // Add your logic for saving data or performing an action
-                                   printUserInput()
-                                   saveUserInput()
-
-                                   // Show the alert
-                                   showAlert = true
-                               }
-                               .foregroundColor(.white)
-                               .frame(width: 130, height: 38)
-                               .background(Color.mainGreen)
-                               .cornerRadius(10)
-                               .padding(.top, 10)
-                               // Add the alert
-                               .alert(isPresented: $showAlert) {
-                                   Alert(
-                                       title: Text("Data Logged Successfully!"),
-                                       dismissButton: .default(Text("OK"))
-                                   )
-                               }
-
-//                NavigationLink(destination: frequentlyUsedVehicles(), isActive: $showingNextScreen) {
-//                    EmptyView()
-//                }
+                    // Add your logic for saving data or performing an action
+                    printUserInput()
+                    saveUserInput()
+                    
+                    // Show the alert
+                    showAlert = true
+                }
+                .foregroundColor(.white)
+                .frame(width: 130, height: 38)
+                .background(Color.mainGreen)
+                .cornerRadius(10)
+                .padding(.top, 10)
+                // Add the alert
+                .alert(isPresented: $showAlert) {
+                    Alert(
+                        title: Text("Data Logged Successfully!"),
+                        dismissButton: .default(Text("OK"))
+                    )
+                }
+                
+                //                NavigationLink(destination: frequentlyUsedVehicles(), isActive: $showingNextScreen) {
+                //                    EmptyView()
+                //                }
                 
                 
             }
@@ -409,29 +409,29 @@ struct recordView: View {
                 
                 
                 
-                ZStack {
-                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
-                        
-                    }.multilineTextAlignment(.leading)
-                        .padding()
-                    //.keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                    
-                    HStack {
-                        Text("AC").foregroundColor(.black)
-                        
-                        
-                        Spacer()
-                        
-                        Toggle("", isOn: fields.isACSwitchOn)
-                            .labelsHidden()
-                            .padding(.trailing, 50)
-                    }.padding(.leading,  50)
-                }
-                .padding(.bottom, 20)
+//                ZStack {
+//                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
+//                        
+//                    }.multilineTextAlignment(.leading)
+//                        .padding()
+//                    //.keyboardType(.numberPad)
+//                        .frame(width: 300, height: 50)
+//                        .foregroundColor(Color.black)
+//                        .background(Color.black.opacity(0.05))
+//                        .cornerRadius(10)
+//                    
+////                    HStack {
+////                        Text("AC").foregroundColor(.black)
+////                        
+////                        
+////                        Spacer()
+////                        
+////                        Toggle("", isOn: fields.isACSwitchOn)
+////                            .labelsHidden()
+////                            .padding(.trailing, 50)
+////                    }.padding(.leading,  50)
+//                }
+//                .padding(.bottom, 20)
             }
             if selectedCategory == "Bus" {
                 Menu {
@@ -503,29 +503,29 @@ struct recordView: View {
                         .padding(.bottom,20)
                                                         
                 
-                ZStack {
-                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
-                        
-                    }.multilineTextAlignment(.leading)
-                        .padding()
-                    //.keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                    
-                    HStack {
-                        Text("AC")
-                        
-                        
-                        Spacer()
-                        
-                        Toggle("", isOn: fields.isACSwitchOn)
-                            .labelsHidden()
-                            .padding(.trailing, 50)
-                    }.padding(.leading,  50)
-                }
-                .padding(.bottom, 20)
+//                ZStack {
+//                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
+//                        
+//                    }.multilineTextAlignment(.leading)
+//                        .padding()
+//                    //.keyboardType(.numberPad)
+//                        .frame(width: 300, height: 50)
+//                        .foregroundColor(Color.black)
+//                        .background(Color.black.opacity(0.05))
+//                        .cornerRadius(10)
+//                    
+////                    HStack {
+////                        Text("AC")
+////                        
+////                        
+////                        Spacer()
+////                        
+////                        Toggle("", isOn: fields.isACSwitchOn)
+////                            .labelsHidden()
+////                            .padding(.trailing, 50)
+////                    }.padding(.leading,  50)
+//                }
+//                .padding(.bottom, 20)
             }
             if selectedCategory == "Train" {
                 Menu {
@@ -593,29 +593,29 @@ struct recordView: View {
                         .padding(.bottom,20)
                                                 
                 
-                ZStack {
-                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
-                        
-                    }.multilineTextAlignment(.leading)
-                        .padding()
-                    //.keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                    
-                    HStack {
-                        Text("AC")
-                        
-                        
-                        Spacer()
-                        
-                        Toggle("", isOn: fields.isACSwitchOn)
-                            .labelsHidden()
-                            .padding(.trailing, 50)
-                    }.padding(.leading,  50)
-                }
-                .padding(.bottom, 20)
+//                ZStack {
+//                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
+//                        
+//                    }.multilineTextAlignment(.leading)
+//                        .padding()
+//                    //.keyboardType(.numberPad)
+//                        .frame(width: 300, height: 50)
+//                        .foregroundColor(Color.black)
+//                        .background(Color.black.opacity(0.05))
+//                        .cornerRadius(10)
+//                    
+////                    HStack {
+////                        Text("AC")
+////                        
+////                        
+////                        Spacer()
+////                        
+////                        Toggle("", isOn: fields.isACSwitchOn)
+////                            .labelsHidden()
+////                            .padding(.trailing, 50)
+////                    }.padding(.leading,  50)
+//                }
+//                .padding(.bottom, 20)
             }
             
             if selectedCategory == "Auto" {
@@ -692,49 +692,43 @@ struct recordView: View {
                 
                 
                 
-                ZStack {
-                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
-                        
-                    }.multilineTextAlignment(.leading)
-                        .padding()
-                    //.keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                    
-                    HStack {
-                        Text("AC")
-                        
-                        
-                        Spacer()
-                        
-                        Toggle("", isOn: fields.isACSwitchOn)
-                            .labelsHidden()
-                            .padding(.trailing, 50)
-                    }.padding(.leading,  50)
-                }
-                .padding(.bottom, 20)
+//                ZStack {
+//                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
+//                        
+//                    }.multilineTextAlignment(.leading)
+//                        .padding()
+//                    //.keyboardType(.numberPad)
+//                        .frame(width: 300, height: 50)
+//                        .foregroundColor(Color.black)
+//                        .background(Color.black.opacity(0.05))
+//                        .cornerRadius(10)
+//                    
+////                    HStack {
+////                        Text("AC")
+////                        
+////                        
+////                        Spacer()
+////                        
+////                        Toggle("", isOn: fields.isACSwitchOn)
+////                            .labelsHidden()
+////                            .padding(.trailing, 50)
+////                    }.padding(.leading,  50)
+//                }
+//                .padding(.bottom, 20)
             }
            
             if selectedCategory == "Car Pool" {
-                Menu {
-                    Button("Cancel", role: .destructive) {
-                        // Do something
-                    }
+                HStack {
+                    Text("Car Pool")
+                        .font(.subheadline)
+                        .padding(.leading, 30)
+                        .padding(.bottom, 20)
                     
-                    Button {
-                        // do something
-                        carPool = "Car Pool"
-                    }label: {
-                        Label("Car Pool", systemImage:  "car.side.fill")
-                    }
-                    
-                    
-                } label: {
-                    TextField("Car Pool" , text: $carPool){ //fields.vehicleSize){
-                        
-                    }
+                    Spacer()
+                }
+                .padding(.bottom, -10)
+                
+                TextField("Car Pool" , text: $carPool)
                     .multilineTextAlignment(.leading)
                     .padding(.leading,20)
                     .keyboardType(.numberPad)
@@ -742,66 +736,59 @@ struct recordView: View {
                     .foregroundColor(Color.black)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
-                    
-                }.padding(.bottom, 20)
+                    .padding(.bottom, 20)
                 
-                
-                HStack{
+                HStack {
                     Text("Distance Travelled :")
-                        .foregroundStyle(Color.mainGreen)
+                        .font(.subheadline)
+                        .foregroundColor(.mainGreen)
                         .padding(.leading, 30)
                         .padding(.bottom, 20)
-                        .font(.subheadline)
-                        
+                    
                     Spacer()
-                }.padding(.bottom, -10)
-                    
-                    
-                    
+                }
+                .padding(.bottom, -10)
                 
-               
-                    VStack {
-                        Stepper(value: $carPoolDistance, in: 0...100, step: 5) {
-                                                                    Text("\(carPoolDistance) KMS")
-                                                                }
-                                                                .padding(.horizontal)
-                                                                
-                                                            }.multilineTextAlignment(.leading)
-                        .padding(.leading,20)
-                       
-                        .keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                        .padding(.bottom,20)
+                // Use Stepper or another input control for distance input
+                VStack {
+                    Stepper(value: $carPoolDistance, in: 0...100, step: 5) {
+                        Text("\(carPoolDistance) KMS")
+                    }
+                    .padding(.horizontal)
+                }
+                .padding(.leading,20)
+                .frame(width: 300, height: 50)
+                .background(Color.black.opacity(0.05))
+                .cornerRadius(10)
+                .padding(.bottom,20)
+
                                                 
                 
                 
                 
-                ZStack {
-                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
-                        
-                    }.multilineTextAlignment(.leading)
-                        .padding()
-                    //.keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                    
-                    HStack {
-                        Text("AC")
-                        
-                        
-                        Spacer()
-                        
-                        Toggle("", isOn: fields.isACSwitchOn)
-                            .labelsHidden()
-                            .padding(.trailing, 50)
-                    }.padding(.leading,  50)
-                }
-                .padding(.bottom, 20)
+//                ZStack {
+//                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
+//                        
+//                    }.multilineTextAlignment(.leading)
+//                        .padding()
+//                    //.keyboardType(.numberPad)
+//                        .frame(width: 300, height: 50)
+//                        .foregroundColor(Color.black)
+//                        .background(Color.black.opacity(0.05))
+//                        .cornerRadius(10)
+//                    
+//                    HStack {
+//                        Text("AC")
+//                        
+//                        
+//                        Spacer()
+//                        
+//                        Toggle("", isOn: fields.isACSwitchOn)
+//                            .labelsHidden()
+//                            .padding(.trailing, 50)
+//                    }.padding(.leading,  50)
+//                }
+//                .padding(.bottom, 20)
                 HStack{
                     Text("Number of Passengers")
                         .foregroundStyle(Color.mainGreen)

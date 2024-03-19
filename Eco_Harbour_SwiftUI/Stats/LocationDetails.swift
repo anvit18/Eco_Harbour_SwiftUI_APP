@@ -384,11 +384,7 @@ struct LocationDetails: View {
             }
             .listRowSeparator(.hidden)
 
-            #if !os(macOS)
-            Section("Options") {
-                TransactionsLink()
-            }
-            #endif
+            
         }
         .listStyle(.plain)
         #if !os(macOS)

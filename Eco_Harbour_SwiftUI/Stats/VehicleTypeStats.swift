@@ -150,9 +150,7 @@ struct VehicleTypeDetails: View {
             }
             .listRowSeparator(.hidden)
 
-            Section("Options") {
-                TransactionsLink()
-            }
+            
         }
         .listStyle(.plain)
         #if !os(macOS)

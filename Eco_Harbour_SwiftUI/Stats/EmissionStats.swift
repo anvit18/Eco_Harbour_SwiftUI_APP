@@ -165,9 +165,7 @@ struct EmissionsStatsDetails: View {
                 $0.animation = nil // Do not animate between different sets of bars.
             }
 
-            Section("More info") {
-                // Add more info related to carbon emissions if needed...
-            }
+            
         }
         .listStyle(.plain)
         #if !os(macOS)
