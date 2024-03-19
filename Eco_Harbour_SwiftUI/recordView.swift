@@ -137,147 +137,131 @@ struct recordView: View {
             Color.white.ignoresSafeArea()
             VStack {
                 ScrollView {
-                    
                     HStack {
-                        
                         Text("Record Emissions")
                             .font(.largeTitle)
                             .foregroundColor(.black)
                             .bold()
                             .padding(.leading, 20)
-                        
                         Spacer()
                     }
                     .padding(.bottom, 20)
+                    
                     if(userLoggedIn){
-                        HStack {
-                            
-                            
-                            // Spacer()
-                            
-                            Menu {
-                                Button("Cancel", role: .destructive) {
-                                    // Do something
-                                }
-                                
-                                Button {
-                                    // do something
-                                    cityName = "Chennai"
-                                }label: {
-                                    Label("Chennai", systemImage:  "")
-                                }
-                                
-                                Button {
-                                    // Do something
-                                    cityName = "Mumbai"
+                        ScrollView{
+                            HStack {
+                                Menu {
+                                    Button("Cancel", role: .destructive) {
+                                        // Do something
+                                    }
+                                    Button {
+                                        cityName = "Chennai"
+                                    }label: {
+                                        Label("Chennai", systemImage:  "")
+                                    }
+                                    Button {
+                                        cityName = "Mumbai"
+                                    } label: {
+                                        Label("Mumbai", systemImage: "")
+                                    }.disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                                    Button {
+                                        cityName = "Pune"
+                                    } label: {
+                                        Label("Pune", systemImage: "")
+                                    }.disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                                 } label: {
-                                    Label("Mumbai", systemImage: "")
-                                }.disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                                Button {
-                                    // Do something
-                                    cityName = "Pune"
-                                } label: {
-                                    Label("Pune", systemImage: "")
-                                }.disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                            } label: {
-                                TextField("Chennai", text: $cityName)
-                                    .padding()
-                                    .autocapitalization(.allCharacters)
-                                    .frame(width: 350, height: 40)
-                                    .foregroundColor(.black)
-                                    .background(Color.mainGreen.opacity(0.05))
-                                    .cornerRadius(10)
-                            }
-                            
-                        }.padding(.bottom,20)
-                        
-                        HStack{
-                            // DatePicker to select the date
-                            DatePicker("",
-                                       selection: $selectedDate,
-                                       in: ...Date(), // Restrict future dates
-                                       displayedComponents: [.date]
-                            )
-                            .datePickerStyle(.compact)
-                            .frame(width: 200, height: 40)
-                            //.padding()
-                            .background(Color.white)
-                            .foregroundColor(.black)
-                            .cornerRadius(10)
-                            .padding(.leading,-50)
-                            .padding(.trailing,40)
-                            
-                            
-                            Spacer()
-                            Button("History", systemImage: "clock.fill") {
-                                // Authenticate user
-                                showingNextScreen.toggle()
-                            }
-                            .font(.title2)
-                            .foregroundColor(.mainGreen)
-                            .frame(width: 180, height: 40)
-                            //.background(Color.gray.opacity(0.2))
-                            .cornerRadius(10)
-                            //.padding(.leading,-40)
-                            // .padding(.trailing,50)
-                            
-                            NavigationLink(destination: HistoryView(), isActive: $showingNextScreen) {
-                                EmptyView()
-                            }
-                            
-                            
-                        }
-                        
-                        Text("Select the modes of transport you used today")
-                            .font(.subheadline)
-                            .foregroundStyle(Color.gray)
-                            .padding(.top,20)
-                            .padding(.bottom,-10)
-                        
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 20) {
-                                ForEach(categories, id: \.name) { category in
-                                    CategoryView(category: category.name, systemImage: category.systemImage, selectedCategory: $selectedCategory)
+                                    TextField("Chennai", text: $cityName)
+                                        .padding()
+                                        .autocapitalization(.allCharacters)
+                                        .frame(width: 350, height: 40)
+                                        .foregroundColor(.black)
+                                        .background(Color.mainGreen.opacity(0.05))
+                                        .cornerRadius(10)
                                 }
-                            }
-                            .padding()
-                        }
-                        
-                        renderInputSection()
-                            .padding()
-                    }
-                    else {
-                        VStack {
+                            }.padding(.bottom,20)
+                            
                             HStack{
-                                Text("Login for Daily Records, Streaks, and Stats")
-                                    .font(.headline)
-                                    .foregroundColor(.black)
-                                    .multilineTextAlignment(.center)
-                                    .padding()
+                                DatePicker("",
+                                           selection: $selectedDate,
+                                           in: ...Date(),
+                                           displayedComponents: [.date]
+                                )
+                                .datePickerStyle(.compact)
+                                .frame(width: 200, height: 40)
+                                .background(Color.white)
+                                .foregroundColor(.black)
+                                .cornerRadius(10)
+                                .padding(.leading,-50)
+                                .padding(.trailing,40)
                                 Spacer()
-                                Image(systemName: "person.circle.fill")
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.gray)
-                                    .padding(.bottom, 20)
+                                Button("History", systemImage: "clock.fill") {
+                                    showingNextScreen.toggle()
+                                }
+                                .font(.title2)
+                                .foregroundColor(.mainGreen)
+                                .frame(width: 180, height: 40)
+                                .cornerRadius(10)
+                                NavigationLink(destination: HistoryView(), isActive: $showingNextScreen) {
+                                    EmptyView()
+                                }
                             }
                             
-                            Button("Login") {
-                                // Handle login action
-                                userLoggedIn.toggle()
+                            Text("Select the modes of transport you used today")
+                                .font(.subheadline)
+                                .foregroundStyle(Color.gray)
+                                .padding(.top,20)
+                                .padding(.bottom,-10)
+                            
+                            ScrollView(.horizontal, showsIndicators: true) {
+                                HStack(spacing: 20) {
+                                    ForEach(categories, id: \.name) { category in
+                                        CategoryView(category: category.name, systemImage: category.systemImage, selectedCategory: $selectedCategory)
+                                    }
+                                }
+                                .padding()
                             }
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .frame(width: 351, height: 41)
-                            .background(Color.blue)
-                            .cornerRadius(10)
-                            .padding(.bottom, 20)
-                        }.background(Color.red.opacity(0.1))
-
+                            
+                            renderInputSection()
+                                .padding()
+                        }
                     }
-
-                    }
-                        .navigationBarTitle("Record Emissions")
+               
                 
+                else {
+                    VStack {
+                        HStack{
+                            Text("Login for Daily Records, Streaks, and Stats")
+                                .font(.headline)
+                                .foregroundColor(.black)
+                                .multilineTextAlignment(.center)
+                                .padding()
+                            Spacer()
+                            Image(systemName: "person.circle.fill")
+                                .font(.system(size: 60))
+                                .foregroundColor(.gray)
+                                .padding(.bottom, 20)
+                        }
+                        
+                        Button("Login") {
+                            // Handle login action
+                            //change here
+                            userLoggedIn.toggle()
+                        }
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .frame(width: 351, height: 41)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                        .padding(.bottom, 20)
+                        //change here for login signup page
+                        NavigationLink(destination: Login_Signup_Page(), isActive: $userLoggedIn) {
+                                        EmptyView()
+                                        }
+                    }
+                    .background(Color.red.opacity(0.1))
+                }
+                }
+                .navigationBarTitle("Record Emissions")
             }
         }
     }
@@ -299,7 +283,7 @@ struct recordView: View {
             default: EmptyView()
             }
 
-            Spacer()
+            //Spacer()
             HStack {
                 Button("Cancel") {
                     //showingNextScreen.toggle()
@@ -308,7 +292,7 @@ struct recordView: View {
                 .frame(width: 130, height: 38)
                 .background(Color.mainGreen.opacity(0.09))
                 .cornerRadius(10)
-                .padding(.top, 30)
+                .padding(.top, 10)
                 .padding(.trailing, 40)
 
 //                NavigationLink(destination: frequentlyUsedVehicles(), isActive: $showingNextScreen) {
@@ -327,7 +311,7 @@ struct recordView: View {
                                .frame(width: 130, height: 38)
                                .background(Color.mainGreen)
                                .cornerRadius(10)
-                               .padding(.top, 30)
+                               .padding(.top, 10)
                                // Add the alert
                                .alert(isPresented: $showAlert) {
                                    Alert(
@@ -342,6 +326,7 @@ struct recordView: View {
                 
                 
             }
+            .padding(.bottom,70)
         }
     }
 
@@ -1082,5 +1067,7 @@ struct recordView: View {
 struct recordView_Previews: PreviewProvider {
     static var previews: some View {
         recordView()
+            .environmentObject(UserData())
+            .environmentObject(DistanceViewModel())
     }
 }

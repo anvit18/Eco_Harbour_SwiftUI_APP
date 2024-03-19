@@ -332,6 +332,10 @@ struct dashboardView: View {
                                 .background(Color.blue)
                                 .cornerRadius(10)
                                 .padding(.bottom, 20)
+                                //change here for login_signup functionality
+                                NavigationLink(destination: Login_Signup_Page(), isActive: $userLoggedIn) {
+                                                EmptyView()
+                                                }
                             }.background(Color.red.opacity(0.1))
 
                         }
