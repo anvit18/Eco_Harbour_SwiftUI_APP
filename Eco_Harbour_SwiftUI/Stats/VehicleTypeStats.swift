@@ -3,25 +3,20 @@ import Charts
 
 struct VehicleTypeData {
     /// Carbon emissions by vehicle type for the last 30 days, sorted by amount.
-    static let last30Days = [
+    static let last14Days = [
         (name: "Car", emissions: 916),
         (name: "Bus", emissions: 820),
         (name: "Auto", emissions: 610),
         (name: "Train", emissions: 350),
     ]
-
-    /// Carbon emissions by vehicle type for the last 12 months, sorted by amount.
-    static let last12Months = [
-        (name: "Car", emissions: 9631),
-        (name: "Bus", emissions: 6200),
-        (name: "Auto", emissions: 7891),
-        (name: "Train", emissions: 3300),
-    ]
 }
 
 struct VehicleTypeOverviewChart: View {
     var body: some View {
-        Chart(VehicleTypeData.last30Days, id: \.name) { element in
+        Text("Total Carbon Emissions")
+            .font(.callout)
+            .foregroundStyle(.secondary)
+        Chart(VehicleTypeData.last14Days, id: \.name) { element in
             SectorMark(
                 angle: .value("Emissions", element.emissions),
                 innerRadius: .ratio(0.618),
@@ -29,7 +24,7 @@ struct VehicleTypeOverviewChart: View {
             )
             .cornerRadius(3.0)
             .foregroundStyle(by: .value("Name", element.name))
-            .opacity(element.name == VehicleTypeData.last30Days.first!.name ? 1 : 0.3)
+            .opacity(element.name == VehicleTypeData.last14Days.first!.name ? 1 : 0.3)
         }
         .chartLegend(.visible)
         .chartXAxis(.visible)
@@ -42,7 +37,7 @@ struct VehicleTypeOverview: View {
         VStack(alignment: .leading) {
             Text("Most Emissions From")
                 .foregroundStyle(.secondary)
-            Text(VehicleTypeData.last30Days.first!.name)
+            Text(VehicleTypeData.last14Days.first!.name)
                 .font(.title2.bold())
             VehicleTypeOverviewChart()
                 .frame(height: 130)
@@ -117,52 +112,40 @@ struct VehicleTypeDetailsChart: View {
 }
 
 struct VehicleTypeDetails: View {
-    @State private var timeRange: TimeRange = .last30Days
+    
+    @EnvironmentObject var vehicleTypeDataProviderEnv: VehicleTypeDataProvider
 
     var data: [(name: String, emissions: Int)] {
-        switch timeRange {
-        case .last12Months:
-            return VehicleTypeData.last12Months
-        case .last30Days:
-            return VehicleTypeData.last12Months.map { (name, _) in
-                // Keep the annual order for consistent sector ordering.
-                return (
-                    name: name,
-                    emissions: VehicleTypeData.last30Days.first(where: { $0.name == name })?.emissions ?? 0
-                )
-            }
-        }
+        vehicleTypeDataProviderEnv.last14DaysData
     }
 
     var body: some View {
-        List {
-            VStack(alignment: .leading) {
-                TimeRangePicker(value: $timeRange)
-                    .padding(.bottom)
-                    .transaction {
-                        $0.animation = nil // Do not animate the picker.
-                    }
-
-                VehicleTypeDetailsChart(
-                    data: data,
-                    mostEmitted: data.first ?? (name: "Unknown", emissions: 0)
-                )
+        VStack(alignment: .leading){
+            Text("Vehicle-wise Emissions till today")
+                .font(.callout)
+                .foregroundStyle(.secondary)
+                .padding(.leading,20)
+            //.foregroundStyle(.secondary)
+            List {
+                VStack(alignment: .leading) {
+                    VehicleTypeDetailsChart(
+                        data: data,
+                        mostEmitted: data.first ?? (name: "Unknown", emissions: 0)
+                    )
+                }
+                .listRowSeparator(.hidden)
             }
-            .listRowSeparator(.hidden)
-
-            
-        }
-        .listStyle(.plain)
-        #if !os(macOS)
-        .navigationBarTitle("", displayMode: .inline)
-        #endif
-        .navigationDestination(for: [Transaction].self) { transactions in
-            TransactionsView(transactions: transactions)
+            .listStyle(.plain)
         }
     }
 }
 
-#Preview {
-    VehicleTypeDetails()
+#if DEBUG
+struct VehicleTypeDetails_Previews: PreviewProvider {
+    static var previews: some View {
+        let vehicleTypeDataProviderEnv = VehicleTypeDataProvider()
+        return VehicleTypeDetails()
+            .environmentObject(vehicleTypeDataProviderEnv)
+    }
 }
-
+#endif
