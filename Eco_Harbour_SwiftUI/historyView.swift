@@ -5,68 +5,19 @@ struct HistoryView: View {
     @EnvironmentObject var distanceViewModel: DistanceViewModel
 
     var body: some View {
-        //NavigationView {
-            ZStack {
-                Color.white.ignoresSafeArea()
-                ScrollView {
-                    
-                 VStack(alignment: .leading, spacing: 12) {
-                    Text("Vehicles Used")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
-                        //.padding(.top)
-                        .padding(.leading)
-
-                    
-                        // Display the date picked at the top left corner
-                        if userData.datePicked != nil {
-                            Text("Date: \(formattedDate(userData.datePicked!))")
-                                .padding(.leading)
-                                .foregroundColor(.black)
-                        }
-
-                        // Display vehicle distance data in a tabular form
-                        VStack(alignment: .leading, spacing: 16) {
-                            ForEach(vehicleData.filter { $0.1 != 0 }, id: \.0) { (vehicleType, distance) in
-                                HStack {
-                                    Text(vehicleType)
-                                        .font(.headline)
-                                        .foregroundColor(.black)
-
-                                    Spacer()
-
-                                    Text("Distance: \(distance) km")
-                                        .foregroundColor(.black)
-                                }
-                                .padding()
-                                .background(Color.white)
-                                .cornerRadius(10)
-                                .shadow(radius: 2)
-                            }
-                        }
-                        .padding()
+        NavigationView {
+            List {
+                ForEach(vehicleData, id: \.category) { vehicleCategory in
+                    ForEach(vehicleCategory.vehicles.filter { $0.distance > 0 }, id: \.id) { vehicle in
+                        VehicleRow(vehicle: vehicle)
                     }
-                    Spacer()
                 }
-                .padding()
             }
-            .onAppear {
-                // Check if it's the user's first visit to the page
-                if !userData.hasVisitedHistoryView {
-                    userData.hasVisitedHistoryView = true
-                    // Present the login view directly
-                    NavigationLink(
-                        destination: Login_Signup_Page(),
-                        isActive: $userData.hasVisitedHistoryView
-                    ) {
-                        EmptyView()
-                    }
-                }
-           // }
-            //.navigationBarTitle("History")
-        }
+            .listStyle(InsetGroupedListStyle())
+            .navigationBarTitle("Vehicles Used")
+        }.padding(.top,-90)
     }
+
 
     // Function to format the date
     private func formattedDate(_ date: Date) -> String {
@@ -77,20 +28,63 @@ struct HistoryView: View {
     }
 
     // Define the data for vehicles
-    private var vehicleData: [(String, Int)] {
-        [
-            ("Private Car", distanceViewModel.privateVDistance),
-            ("Cab", distanceViewModel.cabsVDistance),
-            ("Car Pool", distanceViewModel.carpoolVDistance),
-            ("Local Train", distanceViewModel.localTrainVDistance),
-            ("Metro", distanceViewModel.metroVDistance),
-            ("Pillion Auto", distanceViewModel.pillionVDistance),
-            ("Sharing Auto", distanceViewModel.sharingVDistance),
-            ("Magic Auto", distanceViewModel.magicVDistance),
-            ("Ordinary Bus", distanceViewModel.ordinaryVDistance),
-            ("AC Bus", distanceViewModel.acVDistance),
-            ("Deluxe Bus", distanceViewModel.deluxeVDistance)
+    // Define the data for vehicles
+    private var vehicleData: [VehicleCategory] {
+        let allVehicleData: [VehicleCategory] = [
+            VehicleCategory(category: "Car", vehicles: [
+                Vehicle(name: "Private Car", distance: distanceViewModel.privateVDistance),
+                Vehicle(name: "Cab", distance: distanceViewModel.cabsVDistance),
+                Vehicle(name: "Car Pool", distance: distanceViewModel.carpoolVDistance)
+            ]),
+            VehicleCategory(category: "Public Transport", vehicles: [
+                Vehicle(name: "Local Train", distance: distanceViewModel.localTrainVDistance),
+                Vehicle(name: "Metro", distance: distanceViewModel.metroVDistance),
+                Vehicle(name: "Ordinary Bus", distance: distanceViewModel.ordinaryVDistance),
+                Vehicle(name: "AC Bus", distance: distanceViewModel.acVDistance),
+                Vehicle(name: "Deluxe Bus", distance: distanceViewModel.deluxeVDistance)
+            ]),
+            VehicleCategory(category: "Auto", vehicles: [
+                Vehicle(name: "Pillion Auto", distance: distanceViewModel.pillionVDistance),
+                Vehicle(name: "Sharing Auto", distance: distanceViewModel.sharingVDistance),
+                Vehicle(name: "Magic Auto", distance: distanceViewModel.magicVDistance)
+            ])
         ]
+
+        // Filter out entries whose distance is greater than 0
+        let filteredVehicleData = allVehicleData.map { category in
+            let filteredVehicles = category.vehicles.filter { $0.distance > 0 }
+            return VehicleCategory(category: category.category, vehicles: filteredVehicles)
+        }
+
+        return filteredVehicleData
+    }
+
+}
+
+// Define a struct for vehicle category
+struct VehicleCategory: Identifiable {
+    let id = UUID()
+    let category: String
+    let vehicles: [Vehicle]
+}
+
+// Define a struct for vehicle
+struct Vehicle: Identifiable {
+    let id = UUID()
+    let name: String
+    let distance: Int
+}
+
+// Custom row view for displaying vehicle data
+struct VehicleRow: View {
+    let vehicle: Vehicle
+    
+    var body: some View {
+        HStack {
+            Text(vehicle.name)
+            Spacer()
+            Text("Distance: \(vehicle.distance) km")
+        }
     }
 }
 

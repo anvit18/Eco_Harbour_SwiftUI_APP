@@ -19,7 +19,7 @@ struct AppHistory: View {
                             NavigationLink(destination: HistoryView(userData: _userData, distanceViewModel: _distanceViewModel)) {
                                     Text("\(String(format: "%.2f", userData.userEmission)) kg CO₂")
                                     
-                                        .font(.title2)
+                                        .font(.title3)
                                         .bold()
                                         .foregroundColor(date == "Today" ? .red : .blue)
                                 
@@ -28,7 +28,7 @@ struct AppHistory: View {
                     }
                 }
             }
-            .navigationTitle("History")
+            .navigationTitle("Your Activity")
         }
     }
 }
@@ -46,26 +46,9 @@ struct SectionHeaderView: View {
     
     var body: some View {
         Text(title)
-            .font(.headline)
-            .fontWeight(.bold)
+            .font(.caption)
+            //.fontWeight(.bold)
             //.padding(.vertical, 8)
     }
 }
 
-struct VegetarianDetailView: View {
-    let score: String
-    
-    var body: some View {
-        VStack {
-            Text("Vegetarian")
-                .font(.title)
-                .fontWeight(.bold)
-            Text("Score: \(score)")
-                .font(.subheadline)
-                .padding(.top, 8)
-            // Add more details here as needed
-        }
-        .padding()
-        .navigationTitle("Vegetarian Detail")
-    }
-}
