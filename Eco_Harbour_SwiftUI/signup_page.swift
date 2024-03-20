@@ -126,20 +126,7 @@ struct signup_page: View {
  .navigationBarHidden(true)
     }
     
-    //function to be edited for signup
-//    func aunthenticateUser(emailid: String, password: String){
-//        if emailid.lowercased() == "anvitpawar"{
-//            //wrongUsername = 0
-//            if password.lowercased() == "abc12345" {
-//               // wrongPassword = 0
-//               // showingNextScreen = true
-//            } else {
-//                //wrongPassword = 2
-//            }
-//        }else {
-//            //wrongUsername = 2
-//        }
-//    }
+
 }
 #Preview {
     signup_page()
