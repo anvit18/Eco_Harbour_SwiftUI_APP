@@ -475,7 +475,7 @@ struct VehicleDetails: View {
 //                    .edgesIgnoringSafeArea(.top)
 //                }
                     
-                    NavigationLink(destination: homePageDashboard(privateDistance: Int(userEmissions), cabsDistance: privateDistance, carpoolDistance: cabsDistance, localTrainDistance: carpoolDistance, metroDistance: localTrainDistance, pillionDistance: metroDistance, sharingDistance: pillionDistance, magicDistance: sharingDistance, ordinaryDistance: magicDistance, acDistance: ordinaryDistance, deluxeDistance: acDistance), isActive: $showingNextScreen) {
+                    NavigationLink(destination: homePageDashboard(showSignInView: .constant(false), privateDistance: Int(userEmissions), cabsDistance: privateDistance, carpoolDistance: cabsDistance, localTrainDistance: carpoolDistance, metroDistance: localTrainDistance, pillionDistance: metroDistance, sharingDistance: pillionDistance, magicDistance: sharingDistance, ordinaryDistance: magicDistance, acDistance: ordinaryDistance, deluxeDistance: acDistance), isActive: $showingNextScreen) {
                         EmptyView()
                     }
                 }.navigationTitle("Vehicle Details")

@@ -21,10 +21,10 @@ struct Eco_Harbour_SwiftUIApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootView()
-//            SplashScreen()
-//                .environmentObject(userData)
-//                .environmentObject(distanceViewModel)
+//            RootView()
+            SplashScreen()
+                .environmentObject(userData)
+                .environmentObject(distanceViewModel)
         }
     }
 }

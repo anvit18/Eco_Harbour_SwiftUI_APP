@@ -85,7 +85,7 @@ struct signup_page: View {
                     .cornerRadius(10)
                     
                     
-                    NavigationLink(destination: recordView(), isActive: $showingNextScreen){
+                    NavigationLink(destination: recordView(showSignInView: .constant(false)), isActive: $showingNextScreen){
                         EmptyView()
                     }
                     

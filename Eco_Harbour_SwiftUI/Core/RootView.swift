@@ -8,8 +8,12 @@ struct RootView: View {
     var body: some View {
         ZStack{
             NavigationStack{
-                ProfileView(showSignInView: $showSignInView)
+                HomePageDashboardView2(showSignInView: $showSignInView,privateDistance : 0, cabsDistance: 0, carpoolDistance: 0, localTrainDistance: 0, metroDistance: 0, pillionDistance: 0, sharingDistance: 0, magicDistance: 0, ordinaryDistance: 0, acDistance: 0, deluxeDistance: 0)
+                    .environmentObject(UserData())
+                    .environmentObject(DistanceViewModel())
+                
             }
+            .navigationBarBackButtonHidden(true)
         }
         .onAppear{
             let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()

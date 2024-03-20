@@ -4,19 +4,19 @@ import Charts
 
 
 
-struct CarbonEmissionByVehicle: Identifiable {
+struct CarbonEmissionByVehicle2: Identifiable {
     var id = UUID().uuidString
     var vehicleType: String
     var emissions: Int
     var color: Color
 }
 
-struct MacroData {
+struct MacroData2 {
     let name : String
     let value: Int
 }
 
-struct Bar: Identifiable {
+struct Bar2: Identifiable {
     let id = UUID()
     var name: String
     var day: String
@@ -24,7 +24,7 @@ struct Bar: Identifiable {
     var color: Color
     
     // Sample data for bars
-    static var sampleBars: [Bar] {
+    static var sampleBars2: [Bar] {
         var tempBars = [Bar]()
         var color: Color = .green
         let days = ["M", "T", "W", "T", "F", "S", "S"]
@@ -48,7 +48,7 @@ struct Bar: Identifiable {
     }
 }
 
-struct BarView: View {
+struct BarView2: View {
     var value: Int
     var color: Color
     var label: String
@@ -67,7 +67,18 @@ struct BarView: View {
     }
 }
 
-struct dashboardView: View {
+struct dashboardView2: View {
+    
+    //IMPORTANT BACKEND STUFF
+    @StateObject private var viewModel=DashboardViewModel()
+    @Binding var showSignInView:Bool
+    
+    
+    
+    
+    
+    
+    
     
     //@State private var shouldUpdateEmissionsData = false
     
@@ -94,7 +105,7 @@ struct dashboardView: View {
     //
     //        }
     
-    private var macros: [MacroData] {
+    private var macros: [MacroData2] {
         return
         [
             .init(name: "You", value:Int(userData.userEmission)),
@@ -110,7 +121,7 @@ struct dashboardView: View {
     //    ]
     
     
-    @State private var emissionsData: [CarbonEmissionByVehicle] = []
+    @State private var emissionsData: [CarbonEmissionByVehicle2] = []
     
     func updateEmissionsData() {
         let privateCarEmissions = distanceViewModel.privateVDistance * 20
@@ -126,10 +137,10 @@ struct dashboardView: View {
         let acEmissions = distanceViewModel.acVDistance * 10
         
         emissionsData = [
-            CarbonEmissionByVehicle(vehicleType: "Car", emissions: privateCarEmissions + cabEmissions + carPoolEmissions, color: .blue),
-            CarbonEmissionByVehicle(vehicleType: "Auto", emissions: pillionEmissions + sharingEmissions + magicEmissions, color: .green),
-            CarbonEmissionByVehicle(vehicleType: "Bus", emissions: ordinaryEmissions + acEmissions + deluxeEmissions, color: .orange),
-            CarbonEmissionByVehicle(vehicleType: "Train", emissions: localTrainEmissions + metroEmissions, color: .purple),
+            CarbonEmissionByVehicle2(vehicleType: "Car", emissions: privateCarEmissions + cabEmissions + carPoolEmissions, color: .blue),
+            CarbonEmissionByVehicle2(vehicleType: "Auto", emissions: pillionEmissions + sharingEmissions + magicEmissions, color: .green),
+            CarbonEmissionByVehicle2(vehicleType: "Bus", emissions: ordinaryEmissions + acEmissions + deluxeEmissions, color: .orange),
+            CarbonEmissionByVehicle2(vehicleType: "Train", emissions: localTrainEmissions + metroEmissions, color: .purple),
             //CarbonEmissionByVehicle(vehicleType: "", emissions: acBusEmissions, color: .cyan),
         ]
     }
@@ -153,8 +164,27 @@ struct dashboardView: View {
         ZStack {
             Color.white.ignoresSafeArea()
             VStack {
-                ScrollView {
+                
+                List{
+                    if let user = viewModel.user{
+                        Text("UserId: \(user.userId)")
+                        
+                        if let dateCreated = user.dateCreated{
+                            Text("Date Created: \(dateCreated)")
+                        }else{
+                            Text("Date not displaying")
+                        }
+                        
+                        if let email = user.email{
+                            Text("email: \(email)")
+                        }
+                    }
                     
+                }
+                
+                
+                    
+                ScrollView {
                     // Greetings and user information
                     HStack {
                         Text("Greetings, \(userName)!")
@@ -255,7 +285,7 @@ struct dashboardView: View {
                         .padding()
                         
                         
-                        if(userLoggedIn){
+                        if(showSignInView==false){
                             HStack(alignment: .bottom) {
                                 ForEach(bars) { bar in
                                     VStack {
@@ -322,16 +352,23 @@ struct dashboardView: View {
                                         .padding(.bottom, 20)
                                 }
                                 
-                                Button("Login") {
-                                    // Handle login action
-                                    userLoggedIn.toggle()
+                                
+                                HStack{
+                                    //change here for login_signup functionality
+                                    NavigationLink{
+                                        RootView()
+                                    } label:{
+                                        Text("Login")
+                                            .font(.headline)
+                                            .foregroundColor(.white)
+                                            .frame(width: 351, height: 41)
+                                            .background(Color.blue)
+                                            .cornerRadius(10)
+                                            .padding(.bottom, 20)
+                                    }
                                 }
-                                .font(.headline)
-                                .foregroundColor(.white)
-                                .frame(width: 351, height: 41)
-                                .background(Color.blue)
-                                .cornerRadius(10)
-                                .padding(.bottom, 20)
+                                
+                                
                             }.background(Color.red.opacity(0.1))
 
                         }
@@ -359,7 +396,7 @@ struct dashboardView: View {
                         .cornerRadius(10)
                         .padding(.top, 20)
                         
-                        NavigationLink(destination: recordView(), isActive: $showingNextScreen) {
+                        NavigationLink(destination: recordView(showSignInView: .constant(false)), isActive: $showingNextScreen) {
                             EmptyView()
                         }
                         //.padding()
@@ -375,11 +412,15 @@ struct dashboardView: View {
                 }
             }
         }
+        //IMPORTANT BACKEND STUFF
+        .task{
+            try? await viewModel.loadCurrentUser()
+        }
     }
     
-    struct dashboardView_Previews: PreviewProvider {
+    struct dashboardView2_Previews: PreviewProvider {
         static var previews: some View {
-            dashboardView(privateDistance: 0, cabsDistance: 0, carpoolDistance: 0, localTrainDistance: 0, metroDistance: 0, pillionDistance: 0, sharingDistance: 0, magicDistance: 0, ordinaryDistance: 0, acDistance: 0, deluxeDistance: 0)
+            dashboardView2(showSignInView: .constant(false), privateDistance: 0, cabsDistance: 0, carpoolDistance: 0, localTrainDistance: 0, metroDistance: 0, pillionDistance: 0, sharingDistance: 0, magicDistance: 0, ordinaryDistance: 0, acDistance: 0, deluxeDistance: 0)
                 .environmentObject(UserData())
                 .environmentObject(DistanceViewModel())
         }

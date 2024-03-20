@@ -82,7 +82,7 @@ struct Login_Signup_Page: View {
                     .background(Color.mainGreen)
                     .cornerRadius(10)
                     
-                    NavigationLink(destination: recordView(), isActive: $showingNextScreen){
+                    NavigationLink(destination: recordView(showSignInView: .constant(false)), isActive: $showingNextScreen){
                         EmptyView()
                     }
                     HStack{

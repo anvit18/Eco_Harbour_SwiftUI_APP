@@ -2,6 +2,15 @@ import SwiftUI
 
 struct homePageDashboard: View {
     
+    //IMPORTANT BACKEND STUFF
+    @StateObject private var viewModel=settingsViewModel()
+    @Binding var showSignInView: Bool
+    
+    
+    
+    
+    
+    
     @EnvironmentObject private var userData: UserData
     @EnvironmentObject var distanceViewModel: DistanceViewModel
     
@@ -24,7 +33,9 @@ struct homePageDashboard: View {
     @State private var isActionSheetPresented = false
     @State private var showingLoginScreen = false
     @State private var userName  = "Anvit"
-    @State private var userLoggedIn = true
+    @State private var userLoggedIn = true 
+    
+    
     
     var body: some View {
         
@@ -46,54 +57,18 @@ struct homePageDashboard: View {
                     
                     Spacer()
                     
-                    Button(action: {
-                        // Add action for button tap
-                        print("Button tapped!")
-                    }){
-                        HStack {
-                            Button(action: {
-                                // Show the action sheet when the button is tapped
-                                isActionSheetPresented = true
-                            }) {
-                                Image(systemName: "line.horizontal.3") .resizable()
-                                    .foregroundColor(.mainGreen)
-                                    .frame(width: 30, height: 30)
-                            }
-                            .actionSheet(isPresented: $isActionSheetPresented) {
-                                ActionSheet(title: Text("Choose Option"), buttons: [
-                                    .default(Text("Add Account")) {
-                                        showingLoginScreen.toggle()
-                                        //userName = "Vishal"
-                                        // Add your action for Priya
-                                    },
+                    NavigationLink{
+                        SettingsView(showSignInView: $showSignInView)
+                    }label: {
+                        Image(systemName: "gear")
+                            .font(.headline)
+                            .padding(.trailing,20)
+                    }
 
-//                                    .default(
-//                                        Text("Add Account")) {
-//                                        showingLoginScreen.toggle()
-//                                        // Add your action for the third option
-//                                    },
-                                    .destructive(
-                                        Text("Log Out")
-                                            .font(.title)
-                                            .foregroundColor(.red)
-                                    ) {
-                                        showingLoginScreen.toggle()
-                                        // Add your action for the third option
-                                    },
-                                    .cancel()
-                                ])
-                            }
-                            .padding(.bottom, 10)
-                            // Set the image color
-                        }
-                        .padding()
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                    }.padding(.trailing, 10)
                 }
-                NavigationLink(destination: Login_Signup_Page(), isActive: $showingLoginScreen) {
-                    EmptyView()
-                }
+//                NavigationLink(destination: Login_Signup_Page(), isActive: $showingLoginScreen) {
+//                    EmptyView()
+//                }
                 
                
                 
@@ -101,7 +76,7 @@ struct homePageDashboard: View {
                     //Color.white.ignoresSafeArea()
                     
                     // Icon 1
-                    dashboardView(privateDistance: 0, cabsDistance: 0, carpoolDistance: 0, localTrainDistance: 0, metroDistance: 0, pillionDistance: 0, sharingDistance: 0, magicDistance: 0, ordinaryDistance: 0, acDistance: 0, deluxeDistance: 0)
+                    dashboardView(showSignInView: .constant(false), privateDistance: 0, cabsDistance: 0, carpoolDistance: 0, localTrainDistance: 0, metroDistance: 0, pillionDistance: 0, sharingDistance: 0, magicDistance: 0, ordinaryDistance: 0, acDistance: 0, deluxeDistance: 0)
                         .tabItem {
                             Image(systemName: "house.fill")
                                 .resizable().foregroundColor(.black)
@@ -119,7 +94,7 @@ struct homePageDashboard: View {
                                 .foregroundColor(.black)
                         }
                     
-                    recordView()
+                    recordView(showSignInView: .constant(false))
                         .tabItem {
                             Image(systemName: "plus.app.fill")
                                 .resizable()
@@ -135,16 +110,6 @@ struct homePageDashboard: View {
                         .environmentObject(userData)
                         .environmentObject(distanceViewModel)
                     
-                    if(userLoggedIn){
-                        //Icon 2
-                        
-                        
-                        
-                        
-                    }
-                    else{
-                        
-                    }
                 }
                 
             }.navigationBarHidden(true)
@@ -155,7 +120,7 @@ struct homePageDashboard: View {
     
 struct homePageDashboard_Previews: PreviewProvider {
         static var previews: some View {
-            homePageDashboard(privateDistance : 0, cabsDistance: 0, carpoolDistance: 0, localTrainDistance: 0, metroDistance: 0, pillionDistance: 0, sharingDistance: 0, magicDistance: 0, ordinaryDistance: 0, acDistance: 0, deluxeDistance: 0)
+            homePageDashboard(showSignInView: .constant(false),privateDistance : 0, cabsDistance: 0, carpoolDistance: 0, localTrainDistance: 0, metroDistance: 0, pillionDistance: 0, sharingDistance: 0, magicDistance: 0, ordinaryDistance: 0, acDistance: 0, deluxeDistance: 0)
                 .environmentObject(UserData())
                 .environmentObject(DistanceViewModel())
         }
