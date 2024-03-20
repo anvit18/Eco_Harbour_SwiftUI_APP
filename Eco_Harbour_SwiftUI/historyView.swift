@@ -5,19 +5,20 @@ struct HistoryView: View {
     @EnvironmentObject var distanceViewModel: DistanceViewModel
 
     var body: some View {
-        NavigationView {
+        //NavigationView {
             ZStack {
                 Color.white.ignoresSafeArea()
-
-                VStack(alignment: .leading, spacing: 16) {
-                    Text("History")
+                ScrollView {
+                    
+                 VStack(alignment: .leading, spacing: 12) {
+                    Text("Vehicles Used")
                         .font(.title)
                         .fontWeight(.bold)
                         .foregroundColor(.black)
-                        .padding(.top)
+                        //.padding(.top)
                         .padding(.leading)
 
-                    ScrollView {
+                    
                         // Display the date picked at the top left corner
                         if userData.datePicked != nil {
                             Text("Date: \(formattedDate(userData.datePicked!))")
@@ -62,7 +63,7 @@ struct HistoryView: View {
                         EmptyView()
                     }
                 }
-            }
+           // }
             //.navigationBarTitle("History")
         }
     }

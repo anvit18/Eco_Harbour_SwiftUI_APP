@@ -109,7 +109,7 @@ struct homePageDashboard: View {
                             Text("Home").foregroundColor(.black)
                         }
                     
-                    HistoryView()
+                    AppHistory()
                         .tabItem {
                             Image(systemName: "clock")
                                 .resizable()

@@ -49,6 +49,7 @@
 		7FBED39D2BA5AF67004C5A68 /* VehicleTypeStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBED39C2BA5AF67004C5A68 /* VehicleTypeStatsView.swift */; };
 		7FBED39F2BA5BCC8004C5A68 /* DayWiseStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBED39E2BA5BCC8004C5A68 /* DayWiseStats.swift */; };
 		7FBED3A12BA5BCD9004C5A68 /* DayWiseStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBED3A02BA5BCD9004C5A68 /* DayWiseStatsView.swift */; };
+		7FBED3A32BAA19F3004C5A68 /* AppHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBED3A22BAA19F3004C5A68 /* AppHistory.swift */; };
 		7FC0DED42B8B84D5002962BE /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC0DED32B8B84D5002962BE /* UserData.swift */; };
 		7FC0DED62B8BBF4C002962BE /* DistanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC0DED52B8BBF4C002962BE /* DistanceViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -116,6 +117,7 @@
 		7FBED39C2BA5AF67004C5A68 /* VehicleTypeStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleTypeStatsView.swift; sourceTree = "<group>"; };
 		7FBED39E2BA5BCC8004C5A68 /* DayWiseStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWiseStats.swift; sourceTree = "<group>"; };
 		7FBED3A02BA5BCD9004C5A68 /* DayWiseStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWiseStatsView.swift; sourceTree = "<group>"; };
+		7FBED3A22BAA19F3004C5A68 /* AppHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHistory.swift; sourceTree = "<group>"; };
 		7FC0DED22B87C6A0002962BE /* Eco_Harbour_SwiftUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Eco_Harbour_SwiftUI.entitlements; sourceTree = "<group>"; };
 		7FC0DED32B8B84D5002962BE /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		7FC0DED52B8BBF4C002962BE /* DistanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceViewModel.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				7FBED33C2BA16D2D004C5A68 /* TopEmissionsView.swift */,
 				7F29B20B2B76A19100A55511 /* frequentlyUsedVehicles.swift */,
 				7F29B2042B76A19100A55511 /* historyView.swift */,
+				7FBED3A22BAA19F3004C5A68 /* AppHistory.swift */,
 				7FBB4B3D2B8758F800728A3D /* historyVIEW demo.swift */,
 				7F29B2052B76A19100A55511 /* homePageDashboard.swift */,
 				7FC0DED32B8B84D5002962BE /* UserData.swift */,
@@ -408,6 +411,7 @@
 				7FBED34B2BA1CAB7004C5A68 /* SalesMinMaxAverage.swift in Sources */,
 				7F29B2112B76A19100A55511 /* VehicleDetails.swift in Sources */,
 				7FBED34F2BA1CBE8004C5A68 /* Utils.swift in Sources */,
+				7FBED3A32BAA19F3004C5A68 /* AppHistory.swift in Sources */,
 				7F29B20D2B76A19100A55511 /* signup_page.swift in Sources */,
 				7FC0DED62B8BBF4C002962BE /* DistanceViewModel.swift in Sources */,
 				7F29B2132B76A19100A55511 /* historyView.swift in Sources */,
