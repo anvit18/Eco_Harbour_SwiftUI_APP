@@ -37,6 +37,8 @@ struct CategoryView2: View {
 struct RecordView2: View {
     //IMPORTANT BACKEND STUFF
     @Binding var showSignInView:Bool
+    @StateObject private var viewModel=RecordView2Model()
+
     
     
     
@@ -157,6 +159,36 @@ struct RecordView2: View {
                         Spacer()
                     }
                     .padding(.bottom, 20)
+                    
+                    // ******************Temporary backend
+                    TextField("useremission....", text: $viewModel.userEmissions)
+                        .padding()
+                        .frame(width: 300, height: 50)
+                        .foregroundColor(.gray)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                    
+                    Button{
+                        Task{
+                            
+                            // For sign up
+                            do{
+                                try await viewModel.sendRecordViewData()
+                                return
+                            }catch{
+                                print("error \(error)")
+                            }
+                        }
+                        
+                        
+                    } label:{
+                        Text("Trial")
+                            .foregroundColor(.white)
+                            .frame(width:300, height:50)
+                            .background(Color.mainGreen)
+                            .cornerRadius(10)
+                    }
+                    // ******************
                     
                     if(showSignInView==false){
                         ScrollView{

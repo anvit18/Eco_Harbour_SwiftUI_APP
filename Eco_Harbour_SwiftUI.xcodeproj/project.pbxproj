@@ -48,6 +48,8 @@
 		7FD4B26A2BAB07E300F8578A /* HomePageDashboardView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4B2692BAB07E300F8578A /* HomePageDashboardView2.swift */; };
 		7FD4B26C2BAB089400F8578A /* dashboardView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4B26B2BAB089400F8578A /* dashboardView2.swift */; };
 		7FD4B26E2BAB0CC600F8578A /* RecordView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4B26D2BAB0CC600F8578A /* RecordView2.swift */; };
+		7FD4B2722BAD766500F8578A /* HomePageDashboardView2Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4B2712BAD766500F8578A /* HomePageDashboardView2Model.swift */; };
+		7FD4B2752BAD78FA00F8578A /* RecordView2Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4B2742BAD78FA00F8578A /* RecordView2Model.swift */; };
 		E3F24C932B9E444C00DA780D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3F24C922B9E444C00DA780D /* GoogleService-Info.plist */; };
 		E3F24C962B9E464300DA780D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = E3F24C952B9E464300DA780D /* FirebaseAnalytics */; };
 		E3F24C982B9E464300DA780D /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E3F24C972B9E464300DA780D /* FirebaseAnalyticsSwift */; };
@@ -120,6 +122,8 @@
 		7FD4B2692BAB07E300F8578A /* HomePageDashboardView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageDashboardView2.swift; sourceTree = "<group>"; };
 		7FD4B26B2BAB089400F8578A /* dashboardView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dashboardView2.swift; sourceTree = "<group>"; };
 		7FD4B26D2BAB0CC600F8578A /* RecordView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView2.swift; sourceTree = "<group>"; };
+		7FD4B2712BAD766500F8578A /* HomePageDashboardView2Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageDashboardView2Model.swift; sourceTree = "<group>"; };
+		7FD4B2742BAD78FA00F8578A /* RecordView2Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView2Model.swift; sourceTree = "<group>"; };
 		E3F24C922B9E444C00DA780D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E3F24C9D2B9E4A8B00DA780D /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		E3F24CA12B9E4BBC00DA780D /* SignUpEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmailView.swift; sourceTree = "<group>"; };
@@ -299,15 +303,33 @@
 		7FD4B2612BAA0B8000F8578A /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				7FD4B2732BAD78DF00F8578A /* Record */,
+				7FD4B26F2BAD763F00F8578A /* HomePageDashboard */,
 				7F29B2092B76A19100A55511 /* recordView.swift */,
-				7FD4B26D2BAB0CC600F8578A /* RecordView2.swift */,
 				7F29B2052B76A19100A55511 /* homePageDashboard.swift */,
-				7FD4B2692BAB07E300F8578A /* HomePageDashboardView2.swift */,
 				7F29B2012B76A19100A55511 /* dashboardView.swift */,
 				7FD4B26B2BAB089400F8578A /* dashboardView2.swift */,
 				7FD4B2642BAA0BC800F8578A /* DashboardViewModel.swift */,
 			);
 			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		7FD4B26F2BAD763F00F8578A /* HomePageDashboard */ = {
+			isa = PBXGroup;
+			children = (
+				7FD4B2692BAB07E300F8578A /* HomePageDashboardView2.swift */,
+				7FD4B2712BAD766500F8578A /* HomePageDashboardView2Model.swift */,
+			);
+			path = HomePageDashboard;
+			sourceTree = "<group>";
+		};
+		7FD4B2732BAD78DF00F8578A /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				7FD4B26D2BAB0CC600F8578A /* RecordView2.swift */,
+				7FD4B2742BAD78FA00F8578A /* RecordView2Model.swift */,
+			);
+			path = Record;
 			sourceTree = "<group>";
 		};
 		E3F24C992B9E468400DA780D /* Frameworks */ = {
@@ -490,6 +512,7 @@
 				7FD4B26E2BAB0CC600F8578A /* RecordView2.swift in Sources */,
 				7FA3AE472BA83C000091CF45 /* SignInEmailViewModel.swift in Sources */,
 				7FBB4B3C2B874F6400728A3D /* recordDailyRenderCategory.swift in Sources */,
+				7FD4B2722BAD766500F8578A /* HomePageDashboardView2Model.swift in Sources */,
 				7FA3AE412BA83B6B0091CF45 /* SettingsViewModel.swift in Sources */,
 				7F29B2112B76A19100A55511 /* VehicleDetails.swift in Sources */,
 				7F29B20D2B76A19100A55511 /* signup_page.swift in Sources */,
@@ -502,6 +525,7 @@
 				7F29B2162B76A19100A55511 /* SecondView.swift in Sources */,
 				7FD4B2602BA9C5AB00F8578A /* SplashScreen.swift in Sources */,
 				7F29B2122B76A19100A55511 /* Login_Signup_Page.swift in Sources */,
+				7FD4B2752BAD78FA00F8578A /* RecordView2Model.swift in Sources */,
 				7F6C1F5F2B5510BF00CBEC53 /* Eco_Harbour_SwiftUIApp.swift in Sources */,
 				7FA3AE4A2BA83CE10091CF45 /* ProfileView.swift in Sources */,
 				7FA3AE372BA6A7CD0091CF45 /* SignInEmailView.swift in Sources */,
