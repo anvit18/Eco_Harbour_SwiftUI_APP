@@ -36,7 +36,6 @@ struct CategoryView2: View {
 
 struct RecordView2: View {
     //IMPORTANT BACKEND STUFF
-//    @StateObject private var viewModel=DashboardViewModel()
     @Binding var showSignInView:Bool
     
     
