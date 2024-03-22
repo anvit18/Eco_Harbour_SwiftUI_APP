@@ -1,62 +1,96 @@
 import SwiftUI
 import Charts
 
-struct VehicleTypeData {
-    /// Carbon emissions by vehicle type for the last 30 days, sorted by amount.
-    static let last14Days = [
-        (name: "Car", emissions: 916),
-        (name: "Bus", emissions: 820),
-        (name: "Auto", emissions: 610),
-        (name: "Train", emissions: 350),
-    ]
-}
 
-struct VehicleTypeOverviewChart: View {
-    var body: some View {
-        Text("Total Carbon Emissions")
-            .font(.callout)
-            .foregroundStyle(.secondary)
-        Chart(VehicleTypeData.last14Days, id: \.name) { element in
-            SectorMark(
-                angle: .value("Emissions", element.emissions),
-                innerRadius: .ratio(0.618),
-                angularInset: 1
-            )
-            .cornerRadius(3.0)
-            .foregroundStyle(by: .value("Name", element.name))
-            .opacity(element.name == VehicleTypeData.last14Days.first!.name ? 1 : 0.3)
-        }
-        .chartLegend(.visible)
-        .chartXAxis(.visible)
-        .chartYAxis(.visible)
+
+
+struct VehicleTypeDetails: View {
+    @EnvironmentObject var vehicleTypeDataProviderEnv: VehicleTypeDataProvider
+    @EnvironmentObject var distanceViewModel: DistanceViewModel
+
+    var privateCarEmissions: Int {
+        return distanceViewModel.privateVDistance * 20
     }
-}
+    var cabEmissions: Int {
+        return distanceViewModel.cabsVDistance * 18
+    }
+    var carPoolEmissions: Int {
+        return distanceViewModel.carpoolVDistance * 16
+    }
+    var localTrainEmissions: Int {
+        return distanceViewModel.localTrainVDistance * 4
+    }
+    var metroEmissions: Int {
+        return distanceViewModel.metroVDistance * 8
+    }
+    var pillionEmissions: Int {
+        return distanceViewModel.pillionVDistance * 13
+    }
+    var sharingEmissions: Int {
+        return distanceViewModel.sharingVDistance * 7
+    }
+    var magicEmissions: Int {
+        return distanceViewModel.magicVDistance * 9
+    }
+    var ordinaryEmissions: Int {
+        return distanceViewModel.ordinaryVDistance * 3
+    }
+    var deluxeEmissions: Int {
+        return distanceViewModel.deluxeVDistance * 5
+    }
+    var acEmissions: Int {
+        return distanceViewModel.acVDistance * 10
+    }
 
-struct VehicleTypeOverview: View {
+    var data: [(name: String, emissions: Int)] {
+        [
+            (name: "Car", emissions: privateCarEmissions + cabEmissions + carPoolEmissions),
+            (name: "Auto", emissions: pillionEmissions + sharingEmissions + magicEmissions),
+            (name: "Bus", emissions: ordinaryEmissions + acEmissions + deluxeEmissions),
+            (name: "Train", emissions: localTrainEmissions + metroEmissions)
+        ]
+    }
+
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Most Emissions From")
+            Text("Vehicle-wise Emissions till today")
+                .font(.callout)
                 .foregroundStyle(.secondary)
-            Text(VehicleTypeData.last14Days.first!.name)
-                .font(.title2.bold())
-            VehicleTypeOverviewChart()
-                .frame(height: 130)
+                .padding(.leading, 20)
+
+            List {
+                VStack(alignment: .leading) {
+                    VehicleTypeDetailsChart(
+                        data: data,
+                        mostEmitted: mostEmitted
+                    )
+                }
+                .listRowSeparator(.hidden)
+            }
+            .listStyle(.plain)
         }
+    }
+
+    var mostEmitted: (name: String, emissions: Int) {
+        guard let maxEmission = data.max(by: { $0.emissions < $1.emissions }) else {
+            return (name: "Unknown", emissions: 0)
+        }
+        return maxEmission
     }
 }
 
 struct VehicleTypeDetailsChart: View {
     let data: [(name: String, emissions: Int)]
     let mostEmitted: (name: String, emissions: Int)
-    
+
     let cumulativeEmissionsRangesForTypes: [(name: String, range: Range<Double>)]
-    
+
     @State var selectedEmissions: Double? = nil
-    
+
     init(data: [(name: String, emissions: Int)], mostEmitted: (name: String, emissions: Int)) {
         self.data = data
         self.mostEmitted = mostEmitted
-        
+
         var cumulative = 0.0
         self.cumulativeEmissionsRangesForTypes = data.map {
             let newCumulative = cumulative + Double($0.emissions)
@@ -65,14 +99,14 @@ struct VehicleTypeDetailsChart: View {
             return result
         }
     }
-    
+
     var selectedType: (name: String, emissions: Int)? {
         if let selectedEmissions,
            let selectedIndex = cumulativeEmissionsRangesForTypes
             .firstIndex(where: { $0.range.contains(selectedEmissions) }) {
             return data[selectedIndex]
         }
-        
+
         return nil
     }
 
@@ -85,7 +119,7 @@ struct VehicleTypeDetailsChart: View {
             )
             .cornerRadius(5.0)
             .foregroundStyle(by: .value("Name", element.name))
-            .opacity(element.name == (selectedType?.name ?? mostEmitted.name) ? 1 : 0.3)
+            .opacity(element.name == (selectedType?.name ?? mostEmitted.name) ? 1 : 0.3) // Adjusted opacity here
         }
         .chartLegend(alignment: .center, spacing: 18)
         .chartAngleSelection(value: $selectedEmissions)
@@ -111,34 +145,6 @@ struct VehicleTypeDetailsChart: View {
     }
 }
 
-struct VehicleTypeDetails: View {
-    
-    @EnvironmentObject var vehicleTypeDataProviderEnv: VehicleTypeDataProvider
-
-    var data: [(name: String, emissions: Int)] {
-        vehicleTypeDataProviderEnv.last14DaysData
-    }
-
-    var body: some View {
-        VStack(alignment: .leading){
-            Text("Vehicle-wise Emissions till today")
-                .font(.callout)
-                .foregroundStyle(.secondary)
-                .padding(.leading,20)
-            //.foregroundStyle(.secondary)
-            List {
-                VStack(alignment: .leading) {
-                    VehicleTypeDetailsChart(
-                        data: data,
-                        mostEmitted: data.first ?? (name: "Unknown", emissions: 0)
-                    )
-                }
-                .listRowSeparator(.hidden)
-            }
-            .listStyle(.plain)
-        }
-    }
-}
 
 #if DEBUG
 struct VehicleTypeDetails_Previews: PreviewProvider {
@@ -146,6 +152,7 @@ struct VehicleTypeDetails_Previews: PreviewProvider {
         let vehicleTypeDataProviderEnv = VehicleTypeDataProvider()
         return VehicleTypeDetails()
             .environmentObject(vehicleTypeDataProviderEnv)
+            .environmentObject(DistanceViewModel())
     }
 }
 #endif

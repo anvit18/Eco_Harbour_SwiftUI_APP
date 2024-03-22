@@ -6,29 +6,29 @@
 //
 
 import SwiftUI
-struct EmissionDataViewModel: EmissionDataProvider {
-    let last14DaysData: [(Date, Int)] = [
-        (Date().addingTimeInterval(-13 * 24 * 60 * 60), 1200),
-        (Date().addingTimeInterval(-12 * 24 * 60 * 60), 970),
-        (Date().addingTimeInterval(-11 * 24 * 60 * 60), 850),
-        (Date().addingTimeInterval(-10 * 24 * 60 * 60), 1100),
-        (Date().addingTimeInterval(-9 * 24 * 60 * 60), 1020),
-        (Date().addingTimeInterval(-8 * 24 * 60 * 60), 940),
-        (Date().addingTimeInterval(-7 * 24 * 60 * 60), 1120),
-        (Date().addingTimeInterval(-6 * 24 * 60 * 60), 1250),
-        (Date().addingTimeInterval(-5 * 24 * 60 * 60), 970),
-        (Date().addingTimeInterval(-4 * 24 * 60 * 60), 850),
-        (Date().addingTimeInterval(-3 * 24 * 60 * 60), 400),
-        (Date().addingTimeInterval(-2 * 24 * 60 * 60), 1020),
-        (Date().addingTimeInterval(-1 * 24 * 60 * 60), 940),
-        (Date(), 112)
-    ]
-    
-    var last14DaysTotal: Int {
-        // Calculate total emissions for the last 14 days
-        return last14DaysData.map { $0.1 }.reduce(0, +)
-    }
-}
+//struct EmissionDataViewModel: EmissionDataProvider {
+//    let last14DaysData: [(Date, Int)] = [
+//        (Date().addingTimeInterval(-13 * 24 * 60 * 60), 1200),
+//        (Date().addingTimeInterval(-12 * 24 * 60 * 60), 970),
+//        (Date().addingTimeInterval(-11 * 24 * 60 * 60), 850),
+//        (Date().addingTimeInterval(-10 * 24 * 60 * 60), 1100),
+//        (Date().addingTimeInterval(-9 * 24 * 60 * 60), 1020),
+//        (Date().addingTimeInterval(-8 * 24 * 60 * 60), 940),
+//        (Date().addingTimeInterval(-7 * 24 * 60 * 60), 1120),
+//        (Date().addingTimeInterval(-6 * 24 * 60 * 60), 1250),
+//        (Date().addingTimeInterval(-5 * 24 * 60 * 60), 970),
+//        (Date().addingTimeInterval(-4 * 24 * 60 * 60), 850),
+//        (Date().addingTimeInterval(-3 * 24 * 60 * 60), 400),
+//        (Date().addingTimeInterval(-2 * 24 * 60 * 60), 1020),
+//        (Date().addingTimeInterval(-1 * 24 * 60 * 60), 940),
+//        (Date(), 112)
+//    ]
+//    
+//    var last14DaysTotal: Int {
+//        // Calculate total emissions for the last 14 days
+//        return last14DaysData.map { $0.1 }.reduce(0, +)
+//    }
+//}
 
 class VehicleTypeDataProvider: ObservableObject {
     // Define your properties and methods here
