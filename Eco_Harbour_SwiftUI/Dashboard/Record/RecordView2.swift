@@ -9,40 +9,39 @@ struct CategoryView2: View {
     let systemImage: String
     // car = ""
     @Binding var selectedCategory: String?
-
+    
     var body: some View {
         //ZStack {
-            
-            
-            Button(action: {
-                selectedCategory = category
-            }) {
-                VStack {
-                    Image(systemName: systemImage)
-                        .font(.system(size: 40))
-                        .foregroundColor(.black)
-                        .frame(width: 60, height: 40)
-                        .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
-                    
-                    Text(category)
-                        .font(.headline)
-                        .foregroundColor(.black)
-                }
-                .padding()
-                .background(selectedCategory == category ? Color.green : Color.green.opacity(0.2))
-                //.cornerRadius(10)
+        
+        
+        Button(action: {
+            selectedCategory = category
+        }) {
+            VStack {
+                Image(systemName: systemImage)
+                    .font(.system(size: 40))
+                    .foregroundColor(.black)
+                    .frame(width: 60, height: 40)
+                    .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
+                
+                Text(category)
+                    .font(.headline)
+                    .foregroundColor(.black)
             }
-            .frame(width: 100, height: 80)
-            .cornerRadius(13)
+            .padding()
+            .background(selectedCategory == category ? Color.green : Color.green.opacity(0.2))
+            //.cornerRadius(10)
         }
- //   }
+        .frame(width: 100, height: 80)
+        .cornerRadius(13)
+    }
+    //   }
 }
 
 struct RecordView2: View {
     //IMPORTANT BACKEND STUFF
     @Binding var showSignInView:Bool
     @StateObject private var viewModel=RecordView2Model()
-
     
     
     
@@ -52,49 +51,50 @@ struct RecordView2: View {
     
     
     
-//    Temp
+    
+    //    Temp
     @EnvironmentObject private var userData: UserData
     @EnvironmentObject private var distanceViewModel : DistanceViewModel
     
     
     @State private var privateDistance: Int = 0
-        @State private var cabsDistance: Int = 0
-        @State private var carpoolDistance: Int = 0
-        @State private var localTrainDistance: Int = 0
-        @State private var metroDistance: Int = 0
-        @State private var pillionDistance: Int = 0
-        @State private var sharingDistance: Int = 0
-        @State private var magicDistance: Int = 0
-        @State private var ordinaryDistance: Int = 0
-        @State private var acDistance: Int = 0
-        @State private var deluxeDistance: Int = 0
+    @State private var cabsDistance: Int = 0
+    @State private var carpoolDistance: Int = 0
+    @State private var localTrainDistance: Int = 0
+    @State private var metroDistance: Int = 0
+    @State private var pillionDistance: Int = 0
+    @State private var sharingDistance: Int = 0
+    @State private var magicDistance: Int = 0
+    @State private var ordinaryDistance: Int = 0
+    @State private var acDistance: Int = 0
+    @State private var deluxeDistance: Int = 0
     
     // Emission Factor Variables, set dummy for now
-      @State private var privateFactor: Double = 20
-      @State private var cabsFactor: Double = 18
-      @State private var carpoolFactor: Double = 16
-      @State private var localTrainFactor: Double = 4
-      @State private var metroFactor: Double = 8
-      @State private var pillionFactor: Double = 13
-      @State private var sharingFactor: Double = 7
-      @State private var magicFactor: Double = 9
-      @State private var ordinaryFactor: Double = 4
-      @State private var acFactor: Double = 10
-      @State private var deluxeFactor: Double = 5
+    @State private var privateFactor: Double = 20
+    @State private var cabsFactor: Double = 18
+    @State private var carpoolFactor: Double = 16
+    @State private var localTrainFactor: Double = 4
+    @State private var metroFactor: Double = 8
+    @State private var pillionFactor: Double = 13
+    @State private var sharingFactor: Double = 7
+    @State private var magicFactor: Double = 9
+    @State private var ordinaryFactor: Double = 4
+    @State private var acFactor: Double = 10
+    @State private var deluxeFactor: Double = 5
     
     var userEmissions: Double {
-            return (Double(privateDistance) * privateFactor) +
-                   (Double(cabsDistance) * cabsFactor) +
-                   (Double(carpoolDistance) * carpoolFactor) +
-                   (Double(localTrainDistance) * localTrainFactor) +
-                   (Double(metroDistance) * metroFactor) +
-                   (Double(pillionDistance) * pillionFactor) +
-                   (Double(sharingDistance) * sharingFactor) +
-                   (Double(magicDistance) * magicFactor) +
-                   (Double(ordinaryDistance) * ordinaryFactor) +
-                   (Double(acDistance) * acFactor) +
-                   (Double(deluxeDistance) * deluxeFactor)
-        }
+        return (Double(privateDistance) * privateFactor) +
+        (Double(cabsDistance) * cabsFactor) +
+        (Double(carpoolDistance) * carpoolFactor) +
+        (Double(localTrainDistance) * localTrainFactor) +
+        (Double(metroDistance) * metroFactor) +
+        (Double(pillionDistance) * pillionFactor) +
+        (Double(sharingDistance) * sharingFactor) +
+        (Double(magicDistance) * magicFactor) +
+        (Double(ordinaryDistance) * ordinaryFactor) +
+        (Double(acDistance) * acFactor) +
+        (Double(deluxeDistance) * deluxeFactor)
+    }
     
     @State private var selectedCategory: String?
     @State private var showStepper = false
@@ -176,38 +176,6 @@ struct RecordView2: View {
                         .foregroundColor(.gray)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
-                    TextField("private distance....", text: $viewModel.privateDistance)
-                        .padding()
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(.gray)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                    TextField("selected date....", text: $viewModel.selectedDate)
-                        .padding()
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(.gray)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                    
-                    Button{
-                        Task{
-                            
-                            do{
-                                try await viewModel.sendRecordViewData()
-                                return
-                            }catch{
-                                print("error \(error)")
-                            }
-                        }
-                        
-                        
-                    } label:{
-                        Text("Trial")
-                            .foregroundColor(.white)
-                            .frame(width:300, height:50)
-                            .background(Color.mainGreen)
-                            .cornerRadius(10)
-                    }
                     // ******************
                     
                     
@@ -282,42 +250,43 @@ struct RecordView2: View {
                             
                             renderInputSection()
                                 .padding()
+                            
                         }
                     }
-               
-                
-                else {
-                    VStack {
-                        HStack{
-                            Text("Login for Daily Records, Streaks, and Stats")
-                                .font(.headline)
-                                .foregroundColor(.black)
-                                .multilineTextAlignment(.center)
-                                .padding()
-                            Spacer()
-                            Image(systemName: "person.circle.fill")
-                                .font(.system(size: 60))
-                                .foregroundColor(.gray)
-                                .padding(.bottom, 20)
-                        }
-                        
-                        HStack{
-                            //change here for login_signup functionality
-                            NavigationLink{
-                                RootView()
-                            } label:{
-                                Text("Login")
+                    
+                    
+                    else {
+                        VStack {
+                            HStack{
+                                Text("Login for Daily Records, Streaks, and Stats")
                                     .font(.headline)
-                                    .foregroundColor(.white)
-                                    .frame(width: 351, height: 41)
-                                    .background(Color.blue)
-                                    .cornerRadius(10)
+                                    .foregroundColor(.black)
+                                    .multilineTextAlignment(.center)
+                                    .padding()
+                                Spacer()
+                                Image(systemName: "person.circle.fill")
+                                    .font(.system(size: 60))
+                                    .foregroundColor(.gray)
                                     .padding(.bottom, 20)
                             }
+                            
+                            HStack{
+                                //change here for login_signup functionality
+                                NavigationLink{
+                                    RootView()
+                                } label:{
+                                    Text("Login")
+                                        .font(.headline)
+                                        .foregroundColor(.white)
+                                        .frame(width: 351, height: 41)
+                                        .background(Color.blue)
+                                        .cornerRadius(10)
+                                        .padding(.bottom, 20)
+                                }
+                            }
                         }
+                        .background(Color.red.opacity(0.1))
                     }
-                    .background(Color.red.opacity(0.1))
-                }
                 }
                 .navigationBarTitle("Record Emissions")
             }
@@ -325,10 +294,10 @@ struct RecordView2: View {
     }
     
     private func formattedCurrentDate(date:Date) -> String {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "d-MMM-YY_HH:mm:ss"
-            return formatter.string(from: date)
-        }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d-MMM-YY"
+        return formatter.string(from: date)
+    }
     
     private func renderInputSection() -> some View {
         VStack {
@@ -340,54 +309,78 @@ struct RecordView2: View {
             case "Auto": renderCategoryFields(fields: $category5Fields)
             default: EmptyView()
             }
-
+            
             //Spacer()
             HStack {
                 Button("Cancel") {
                     //showingNextScreen.toggle()
                 }
                 .foregroundColor(.mainGreen)
-                .frame(width: 130, height: 38)
+                .frame(width: 140, height: 50)
                 .background(Color.mainGreen.opacity(0.09))
                 .cornerRadius(10)
                 .padding(.top, 10)
-                .padding(.trailing, 40)
-
-//                NavigationLink(destination: frequentlyUsedVehicles(), isActive: $showingNextScreen) {
-//                    EmptyView()
-//                }
+                .padding(.trailing, 20)
                 
-                Button("Save") {
-                                   // Add your logic for saving data or performing an action
-                                   printUserInput()
-                                   saveUserInput()
-
-                                   // Show the alert
-                                   showAlert = true
-                               }
-                               .foregroundColor(.white)
-                               .frame(width: 130, height: 38)
-                               .background(Color.mainGreen)
-                               .cornerRadius(10)
-                               .padding(.top, 10)
-                               // Add the alert
-                               .alert(isPresented: $showAlert) {
-                                   Alert(
-                                       title: Text("Data Logged Successfully!"),
-                                       dismissButton: .default(Text("OK"))
-                                   )
-                               }
-
-//                NavigationLink(destination: frequentlyUsedVehicles(), isActive: $showingNextScreen) {
-//                    EmptyView()
-//                }
+                //                NavigationLink(destination: frequentlyUsedVehicles(), isActive: $showingNextScreen) {
+                //                    EmptyView()
+                //                }
                 
+                Button("Add") {
+                    
+                    
+                    
+                    
+                    // Add your logic for saving data or performing an action
+                    printUserInput()
+                    saveUserInput()
+                    
+                    // Show the alert
+                    showAlert = true
+                }
+                .foregroundColor(.white)
+                .frame(width: 140, height: 50)
+                .background(Color.mainGreen)
+                .cornerRadius(10)
+                .padding(.top, 10)
+                // Add the alert
+                .alert(isPresented: $showAlert) {
+                    Alert(
+                        title: Text("Data Logged Successfully!"),
+                        dismissButton: .default(Text("OK"))
+                    )
+                }
                 
             }
+            .padding(.bottom,5)
+            
+            
+            //backend stuff
+            Button{
+                Task{
+                    
+                    do{
+                        try await viewModel.sendRecordViewData()
+                        return
+                    }catch{
+                        print("error \(error)")
+                    }
+                }
+                
+                
+            } label:{
+                Text("Record Data")
+                    .foregroundColor(.white)
+                    .frame(width:300, height:50)
+                    .background(Color.mainGreen)
+                    .cornerRadius(10)
+            }
             .padding(.bottom,70)
+            
+            
         }
     }
-
+    
     private func renderCategoryFields(fields: Binding<CategoryFields>) -> some View {
         VStack(spacing: 0) {
             
@@ -440,30 +433,30 @@ struct RecordView2: View {
                         .padding(.leading, 30)
                         .padding(.bottom, 20)
                         .font(.subheadline)
-                        
+                    
                     Spacer()
                 }.padding(.bottom, -10)
-                    
-                    
-                    
                 
-               
-                    VStack {
-                        Stepper(value: $carDistance, in: 0...100, step: 5) {
-                                                                    Text("\(carDistance) KMS")
-                                                                }
-                                                                .padding(.horizontal)
-                                                                
-                                                            }.multilineTextAlignment(.leading)
-                        .padding(.leading,20)
-                       
-                        .keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                        .padding(.bottom,20)
-                                                        
+                
+                
+                
+                
+                VStack {
+                    Stepper(value: $carDistance, in: 0...100, step: 5) {
+                        Text("\(carDistance) KMS")
+                    }
+                    .padding(.horizontal)
+                    
+                }.multilineTextAlignment(.leading)
+                    .padding(.leading,20)
+                
+                    .keyboardType(.numberPad)
+                    .frame(width: 300, height: 50)
+                    .foregroundColor(Color.black)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                    .padding(.bottom,20)
+                
                 
                 
                 
@@ -536,30 +529,30 @@ struct RecordView2: View {
                         .padding(.leading, 30)
                         .padding(.bottom, 20)
                         .font(.subheadline)
-                        
+                    
                     Spacer()
                 }.padding(.bottom, -10)
-                    
-                    
-                    
                 
-              
-                    VStack {
-                        Stepper(value: $busDistance, in: 0...100, step: 7) {
-                                                                    Text("\(busDistance) KMS")
-                                                                }
-                                                                .padding(.horizontal)
-                                                                
-                                                            }.multilineTextAlignment(.leading)
-                        .padding(.leading,20)
-                       
-                        .keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                        .padding(.bottom,20)
-                                                        
+                
+                
+                
+                
+                VStack {
+                    Stepper(value: $busDistance, in: 0...100, step: 7) {
+                        Text("\(busDistance) KMS")
+                    }
+                    .padding(.horizontal)
+                    
+                }.multilineTextAlignment(.leading)
+                    .padding(.leading,20)
+                
+                    .keyboardType(.numberPad)
+                    .frame(width: 300, height: 50)
+                    .foregroundColor(Color.black)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                    .padding(.bottom,20)
+                
                 
                 ZStack {
                     TextField("" , text: $dummyVar){ //fields.vehicleSize){
@@ -626,30 +619,30 @@ struct RecordView2: View {
                         .padding(.leading, 30)
                         .padding(.bottom, 20)
                         .font(.subheadline)
-                        
+                    
                     Spacer()
                 }.padding(.bottom, -10)
-                    
-                    
-                    
                 
-               
-                    VStack {
-                        Stepper(value: $trainDistance, in: 0...200, step:5) {
-                                                                    Text("\(trainDistance) KMS")
-                                                                }
-                                                                .padding(.horizontal)
-                                                                
-                                                            }.multilineTextAlignment(.leading)
-                        .padding(.leading,20)
-                       
-                        .keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                        .padding(.bottom,20)
-                                                
+                
+                
+                
+                
+                VStack {
+                    Stepper(value: $trainDistance, in: 0...200, step:5) {
+                        Text("\(trainDistance) KMS")
+                    }
+                    .padding(.horizontal)
+                    
+                }.multilineTextAlignment(.leading)
+                    .padding(.leading,20)
+                
+                    .keyboardType(.numberPad)
+                    .frame(width: 300, height: 50)
+                    .foregroundColor(Color.black)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                    .padding(.bottom,20)
+                
                 
                 ZStack {
                     TextField("" , text: $dummyVar){ //fields.vehicleSize){
@@ -723,30 +716,30 @@ struct RecordView2: View {
                         .padding(.leading, 30)
                         .padding(.bottom, 20)
                         .font(.subheadline)
-                        
+                    
                     Spacer()
                 }.padding(.bottom, -10)
-                    
-                    
-                    
                 
-               
-                    VStack {
-                        Stepper(value: $autoDistance, in: 0...100, step: 5) {
-                                                                    Text("\(autoDistance) KMS")
-                                                                }
-                                                                .padding(.horizontal)
-                                                                
-                                                            }.multilineTextAlignment(.leading)
-                        .padding(.leading,20)
-                       
-                        .keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                        .padding(.bottom,20)
-                                                
+                
+                
+                
+                
+                VStack {
+                    Stepper(value: $autoDistance, in: 0...100, step: 5) {
+                        Text("\(autoDistance) KMS")
+                    }
+                    .padding(.horizontal)
+                    
+                }.multilineTextAlignment(.leading)
+                    .padding(.leading,20)
+                
+                    .keyboardType(.numberPad)
+                    .frame(width: 300, height: 50)
+                    .foregroundColor(Color.black)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                    .padding(.bottom,20)
+                
                 
                 
                 
@@ -774,7 +767,7 @@ struct RecordView2: View {
                 }
                 .padding(.bottom, 20)
             }
-           
+            
             if selectedCategory == "Car Pool" {
                 Menu {
                     Button("Cancel", role: .destructive) {
@@ -810,30 +803,30 @@ struct RecordView2: View {
                         .padding(.leading, 30)
                         .padding(.bottom, 20)
                         .font(.subheadline)
-                        
+                    
                     Spacer()
                 }.padding(.bottom, -10)
-                    
-                    
-                    
                 
-               
-                    VStack {
-                        Stepper(value: $carPoolDistance, in: 0...100, step: 5) {
-                                                                    Text("\(carPoolDistance) KMS")
-                                                                }
-                                                                .padding(.horizontal)
-                                                                
-                                                            }.multilineTextAlignment(.leading)
-                        .padding(.leading,20)
-                       
-                        .keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                        .padding(.bottom,20)
-                                                
+                
+                
+                
+                
+                VStack {
+                    Stepper(value: $carPoolDistance, in: 0...100, step: 5) {
+                        Text("\(carPoolDistance) KMS")
+                    }
+                    .padding(.horizontal)
+                    
+                }.multilineTextAlignment(.leading)
+                    .padding(.leading,20)
+                
+                    .keyboardType(.numberPad)
+                    .frame(width: 300, height: 50)
+                    .foregroundColor(Color.black)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                    .padding(.bottom,20)
+                
                 
                 
                 
@@ -977,16 +970,16 @@ struct RecordView2: View {
                 }.padding(.bottom, 20)
             }
             
-        
-            }
             
         }
+        
+    }
     private func printUserInput() {
         guard let selectedCategory = selectedCategory else {
             print("Selected Category is nil.")
             return
         }
-
+        
         print("Selected Category for Record: \(selectedCategory)")
         print("Selected Date:\(selectedDate)")
         switch selectedCategory {
@@ -1089,6 +1082,7 @@ struct RecordView2: View {
         // Add similar logic for other categories and vehicle types
         
         // Print updated distances (optional)
+        print("\n Record view1 \n")
         print("car Distance: \(carDistance)")
         print("car pool Distance: \(carPoolDistance)")
         print("bus Distance: \(busDistance)")
@@ -1115,8 +1109,8 @@ struct RecordView2: View {
     
     
     
-
-    }
+    
+}
 
 
 
