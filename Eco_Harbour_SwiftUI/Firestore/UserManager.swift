@@ -83,6 +83,6 @@ final class UserManager{
         }
         
         
-        try await Firestore.firestore().collection("users").document(auth.uid).setData(recordViewDataUpload,merge: true)
+        try await Firestore.firestore().collection("users").document(auth.uid).collection("date").document(selectedDate).setData(recordViewDataUpload,merge: true)
     }
 }

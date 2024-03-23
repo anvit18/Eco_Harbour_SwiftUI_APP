@@ -1,6 +1,10 @@
 import SwiftUI
 
+
+
 struct CategoryView2: View {
+    
+    
     let category: String
     let systemImage: String
     // car = ""
@@ -160,8 +164,25 @@ struct RecordView2: View {
                     }
                     .padding(.bottom, 20)
                     
+                    
+                    
+                    
+                    
+                    
                     // ******************Temporary backend
                     TextField("useremission....", text: $viewModel.userEmissions)
+                        .padding()
+                        .frame(width: 300, height: 50)
+                        .foregroundColor(.gray)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                    TextField("private distance....", text: $viewModel.privateDistance)
+                        .padding()
+                        .frame(width: 300, height: 50)
+                        .foregroundColor(.gray)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                    TextField("selected date....", text: $viewModel.selectedDate)
                         .padding()
                         .frame(width: 300, height: 50)
                         .foregroundColor(.gray)
@@ -171,7 +192,6 @@ struct RecordView2: View {
                     Button{
                         Task{
                             
-                            // For sign up
                             do{
                                 try await viewModel.sendRecordViewData()
                                 return
@@ -189,6 +209,12 @@ struct RecordView2: View {
                             .cornerRadius(10)
                     }
                     // ******************
+                    
+                    
+                    
+                    
+                    
+                    
                     
                     if(showSignInView==false){
                         ScrollView{
@@ -237,16 +263,6 @@ struct RecordView2: View {
                                 .padding(.leading,-50)
                                 .padding(.trailing,40)
                                 Spacer()
-                                Button("History", systemImage: "clock.fill") {
-                                    showingNextScreen.toggle()
-                                }
-                                .font(.title2)
-                                .foregroundColor(.mainGreen)
-                                .frame(width: 180, height: 40)
-                                .cornerRadius(10)
-                                NavigationLink(destination: HistoryView(), isActive: $showingNextScreen) {
-                                    EmptyView()
-                                }
                             }
                             
                             Text("Select the modes of transport you used today")
@@ -308,10 +324,10 @@ struct RecordView2: View {
         }
     }
     
-    private func formattedCurrentDate() -> String {
+    private func formattedCurrentDate(date:Date) -> String {
             let formatter = DateFormatter()
-            formatter.dateFormat = "EEEE,\nMMM d, yyyy"
-            return formatter.string(from: Date())
+            formatter.dateFormat = "d-MMM-YY_HH:mm:ss"
+            return formatter.string(from: date)
         }
     
     private func renderInputSection() -> some View {
@@ -1081,7 +1097,7 @@ struct RecordView2: View {
         // Print other distances as needed
         
         
-        
+        print("date: \(formattedCurrentDate(date: selectedDate))")
         userData.userEmission = userEmissions
         userData.datePicked = selectedDate
         distanceViewModel.privateVDistance = privateDistance
