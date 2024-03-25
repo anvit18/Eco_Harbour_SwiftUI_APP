@@ -82,19 +82,8 @@ struct RecordView2: View {
     @State private var acFactor: Double = 10
     @State private var deluxeFactor: Double = 5
     
-    var userEmissions: Double {
-        return (Double(privateDistance) * privateFactor) +
-        (Double(cabsDistance) * cabsFactor) +
-        (Double(carpoolDistance) * carpoolFactor) +
-        (Double(localTrainDistance) * localTrainFactor) +
-        (Double(metroDistance) * metroFactor) +
-        (Double(pillionDistance) * pillionFactor) +
-        (Double(sharingDistance) * sharingFactor) +
-        (Double(magicDistance) * magicFactor) +
-        (Double(ordinaryDistance) * ordinaryFactor) +
-        (Double(acDistance) * acFactor) +
-        (Double(deluxeDistance) * deluxeFactor)
-    }
+    @State private var userEmissions:Double=0
+    
     
     @State private var selectedCategory: String?
     @State private var showStepper = false
@@ -163,25 +152,6 @@ struct RecordView2: View {
                         Spacer()
                     }
                     .padding(.bottom, 20)
-                    
-                    
-                    
-                    
-                    
-                    
-                    // ******************Temporary backend
-                    TextField("useremission....", text: $viewModel.userEmissions)
-                        .padding()
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(.gray)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                    // ******************
-                    
-                    
-                    
-                    
-                    
                     
                     
                     if(showSignInView==false){
@@ -322,17 +292,9 @@ struct RecordView2: View {
                 .padding(.top, 10)
                 .padding(.trailing, 20)
                 
-                //                NavigationLink(destination: frequentlyUsedVehicles(), isActive: $showingNextScreen) {
-                //                    EmptyView()
-                //                }
                 
                 Button("Add") {
                     
-                    
-                    
-                    
-                    // Add your logic for saving data or performing an action
-                    printUserInput()
                     saveUserInput()
                     
                     // Show the alert
@@ -974,45 +936,6 @@ struct RecordView2: View {
         }
         
     }
-    private func printUserInput() {
-        guard let selectedCategory = selectedCategory else {
-            print("Selected Category is nil.")
-            return
-        }
-        
-        print("Selected Category for Record: \(selectedCategory)")
-        print("Selected Date:\(selectedDate)")
-        switch selectedCategory {
-        case "Car":
-            print("Car: \(carType)")
-            print("Distance Travelled: \(carDistance)")
-            print("AC Switch: \(category1Fields.isACSwitchOn)")
-        case "Bus":
-            // Handle Bus category input
-            print("Bus: \(busType)")
-            print("Distance Travelled: \(busDistance)")
-            print("AC Switch: \(category1Fields.isACSwitchOn)")
-            break
-        case "Train":
-            // Handle Train category input
-            print("Train: \(trainType)")
-            print("Distance Travelled: \(trainDistance)")
-            print("AC Switch: \(category1Fields.isACSwitchOn)")
-            break
-        case "Car Pool":
-            print("Car Type: \(carPool)")
-            print("Distance Travelled: \(carPoolDistance)")
-            print("AC Switch: \(category4Fields.isACSwitchOn)")
-            print("Number of Passengers: \(numberOfPassengers)")
-            print("Fuel Type: \(fuel)")
-        case "Auto":
-            print("Auto Type: \(autoType)")
-            print("Distance Travelled: \(autoDistance)")
-            print("AC Switch: \(category4Fields.isACSwitchOn)")
-        default:
-            break
-        }
-    }
     
     
     
@@ -1091,7 +1014,16 @@ struct RecordView2: View {
         // Print other distances as needed
         
         
+        
+        
         print("date: \(formattedCurrentDate(date: selectedDate))")
+        
+        userEmissions=(Double(carDistance) * privateFactor) +
+        (Double(trainDistance) * localTrainFactor) +
+        (Double(autoDistance) * pillionFactor) +
+        (Double(busDistance) * ordinaryFactor)
+        
+        
         userData.userEmission = userEmissions
         userData.datePicked = selectedDate
         distanceViewModel.privateVDistance = privateDistance
@@ -1105,9 +1037,20 @@ struct RecordView2: View {
         distanceViewModel.ordinaryVDistance = ordinaryDistance
         distanceViewModel.acVDistance = acDistance
         distanceViewModel.deluxeVDistance = deluxeDistance
+        
+        
+        
+        //backend stuff
+        
+        viewModel.userEmissions=userEmissions
+        viewModel.selectedDate=formattedCurrentDate(date: selectedDate)
+        viewModel.carDistance = carDistance
+        viewModel.busDistance = busDistance
+        viewModel.trainDistance = trainDistance
+        viewModel.carPoolDistance = carPoolDistance
+        viewModel.autoDistance = autoDistance
+
     }
-    
-    
     
     
 }
