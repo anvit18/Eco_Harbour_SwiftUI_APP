@@ -12,7 +12,7 @@ struct OnboardingView: View {
 
     var body: some View {
         ZStack {
-            Color(.white)
+            Color.white.ignoresSafeArea()
             VStack {
                 // Navigation Bar
                  // Hide the actual link, as it's triggered programmatically
@@ -45,23 +45,23 @@ struct OnboardingView: View {
                     .padding(.top, -60)
                     .padding(.bottom, 20)
                 
-                Button("Get Started") {
+                Button("Skip") {
                     //authenticate user
                     showingNextScreen.toggle()
                     
                 }
-                .foregroundColor(.white)
+                .foregroundColor(.blue)
                 .frame(width:201, height:44)
-                .background(Color.mainGreen)
+                .background(Color.white)
                 .cornerRadius(10)
                 .padding(.top, -60)
                 
-                NavigationLink(destination: Login_Signup_Page(), isActive: $showingNextScreen){
+                NavigationLink(destination: privateVehicleDetails(), isActive: $showingNextScreen){
                     EmptyView()
                 }
                 
                 
-                //.navigationBarHidden(true)
+                .navigationBarHidden(true)
             }
         }
     }

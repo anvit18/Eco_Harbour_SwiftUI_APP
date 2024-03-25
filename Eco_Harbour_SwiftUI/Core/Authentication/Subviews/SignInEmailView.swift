@@ -1,10 +1,3 @@
-//
-//  SignInEmailView.swift
-//  Eco_Harbour_SwiftUI
-//
-//  Created by Sarthak_AppDev on 11/03/24.
-//
-
 import SwiftUI
 
 
@@ -14,42 +7,93 @@ struct SignInEmailView: View {
     @Binding var showSignInView:Bool
     
     var body: some View {
-        VStack{
-            TextField("Email....", text: $viewModel.email)
-                .padding()
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(10)
-            SecureField("Password....", text: $viewModel.password)
-                .padding()
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(10)
+        
+        ZStack{
+            Color.mainGreen.ignoresSafeArea()
             
-            Button{
-                Task{
+            Circle()
+                .scale(1.8)
+                .foregroundColor(.white.opacity(0.15))
+            Circle()
+                .scale(1.5)
+                .foregroundColor(.white)
+            
+            VStack{
+                
+                HStack{
+                    Text("Eco").font(.largeTitle)
+                        .bold()
+                        .foregroundColor(.green)
+                    Text("Track")
+                        .font(.largeTitle)
+                        .foregroundColor(.black)
+                        .bold()
                     
-                    //for sign in
-                    do{
-                        try await viewModel.signIn()
-                        showSignInView=false
-                        return
-                    }catch{
-                        print("error \(error)")
+                }
+                Text("Login")
+                    .font(.largeTitle)
+                    .bold()
+                
+                TextField("Email....", text: $viewModel.email)
+                    .padding()
+                    .frame(width: 300, height: 50)
+                    .foregroundColor(Color.primary)
+                    .background(Color.black.opacity(0.06))
+                    .cornerRadius(10)
+                
+                SecureField("Password....", text: $viewModel.password)
+                    .padding()
+                    .frame(width: 300, height: 50)
+                    .foregroundColor(Color.primary)
+                    .background(Color.black.opacity(0.06))
+                    .cornerRadius(10)
+                
+                Button{
+                    Task{
+                        
+                        //for sign in
+                        do{
+                            try await viewModel.signIn()
+                            showSignInView=false
+                            return
+                        }catch{
+                            print("error \(error)")
+                        }
                     }
+                    
+                    
+                } label:{
+                    Text("Log In")
+                        .foregroundColor(.white)
+                        .frame(width:300, height:50)
+                        .background(Color.mainGreen)
+                        .cornerRadius(10)
+                }
+                
+                HStack{
+                    Spacer()
+                    NavigationLink{
+                        SignUpEmailView(showSignInView: $showSignInView)
+                    } label:{
+                        Text("New User? Sign Up")
+                            .foregroundColor(.blue)
+                            .background(.white)
+                            .padding(.horizontal, 40)
+                            .font(.callout)
+                            .frame(alignment: .trailing)
+                            .padding(.trailing, 8)
+                    }
+                    
+                    
                 }
                 
                 
-            } label:{
-                Text("Log In")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .frame(height: 55)
-                    .background(Color.blue)
-                    .cornerRadius(10)
+                Spacer()
             }
-            Spacer()
+            .padding(.top,170)
+            
         }
-        .padding()
-        .navigationTitle("Log in with email")
+
     }
 }
 

@@ -15,14 +15,14 @@ struct Eco_Harbour_SwiftUIApp: App {
     @StateObject private var distanceViewModel = DistanceViewModel()
     
     init(){
-        FirebaseApp.configure()
-        print("Firebase configured")
-    }
+            FirebaseApp.configure()
+            print("Firebase configured")
+        }
 
     var body: some Scene {
         WindowGroup {
 //            RootView()
-            LaunchScreen()
+            SplashScreen()
                 .environmentObject(userData)
                 .environmentObject(distanceViewModel)
         }

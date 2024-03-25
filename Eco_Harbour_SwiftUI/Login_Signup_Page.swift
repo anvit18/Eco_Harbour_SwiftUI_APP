@@ -38,7 +38,7 @@ struct Login_Signup_Page: View {
                         Text("Eco").font(.largeTitle)
                             .bold()
                             .foregroundColor(.green)
-                        Text("Harbour")
+                        Text("Track")
                             .font(.largeTitle)
                             .foregroundColor(.black)
                             .bold()
@@ -46,24 +46,32 @@ struct Login_Signup_Page: View {
                     }
                     Text("Login")
                         .font(.largeTitle)
+                        .foregroundColor(.black)
                         .bold()
                         .padding()
                     
-                    TextField("Username", text : $username)
+                    TextField("Username", text: $username)
                         .padding()
                         .frame(width: 300, height: 50)
-                        .background(Color.black.opacity(0.05))
-                        .foregroundColor(.gray)
+                        .background(Color.black.opacity(0.06))
+                        .foregroundColor(Color.primary)
                         .cornerRadius(10)
-                        .border(.red, width: CGFloat(wrongUsername))
-                    
-                    SecureField("Password", text : $password)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .strokeBorder(Color.red, lineWidth: CGFloat(wrongUsername))
+                        )
+
+                    SecureField("Password", text: $password)
                         .padding()
                         .frame(width: 300, height: 50)
-                        .foregroundColor(.gray)
-                        .background(Color.black.opacity(0.05))
+                        .foregroundColor(Color.primary)
+                        .background(Color.black.opacity(0.06))
                         .cornerRadius(10)
-                        .border(.red, width: CGFloat(wrongPassword))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .strokeBorder(Color.red, lineWidth: CGFloat(wrongPassword))
+                        )
+
                     
                     Button("Login") {
                         //authenticate user
@@ -74,12 +82,12 @@ struct Login_Signup_Page: View {
                     .background(Color.mainGreen)
                     .cornerRadius(10)
                     
-                    NavigationLink(destination: Text("Hola"), isActive: $showingNextScreen){
+                    NavigationLink(destination: recordView(showSignInView: .constant(false)), isActive: $showingNextScreen){
                         EmptyView()
                     }
                     HStack{
                         Spacer()
-                        Button("New User ?"){
+                        Button("New User? Sign up"){
                             //add code
                             showingSignUpScreen.toggle()
                         }
@@ -98,7 +106,7 @@ struct Login_Signup_Page: View {
                 
             }
         
-      //  .navigationBarHidden(false)
+            .navigationBarHidden(true)
     }
     
     

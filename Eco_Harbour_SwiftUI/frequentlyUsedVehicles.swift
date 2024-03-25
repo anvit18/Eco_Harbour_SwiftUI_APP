@@ -37,6 +37,7 @@ struct VehicleCategoryView: View {
 
                                 Text(imageName)
                                     .font(.caption)
+                                    .foregroundColor(.black)
                                     .multilineTextAlignment(.center)
                             }
                             .padding(.horizontal, 10)
@@ -67,58 +68,64 @@ struct frequentlyUsedVehicles: View {
     let autoImages = ["Pillion", "Sharing", "Magic"]
 
     var body: some View {
-        VStack {
-            HStack(spacing: 0) {
-                Text("Eco")
-                    .font(.largeTitle)
-                    .bold()
-                    .foregroundColor(.green)
-                Text("Harbour")
-                    .font(.largeTitle)
-                    .bold()
+        ZStack{
+            Color.white.ignoresSafeArea()
+            VStack {
+                HStack(spacing: 0) {
+                    Text("Eco")
+                        .font(.largeTitle)
+                        .bold()
+                        .foregroundColor(.green)
+                    Text("Track")
+                        .foregroundColor(.black)
+                        .font(.largeTitle)
+                        .bold()
+                }
+                .padding(.bottom, 30)
+                
+                Text("Choose vehicles that you frequently use, you can select multiple vehicles.")
+                    .foregroundColor(.black)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 20)
+                    .font(.subheadline)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                
+                VehicleCategoryView(category: "Cars :", imageNames: carImages, selectedImages: $selectedImages)
+                VehicleCategoryView(category: "Buses :", imageNames: busImages, selectedImages: $selectedImages)
+                VehicleCategoryView(category: "Trains :", imageNames: trainImages, selectedImages: $selectedImages)
+                VehicleCategoryView(category: "Autos :", imageNames: autoImages, selectedImages: $selectedImages)
+                
+                NavigationLink(
+                    destination: VehicleDetails(selectedVehicles: selectedImages),
+                    isActive: $showingNextScreen
+                ) {
+                    EmptyView()
+                }
+                .isDetailLink(false)
+                
+                Button("Next") {
+                    showingNextScreen.toggle()
+                    printSelectedImages()
+                }
+                .foregroundColor(.white)
+                .frame(width: 201, height: 44)
+                .background(Color.mainGreen)
+                .cornerRadius(10)
+                .padding(.top, 10)
             }
-            .padding(.bottom, 30)
-
-            Text("Choose vehicles that you frequently use, you can select multiple vehicles.")
-                .foregroundColor(.black)
-                .background(.white)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 60)
-                .font(.subheadline)
-                .padding(.bottom, 20)
-
-            VehicleCategoryView(category: "Cars :", imageNames: carImages, selectedImages: $selectedImages)
-            VehicleCategoryView(category: "Buses :", imageNames: busImages, selectedImages: $selectedImages)
-            VehicleCategoryView(category: "Trains :", imageNames: trainImages, selectedImages: $selectedImages)
-            VehicleCategoryView(category: "Autos :", imageNames: autoImages, selectedImages: $selectedImages)
-
-            NavigationLink(
-                destination: VehicleDetails(selectedVehicles: selectedImages),
-                        isActive: $showingNextScreen
-                    ) {
-                        EmptyView()
-                    }
-                    .isDetailLink(false)
-
-            Button("Next") {
-                showingNextScreen.toggle()
-                printSelectedImages()
-            }
-            .foregroundColor(.white)
-            .frame(width: 201, height: 44)
-            .background(Color.mainGreen)
-            .cornerRadius(10)
-            .padding(.top, 30)
+            .navigationBarTitle("Frequently Used Vehicles")
         }
-        .navigationBarTitle("Frequently Used Vehicles")
     }
-
-    private func printSelectedImages() {
-        let selectedImagesArray = Array(selectedImages)
-        print("Selected Images: \(selectedImagesArray.joined(separator: ", "))")
-        // You can send this data to the backend here
-        // For simplicity, we are just printing it to the terminal
-    }
+        
+        private func printSelectedImages() {
+            let selectedImagesArray = Array(selectedImages)
+            print("Selected Images: \(selectedImagesArray.joined(separator: ", "))")
+            // You can send this data to the backend here
+            // For simplicity, we are just printing it to the terminal
+        }
+    //}
 }
 
 struct frequentlyUsedVehicles_Previews: PreviewProvider {

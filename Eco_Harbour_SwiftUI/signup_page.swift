@@ -35,7 +35,7 @@ struct signup_page: View {
                         Text("Eco").font(.largeTitle)
                             .bold()
                             .foregroundColor(.green)
-                        Text("Harbour")
+                        Text("Track")
                             .font(.largeTitle)
                             .bold()
                             .foregroundColor(.black)
@@ -46,39 +46,9 @@ struct signup_page: View {
                         .bold()
                         //.padding()
                     
-                    Button {
-                        //authenticate user
-                       
-                    }label: {
-                        HStack{
-                            Image("apple").resizable().scaledToFit().ignoresSafeArea()
-                        }
-                    }
-                    .foregroundColor(.black)
-                    .frame(width:400, height:60)
-                    .background(Color.white)
-                    //.border(Color.black, width: 2)
-                    .cornerRadius(10)
+        
                     
                     
-                    Button {
-                        //authenticate user
-                       
-                    }label: {
-                        HStack{
-                            Image("google").resizable().scaledToFit().ignoresSafeArea()
-                        }
-                    }
-                    .foregroundColor(.black)
-                    .frame(width:400, height:60)
-                    .background(Color.white)
-                    //.border(Color.black, width: 2)
-                    .cornerRadius(10)
-                    
-                    Text("------------ or ------------")
-                        .font(.footnote)
-                        .foregroundColor(Color.gray)
-                        //.padding()
                     
                     TextField("Enter Email", text : $emailid)
                         .padding()
@@ -115,7 +85,7 @@ struct signup_page: View {
                     .cornerRadius(10)
                     
                     
-                    NavigationLink(destination: privateVehicleDetails(), isActive: $showingNextScreen){
+                    NavigationLink(destination: recordView(showSignInView: .constant(false)), isActive: $showingNextScreen){
                         EmptyView()
                     }
                     
@@ -123,23 +93,9 @@ struct signup_page: View {
                 
             }
 //        }
-//        .navigationBarHidden(true)
+ .navigationBarHidden(true)
     }
     
-    //function to be edited for signup
-//    func aunthenticateUser(emailid: String, password: String){
-//        if emailid.lowercased() == "anvitpawar"{
-//            //wrongUsername = 0
-//            if password.lowercased() == "abc12345" {
-//               // wrongPassword = 0
-//               // showingNextScreen = true
-//            } else {
-//                //wrongPassword = 2
-//            }
-//        }else {
-//            //wrongUsername = 2
-//        }
-//    }
 }
 #Preview {
     signup_page()

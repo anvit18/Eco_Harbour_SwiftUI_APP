@@ -19,6 +19,7 @@ struct SettingsView: View {
                     do{
                         try viewModel.signOut()
                         showSignInView=true
+                        print(showSignInView)
                     } catch{
                         print("Error: \(error)")
                     }
