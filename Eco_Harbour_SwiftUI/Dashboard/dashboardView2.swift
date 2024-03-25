@@ -72,6 +72,8 @@ struct dashboardView2: View {
     //IMPORTANT BACKEND STUFF
     @StateObject private var viewModel=DashboardViewModel()
     @Binding var showSignInView:Bool
+    //backend stuff
+    @StateObject private var historyViewModel=AppHistoryModel()
     
     
     
@@ -165,21 +167,21 @@ struct dashboardView2: View {
             Color.white.ignoresSafeArea()
             VStack {
                 
-                List{
-                    if let user = viewModel.user{
-                        Text("UserId: \(user.userId)")
-                        
-                        if let dateCreated = user.dateCreated{
-                            Text("Date Created: \(dateCreated)")
-                        }else{
-                            Text("Date not displaying")
-                        }
-                        
-                        if let email = user.email{
-                            Text("email: \(email)")
+                List {
+                    if let historyData = historyViewModel.historyData {
+                        ForEach(historyData.documents.sorted(by: { $0.key < $1.key }), id: \.key) { documentID, documentData in
+                            VStack(alignment: .leading) {
+                                Text("Document ID: \(documentID)")
+                                    .font(.headline)
+                                
+                                ForEach(documentData.sorted(by: { $0.key < $1.key }), id: \.key) { key, value in
+                                    Text("\(key): \(String(describing: value))") // Convert value to string
+                                        .font(.subheadline)
+                                }
+                            }
+                            .padding()
                         }
                     }
-                    
                 }
                 
                 
@@ -415,6 +417,7 @@ struct dashboardView2: View {
         //IMPORTANT BACKEND STUFF
         .task{
             try? await viewModel.loadCurrentUser()
+            try? await historyViewModel.loadCurrentUser()
         }
     }
     

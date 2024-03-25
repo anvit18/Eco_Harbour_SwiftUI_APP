@@ -16,6 +16,11 @@ struct DBUser{
     let dateCreated:Date?
 }
 
+struct HistoryViewData{
+    var documents: [String: [String: Any]] = [:]
+}
+
+
 
 
 final class UserManager{
@@ -56,33 +61,40 @@ final class UserManager{
     
     
     //Insert Record view data in document
-    func saveRecordViewData(auth: AuthDataResultModel, userEmissions: String, selectedDate: String, privateDistance: String, cabsDistance: String, carpoolDistance: String, localTrainDistance: String, metroDistance: String, pillionDistance: String, sharingDistance: String, magicDistance: String, ordinaryDistance: String, acDistance: String, deluxeDistance: String) async throws{
-        var recordViewDataUpload: [String:Any]=[
-            "user_id":auth.uid,
-            "date_created":Timestamp(),
+    func saveRecordViewData(auth: AuthDataResultModel, userEmissions: Double, selectedDate: String, carDistance: Int, busDistance: Int, trainDistance: Int, carPoolDistance: Int, autoDistance: Int) async throws {
+        var recordViewDataUpload: [String: Any] = [
+            "user_id": auth.uid,
+            "date_created": Timestamp(),
             "user_emissions": userEmissions,
             "selected_date": selectedDate,
-            "private_distance": privateDistance,
-            "cabs_distance": cabsDistance,
-            "carpool_distance": carpoolDistance,
-            "local_train_distance": localTrainDistance,
-            "metro_distance": metroDistance,
-            "pillion_distance": pillionDistance,
-            "sharing_distance": sharingDistance,
-            "magic_distance": magicDistance,
-            "ordinary_distance": ordinaryDistance,
-            "ac_distance": acDistance,
-            "deluxe_distance": deluxeDistance
-
+            "car_distance": carDistance,
+            "bus_distance": busDistance,
+            "train_distance": trainDistance,
+            "car_pool_distance": carPoolDistance,
+            "auto_distance": autoDistance
         ]
-        if let email = auth.email{
-            recordViewDataUpload["email"]=email
-        }
-        if let photoUrl = auth.photUrl{
-            recordViewDataUpload["photo_url"]=photoUrl
+        
+        if let email = auth.email {
+            recordViewDataUpload["email"] = email
         }
         
-        
-        try await Firestore.firestore().collection("users").document(auth.uid).collection("date").document(selectedDate).setData(recordViewDataUpload,merge: true)
+        try await Firestore.firestore().collection("users").document(auth.uid).collection("date").document(selectedDate).setData(recordViewDataUpload, merge: true)
     }
+    
+    
+    //Fetch record from document according to date
+    func getHistoryViewData(userId:String) async throws->HistoryViewData{
+        let snapshot = try await Firestore.firestore().collection("users").document(userId).collection("date").getDocuments()
+        
+        var historyViewData = HistoryViewData()
+        
+        for document in snapshot.documents {
+            print("\(document.documentID) => \(document.data())")
+            historyViewData.documents[document.documentID] = document.data()
+            print("\nHistory View data uploaded")
+          }
+        
+        return historyViewData
+    }
+
 }

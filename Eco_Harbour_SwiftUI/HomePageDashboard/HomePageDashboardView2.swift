@@ -15,16 +15,16 @@ struct HomePageDashboardView2: View {
     @EnvironmentObject var distanceViewModel: DistanceViewModel
     
     let privateDistance: Int
-        let cabsDistance: Int
-        let carpoolDistance: Int
-        let localTrainDistance: Int
-        let metroDistance: Int
-        let pillionDistance: Int
-        let sharingDistance: Int
-        let magicDistance: Int
-        let ordinaryDistance: Int
-        let acDistance: Int
-        let deluxeDistance: Int
+    let cabsDistance: Int
+    let carpoolDistance: Int
+    let localTrainDistance: Int
+    let metroDistance: Int
+    let pillionDistance: Int
+    let sharingDistance: Int
+    let magicDistance: Int
+    let ordinaryDistance: Int
+    let acDistance: Int
+    let deluxeDistance: Int
     
     //let userEmission: Double
     
@@ -64,13 +64,13 @@ struct HomePageDashboardView2: View {
                             .font(.headline)
                             .padding(.trailing,20)
                     }
-
+                    
                 }
-//                NavigationLink(destination: Login_Signup_Page(), isActive: $showingLoginScreen) {
-//                    EmptyView()
-//                }
+                //                NavigationLink(destination: Login_Signup_Page(), isActive: $showingLoginScreen) {
+                //                    EmptyView()
+                //                }
                 
-               
+                
                 
                 TabView {
                     //Color.white.ignoresSafeArea()
@@ -84,7 +84,7 @@ struct HomePageDashboardView2: View {
                             Text("Home").foregroundColor(.black)
                         }
                     
-                    HistoryView()
+                    AppHistory()
                         .tabItem {
                             Image(systemName: "clock")
                                 .resizable()
@@ -115,13 +115,13 @@ struct HomePageDashboardView2: View {
             }.navigationBarHidden(true)
         }
     }
-    }
-    
-    
+}
+
+
 struct HomePageDashboardView2_Previews: PreviewProvider {
-        static var previews: some View {
-            HomePageDashboardView2(showSignInView: .constant(false),privateDistance : 0, cabsDistance: 0, carpoolDistance: 0, localTrainDistance: 0, metroDistance: 0, pillionDistance: 0, sharingDistance: 0, magicDistance: 0, ordinaryDistance: 0, acDistance: 0, deluxeDistance: 0)
-                .environmentObject(UserData())
-                .environmentObject(DistanceViewModel())
-        }
+    static var previews: some View {
+        HomePageDashboardView2(showSignInView: .constant(false),privateDistance : 0, cabsDistance: 0, carpoolDistance: 0, localTrainDistance: 0, metroDistance: 0, pillionDistance: 0, sharingDistance: 0, magicDistance: 0, ordinaryDistance: 0, acDistance: 0, deluxeDistance: 0)
+            .environmentObject(UserData())
+            .environmentObject(DistanceViewModel())
     }
+}
