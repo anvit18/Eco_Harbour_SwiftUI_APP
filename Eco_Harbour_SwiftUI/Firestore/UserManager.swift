@@ -20,6 +20,19 @@ struct HistoryViewData{
     var documents: [String: [String: Any]] = [:]
 }
 
+struct LatestDistanceData{
+    let autoDistance:Int
+    let busDistance:Int
+    let carDistance:Int
+    let carpoolDistance:Int
+    let trainDistance:Int
+}
+
+private func formattedDate(_ date: Date) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "d-MMM-YY"
+    return dateFormatter.string(from: date)
+}
 
 
 
@@ -95,6 +108,41 @@ final class UserManager{
           }
         
         return historyViewData
+    }
+    
+    
+    
+    // Function to get the latest distance data
+    func getLatestDistanceData(userId: String) async throws -> LatestDistanceData? {
+        let snapshot = try await Firestore.firestore().collection("users").document(userId).collection("date").getDocuments()
+        
+        // Create a dictionary to hold document data
+        var documents: [String: [String: Any]] = [:]
+        
+        for document in snapshot.documents {
+            let documentData = document.data()
+            let documentId = document.documentID
+            documents[documentId] = documentData
+        }
+
+        // Filter documents to include only those on or before today's date
+        let currentDate = Date()
+        let formattedCurrentDate = formattedDate(currentDate)
+        let filteredDocuments = documents.filter { $0.key <= formattedCurrentDate }
+        
+        // Get the document with the latest date among the filtered documents
+        if let closestDocument = filteredDocuments.max(by: { $0.key < $1.key }) {
+            // Extract distance data
+            let autoDistance = closestDocument.value["auto_distance"] as? Int ?? 0
+            let busDistance = closestDocument.value["bus_distance"] as? Int ?? 0
+            let carDistance = closestDocument.value["car_distance"] as? Int ?? 0
+            let carpoolDistance = closestDocument.value["car_pool_distance"] as? Int ?? 0
+            let trainDistance = closestDocument.value["train_distance"] as? Int ?? 0
+
+            return LatestDistanceData(autoDistance: autoDistance, busDistance: busDistance, carDistance: carDistance, carpoolDistance: carpoolDistance, trainDistance: trainDistance)
+        }
+        
+        return nil
     }
 
 }

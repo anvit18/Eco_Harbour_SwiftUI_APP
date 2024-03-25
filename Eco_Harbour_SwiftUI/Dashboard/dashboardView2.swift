@@ -52,7 +52,7 @@ struct BarView2: View {
     var value: Int
     var color: Color
     var label: String
-
+    
     var body: some View {
         VStack {
             Rectangle()
@@ -71,9 +71,15 @@ struct dashboardView2: View {
     
     //IMPORTANT BACKEND STUFF
     @StateObject private var viewModel=DashboardViewModel()
-    @Binding var showSignInView:Bool
-    //backend stuff
+    @Binding var showSignInView:Bool    
     @StateObject private var historyViewModel=AppHistoryModel()
+    
+    private func formattedDate(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d-MMM-YY"
+        return dateFormatter.string(from: date)
+    }
+    
     
     
     
@@ -126,26 +132,33 @@ struct dashboardView2: View {
     @State private var emissionsData: [CarbonEmissionByVehicle2] = []
     
     func updateEmissionsData() {
-        let privateCarEmissions = distanceViewModel.privateVDistance * 20
-        let cabEmissions = distanceViewModel.cabsVDistance * 18
-        let carPoolEmissions = distanceViewModel.carpoolVDistance * 16
-        let localTrainEmissions = distanceViewModel.localTrainVDistance * 4
-        let metroEmissions = distanceViewModel.metroVDistance * 8
-        let pillionEmissions = distanceViewModel.pillionVDistance * 13
-        let sharingEmissions = distanceViewModel.sharingVDistance * 7
-        let magicEmissions = distanceViewModel.magicVDistance * 9
-        let ordinaryEmissions = distanceViewModel.ordinaryVDistance * 3
-        let deluxeEmissions = distanceViewModel.deluxeVDistance * 5
-        let acEmissions = distanceViewModel.acVDistance * 10
+        
+        var carEmission=0
+        var car_PoolEmission=0
+        var autoEmission=0
+        var busEmission=0
+        var trainEmission=0
+        
+        if let data = viewModel.data{
+            carEmission=data.carDistance*1
+            car_PoolEmission=data.carpoolDistance*2
+            autoEmission=data.autoDistance*3
+            busEmission=data.busDistance*4
+            trainEmission=data.trainDistance*5
+        }
         
         emissionsData = [
-            CarbonEmissionByVehicle2(vehicleType: "Car", emissions: privateCarEmissions + cabEmissions + carPoolEmissions, color: .blue),
-            CarbonEmissionByVehicle2(vehicleType: "Auto", emissions: pillionEmissions + sharingEmissions + magicEmissions, color: .green),
-            CarbonEmissionByVehicle2(vehicleType: "Bus", emissions: ordinaryEmissions + acEmissions + deluxeEmissions, color: .orange),
-            CarbonEmissionByVehicle2(vehicleType: "Train", emissions: localTrainEmissions + metroEmissions, color: .purple),
+            CarbonEmissionByVehicle2(vehicleType: "Car", emissions: carEmission+car_PoolEmission, color: .blue),
+            CarbonEmissionByVehicle2(vehicleType: "Auto", emissions: autoEmission, color: .green),
+            CarbonEmissionByVehicle2(vehicleType: "Bus", emissions: busEmission, color: .orange),
+            CarbonEmissionByVehicle2(vehicleType: "Train", emissions: trainEmission, color: .purple),
             //CarbonEmissionByVehicle(vehicleType: "", emissions: acBusEmissions, color: .cyan),
         ]
     }
+    
+    
+    
+    
     // User and national average emissions
     let nationalAverageEmission = 625
     //let userEmissions = userEmission
@@ -169,13 +182,18 @@ struct dashboardView2: View {
                 
                 List {
                     if let historyData = historyViewModel.historyData {
-                        ForEach(historyData.documents.sorted(by: { $0.key < $1.key }), id: \.key) { documentID, documentData in
+                        // Filter documents to include only those on or before today's date
+                        let currentDate = Date()
+                        let filteredDocuments = historyData.documents.filter { $0.key <= formattedDate(currentDate) }
+                        
+                        // Get the document with the latest date among the filtered documents
+                        if let closestDocument = filteredDocuments.max(by: { $0.key < $1.key }) {
                             VStack(alignment: .leading) {
-                                Text("Document ID: \(documentID)")
+                                Text("Document ID: \(closestDocument.key)")
                                     .font(.headline)
                                 
-                                ForEach(documentData.sorted(by: { $0.key < $1.key }), id: \.key) { key, value in
-                                    Text("\(key): \(String(describing: value))") // Convert value to string
+                                ForEach(closestDocument.value.sorted(by: { $0.key < $1.key }), id: \.key) { key, value in
+                                    Text("\(key): \(String(describing: value))")
                                         .font(.subheadline)
                                 }
                             }
@@ -185,7 +203,10 @@ struct dashboardView2: View {
                 }
                 
                 
-                    
+                
+                
+                
+                
                 ScrollView {
                     // Greetings and user information
                     HStack {
@@ -332,9 +353,9 @@ struct dashboardView2: View {
                             .padding(.top, 20)
                             
                             
-//                            NavigationLink(destination: EmissionHistoryView(), isActive: $showingEmissionHistoryScreen) {
-//                                EmptyView()
-//                            }
+                            //                            NavigationLink(destination: EmissionHistoryView(), isActive: $showingEmissionHistoryScreen) {
+                            //                                EmptyView()
+                            //                            }
                             
                             
                             
@@ -372,7 +393,7 @@ struct dashboardView2: View {
                                 
                                 
                             }.background(Color.red.opacity(0.1))
-
+                            
                         }
                         Button("Log Data + ") {
                             // Authenticate user
