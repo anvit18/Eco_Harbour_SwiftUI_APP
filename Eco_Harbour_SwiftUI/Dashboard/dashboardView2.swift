@@ -33,7 +33,7 @@ struct Bar2: Identifiable {
             let rand = Double.random(in: 20...200.0)
             
             // Set color based on the random value
-            if rand > 150 {
+            if rand > 625 {
                 color = .red
             } else if rand > 75 {
                 color = .yellow
@@ -114,11 +114,15 @@ struct dashboardView2: View {
     //        }
     
     private var macros: [MacroData2] {
-        return
-        [
-            .init(name: "You", value:Int(userData.userEmission)),
-            .init(name: "National Avg", value:625)
-        ]}
+        if let data = viewModel.data{
+            return
+            [
+                .init(name: "You", value:Int(data.userEmission)),
+                .init(name: "National Avg", value:625)
+            ]}
+        return []
+        }
+        
     // Chart data
     //    var emissionsData = [
     //        CarbonEmissionByVehicle(vehicleType: "Pvt. Car", emissions: 380, color: .red),
@@ -266,10 +270,13 @@ struct dashboardView2: View {
                                     .foregroundStyle(.gray)
                                 
                                 HStack(spacing: 0) {
-                                    Text("\(Int(userData.userEmission)) kg").foregroundColor(.black)
-                                    Text("CO").foregroundStyle(Color.green)
-                                    Text("2").foregroundStyle(Color.green)
-                                        .baselineOffset(-10)
+                                    if let data = viewModel.data{
+                                        Text("\(Int(data.userEmission)) kg").foregroundColor(.black)
+                                        Text("CO").foregroundStyle(Color.green)
+                                        Text("2").foregroundStyle(Color.green)
+                                            .baselineOffset(-10)
+                                    }
+                                    
                                 }
                                 .font(.title)
                                 .bold()
@@ -300,35 +307,88 @@ struct dashboardView2: View {
                             .frame(height:48)
                             .chartXAxis(.hidden)
                             
-                            Text("Your emissions are \(Int(userData.userEmission)/nationalAverageEmission)x the national average. You need to lower down!")
-                                .font(.subheadline)
-                                .foregroundColor(.black)
-                                .padding(.top, 10)
+                            
+                            if let data = viewModel.data{
+                                Text("Your emissions are \(String(format: "%.1f", Double(data.userEmission)/Double(nationalAverageEmission)))x the national average. You need to lower down!")
+                                    .font(.subheadline)
+                                    .foregroundColor(.black)
+                                    .padding(.top, 10)
+                            }
+                            
                         }
                         .padding()
                         
                         
                         if(showSignInView==false){
                             HStack(alignment: .bottom) {
-                                ForEach(bars) { bar in
-                                    VStack {
-                                        ZStack {
-                                            Rectangle()
-                                                .foregroundColor(bar.color)
-                                                .frame(width: 35, height: CGFloat(bar.value), alignment: .bottom)
-                                                .opacity(selectedID == bar.id ? 0.5 : 1.0)
-                                                .cornerRadius(6)
-                                                .onTapGesture {
-                                                    self.selectedID = bar.id
-                                                    self.text = "Value: \(Int(bar.value))"
-                                                }
+                                
+                                if let historyData = historyViewModel.historyData {
+                                    ForEach(historyData.documents.sorted(by: { $0.key < $1.key }), id: \.key) { documentID, documentData in
+                                        VStack(alignment: .leading) {
                                             
-                                            Text("\(Int(bar.value))")
-                                                .foregroundColor(.white)
+                                            
+                                            // Iterate through the documentData to find the user_emissions value
+                                            if let userEmissions = documentData["user_emissions"] as? Double {
+                                                // Use userEmissions to create the bar view
+                                                VStack {
+                                                    ZStack {
+                                                        Rectangle()
+                                                            .foregroundColor(.red) // Get color based on user emissions
+                                                            .frame(width: 35, height: CGFloat(userEmissions)/10, alignment: .bottom)
+                                                            .opacity(selectedID == UUID(uuidString: documentID) ? 0.5 : 1.0) // Adjust opacity based on selection
+                                                            .cornerRadius(6)
+                                                            .onTapGesture {
+                                                                self.selectedID = UUID(uuidString: documentID) ?? UUID() // Update selectedID
+                                                                self.text = "Value: \(Int(userEmissions))" // Update text
+                                                            }
+                                                        
+                                                        Text("\(Int(userEmissions))")
+                                                            .foregroundColor(.white)
+                                                    }
+//                                                    Text("Day: \(documentData["selected_date"] ?? "")") // Assuming you have a "day" field in documentData
+                                                }
+                                            }
                                         }
-                                        Text(bar.day)
+                                        .padding()
                                     }
                                 }
+
+//                                if let historyData = viewModel.historyData {
+//                                    ForEach(historyData.documents.sorted(by: { $0.key < $1.key }), id: \.key) { documentID, documentData in
+//                                        VStack(alignment: .leading) {
+//                                            Text("Date: \(documentID)")
+//                                                .font(.headline)
+//                                            
+//                                            
+//                                            ForEach(documentData.sorted(by: { $0.key < $1.key }), id: \.key) { key, value in
+//                                                Text("\(key): \(String(describing: value))")
+//                                                    .font(.subheadline)
+//                                            }
+//                                            
+//                                        }
+//                                        .padding()
+//                                    }
+//                                }
+                                
+//                                ForEach(bars) { bar in
+//                                    VStack {
+//                                        ZStack {
+//                                            Rectangle()
+//                                                .foregroundColor(bar.color)
+//                                                .frame(width: 35, height: CGFloat(bar.value), alignment: .bottom)
+//                                                .opacity(selectedID == bar.id ? 0.5 : 1.0)
+//                                                .cornerRadius(6)
+//                                                .onTapGesture {
+//                                                    self.selectedID = bar.id
+//                                                    self.text = "Value: \(Int(bar.value))"
+//                                                }
+//                                            
+//                                            Text("\(Int(bar.value))")
+//                                                .foregroundColor(.white)
+//                                        }
+//                                        Text(bar.day)
+//                                    }
+//                                }
                             }
                             .frame(height: 240, alignment: .bottom)
                             .padding(20)

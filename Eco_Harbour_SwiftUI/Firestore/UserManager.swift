@@ -21,6 +21,7 @@ struct HistoryViewData{
 }
 
 struct LatestDistanceData{
+    let userEmission:Int
     let autoDistance:Int
     let busDistance:Int
     let carDistance:Int
@@ -133,13 +134,14 @@ final class UserManager{
         // Get the document with the latest date among the filtered documents
         if let closestDocument = filteredDocuments.max(by: { $0.key < $1.key }) {
             // Extract distance data
+            let userEmission = closestDocument.value["user_emissions"] as? Int ?? 0
             let autoDistance = closestDocument.value["auto_distance"] as? Int ?? 0
             let busDistance = closestDocument.value["bus_distance"] as? Int ?? 0
             let carDistance = closestDocument.value["car_distance"] as? Int ?? 0
             let carpoolDistance = closestDocument.value["car_pool_distance"] as? Int ?? 0
             let trainDistance = closestDocument.value["train_distance"] as? Int ?? 0
 
-            return LatestDistanceData(autoDistance: autoDistance, busDistance: busDistance, carDistance: carDistance, carpoolDistance: carpoolDistance, trainDistance: trainDistance)
+            return LatestDistanceData(userEmission: userEmission, autoDistance: autoDistance, busDistance: busDistance, carDistance: carDistance, carpoolDistance: carpoolDistance, trainDistance: trainDistance)
         }
         
         return nil

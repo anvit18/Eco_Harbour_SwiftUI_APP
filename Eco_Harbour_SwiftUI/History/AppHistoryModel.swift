@@ -15,4 +15,6 @@ final class AppHistoryModel: ObservableObject{
         let authDataResult=try AuthenticationManager.shared.getAuthenticatedUser()
         self.historyData=try await UserManager.shared.getHistoryViewData(userId: authDataResult.uid)
     }
+    
+    
 }
