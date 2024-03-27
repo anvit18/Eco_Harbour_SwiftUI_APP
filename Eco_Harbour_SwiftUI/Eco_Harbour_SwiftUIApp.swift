@@ -25,6 +25,7 @@ class VehicleTypeDataProvider: ObservableObject {
 }
 class EmissionDataViewModelWrapper: ObservableObject {
     @Published var emissionDataViewModel = EmissionDataViewModel()
+    
 }
 
 

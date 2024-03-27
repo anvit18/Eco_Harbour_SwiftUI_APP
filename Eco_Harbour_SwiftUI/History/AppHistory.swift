@@ -1,6 +1,18 @@
 import SwiftUI
 
 struct AppHistory: View {
+    //backend stuff
+    @StateObject private var viewModel=AppHistoryModel()
+    let keyLabels: [String: String] = [
+        "auto_distance": "Auto Distance",
+        "bus_distance": "Bus Distance",
+        "car_distance": "Car Distance",
+        "car_pool_distance": "Car Pool Distance",
+        "train_distance": "Train Distance"
+    ]
+    
+    
+    
     
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var distanceViewModel: DistanceViewModel
@@ -14,19 +26,42 @@ struct AppHistory: View {
             ZStack {
                 Color.white.ignoresSafeArea()
                 List {
-                    ForEach(dates, id: \.self) { date in
-                        Section(header: SectionHeaderView(title: date)) {
-                            NavigationLink(destination: HistoryView(userData: _userData, distanceViewModel: _distanceViewModel)) {
-                                    Text("\(String(format: "%.2f", userData.userEmission)) kg CO₂")
-                                    
-                                        .font(.title3)
-                                        .bold()
-                                        .foregroundColor(date == "Today" ? .red : .blue)
+                    if let historyData = viewModel.historyData {
+                        ForEach(historyData.documents.sorted(by: { $0.key < $1.key }), id: \.key) { documentID, documentData in
+                            VStack(alignment: .leading) {
+                                Text("Date: \(documentID)")
+                                    .font(.headline)
                                 
+                                
+                                ForEach(documentData.filter({ keyLabels.keys.contains($0.key) }).sorted(by: { $0.key < $1.key }), id: \.key) { key, value in
+                                    if let label = keyLabels[key] {
+                                        Text("\(label): \(String(describing: value))")
+                                            .font(.subheadline)
+                                    }
+                                }
+
                             }
+                            .padding()
                         }
                     }
                 }
+                .task {
+                    try? await viewModel.loadCurrentUser()
+                }
+//                List {
+//                    ForEach(dates, id: \.self) { date in
+//                        Section(header: SectionHeaderView(title: date)) {
+//                            NavigationLink(destination: HistoryView(userData: _userData, distanceViewModel: _distanceViewModel)) {
+//                                    Text("\(String(format: "%.2f", userData.userEmission)) kg CO₂")
+//
+//                                        .font(.title3)
+//                                        .bold()
+//                                        .foregroundColor(date == "Today" ? .red : .blue)
+//
+//                            }
+//                        }
+//                    }
+//                }
             }
             .navigationTitle("Your Activity")
         }
