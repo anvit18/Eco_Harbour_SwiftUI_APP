@@ -422,30 +422,10 @@ struct RecordView2: View {
                 
                 
                 
-                ZStack {
-                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
-                        
-                    }.multilineTextAlignment(.leading)
-                        .padding()
-                    //.keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                    
-                    HStack {
-                        Text("AC").foregroundColor(.black)
-                        
-                        
-                        Spacer()
-                        
-                        Toggle("", isOn: fields.isACSwitchOn)
-                            .labelsHidden()
-                            .padding(.trailing, 50)
-                    }.padding(.leading,  50)
-                }
-                .padding(.bottom, 20)
+                
             }
+                //.padding(.bottom, 20)
+            
             if selectedCategory == "Bus" {
                 Menu {
                     Button("Cancel", role: .destructive) {
@@ -516,29 +496,6 @@ struct RecordView2: View {
                     .padding(.bottom,20)
                 
                 
-                ZStack {
-                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
-                        
-                    }.multilineTextAlignment(.leading)
-                        .padding()
-                    //.keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                    
-                    HStack {
-                        Text("AC")
-                        
-                        
-                        Spacer()
-                        
-                        Toggle("", isOn: fields.isACSwitchOn)
-                            .labelsHidden()
-                            .padding(.trailing, 50)
-                    }.padding(.leading,  50)
-                }
-                .padding(.bottom, 20)
             }
             if selectedCategory == "Train" {
                 Menu {
@@ -606,29 +563,7 @@ struct RecordView2: View {
                     .padding(.bottom,20)
                 
                 
-                ZStack {
-                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
-                        
-                    }.multilineTextAlignment(.leading)
-                        .padding()
-                    //.keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                    
-                    HStack {
-                        Text("AC")
-                        
-                        
-                        Spacer()
-                        
-                        Toggle("", isOn: fields.isACSwitchOn)
-                            .labelsHidden()
-                            .padding(.trailing, 50)
-                    }.padding(.leading,  50)
-                }
-                .padding(.bottom, 20)
+                
             }
             
             if selectedCategory == "Auto" {
@@ -705,29 +640,7 @@ struct RecordView2: View {
                 
                 
                 
-                ZStack {
-                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
-                        
-                    }.multilineTextAlignment(.leading)
-                        .padding()
-                    //.keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                    
-                    HStack {
-                        Text("AC")
-                        
-                        
-                        Spacer()
-                        
-                        Toggle("", isOn: fields.isACSwitchOn)
-                            .labelsHidden()
-                            .padding(.trailing, 50)
-                    }.padding(.leading,  50)
-                }
-                .padding(.bottom, 20)
+                
             }
             
             if selectedCategory == "Car Pool" {
@@ -792,29 +705,10 @@ struct RecordView2: View {
                 
                 
                 
-                ZStack {
-                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
-                        
-                    }.multilineTextAlignment(.leading)
-                        .padding()
-                    //.keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                    
-                    HStack {
-                        Text("AC")
-                        
-                        
-                        Spacer()
-                        
-                        Toggle("", isOn: fields.isACSwitchOn)
-                            .labelsHidden()
-                            .padding(.trailing, 50)
-                    }.padding(.leading,  50)
-                }
-                .padding(.bottom, 20)
+                
+                
+                //.padding(.bottom, 20)
+                
                 HStack{
                     Text("Number of Passengers")
                         .foregroundStyle(Color.mainGreen)
@@ -931,11 +825,13 @@ struct RecordView2: View {
                     
                 }.padding(.bottom, 20)
             }
-            
-            
         }
+            }
+            
         
-    }
+            
+        
+    
     
     
     

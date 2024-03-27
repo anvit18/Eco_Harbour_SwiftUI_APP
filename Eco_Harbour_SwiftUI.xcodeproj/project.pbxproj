@@ -42,6 +42,11 @@
 		7FBB4B3C2B874F6400728A3D /* recordDailyRenderCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB4B3B2B874F6400728A3D /* recordDailyRenderCategory.swift */; };
 		7FC0DED42B8B84D5002962BE /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC0DED32B8B84D5002962BE /* UserData.swift */; };
 		7FC0DED62B8BBF4C002962BE /* DistanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC0DED52B8BBF4C002962BE /* DistanceViewModel.swift */; };
+		7FD1FD7F2BB2EF1C00C2726D /* AppHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD1FD7E2BB2EF1C00C2726D /* AppHistory.swift */; };
+		7FD1FD822BB2EF7800C2726D /* StatsOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD1FD812BB2EF7800C2726D /* StatsOverview.swift */; };
+		7FD1FD842BB2EF8600C2726D /* VehicleTypeStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD1FD832BB2EF8600C2726D /* VehicleTypeStats.swift */; };
+		7FD1FD862BB2EF9500C2726D /* EmissionStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD1FD852BB2EF9500C2726D /* EmissionStats.swift */; };
+		7FD1FD882BB2F01F00C2726D /* DayWiseStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD1FD872BB2F01F00C2726D /* DayWiseStats.swift */; };
 		7FD4B2602BA9C5AB00F8578A /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4B25F2BA9C5AB00F8578A /* SplashScreen.swift */; };
 		7FD4B2652BAA0BC800F8578A /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4B2642BAA0BC800F8578A /* DashboardViewModel.swift */; };
 		7FD4B26A2BAB07E300F8578A /* HomePageDashboardView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4B2692BAB07E300F8578A /* HomePageDashboardView2.swift */; };
@@ -49,8 +54,11 @@
 		7FD4B26E2BAB0CC600F8578A /* RecordView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4B26D2BAB0CC600F8578A /* RecordView2.swift */; };
 		7FD4B2722BAD766500F8578A /* HomePageDashboardView2Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4B2712BAD766500F8578A /* HomePageDashboardView2Model.swift */; };
 		7FD4B2752BAD78FA00F8578A /* RecordView2Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4B2742BAD78FA00F8578A /* RecordView2Model.swift */; };
-		7FD4B2782BAF406300F8578A /* AppHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4B2772BAF406300F8578A /* AppHistory.swift */; };
 		7FD4B27A2BB0631C00F8578A /* AppHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4B2792BB0631C00F8578A /* AppHistoryModel.swift */; };
+		7FD4B2812BB406E300F8578A /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4B2802BB406E300F8578A /* Statistics.swift */; };
+		7FD4B2832BB40EA000F8578A /* EmissionStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4B2822BB40EA000F8578A /* EmissionStatisticsView.swift */; };
+		7FD4B2852BB40F6F00F8578A /* VehicleStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4B2842BB40F6F00F8578A /* VehicleStatisticsView.swift */; };
+		7FD4B2872BB431D500F8578A /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4B2862BB431D500F8578A /* StatisticsViewModel.swift */; };
 		E3F24C932B9E444C00DA780D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3F24C922B9E444C00DA780D /* GoogleService-Info.plist */; };
 		E3F24C962B9E464300DA780D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = E3F24C952B9E464300DA780D /* FirebaseAnalytics */; };
 		E3F24C982B9E464300DA780D /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E3F24C972B9E464300DA780D /* FirebaseAnalyticsSwift */; };
@@ -117,6 +125,11 @@
 		7FC0DED22B87C6A0002962BE /* Eco_Harbour_SwiftUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Eco_Harbour_SwiftUI.entitlements; sourceTree = "<group>"; };
 		7FC0DED32B8B84D5002962BE /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		7FC0DED52B8BBF4C002962BE /* DistanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceViewModel.swift; sourceTree = "<group>"; };
+		7FD1FD7E2BB2EF1C00C2726D /* AppHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHistory.swift; sourceTree = "<group>"; };
+		7FD1FD812BB2EF7800C2726D /* StatsOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsOverview.swift; sourceTree = "<group>"; };
+		7FD1FD832BB2EF8600C2726D /* VehicleTypeStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleTypeStats.swift; sourceTree = "<group>"; };
+		7FD1FD852BB2EF9500C2726D /* EmissionStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmissionStats.swift; sourceTree = "<group>"; };
+		7FD1FD872BB2F01F00C2726D /* DayWiseStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWiseStats.swift; sourceTree = "<group>"; };
 		7FD4B25F2BA9C5AB00F8578A /* SplashScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		7FD4B2642BAA0BC800F8578A /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		7FD4B2692BAB07E300F8578A /* HomePageDashboardView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageDashboardView2.swift; sourceTree = "<group>"; };
@@ -124,8 +137,11 @@
 		7FD4B26D2BAB0CC600F8578A /* RecordView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView2.swift; sourceTree = "<group>"; };
 		7FD4B2712BAD766500F8578A /* HomePageDashboardView2Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageDashboardView2Model.swift; sourceTree = "<group>"; };
 		7FD4B2742BAD78FA00F8578A /* RecordView2Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView2Model.swift; sourceTree = "<group>"; };
-		7FD4B2772BAF406300F8578A /* AppHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppHistory.swift; path = ../../../../Downloads/AppHistory.swift; sourceTree = "<group>"; };
 		7FD4B2792BB0631C00F8578A /* AppHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHistoryModel.swift; sourceTree = "<group>"; };
+		7FD4B2802BB406E300F8578A /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
+		7FD4B2822BB40EA000F8578A /* EmissionStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmissionStatisticsView.swift; sourceTree = "<group>"; };
+		7FD4B2842BB40F6F00F8578A /* VehicleStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleStatisticsView.swift; sourceTree = "<group>"; };
+		7FD4B2862BB431D500F8578A /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		E3F24C922B9E444C00DA780D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E3F24C9D2B9E4A8B00DA780D /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		E3F24CA12B9E4BBC00DA780D /* SignUpEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmailView.swift; sourceTree = "<group>"; };
@@ -188,6 +204,7 @@
 		7F6C1F5D2B5510BF00CBEC53 /* Eco_Harbour_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				7FD1FD802BB2EF5F00C2726D /* Stats */,
 				7FD4B2762BAF401A00F8578A /* History */,
 				7FC0DED22B87C6A0002962BE /* Eco_Harbour_SwiftUI.entitlements */,
 				7FD4B26F2BAD763F00F8578A /* HomePageDashboard */,
@@ -303,6 +320,22 @@
 			path = Firestore;
 			sourceTree = "<group>";
 		};
+		7FD1FD802BB2EF5F00C2726D /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				7FD1FD812BB2EF7800C2726D /* StatsOverview.swift */,
+				7FD1FD832BB2EF8600C2726D /* VehicleTypeStats.swift */,
+				7FD1FD852BB2EF9500C2726D /* EmissionStats.swift */,
+				7FD1FD872BB2F01F00C2726D /* DayWiseStats.swift */,
+				7FD4B2802BB406E300F8578A /* Statistics.swift */,
+				7FD4B2822BB40EA000F8578A /* EmissionStatisticsView.swift */,
+				7FD4B2842BB40F6F00F8578A /* VehicleStatisticsView.swift */,
+				7FD4B2862BB431D500F8578A /* StatisticsViewModel.swift */,
+			);
+			name = Stats;
+			path = History/Stats;
+			sourceTree = "<group>";
+		};
 		7FD4B2612BAA0B8000F8578A /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,7 +369,7 @@
 		7FD4B2762BAF401A00F8578A /* History */ = {
 			isa = PBXGroup;
 			children = (
-				7FD4B2772BAF406300F8578A /* AppHistory.swift */,
+				7FD1FD7E2BB2EF1C00C2726D /* AppHistory.swift */,
 				7F29B2042B76A19100A55511 /* historyView.swift */,
 				7FD4B2792BB0631C00F8578A /* AppHistoryModel.swift */,
 			);
@@ -505,20 +538,27 @@
 				7FD4B26A2BAB07E300F8578A /* HomePageDashboardView2.swift in Sources */,
 				7F29B1FD2B76A15500A55511 /* color.swift in Sources */,
 				7FD4B2652BAA0BC800F8578A /* DashboardViewModel.swift in Sources */,
+				7FD1FD882BB2F01F00C2726D /* DayWiseStats.swift in Sources */,
 				7F29B21B2B76A19100A55511 /* OnboardingView.swift in Sources */,
 				7F6C1F612B5510BF00CBEC53 /* ContentView.swift in Sources */,
+				7FD1FD7F2BB2EF1C00C2726D /* AppHistory.swift in Sources */,
 				7FA3AE432BA83B9D0091CF45 /* AuthenticationViewModel.swift in Sources */,
 				7F29B2152B76A19100A55511 /* VehcileDetails_CarDetails.swift in Sources */,
 				7F29B2102B76A19100A55511 /* dashboardView.swift in Sources */,
 				7F29B20F2B76A19100A55511 /* testing_code.swift in Sources */,
+				7FD4B2812BB406E300F8578A /* Statistics.swift in Sources */,
 				7FC0DED42B8B84D5002962BE /* UserData.swift in Sources */,
 				7F29B2192B76A19100A55511 /* privateVehicleDetails.swift in Sources */,
+				7FD1FD822BB2EF7800C2726D /* StatsOverview.swift in Sources */,
 				7FA3AE452BA83BD60091CF45 /* SignUpEmailViewModel.swift in Sources */,
+				7FD1FD862BB2EF9500C2726D /* EmissionStats.swift in Sources */,
 				7F29B2142B76A19100A55511 /* homePageDashboard.swift in Sources */,
 				7F29B2182B76A19100A55511 /* recordView.swift in Sources */,
 				E3F24CA42B9E4D5D00DA780D /* AuthenticationManager.swift in Sources */,
+				7FD4B2872BB431D500F8578A /* StatisticsViewModel.swift in Sources */,
 				7FA3AE4D2BA847530091CF45 /* UserManager.swift in Sources */,
 				7F29B21A2B76A19100A55511 /* frequentlyUsedVehicles.swift in Sources */,
+				7FD4B2852BB40F6F00F8578A /* VehicleStatisticsView.swift in Sources */,
 				7FD4B26E2BAB0CC600F8578A /* RecordView2.swift in Sources */,
 				7FA3AE472BA83C000091CF45 /* SignInEmailViewModel.swift in Sources */,
 				7FBB4B3C2B874F6400728A3D /* recordDailyRenderCategory.swift in Sources */,
@@ -529,13 +569,14 @@
 				7F29B20D2B76A19100A55511 /* signup_page.swift in Sources */,
 				7FC0DED62B8BBF4C002962BE /* DistanceViewModel.swift in Sources */,
 				E3F24C9E2B9E4A8B00DA780D /* AuthenticationView.swift in Sources */,
-				7FD4B2782BAF406300F8578A /* AppHistory.swift in Sources */,
 				E3F24CA22B9E4BBC00DA780D /* SignUpEmailView.swift in Sources */,
+				7FD4B2832BB40EA000F8578A /* EmissionStatisticsView.swift in Sources */,
 				E3F24CA82B9E5B7300DA780D /* SettingsView.swift in Sources */,
 				7F29B2132B76A19100A55511 /* historyView.swift in Sources */,
 				E3F24CA62B9E558700DA780D /* RootView.swift in Sources */,
 				7F29B2162B76A19100A55511 /* SecondView.swift in Sources */,
 				7FD4B2602BA9C5AB00F8578A /* SplashScreen.swift in Sources */,
+				7FD1FD842BB2EF8600C2726D /* VehicleTypeStats.swift in Sources */,
 				7F29B2122B76A19100A55511 /* Login_Signup_Page.swift in Sources */,
 				7FD4B2752BAD78FA00F8578A /* RecordView2Model.swift in Sources */,
 				7F6C1F5F2B5510BF00CBEC53 /* Eco_Harbour_SwiftUIApp.swift in Sources */,

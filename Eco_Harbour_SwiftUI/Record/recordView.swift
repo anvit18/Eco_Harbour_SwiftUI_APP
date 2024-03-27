@@ -393,57 +393,37 @@ struct recordView: View {
                         .padding(.leading, 30)
                         .padding(.bottom, 20)
                         .font(.subheadline)
-                        
+                    
                     Spacer()
                 }.padding(.bottom, -10)
-                    
-                    
-                    
-                
-               
-                    VStack {
-                        Stepper(value: $carDistance, in: 0...100, step: 5) {
-                                                                    Text("\(carDistance) KMS")
-                                                                }
-                                                                .padding(.horizontal)
-                                                                
-                                                            }.multilineTextAlignment(.leading)
-                        .padding(.leading,20)
-                       
-                        .keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                        .padding(.bottom,20)
-                                                        
                 
                 
                 
-                ZStack {
-                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
-                        
-                    }.multilineTextAlignment(.leading)
-                        .padding()
-                    //.keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
+                
+                
+                VStack {
+                    Stepper(value: $carDistance, in: 0...100, step: 5) {
+                        Text("\(carDistance) KMS")
+                    }
+                    .padding(.horizontal)
                     
-                    HStack {
-                        Text("AC").foregroundColor(.black)
-                        
-                        
-                        Spacer()
-                        
-                        Toggle("", isOn: fields.isACSwitchOn)
-                            .labelsHidden()
-                            .padding(.trailing, 50)
-                    }.padding(.leading,  50)
-                }
-                .padding(.bottom, 20)
+                }.multilineTextAlignment(.leading)
+                    .padding(.leading,20)
+                
+                    .keyboardType(.numberPad)
+                    .frame(width: 300, height: 50)
+                    .foregroundColor(Color.black)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                    .padding(.bottom,20)
+                
+                
+                
+                
+                
             }
+            //.padding(.bottom, 20)
+            
             if selectedCategory == "Bus" {
                 Menu {
                     Button("Cancel", role: .destructive) {
@@ -489,54 +469,31 @@ struct recordView: View {
                         .padding(.leading, 30)
                         .padding(.bottom, 20)
                         .font(.subheadline)
-                        
+                    
                     Spacer()
                 }.padding(.bottom, -10)
-                    
-                    
-                    
                 
-              
-                    VStack {
-                        Stepper(value: $busDistance, in: 0...100, step: 7) {
-                                                                    Text("\(busDistance) KMS")
-                                                                }
-                                                                .padding(.horizontal)
-                                                                
-                                                            }.multilineTextAlignment(.leading)
-                        .padding(.leading,20)
-                       
-                        .keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                        .padding(.bottom,20)
-                                                        
                 
-                ZStack {
-                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
-                        
-                    }.multilineTextAlignment(.leading)
-                        .padding()
-                    //.keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
+                
+                
+                
+                VStack {
+                    Stepper(value: $busDistance, in: 0...100, step: 7) {
+                        Text("\(busDistance) KMS")
+                    }
+                    .padding(.horizontal)
                     
-                    HStack {
-                        Text("AC")
-                        
-                        
-                        Spacer()
-                        
-                        Toggle("", isOn: fields.isACSwitchOn)
-                            .labelsHidden()
-                            .padding(.trailing, 50)
-                    }.padding(.leading,  50)
-                }
-                .padding(.bottom, 20)
+                }.multilineTextAlignment(.leading)
+                    .padding(.leading,20)
+                
+                    .keyboardType(.numberPad)
+                    .frame(width: 300, height: 50)
+                    .foregroundColor(Color.black)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                    .padding(.bottom,20)
+                
+                
             }
             if selectedCategory == "Train" {
                 Menu {
@@ -579,54 +536,32 @@ struct recordView: View {
                         .padding(.leading, 30)
                         .padding(.bottom, 20)
                         .font(.subheadline)
-                        
+                    
                     Spacer()
                 }.padding(.bottom, -10)
-                    
-                    
-                    
                 
-               
-                    VStack {
-                        Stepper(value: $trainDistance, in: 0...200, step:5) {
-                                                                    Text("\(trainDistance) KMS")
-                                                                }
-                                                                .padding(.horizontal)
-                                                                
-                                                            }.multilineTextAlignment(.leading)
-                        .padding(.leading,20)
-                       
-                        .keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                        .padding(.bottom,20)
-                                                
                 
-                ZStack {
-                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
-                        
-                    }.multilineTextAlignment(.leading)
-                        .padding()
-                    //.keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
+                
+                
+                
+                VStack {
+                    Stepper(value: $trainDistance, in: 0...200, step:5) {
+                        Text("\(trainDistance) KMS")
+                    }
+                    .padding(.horizontal)
                     
-                    HStack {
-                        Text("AC")
-                        
-                        
-                        Spacer()
-                        
-                        Toggle("", isOn: fields.isACSwitchOn)
-                            .labelsHidden()
-                            .padding(.trailing, 50)
-                    }.padding(.leading,  50)
-                }
-                .padding(.bottom, 20)
+                }.multilineTextAlignment(.leading)
+                    .padding(.leading,20)
+                
+                    .keyboardType(.numberPad)
+                    .frame(width: 300, height: 50)
+                    .foregroundColor(Color.black)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                    .padding(.bottom,20)
+                
+                
+                
             }
             
             if selectedCategory == "Auto" {
@@ -676,58 +611,36 @@ struct recordView: View {
                         .padding(.leading, 30)
                         .padding(.bottom, 20)
                         .font(.subheadline)
-                        
+                    
                     Spacer()
                 }.padding(.bottom, -10)
-                    
-                    
-                    
-                
-               
-                    VStack {
-                        Stepper(value: $autoDistance, in: 0...100, step: 5) {
-                                                                    Text("\(autoDistance) KMS")
-                                                                }
-                                                                .padding(.horizontal)
-                                                                
-                                                            }.multilineTextAlignment(.leading)
-                        .padding(.leading,20)
-                       
-                        .keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                        .padding(.bottom,20)
-                                                
                 
                 
                 
-                ZStack {
-                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
-                        
-                    }.multilineTextAlignment(.leading)
-                        .padding()
-                    //.keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
+                
+                
+                VStack {
+                    Stepper(value: $autoDistance, in: 0...100, step: 5) {
+                        Text("\(autoDistance) KMS")
+                    }
+                    .padding(.horizontal)
                     
-                    HStack {
-                        Text("AC")
-                        
-                        
-                        Spacer()
-                        
-                        Toggle("", isOn: fields.isACSwitchOn)
-                            .labelsHidden()
-                            .padding(.trailing, 50)
-                    }.padding(.leading,  50)
-                }
-                .padding(.bottom, 20)
+                }.multilineTextAlignment(.leading)
+                    .padding(.leading,20)
+                
+                    .keyboardType(.numberPad)
+                    .frame(width: 300, height: 50)
+                    .foregroundColor(Color.black)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                    .padding(.bottom,20)
+                
+                
+                
+                
+                
             }
-           
+            
             if selectedCategory == "Car Pool" {
                 Menu {
                     Button("Cancel", role: .destructive) {
@@ -763,313 +676,297 @@ struct recordView: View {
                         .padding(.leading, 30)
                         .padding(.bottom, 20)
                         .font(.subheadline)
-                        
+                    
                     Spacer()
                 }.padding(.bottom, -10)
-                    
-                    
-                    
-                
-               
-                    VStack {
-                        Stepper(value: $carPoolDistance, in: 0...100, step: 5) {
-                                                                    Text("\(carPoolDistance) KMS")
-                                                                }
-                                                                .padding(.horizontal)
-                                                                
-                                                            }.multilineTextAlignment(.leading)
-                        .padding(.leading,20)
-                       
-                        .keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
-                        .padding(.bottom,20)
-                                                
                 
                 
                 
-                ZStack {
-                    TextField("" , text: $dummyVar){ //fields.vehicleSize){
-                        
-                    }.multilineTextAlignment(.leading)
-                        .padding()
-                    //.keyboardType(.numberPad)
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(Color.black)
-                        .background(Color.black.opacity(0.05))
-                        .cornerRadius(10)
+                
+                
+                VStack {
+                    Stepper(value: $carPoolDistance, in: 0...100, step: 5) {
+                        Text("\(carPoolDistance) KMS")
+                    }
+                    .padding(.horizontal)
                     
-                    HStack {
-                        Text("AC")
-                        
-                        
-                        Spacer()
-                        
-                        Toggle("", isOn: fields.isACSwitchOn)
-                            .labelsHidden()
-                            .padding(.trailing, 50)
-                    }.padding(.leading,  50)
+                }.multilineTextAlignment(.leading)
+                    .padding(.leading,20)
+                
+                    .keyboardType(.numberPad)
+                    .frame(width: 300, height: 50)
+                    .foregroundColor(Color.black)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                    .padding(.bottom,20)
+                
+                
+                
+                
+                
+            }
+            //.padding(.bottom, 20)
+            
+            HStack{
+                Text("Number of Passengers")
+                    .foregroundStyle(Color.mainGreen)
+                    .padding(.leading, 30)
+                    .padding(.bottom, 20)
+                    .font(.subheadline)
+                Spacer()
+            }.padding(.bottom, -10)
+            Menu {
+                Button("Cancel", role: .destructive) {
+                    // Do something
                 }
-                .padding(.bottom, 20)
-                HStack{
-                    Text("Number of Passengers")
-                        .foregroundStyle(Color.mainGreen)
-                        .padding(.leading, 30)
-                        .padding(.bottom, 20)
-                        .font(.subheadline)
-                    Spacer()
-                }.padding(.bottom, -10)
-                Menu {
-                    Button("Cancel", role: .destructive) {
-                        // Do something
-                    }
-                    Button {
-                        // do something
-                        numberOfPassengers = "1"
-                    }label: {
-                        Label("1", systemImage:  "car.side.fill")
-                    }
-                    
-                    Button {
-                        // do something
-                        numberOfPassengers = "2"
-                    }label: {
-                        Label("2", systemImage:  "car.side.fill")
-                    }
-                    
-                    
-                    Button {
-                        // do something
-                        numberOfPassengers = "3"
-                    }label: {
-                        Label("3", systemImage:  "car.side.fill")
-                    }
-                    
-                    Button {
-                        // do something
-                        numberOfPassengers = "4"
-                    }label: {
-                        Label("4", systemImage:  "car.side.fill")
-                    }
-                    
-                    Button {
-                        // Do something
-                        numberOfPassengers = "5"
-                    } label: {
-                        Label("5", systemImage: "suv.side.fill")
-                    }
-                    
-                    Button {
-                        // Do something
-                        numberOfPassengers = "6"
-                    } label: {
-                        Label("6", systemImage: "truck.pickup.side.fill")
-                    }
-                } label: {
-                    TextField("e.g. 4" , text: $numberOfPassengers){ //fields.vehicleSize){
-                        
-                    }
-                    .multilineTextAlignment(.leading)
-                    .padding(.leading,20)
-                    .keyboardType(.numberPad)
-                    .frame(width: 300, height: 50)
-                    .foregroundColor(Color.black)
-                    .background(Color.black.opacity(0.05))
-                    .cornerRadius(10)
-                    
-                }.padding(.bottom, 20)
+                Button {
+                    // do something
+                    numberOfPassengers = "1"
+                }label: {
+                    Label("1", systemImage:  "car.side.fill")
+                }
                 
-                HStack{
-                    Text("Fuel Type")
-                        .foregroundStyle(Color.mainGreen)
-                        .padding(.leading, 30)
-                        .padding(.bottom, 20)
-                        .font(.subheadline)
-                    Spacer()
-                }.padding(.bottom, -10)
+                Button {
+                    // do something
+                    numberOfPassengers = "2"
+                }label: {
+                    Label("2", systemImage:  "car.side.fill")
+                }
                 
-                Menu {
-                    Button("Cancel", role: .destructive) {
-                        // Do something
-                    }
-                    
-                    Button {
-                        // do something
-                        fuel = "Petrol"
-                    }label: {
-                        Label("Petrol", systemImage:  "fuelpump")
-                    }
-                    
-                    Button {
-                        // Do something
-                        fuel = "Diesel"
-                    } label: {
-                        Label("Diesel", systemImage: "fuelpump.fill")
-                    }
-                    
-                    Button {
-                        // Do something
-                        fuel = "Electric"
-                    } label: {
-                        Label("Electric", systemImage: "leaf.arrow.circlepath")
-                    }
+                
+                Button {
+                    // do something
+                    numberOfPassengers = "3"
+                }label: {
+                    Label("3", systemImage:  "car.side.fill")
+                }
+                
+                Button {
+                    // do something
+                    numberOfPassengers = "4"
+                }label: {
+                    Label("4", systemImage:  "car.side.fill")
+                }
+                
+                Button {
+                    // Do something
+                    numberOfPassengers = "5"
                 } label: {
-                    TextField("e.g Petrol" , text: $fuel){
-                        
-                    }
-                    .multilineTextAlignment(.leading)
-                    .padding(.leading,20)
-                    .keyboardType(.numberPad)
-                    .frame(width: 300, height: 50)
-                    .foregroundColor(Color.black)
-                    .background(Color.black.opacity(0.05))
-                    .cornerRadius(10)
+                    Label("5", systemImage: "suv.side.fill")
+                }
+                
+                Button {
+                    // Do something
+                    numberOfPassengers = "6"
+                } label: {
+                    Label("6", systemImage: "truck.pickup.side.fill")
+                }
+            } label: {
+                TextField("e.g. 4" , text: $numberOfPassengers){ //fields.vehicleSize){
                     
-                }.padding(.bottom, 20)
-            }
+                }
+                .multilineTextAlignment(.leading)
+                .padding(.leading,20)
+                .keyboardType(.numberPad)
+                .frame(width: 300, height: 50)
+                .foregroundColor(Color.black)
+                .background(Color.black.opacity(0.05))
+                .cornerRadius(10)
+                
+            }.padding(.bottom, 20)
             
-        
-            }
+            HStack{
+                Text("Fuel Type")
+                    .foregroundStyle(Color.mainGreen)
+                    .padding(.leading, 30)
+                    .padding(.bottom, 20)
+                    .font(.subheadline)
+                Spacer()
+            }.padding(.bottom, -10)
             
-        }
-    private func printUserInput() {
-        guard let selectedCategory = selectedCategory else {
-            print("Selected Category is nil.")
-            return
-        }
-
-        print("Selected Category for Record: \(selectedCategory)")
-        print("Selected Date:\(selectedDate)")
-        switch selectedCategory {
-        case "Car":
-            print("Car: \(carType)")
-            print("Distance Travelled: \(carDistance)")
-            print("AC Switch: \(category1Fields.isACSwitchOn)")
-        case "Bus":
-            // Handle Bus category input
-            print("Bus: \(busType)")
-            print("Distance Travelled: \(busDistance)")
-            print("AC Switch: \(category1Fields.isACSwitchOn)")
-            break
-        case "Train":
-            // Handle Train category input
-            print("Train: \(trainType)")
-            print("Distance Travelled: \(trainDistance)")
-            print("AC Switch: \(category1Fields.isACSwitchOn)")
-            break
-        case "Car Pool":
-            print("Car Type: \(carPool)")
-            print("Distance Travelled: \(carPoolDistance)")
-            print("AC Switch: \(category4Fields.isACSwitchOn)")
-            print("Number of Passengers: \(numberOfPassengers)")
-            print("Fuel Type: \(fuel)")
-        case "Auto":
-            print("Auto Type: \(autoType)")
-            print("Distance Travelled: \(autoDistance)")
-            print("AC Switch: \(category4Fields.isACSwitchOn)")
-        default:
-            break
+            Menu {
+                Button("Cancel", role: .destructive) {
+                    // Do something
+                }
+                
+                Button {
+                    // do something
+                    fuel = "Petrol"
+                }label: {
+                    Label("Petrol", systemImage:  "fuelpump")
+                }
+                
+                Button {
+                    // Do something
+                    fuel = "Diesel"
+                } label: {
+                    Label("Diesel", systemImage: "fuelpump.fill")
+                }
+                
+                Button {
+                    // Do something
+                    fuel = "Electric"
+                } label: {
+                    Label("Electric", systemImage: "leaf.arrow.circlepath")
+                }
+            } label: {
+                TextField("e.g Petrol" , text: $fuel){
+                    
+                }
+                .multilineTextAlignment(.leading)
+                .padding(.leading,20)
+                .keyboardType(.numberPad)
+                .frame(width: 300, height: 50)
+                .foregroundColor(Color.black)
+                .background(Color.black.opacity(0.05))
+                .cornerRadius(10)
+                
+            }.padding(.bottom, 20)
         }
     }
-    
-    
-    
-    
-    private func saveUserInput() {
-        // Check if category is car
-        if selectedCategory == "Car" {
-            // Check car type
-            switch carType {
-            case "Private":
-                privateDistance = carDistance
-            case "Cab":
-                cabsDistance = carDistance
+        
+        
+        
+        
+        
+        private func printUserInput() {
+            guard let selectedCategory = selectedCategory else {
+                print("Selected Category is nil.")
+                return
+            }
+            
+            print("Selected Category for Record: \(selectedCategory)")
+            print("Selected Date:\(selectedDate)")
+            switch selectedCategory {
+            case "Car":
+                print("Car: \(carType)")
+                print("Distance Travelled: \(carDistance)")
+                print("AC Switch: \(category1Fields.isACSwitchOn)")
+            case "Bus":
+                // Handle Bus category input
+                print("Bus: \(busType)")
+                print("Distance Travelled: \(busDistance)")
+                print("AC Switch: \(category1Fields.isACSwitchOn)")
+                break
+            case "Train":
+                // Handle Train category input
+                print("Train: \(trainType)")
+                print("Distance Travelled: \(trainDistance)")
+                print("AC Switch: \(category1Fields.isACSwitchOn)")
+                break
+            case "Car Pool":
+                print("Car Type: \(carPool)")
+                print("Distance Travelled: \(carPoolDistance)")
+                print("AC Switch: \(category4Fields.isACSwitchOn)")
+                print("Number of Passengers: \(numberOfPassengers)")
+                print("Fuel Type: \(fuel)")
+            case "Auto":
+                print("Auto Type: \(autoType)")
+                print("Distance Travelled: \(autoDistance)")
+                print("AC Switch: \(category4Fields.isACSwitchOn)")
             default:
                 break
             }
-        }
         
-        //Check if category is carpool
-        if selectedCategory=="Car Pool"{
-            carpoolDistance = carPoolDistance
-        }
-        
-        // Check if category is train
-        if selectedCategory == "Train" {
-            // Check train type
-            switch trainType {
-            case "Local":
-                localTrainDistance = trainDistance
-            case "Metro":
-                metroDistance = trainDistance
-            default:
-                // Handle other train types
-                break
-            }
-        }
-        
-        if selectedCategory == "Auto" {
-            // Check train type
-            switch autoType {
-            case "Pillion":
-                pillionDistance = autoDistance
-            case "Sharing":
-                sharingDistance = autoDistance
-            case "Magic":
-                magicDistance = autoDistance
-            default:
-                // Handle other train types
-                break
-            }
-        }
-        if selectedCategory == "Bus" {
-            // Check train type
-            switch busType {
-            case "Ordinary":
-                ordinaryDistance=busDistance
-            case "AC":
-                acDistance = busDistance
-            case "Deluxe":
-                deluxeDistance = busDistance
-            default:
-                // Handle other train types
-                break
-            }
-        }
-        
-        // Add similar logic for other categories and vehicle types
-        
-        // Print updated distances (optional)
-        print("car Distance: \(carDistance)")
-        print("car pool Distance: \(carPoolDistance)")
-        print("bus Distance: \(busDistance)")
-        print("auto Distance: \(autoDistance)")
-        print("train Distance: \(trainDistance)")
-        // Print other distances as needed
-        
-        
-        
-        userData.userEmission = userEmissions
-        userData.datePicked = selectedDate
-        distanceViewModel.privateVDistance = privateDistance
-        distanceViewModel.cabsVDistance = cabsDistance
-        distanceViewModel.carpoolVDistance = carpoolDistance
-        distanceViewModel.localTrainVDistance = localTrainDistance
-        distanceViewModel.metroVDistance = metroDistance
-        distanceViewModel.pillionVDistance = pillionDistance
-        distanceViewModel.sharingVDistance = sharingDistance
-        distanceViewModel.magicVDistance = magicDistance
-        distanceViewModel.ordinaryVDistance = ordinaryDistance
-        distanceViewModel.acVDistance = acDistance
-        distanceViewModel.deluxeVDistance = deluxeDistance
     }
-    
+        
+        
+        
+        
+        private func saveUserInput() {
+            // Check if category is car
+            if selectedCategory == "Car" {
+                // Check car type
+                switch carType {
+                case "Private":
+                    privateDistance = carDistance
+                case "Cab":
+                    cabsDistance = carDistance
+                default:
+                    break
+                }
+            }
+            
+            //Check if category is carpool
+            if selectedCategory=="Car Pool"{
+                carpoolDistance = carPoolDistance
+            }
+            
+            // Check if category is train
+            if selectedCategory == "Train" {
+                // Check train type
+                switch trainType {
+                case "Local":
+                    localTrainDistance = trainDistance
+                case "Metro":
+                    metroDistance = trainDistance
+                default:
+                    // Handle other train types
+                    break
+                }
+            }
+            
+            if selectedCategory == "Auto" {
+                // Check train type
+                switch autoType {
+                case "Pillion":
+                    pillionDistance = autoDistance
+                case "Sharing":
+                    sharingDistance = autoDistance
+                case "Magic":
+                    magicDistance = autoDistance
+                default:
+                    // Handle other train types
+                    break
+                }
+            }
+            if selectedCategory == "Bus" {
+                // Check train type
+                switch busType {
+                case "Ordinary":
+                    ordinaryDistance=busDistance
+                case "AC":
+                    acDistance = busDistance
+                case "Deluxe":
+                    deluxeDistance = busDistance
+                default:
+                    // Handle other train types
+                    break
+                }
+            }
+            
+            // Add similar logic for other categories and vehicle types
+            
+            // Print updated distances (optional)
+            print("car Distance: \(carDistance)")
+            print("car pool Distance: \(carPoolDistance)")
+            print("bus Distance: \(busDistance)")
+            print("auto Distance: \(autoDistance)")
+            print("train Distance: \(trainDistance)")
+            // Print other distances as needed
+            
+            
+            
+            userData.userEmission = userEmissions
+            userData.datePicked = selectedDate
+            distanceViewModel.privateVDistance = privateDistance
+            distanceViewModel.cabsVDistance = cabsDistance
+            distanceViewModel.carpoolVDistance = carpoolDistance
+            distanceViewModel.localTrainVDistance = localTrainDistance
+            distanceViewModel.metroVDistance = metroDistance
+            distanceViewModel.pillionVDistance = pillionDistance
+            distanceViewModel.sharingVDistance = sharingDistance
+            distanceViewModel.magicVDistance = magicDistance
+            distanceViewModel.ordinaryVDistance = ordinaryDistance
+            distanceViewModel.acVDistance = acDistance
+            distanceViewModel.deluxeVDistance = deluxeDistance
+        }
+        
+        
     
     
 
-    }
+}
 
 
 

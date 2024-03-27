@@ -110,6 +110,16 @@ struct HomePageDashboardView2: View {
                         .environmentObject(userData)
                         .environmentObject(distanceViewModel)
                     
+                    Statistics()
+                        .tabItem {
+                            Image(systemName: "chart.bar.xaxis")
+                                .resizable()
+                                .foregroundColor(.black)
+                                .frame(width: 50, height: 50) // Adjust the icon size
+                            Text("Statistics")
+                                .foregroundColor(.black)
+                        }
+                    
                 }
                 
             }.navigationBarHidden(true)
