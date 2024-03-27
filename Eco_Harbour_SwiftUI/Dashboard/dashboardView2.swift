@@ -76,7 +76,7 @@ struct dashboardView2: View {
     
     private func formattedDate(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "d-MMM-YY"
+        dateFormatter.dateFormat = "d-MMM EEE"
         return dateFormatter.string(from: date)
     }
     
@@ -178,34 +178,44 @@ struct dashboardView2: View {
     @State private var text = "Info"
     @State private var userLoggedIn = false
     
+    func getColor(for value: Double) -> Color {
+        if value > 1000 {
+            return .red
+        } else if value > 600 {
+            return .yellow
+        } else {
+            return .green
+        }
+    }
+    
     var body: some View {
         
         ZStack {
             Color.white.ignoresSafeArea()
             VStack {
                 
-                List {
-                    if let historyData = historyViewModel.historyData {
-                        // Filter documents to include only those on or before today's date
-                        let currentDate = Date()
-                        let filteredDocuments = historyData.documents.filter { $0.key <= formattedDate(currentDate) }
-                        
-                        // Get the document with the latest date among the filtered documents
-                        if let closestDocument = filteredDocuments.max(by: { $0.key < $1.key }) {
-                            VStack(alignment: .leading) {
-                                Text("Document ID: \(closestDocument.key)")
-                                    .font(.headline)
-                                
-                                ForEach(closestDocument.value.sorted(by: { $0.key < $1.key }), id: \.key) { key, value in
-                                    Text("\(key): \(String(describing: value))")
-                                        .font(.subheadline)
-                                }
-                            }
-                            .padding()
-                        }
-                    }
-                }
-                
+//                List {
+//                    if let historyData = historyViewModel.historyData {
+//                        // Filter documents to include only those on or before today's date
+//                        let currentDate = Date()
+//                        let filteredDocuments = historyData.documents.filter { $0.key <= formattedDate(currentDate) }
+//                        
+//                        // Get the document with the latest date among the filtered documents
+//                        if let closestDocument = filteredDocuments.max(by: { $0.key < $1.key }) {
+//                            VStack(alignment: .leading) {
+//                                Text("Document ID: \(closestDocument.key)")
+//                                    .font(.headline)
+//                                
+//                                ForEach(closestDocument.value.sorted(by: { $0.key < $1.key }), id: \.key) { key, value in
+//                                    Text("\(key): \(String(describing: value))")
+//                                        .font(.subheadline)
+//                                }
+//                            }
+//                            .padding()
+//                        }
+//                    }
+//                }
+//                
                 
                 
                 
@@ -320,104 +330,69 @@ struct dashboardView2: View {
                         
                         
                         if(showSignInView==false){
-                            HStack(alignment: .bottom) {
+                            //List {
+                            //    Section(header: Text("Glance")) {
+                            VStack {
+                                Text("Glance of Previous Records")
+                                    .font(.title2)
+                                    .foregroundColor(.black)
+                                    .fontWeight(.semibold)
+                                    .padding(.top, 20)
                                 
-                                if let historyData = historyViewModel.historyData {
-                                    ForEach(historyData.documents.sorted(by: { $0.key < $1.key }), id: \.key) { documentID, documentData in
-                                        VStack(alignment: .leading) {
-                                            
-                                            
-                                            // Iterate through the documentData to find the user_emissions value
-                                            if let userEmissions = documentData["user_emissions"] as? Double {
-                                                // Use userEmissions to create the bar view
-                                                VStack {
-                                                    ZStack {
-                                                        Rectangle()
-                                                            .foregroundColor(.red) // Get color based on user emissions
-                                                            .frame(width: 35, height: CGFloat(userEmissions)/10, alignment: .bottom)
-                                                            .opacity(selectedID == UUID(uuidString: documentID) ? 0.5 : 1.0) // Adjust opacity based on selection
-                                                            .cornerRadius(6)
-                                                            .onTapGesture {
-                                                                self.selectedID = UUID(uuidString: documentID) ?? UUID() // Update selectedID
-                                                                self.text = "Value: \(Int(userEmissions))" // Update text
+                                    HStack(alignment: .bottom) {
+                                        
+                                        if let historyData = historyViewModel.historyData {
+                                            ScrollView(.horizontal){
+                                                HStack(alignment: .bottom) {
+                                                    ForEach(historyData.documents.sorted(by: { $0.key < $1.key }), id: \.key) { documentID, documentData in
+                                                        if let userEmissions = documentData["user_emissions"] as? Double {
+                                                            
+                                                            let userEmission = Int(userEmissions)
+                                                            
+                                                            
+                                                            VStack {
+                                                                
+                                                                ZStack {
+                                                                    Rectangle()
+                                                                        .foregroundColor(getColor(for: userEmissions))
+                                                                        .frame(width: 55, height: CGFloat(userEmissions * 0.12), alignment: .bottom)
+                                                                        .opacity(selectedID == UUID(uuidString: documentID) ? 0.5 : 1.0)
+                                                                        .cornerRadius(6)
+                                                                        .onTapGesture {
+                                                                            self.selectedID = UUID(uuidString: documentID) ?? UUID()
+                                                                            self.text = "Value: \(Int(userEmissions))"
+                                                                        }
+                                                                    
+                                                                    Text("\(userEmission)")
+                                                                        .foregroundColor(.white)
+                                                                }
+                                                                .padding(.horizontal, 3) // Add horizontal padding
+                                                                .padding(.vertical, 7) // Add vertical padding
+
+                                                                
+
+//
+                                                                
+                                                                
+                                                                Text(documentData["selected_date"] as? String ?? "") // Display date
+                                                                    .font(.caption2) // Adjust font size
                                                             }
-                                                        
-                                                        Text("\(Int(userEmissions))")
-                                                            .foregroundColor(.white)
+                                                        }
                                                     }
-//                                                    Text("Day: \(documentData["selected_date"] ?? "")") // Assuming you have a "day" field in documentData
                                                 }
+                                                
                                             }
                                         }
-                                        .padding()
+                                        //
                                     }
+                                    .frame(width: 300, height: 250, alignment: .bottom)
+                                    .padding(20)
+                                    .background(.gray.opacity(0.1))
+                                    //.border(Color.black, width:1)
+                                    .cornerRadius(6)
+                                    //    }
                                 }
-
-//                                if let historyData = viewModel.historyData {
-//                                    ForEach(historyData.documents.sorted(by: { $0.key < $1.key }), id: \.key) { documentID, documentData in
-//                                        VStack(alignment: .leading) {
-//                                            Text("Date: \(documentID)")
-//                                                .font(.headline)
-//                                            
-//                                            
-//                                            ForEach(documentData.sorted(by: { $0.key < $1.key }), id: \.key) { key, value in
-//                                                Text("\(key): \(String(describing: value))")
-//                                                    .font(.subheadline)
-//                                            }
-//                                            
-//                                        }
-//                                        .padding()
-//                                    }
-//                                }
                                 
-//                                ForEach(bars) { bar in
-//                                    VStack {
-//                                        ZStack {
-//                                            Rectangle()
-//                                                .foregroundColor(bar.color)
-//                                                .frame(width: 35, height: CGFloat(bar.value), alignment: .bottom)
-//                                                .opacity(selectedID == bar.id ? 0.5 : 1.0)
-//                                                .cornerRadius(6)
-//                                                .onTapGesture {
-//                                                    self.selectedID = bar.id
-//                                                    self.text = "Value: \(Int(bar.value))"
-//                                                }
-//                                            
-//                                            Text("\(Int(bar.value))")
-//                                                .foregroundColor(.white)
-//                                        }
-//                                        Text(bar.day)
-//                                    }
-//                                }
-                            }
-                            .frame(height: 240, alignment: .bottom)
-                            .padding(20)
-                            .background(.thinMaterial)
-                            .cornerRadius(6)
-                            // Additional buttons and navigation
-                            //                        Button("Refresh")  {
-                            //                            withAnimation {
-                            //                                self.bars = Bar.sampleBars
-                            //                            }
-                            //                        }
-                            //                        .padding()
-                            
-                            Button("View Statistics"){
-                                showingEmissionHistoryScreen.toggle()
-                            }
-                            .font(.headline)
-                            .foregroundColor(.black)
-                            .frame(width: 351, height: 44)
-                            .background(Color.gray.opacity(0.2))
-                            .cornerRadius(10)
-                            .padding(.top, 20)
-                            
-                            
-                            //                            NavigationLink(destination: EmissionHistoryView(), isActive: $showingEmissionHistoryScreen) {
-                            //                                EmptyView()
-                            //                            }
-                            
-                            
                             
                         }
                         else {
@@ -455,33 +430,33 @@ struct dashboardView2: View {
                             }.background(Color.red.opacity(0.1))
                             
                         }
-                        Button("Log Data + ") {
-                            // Authenticate user
-                            //printing all variables
-                            print("Private Distance Travelled: \(privateDistance)")
-                            print("Cabs Distance Travelled: \(cabsDistance)")
-                            print("Carpool Distance Travelled: \(carpoolDistance)")
-                            print("Local Train Distance Travelled: \(localTrainDistance)")
-                            print("Metro Distance Travelled: \(metroDistance)")
-                            print("Pillion Distance Travelled: \(pillionDistance)")
-                            print("Sharing Distance Travelled: \(sharingDistance)")
-                            print("Magic Distance Travelled: \(magicDistance)")
-                            print("Ordinary Distance Travelled: \(ordinaryDistance)")
-                            print("AC Distance Travelled: \(acDistance)")
-                            print("Deluxe Distance Travelled: \(deluxeDistance)")
-                            
-                            showingNextScreen.toggle()
-                        }
-                        .font(.headline)
-                        .foregroundColor(.black)
-                        .frame(width: 351, height: 44)
-                        .background(Color.gray.opacity(0.2))
-                        .cornerRadius(10)
-                        .padding(.top, 20)
-                        
-                        NavigationLink(destination: recordView(showSignInView: .constant(false)), isActive: $showingNextScreen) {
-                            EmptyView()
-                        }
+//                        Button("Log Data + ") {
+//                            // Authenticate user
+//                            //printing all variables
+//                            print("Private Distance Travelled: \(privateDistance)")
+//                            print("Cabs Distance Travelled: \(cabsDistance)")
+//                            print("Carpool Distance Travelled: \(carpoolDistance)")
+//                            print("Local Train Distance Travelled: \(localTrainDistance)")
+//                            print("Metro Distance Travelled: \(metroDistance)")
+//                            print("Pillion Distance Travelled: \(pillionDistance)")
+//                            print("Sharing Distance Travelled: \(sharingDistance)")
+//                            print("Magic Distance Travelled: \(magicDistance)")
+//                            print("Ordinary Distance Travelled: \(ordinaryDistance)")
+//                            print("AC Distance Travelled: \(acDistance)")
+//                            print("Deluxe Distance Travelled: \(deluxeDistance)")
+//                            
+//                            showingNextScreen.toggle()
+//                        }
+//                        .font(.headline)
+//                        .foregroundColor(.black)
+//                        .frame(width: 351, height: 44)
+//                        .background(Color.gray.opacity(0.2))
+//                        .cornerRadius(10)
+//                        .padding(.top, 20)
+//                        
+//                        NavigationLink(destination: recordView(showSignInView: .constant(false)), isActive: $showingNextScreen) {
+//                            EmptyView()
+//                        }
                         //.padding()
                     }
                     .padding(.bottom, 50)

@@ -8,8 +8,11 @@ struct HistoryView: View {
         NavigationView {
             List {
                 ForEach(vehicleData, id: \.category) { vehicleCategory in
+                    
                     ForEach(vehicleCategory.vehicles.filter { $0.distance > 0 }, id: \.id) { vehicle in
-                        VehicleRow(vehicle: vehicle)
+                        if vehicle.distance > 0 {
+                            VehicleRow(vehicle: vehicle)
+                        }
                     }
                 }
             }
@@ -81,6 +84,7 @@ struct VehicleRow: View {
     
     var body: some View {
         HStack {
+            
             Text(vehicle.name)
             Spacer()
             Text("Distance: \(vehicle.distance) km")

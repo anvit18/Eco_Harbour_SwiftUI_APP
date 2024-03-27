@@ -291,10 +291,18 @@ struct RecordView2: View {
                 .cornerRadius(10)
                 .padding(.top, 10)
                 .padding(.trailing, 20)
-                
+//                
                 
                 Button("Add") {
-                    
+                    Task{
+                        
+                        do{
+                            try await viewModel.sendRecordViewData()
+                            return
+                        }catch{
+                            print("error \(error)")
+                        }
+                    }
                     saveUserInput()
                     
                     // Show the alert
@@ -313,31 +321,34 @@ struct RecordView2: View {
                     )
                 }
                 
+//                Button{
+//                    Task{
+//                        
+//                        do{
+//                            try await viewModel.sendRecordViewData()
+//                            return
+//                        }catch{
+//                            print("error \(error)")
+//                        }
+//                    }
+//                    
+//                    
+//                } label:{
+//                    Text("Record Data")
+//                        .foregroundColor(.white)
+//                        .frame(width: 140, height: 50)
+//                        .background(Color.mainGreen)
+//                        .cornerRadius(10)
+//                        .padding(.top, 10)
+//                }
+                //.padding(.bottom,70)
+                
             }
-            .padding(.bottom,5)
+            .padding(.bottom,50)
             
             
             //backend stuff
-            Button{
-                Task{
-                    
-                    do{
-                        try await viewModel.sendRecordViewData()
-                        return
-                    }catch{
-                        print("error \(error)")
-                    }
-                }
-                
-                
-            } label:{
-                Text("Record Data")
-                    .foregroundColor(.white)
-                    .frame(width:300, height:50)
-                    .background(Color.mainGreen)
-                    .cornerRadius(10)
-            }
-            .padding(.bottom,70)
+            
             
             
         }
