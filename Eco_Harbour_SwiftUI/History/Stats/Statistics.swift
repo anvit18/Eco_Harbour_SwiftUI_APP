@@ -6,6 +6,7 @@ struct Statistics: View {
     var body: some View {
         VStack{
             EmissionStatisticsView()
+            VehicleStatisticsView()
         }
     }
 }

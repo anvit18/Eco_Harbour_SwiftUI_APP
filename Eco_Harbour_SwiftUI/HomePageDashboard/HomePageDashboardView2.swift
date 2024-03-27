@@ -112,11 +112,11 @@ struct HomePageDashboardView2: View {
                     
                     Statistics()
                         .tabItem {
-                            Image(systemName: "clock")
+                            Image(systemName: "chart.bar.xaxis")
                                 .resizable()
                                 .foregroundColor(.black)
                                 .frame(width: 50, height: 50) // Adjust the icon size
-                            Text("History")
+                            Text("Statistics")
                                 .foregroundColor(.black)
                         }
                     

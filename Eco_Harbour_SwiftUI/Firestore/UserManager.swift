@@ -29,6 +29,15 @@ struct LatestDistanceData{
     let trainDistance:Int
 }
 
+struct OverallDistanceData{
+    let userEmissionOverall:Int
+    let autoDistanceOverall:Int
+    let busDistanceOverall:Int
+    let carDistanceOverall:Int
+    let carpoolDistanceOverall:Int
+    let trainDistanceOverall:Int
+}
+
 private func formattedDate(_ date: Date) -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "d-MMM-YY"
@@ -146,5 +155,42 @@ final class UserManager{
         
         return nil
     }
+    
+    
+    
+    // Function to get the overall distance data
+    func getOverallDistanceData(userId: String) async throws -> OverallDistanceData? {
+        let snapshot = try await Firestore.firestore().collection("users").document(userId).collection("date").getDocuments()
+        
+        // Initialize variables to hold overall distance data
+        var userEmissionOverall = 0
+        var autoDistanceOverall = 0
+        var busDistanceOverall = 0
+        var carDistanceOverall = 0
+        var carpoolDistanceOverall = 0
+        var trainDistanceOverall = 0
+        
+        // Iterate through documents to calculate overall distances
+        for document in snapshot.documents {
+            let documentData = document.data()
+            
+            // Sum up distances for each type
+            userEmissionOverall += documentData["user_emissions"] as? Int ?? 0
+            autoDistanceOverall += documentData["auto_distance"] as? Int ?? 0
+            busDistanceOverall += documentData["bus_distance"] as? Int ?? 0
+            carDistanceOverall += documentData["car_distance"] as? Int ?? 0
+            carpoolDistanceOverall += documentData["car_pool_distance"] as? Int ?? 0
+            trainDistanceOverall += documentData["train_distance"] as? Int ?? 0
+        }
+        
+        // Return OverallDistanceData object with summed distances
+        return OverallDistanceData(userEmissionOverall: userEmissionOverall,
+                                    autoDistanceOverall: autoDistanceOverall,
+                                    busDistanceOverall: busDistanceOverall,
+                                    carDistanceOverall: carDistanceOverall,
+                                    carpoolDistanceOverall: carpoolDistanceOverall,
+                                    trainDistanceOverall: trainDistanceOverall)
+    }
+
 
 }
