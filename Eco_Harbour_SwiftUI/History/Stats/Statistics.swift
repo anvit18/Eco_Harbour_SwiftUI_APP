@@ -1,13 +1,21 @@
 import SwiftUI
-import Charts
 
 struct Statistics: View {
-
     var body: some View {
-        VStack{
-            EmissionStatisticsView()
-            VehicleStatisticsView()
-        }
+        List {
+            Section(header: Text("Emission Stats")) {
+               
+                   VStack{
+                       EmissionStatisticsView()
+                   }
+                
+            }
+            Section(header: Text("Vehicle Type Stats")) {
+                VStack {
+                    VehicleStatisticsView()
+                }
+            }
+        }.navigationBarTitle("Statistics")
     }
 }
 

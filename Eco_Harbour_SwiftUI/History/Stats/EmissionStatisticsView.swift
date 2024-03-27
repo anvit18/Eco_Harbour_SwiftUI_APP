@@ -26,10 +26,15 @@ struct EmissionStatisticsView: View {
                         }
                     }
                 }
+                .chartScrollableAxes(.horizontal)
+                .chartYAxis(.visible)
+                .chartXAxis(.visible)
+                .frame(width: 300)
+                //.BarWidth(0.5)
             } else {
                 ProgressView()
             }
-        }.frame(height: 150)
+        }.frame(height: 200)
         .task {
             try? await historyViewModel.loadCurrentUser()
         }
