@@ -2,22 +2,32 @@ import SwiftUI
 
 struct Statistics: View {
     var body: some View {
-        List {
-            Section(header: Text("Emission Stats")) {
-               
-                   VStack{
-                       EmissionStatisticsView()
-                   }
-                
+        VStack {
+            HStack{
+                Text("Statistics")
+                    .font(.title)
+                    .padding()
+                Spacer()
             }
-            Section(header: Text("Vehicle Type Stats")) {
-                VStack {
-                    VehicleStatisticsView()
+            
+            
+            List {
+                Section() {
+                    VStack{
+                        EmissionStatisticsView()
+                    }
                 }
-            }
-        }.navigationBarTitle("Statistics")
+                Section(header: Text("Vehicle Type Stats")) {
+                    VStack {
+                        VehicleStatisticsView()
+                    }
+                }
+            }/*.background(.white)*/
+//                .scrollContentBackground(.hidden)
+        }
     }
 }
+
 
 struct Statistics_Previews: PreviewProvider {
     static var previews: some View {
