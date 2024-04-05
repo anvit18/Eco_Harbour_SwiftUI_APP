@@ -8,6 +8,7 @@ struct VehicleStatisticsView: View {
     @State private var selectedType: Emissions?
     @State private var cumulativeEmissions: Double = 0 // New state variable for cumulative emissions
     @State private var progress: CGFloat = 0.2 // example progress value
+    @State private var expandedIndex: Int?
     
     struct Emissions: Identifiable {
         var id = UUID()
@@ -37,6 +38,13 @@ struct VehicleStatisticsView: View {
         }
     }
     
+    
+    
+    
+    
+    
+    
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text("Vehicle Type Statistics")
@@ -45,7 +53,6 @@ struct VehicleStatisticsView: View {
             Text("\(emissionData.map { $0.emissions }.reduce(0, +))")
                 .font(.largeTitle)
 
-            
             ForEach(emissionData.indices, id: \.self) { index in
                 let data = emissionData[index]
                 let percentage = Double(data.emissions) / cumulativeEmissions
@@ -66,9 +73,12 @@ struct VehicleStatisticsView: View {
                     Spacer()
                     
                     VStack(alignment: .trailing) {
-                        if index != emissionData.count - 1 {
+                        if index != emissionData.count {
                             Image(systemName: "chevron.down")
                                 .foregroundColor(.gray)
+                                .onTapGesture {
+                                    expandedIndex = index == expandedIndex ? nil : index
+                                }
                         }
                     }
                 }
@@ -76,8 +86,27 @@ struct VehicleStatisticsView: View {
                 if index != emissionData.count - 1 {
                     Divider()
                 }
+                
+                if let expandedIndex = expandedIndex, expandedIndex == index {
+                            // Additional VStack for expanded content
+                            VStack {
+                                if data.type == "Car" {
+                                    CarStatisticsView()
+                                } else if data.type == "Auto" {
+                                    AutoStatisticsView()
+                                } else if data.type == "Bus" {
+                                    BusStatisticsView()
+                                } else if data.type == "Train" {
+                                    TrainStatisticsView()
+                                } else {
+                                    EmptyView()
+                                }
+                            }
+                            .padding()
+                        }
             }
         }
+
 
         .onAppear {
             updateData()
@@ -87,6 +116,8 @@ struct VehicleStatisticsView: View {
         }
     }
 }
+
+
 
 
 

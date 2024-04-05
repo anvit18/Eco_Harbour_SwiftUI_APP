@@ -23,6 +23,10 @@
 		7F29B2192B76A19100A55511 /* privateVehicleDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29B20A2B76A19100A55511 /* privateVehicleDetails.swift */; };
 		7F29B21A2B76A19100A55511 /* frequentlyUsedVehicles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29B20B2B76A19100A55511 /* frequentlyUsedVehicles.swift */; };
 		7F29B21B2B76A19100A55511 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29B20C2B76A19100A55511 /* OnboardingView.swift */; };
+		7F58BA7C2BC0064800E1794B /* CarStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58BA7B2BC0064800E1794B /* CarStatisticsView.swift */; };
+		7F58BA7E2BC006DA00E1794B /* BusStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58BA7D2BC006DA00E1794B /* BusStatisticsView.swift */; };
+		7F58BA802BC006E600E1794B /* AutoStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58BA7F2BC006E600E1794B /* AutoStatisticsView.swift */; };
+		7F58BA822BC006F300E1794B /* TrainStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58BA812BC006F300E1794B /* TrainStatisticsView.swift */; };
 		7F6C1F5F2B5510BF00CBEC53 /* Eco_Harbour_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C1F5E2B5510BF00CBEC53 /* Eco_Harbour_SwiftUIApp.swift */; };
 		7F6C1F612B5510BF00CBEC53 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C1F602B5510BF00CBEC53 /* ContentView.swift */; };
 		7F6C1F632B5510C000CBEC53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F6C1F622B5510C000CBEC53 /* Assets.xcassets */; };
@@ -104,6 +108,10 @@
 		7F29B20A2B76A19100A55511 /* privateVehicleDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = privateVehicleDetails.swift; sourceTree = "<group>"; };
 		7F29B20B2B76A19100A55511 /* frequentlyUsedVehicles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = frequentlyUsedVehicles.swift; sourceTree = "<group>"; };
 		7F29B20C2B76A19100A55511 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		7F58BA7B2BC0064800E1794B /* CarStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarStatisticsView.swift; sourceTree = "<group>"; };
+		7F58BA7D2BC006DA00E1794B /* BusStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStatisticsView.swift; sourceTree = "<group>"; };
+		7F58BA7F2BC006E600E1794B /* AutoStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoStatisticsView.swift; sourceTree = "<group>"; };
+		7F58BA812BC006F300E1794B /* TrainStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainStatisticsView.swift; sourceTree = "<group>"; };
 		7F6C1F5B2B5510BF00CBEC53 /* Eco_Harbour_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eco_Harbour_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6C1F5E2B5510BF00CBEC53 /* Eco_Harbour_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eco_Harbour_SwiftUIApp.swift; sourceTree = "<group>"; };
 		7F6C1F602B5510BF00CBEC53 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -204,9 +212,9 @@
 		7F6C1F5D2B5510BF00CBEC53 /* Eco_Harbour_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				7FC0DED22B87C6A0002962BE /* Eco_Harbour_SwiftUI.entitlements */,
 				7FD1FD802BB2EF5F00C2726D /* Stats */,
 				7FD4B2762BAF401A00F8578A /* History */,
-				7FC0DED22B87C6A0002962BE /* Eco_Harbour_SwiftUI.entitlements */,
 				7FD4B26F2BAD763F00F8578A /* HomePageDashboard */,
 				7FD4B2732BAD78DF00F8578A /* Record */,
 				7FD4B2612BAA0B8000F8578A /* Dashboard */,
@@ -328,9 +336,13 @@
 				7FD1FD852BB2EF9500C2726D /* EmissionStats.swift */,
 				7FD1FD872BB2F01F00C2726D /* DayWiseStats.swift */,
 				7FD4B2802BB406E300F8578A /* Statistics.swift */,
-				7FD4B2822BB40EA000F8578A /* EmissionStatisticsView.swift */,
 				7FD4B2842BB40F6F00F8578A /* VehicleStatisticsView.swift */,
+				7FD4B2822BB40EA000F8578A /* EmissionStatisticsView.swift */,
 				7FD4B2862BB431D500F8578A /* StatisticsViewModel.swift */,
+				7F58BA7B2BC0064800E1794B /* CarStatisticsView.swift */,
+				7F58BA7F2BC006E600E1794B /* AutoStatisticsView.swift */,
+				7F58BA812BC006F300E1794B /* TrainStatisticsView.swift */,
+				7F58BA7D2BC006DA00E1794B /* BusStatisticsView.swift */,
 			);
 			name = Stats;
 			path = History/Stats;
@@ -541,8 +553,12 @@
 				7FD1FD882BB2F01F00C2726D /* DayWiseStats.swift in Sources */,
 				7F29B21B2B76A19100A55511 /* OnboardingView.swift in Sources */,
 				7F6C1F612B5510BF00CBEC53 /* ContentView.swift in Sources */,
+				7F58BA802BC006E600E1794B /* AutoStatisticsView.swift in Sources */,
+				7F58BA7C2BC0064800E1794B /* CarStatisticsView.swift in Sources */,
+				7F58BA7E2BC006DA00E1794B /* BusStatisticsView.swift in Sources */,
 				7FD1FD7F2BB2EF1C00C2726D /* AppHistory.swift in Sources */,
 				7FA3AE432BA83B9D0091CF45 /* AuthenticationViewModel.swift in Sources */,
+				7F58BA822BC006F300E1794B /* TrainStatisticsView.swift in Sources */,
 				7F29B2152B76A19100A55511 /* VehcileDetails_CarDetails.swift in Sources */,
 				7F29B2102B76A19100A55511 /* dashboardView.swift in Sources */,
 				7F29B20F2B76A19100A55511 /* testing_code.swift in Sources */,
