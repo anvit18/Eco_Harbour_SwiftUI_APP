@@ -11,7 +11,8 @@ struct CarbonEmissionByVehicle2: Identifiable {
     var color: Color
 }
 
-struct MacroData2 {
+struct MacroData2 : Identifiable{
+    let id: UUID
     let name : String
     let value: Int
 }
@@ -67,11 +68,17 @@ struct BarView2: View {
     }
 }
 
+struct BarMarkData {
+    let id = UUID() // Add an identifier
+    let category: String // X-axis category
+    let value: Int // Y-axis value
+}
+
 struct dashboardView2: View {
     
     //IMPORTANT BACKEND STUFF
     @StateObject private var viewModel=DashboardViewModel()
-    @Binding var showSignInView:Bool    
+    @Binding var showSignInView:Bool
     @StateObject private var historyViewModel=AppHistoryModel()
     
     private func formattedDate(_ date: Date) -> String {
@@ -114,15 +121,17 @@ struct dashboardView2: View {
     //        }
     
     private var macros: [MacroData2] {
-        if let data = viewModel.data{
-            return
-            [
-                .init(name: "You", value:Int(data.userEmission)),
-                .init(name: "National Avg", value:625)
-            ]}
-        return []
+        if let data = viewModel.data {
+            return [
+                MacroData2(id: UUID(), name: "You", value: Int(data.userEmission)),
+                MacroData2(id: UUID(), name: "National Avg", value: 625)
+            ]
         }
-        
+        return []
+    }
+
+
+
     // Chart data
     //    var emissionsData = [
     //        CarbonEmissionByVehicle(vehicleType: "Pvt. Car", emissions: 380, color: .red),
@@ -165,6 +174,8 @@ struct dashboardView2: View {
     
     // User and national average emissions
     let nationalAverageEmission = 625
+    let currentDate = Date()
+        let dateFormatter = DateFormatter()
     //let userEmissions = userEmission
     
     // Bars data
@@ -187,6 +198,25 @@ struct dashboardView2: View {
             return .green
         }
     }
+    func dayOfWeek(date: Date) -> String {
+            dateFormatter.dateFormat = "EEEE"
+            return dateFormatter.string(from: date)
+        }
+        
+        // Function to get the month of the year
+        func monthOfYear(date: Date) -> String {
+            dateFormatter.dateFormat = "MMMM"
+            return dateFormatter.string(from: date)
+        }
+        
+        // Function to get the day of the month
+        func dayOfMonth(date: Date) -> String {
+            dateFormatter.dateFormat = "d"
+            return dateFormatter.string(from: date)
+        }
+    
+   
+    
     
     var body: some View {
         
@@ -199,13 +229,13 @@ struct dashboardView2: View {
 //                        // Filter documents to include only those on or before today's date
 //                        let currentDate = Date()
 //                        let filteredDocuments = historyData.documents.filter { $0.key <= formattedDate(currentDate) }
-//                        
+//
 //                        // Get the document with the latest date among the filtered documents
 //                        if let closestDocument = filteredDocuments.max(by: { $0.key < $1.key }) {
 //                            VStack(alignment: .leading) {
 //                                Text("Document ID: \(closestDocument.key)")
 //                                    .font(.headline)
-//                                
+//
 //                                ForEach(closestDocument.value.sorted(by: { $0.key < $1.key }), id: \.key) { key, value in
 //                                    Text("\(key): \(String(describing: value))")
 //                                        .font(.subheadline)
@@ -215,17 +245,38 @@ struct dashboardView2: View {
 //                        }
 //                    }
 //                }
-//                
+//
                 
                 
                 
                 
                 
                 ScrollView {
+                    HStack {
+                                    Text("\(dayOfWeek(date: currentDate)), ")
+                                        .font(.title2)
+                                        .padding(.leading,20)
+                                        //.bold()
+                                
+                                    Text(monthOfYear(date: currentDate))
+                                        .font(.title2)
+                                        .padding(.leading,-10)
+                                       // .bold()
+                                
+                                    Text(dayOfMonth(date: currentDate))
+                                        .font(.title2)
+                                        .padding(.leading,-6)
+                                        //.bold()
+                        
+                        Spacer()
+                                }
+
+
+                            
                     // Greetings and user information
                     HStack {
                         Text("Greetings, \(userName)!")
-                            .font(.largeTitle)
+                            .font(.title)
                             .bold()
                             .foregroundColor(.black)
                             .padding(.leading, 20)
@@ -234,99 +285,179 @@ struct dashboardView2: View {
                     }
                     .padding(.bottom, -15)
                     
+                    
+                    
                     // User's carbon footprint breakdown chart
                     //                 Image("transport_vector")
                     //                        .resizable()
                     //                        .frame(width: 240, height: 140)
+                    HStack{
+                        Text("Today's View")
+                            .font(.callout)
+                            .foregroundColor(.black)
+                            .padding(.top, 15)
+                            //.padding(.leading,-20)
+                        Spacer()
+                    }
                     
-                    Text("Your average daily carbon footprint is")
-                        .font(.subheadline)
-                        .foregroundColor(.black)
-                        .padding(.top, 15)
+                 
                     
                     VStack {
-                        ZStack {
-                            // Chart showing emissions breakdown
+                        
+                        ZStack{
+                            
+                            Rectangle()
+                                .fill(Color.gray.opacity(0.05))
+                                .cornerRadius(20)
+                                .frame(width:380, height: 250)
+                                .padding(10)
+                                .shadow(color: Color.black.opacity(0.8), radius: 20, x: 2, y: 7)
+                            
+                        HStack {
+                            VStack {
+                                VStack {
+                                    Text("Day Breakdown")
+                                        .font(.callout)
+                                        .foregroundStyle(.gray)
+                                    
+                                    HStack(spacing: 0) {
+                                        if let data = viewModel.data {
+                                            Text("\(Int(data.userEmission)) KG").foregroundColor(.black).bold()
+                                            Text("CO").foregroundStyle(Color.green)
+                                            Text("2").foregroundStyle(Color.green)
+                                                .baselineOffset(-10)
+                                        }
+                                    }
+                                    .font(.title2)
+                                    
+                                    //.padding(.bottom, 20)
+                                }
+                                .padding(.leading,-10)
+                                
+                                HStack {
+                                    ForEach(emissionsData.prefix(2)) { data in
+                                        HStack {
+                                            Spacer()
+                                            Circle()
+                                                .fill(data.color)
+                                                .frame(width: 13, height: 13)
+                                            //Spacer()
+                                            VStack{
+                                                Text(data.vehicleType)
+                                                    .font(.callout)
+                                                //.bold()
+                                                Text("\(data.emissions) kg")
+                                                    .font(.footnote)
+                                                    .foregroundStyle(.gray)
+                                            }
+                                        }
+                                        //.padding(.vertical, 5)
+                                    }
+                                }
+                                // .font(.footnote)
+                                .padding(.leading,-20)
+                                .padding(.horizontal)
+                                .foregroundColor(.black)
+                                
+                                HStack {
+                                    ForEach(emissionsData.dropFirst(2)) { data in
+                                        HStack {
+                                            Spacer()
+                                            Circle()
+                                                .fill(data.color)
+                                                .frame(width: 13, height: 13)
+                                            VStack{
+                                                Text(data.vehicleType)
+                                                    .font(.callout)
+                                                //.bold()
+                                                Text("\(data.emissions) kg")
+                                                    .font(.footnote)
+                                                    .foregroundStyle(.gray)
+                                            }
+                                        }
+                                        //.padding(.vertical, 5)
+                                    }
+                                }
+                                // .font(.footnote)
+                                .padding(.horizontal)
+                                .padding(.leading,-10)
+                                .foregroundColor(.black)
+                            }
+                            
+                            
                             Chart {
                                 ForEach(emissionsData) { data in
-                                    SectorMark(angle: .value("Emissions", data.emissions), innerRadius: .ratio(0.69), angularInset: 1.5)
-                                        .cornerRadius(9)
+                                    SectorMark(angle: .value("Emissions", data.emissions))
+                                        .cornerRadius(2)
                                         .foregroundStyle(data.color)
                                         .annotation(position: .overlay) {
                                             Text("\(data.emissions) ").bold()
                                                 .foregroundStyle(.white)
                                         }
-                                        .foregroundStyle(by: .value("Vehicle", data.vehicleType))
+                                    //.foregroundStyle(by: .value("Vehicle", data.vehicleType))
                                 }
                             }
-                            .chartLegend(position: .bottom, spacing: 20)
+                            // .chartLegend(position: .bottom, spacing: 20) // Remove this line to hide the legend
                             .foregroundColor(.black)
-                            .frame(height: 350)
-                            .chartXAxis(.hidden)
+                            .scaledToFit()
+                            .padding(.trailing,10)
                             .onAppear {
                                 // Use the userEmission here or any additional setup when the view appears
                                 print("User Emission on Appear: \(userData.userEmission)")
                                 print("check: \(distanceViewModel.privateVDistance) \(distanceViewModel.cabsVDistance) \(distanceViewModel.localTrainVDistance)")
                             }
                             
-                            VStack {
-                                Text("Carbon Emissions")
-                                    .font(.title2)
-                                    .foregroundColor(.black)
-                                    .fontWeight(.semibold)
-                                
-                                Text("Daily breakdown")
-                                    .font(.footnote)
-                                    .foregroundStyle(.gray)
-                                
-                                HStack(spacing: 0) {
-                                    if let data = viewModel.data{
-                                        Text("\(Int(data.userEmission)) kg").foregroundColor(.black)
-                                        Text("CO").foregroundStyle(Color.green)
-                                        Text("2").foregroundStyle(Color.green)
-                                            .baselineOffset(-10)
-                                    }
-                                    
-                                }
-                                .font(.title)
-                                .bold()
-                                .frame(width: 300, height: 50)
-                            }
                         }
+                    }
+
                         
                         // Stat: National Average vs User Emissions
                         VStack {
-                            
-                            
-                            Text("Comparison with National Average")
-                                .font(.title2)
-                                .foregroundColor(.black)
-                                .fontWeight(.semibold)
-                                .padding(.top, 20)
-                            
-                            Chart(macros, id:\.name){
-                                macro in BarMark(x: .value("Macros", macro.value), stacking: .normalized )
-                                    .foregroundStyle(by:.value("Name", macro.name)
-                                    )
-                                    .annotation(position: .overlay) {
-                                        Text("\(macro.value)").bold()
-                                            .foregroundStyle(.white)
-                                    }
-                                    .foregroundStyle(by: .value("Emission", macro.name))
-                            }
-                            .frame(height:48)
-                            .chartXAxis(.hidden)
-                            
-                            
-                            if let data = viewModel.data{
-                                Text("Your emissions are \(String(format: "%.1f", Double(data.userEmission)/Double(nationalAverageEmission)))x the national average. You need to lower down!")
-                                    .font(.subheadline)
+                            HStack{
+                                Text("Comparison with National Average (2023)")
+                                    .font(.callout)
                                     .foregroundColor(.black)
-                                    .padding(.top, 10)
+                                //.fontWeight(.semibold)
+                                    .padding(.top, 20)
+                                Spacer()
                             }
+                           
+                    
+                                Chart(macros) { macro in
+                                    BarMark(
+                                        x: .value("Category", macro.name),
+                                        y: .value("Value", macro.value)
+                                    )
+                                    .foregroundStyle(by: .value("Name", macro.name))
+                                    .annotation(position: .top) {
+                                        Text("\(macro.value)")
+                                            .font(.caption)
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.black)
+                                            .padding(4)
+                                            .background(Color.white)
+                                            .cornerRadius(4)
+                                            .padding(4)
+                                    }
+                                }
+                                .frame(height: 200)
+                                
+                                
+                                
+                                
+                                
+                                if let data = viewModel.data {
+                                    let userEmissionRatio = Double(data.userEmission) / Double(nationalAverageEmission)
+                                    Text("Your emissions are \(String(format: "%.1f", userEmissionRatio))x the national average. !")
+                                        .font(.subheadline)
+                                        .foregroundColor(.black)
+                                        .padding(.top, 10)
+                                }
                             
                         }
                         .padding()
+                            
+
                         
                         
                         if(showSignInView==false){
@@ -338,6 +469,9 @@ struct dashboardView2: View {
                                     .foregroundColor(.black)
                                     .fontWeight(.semibold)
                                     .padding(.top, 20)
+                                
+                               
+                                
                                 
                                     HStack(alignment: .bottom) {
                                         
@@ -444,7 +578,7 @@ struct dashboardView2: View {
 //                            print("Ordinary Distance Travelled: \(ordinaryDistance)")
 //                            print("AC Distance Travelled: \(acDistance)")
 //                            print("Deluxe Distance Travelled: \(deluxeDistance)")
-//                            
+//
 //                            showingNextScreen.toggle()
 //                        }
 //                        .font(.headline)
@@ -453,7 +587,7 @@ struct dashboardView2: View {
 //                        .background(Color.gray.opacity(0.2))
 //                        .cornerRadius(10)
 //                        .padding(.top, 20)
-//                        
+//
 //                        NavigationLink(destination: recordView(showSignInView: .constant(false)), isActive: $showingNextScreen) {
 //                            EmptyView()
 //                        }
