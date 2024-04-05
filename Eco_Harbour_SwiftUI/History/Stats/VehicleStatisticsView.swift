@@ -38,15 +38,12 @@ struct VehicleStatisticsView: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Text("Vehicle Type Statistics")
                 .font(.subheadline)
-                .padding()
             
-            Text("Overall Carbon Emissions: \(emissionData.map { $0.emissions }.reduce(0, +)) Kg CO\u{2082}")
-                .font(.headline)
-                .foregroundColor(.black)
-                .padding()
+            Text("\(emissionData.map { $0.emissions }.reduce(0, +))")
+                .font(.largeTitle)
 
             
             ForEach(emissionData.indices, id: \.self) { index in
@@ -107,11 +104,14 @@ struct CircularProgressView: View {
                 .opacity(0.1)
                 .foregroundColor(.blue)
             
-            // Foreground or the actual progress bar
+            // Foreground or the actual progress bar with gradient color
             Circle()
                 .trim(from: 0.0, to: min(progress, 1.0))
                 .stroke(style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
-                .foregroundColor(.blue)
+//                .foregroundColor(.blue)
+                .fill(
+                    AngularGradient(gradient: Gradient(colors: [.green,.red,.green]), center: .center)
+                    )
                 .rotationEffect(Angle(degrees: 270.0))
                 .animation(.linear, value: progress)
             
@@ -121,7 +121,9 @@ struct CircularProgressView: View {
                 .foregroundColor(.blue)
         }
     }
+    
 }
+
 
 
 
