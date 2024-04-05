@@ -58,12 +58,13 @@ struct HomePageDashboardView2: View {
                     Spacer()
                     
                     NavigationLink{
-                        SettingsView(showSignInView: $showSignInView)
-                    }label: {
-                        Image(systemName: "gear")
-                            .font(.headline)
-                            .padding(.trailing,20)
-                    }
+                                            SettingsView(showSignInView: $showSignInView)
+                                        }label: {
+                                            Image(systemName: "gearshape")
+                                                .font(.title2)
+                                                .foregroundColor(.mainGreen)
+                                                .padding(.trailing,20)
+                                        }
                     
                 }
                 //                NavigationLink(destination: Login_Signup_Page(), isActive: $showingLoginScreen) {
