@@ -24,29 +24,7 @@ struct Bar2: Identifiable {
     var value: Double
     var color: Color
     
-    // Sample data for bars
-    static var sampleBars2: [Bar] {
-        var tempBars = [Bar]()
-        var color: Color = .green
-        let days = ["M", "T", "W", "T", "F", "S", "S"]
-        
-        for i in 1...7 {
-            let rand = Double.random(in: 20...200.0)
-            
-            // Set color based on the random value
-            if rand > 625 {
-                color = .red
-            } else if rand > 75 {
-                color = .yellow
-            } else {
-                color = .green
-            }
-            
-            let bar = Bar(name: "\(i)", day: days[i-1], value: rand, color: color)
-            tempBars.append(bar)
-        }
-        return tempBars
-    }
+
 }
 
 struct BarView2: View {
@@ -89,14 +67,6 @@ struct dashboardView2: View {
     
     
     
-    
-    
-    
-    
-    
-    
-    //@State private var shouldUpdateEmissionsData = false
-    
     @EnvironmentObject private var userData: UserData
     @EnvironmentObject var distanceViewModel: DistanceViewModel
     //let userEmission : Double
@@ -114,11 +84,7 @@ struct dashboardView2: View {
     let deluxeDistance: Int
     
     let cabEmissions = 300
-    //    var car: Double {
-    //            // Access the privateVdistance property and calculate emissions
-    //        return Double(distanceViewModel._privateVDistance.wrappedValue) * 11
-    //
-    //        }
+ 
     
     private var macros: [MacroData2] {
         if let data = viewModel.data {
@@ -131,16 +97,6 @@ struct dashboardView2: View {
     }
 
 
-
-    // Chart data
-    //    var emissionsData = [
-    //        CarbonEmissionByVehicle(vehicleType: "Pvt. Car", emissions: 380, color: .red),
-    //        CarbonEmissionByVehicle(vehicleType: "Cab", emissions: 300, color: .indigo),
-    //        CarbonEmissionByVehicle(vehicleType: "Auto", emissions: 180, color: .orange),
-    //        CarbonEmissionByVehicle(vehicleType: "Local Train", emissions: 100, color: .purple),
-    //        CarbonEmissionByVehicle(vehicleType: "AC Bus", emissions: 400, color: .cyan),
-    //    ]
-    
     
     @State private var emissionsData: [CarbonEmissionByVehicle2] = []
     
@@ -161,10 +117,10 @@ struct dashboardView2: View {
         }
         
         emissionsData = [
-            CarbonEmissionByVehicle2(vehicleType: "Car", emissions: carEmission+car_PoolEmission, color: .blue),
-            CarbonEmissionByVehicle2(vehicleType: "Auto", emissions: autoEmission, color: .green),
-            CarbonEmissionByVehicle2(vehicleType: "Bus", emissions: busEmission, color: .orange),
-            CarbonEmissionByVehicle2(vehicleType: "Train", emissions: trainEmission, color: .purple),
+            CarbonEmissionByVehicle2(vehicleType: "Car", emissions: carEmission+car_PoolEmission, color: .mainGreen),
+            CarbonEmissionByVehicle2(vehicleType: "Auto", emissions: autoEmission, color: .mainGreen.opacity(0.7)),
+            CarbonEmissionByVehicle2(vehicleType: "Bus", emissions: busEmission, color: .green.opacity(0.4)),
+            CarbonEmissionByVehicle2(vehicleType: "Train", emissions: trainEmission, color: .green)
             //CarbonEmissionByVehicle(vehicleType: "", emissions: acBusEmissions, color: .cyan),
         ]
     }
@@ -188,16 +144,7 @@ struct dashboardView2: View {
     @State private var userName = "Anvit"
     @State private var text = "Info"
     @State private var userLoggedIn = false
-    
-    func getColor(for value: Double) -> Color {
-        if value > 1000 {
-            return .red
-        } else if value > 600 {
-            return .yellow
-        } else {
-            return .green
-        }
-    }
+
     func dayOfWeek(date: Date) -> String {
             dateFormatter.dateFormat = "EEEE"
             return dateFormatter.string(from: date)
@@ -223,34 +170,7 @@ struct dashboardView2: View {
         ZStack {
             Color.white.ignoresSafeArea()
             VStack {
-                
-                //                List {
-                //                    if let historyData = historyViewModel.historyData {
-                //                        // Filter documents to include only those on or before today's date
-                //                        let currentDate = Date()
-                //                        let filteredDocuments = historyData.documents.filter { $0.key <= formattedDate(currentDate) }
-                //
-                //                        // Get the document with the latest date among the filtered documents
-                //                        if let closestDocument = filteredDocuments.max(by: { $0.key < $1.key }) {
-                //                            VStack(alignment: .leading) {
-                //                                Text("Document ID: \(closestDocument.key)")
-                //                                    .font(.headline)
-                //
-                //                                ForEach(closestDocument.value.sorted(by: { $0.key < $1.key }), id: \.key) { key, value in
-                //                                    Text("\(key): \(String(describing: value))")
-                //                                        .font(.subheadline)
-                //                                }
-                //                            }
-                //                            .padding()
-                //                        }
-                //                    }
-                //                }
-                //
-                
-                
-                
-                
-                
+
                 ScrollView {
                     HStack {
                         Text("\(dayOfWeek(date: currentDate)), ")
@@ -269,13 +189,13 @@ struct dashboardView2: View {
                         //.bold()
                         
                         Spacer()
-                    }
+                    }.foregroundColor(.gray)
                     
                     
                     
                     // Greetings and user information
                     HStack {
-                        Text("Greetings, \(userName)!")
+                        Text("Summary")
                             .font(.title)
                             .bold()
                             .foregroundColor(.black)
@@ -283,28 +203,24 @@ struct dashboardView2: View {
                         
                         Spacer()
                     }
-                    .padding(.bottom, -15)
+                    .padding(.bottom, 15)
                     
-                    
-                    
-                    // User's carbon footprint breakdown chart
-                    //                 Image("transport_vector")
-                    //                        .resizable()
-                    //                        .frame(width: 240, height: 140)
-                    HStack{
-                        Text("Today's View")
-                            .font(.title2)
-                            .bold()
-                            .foregroundColor(.black)
-                            .padding(.top, 15)
-                            .padding(.leading,20)
-                        Spacer()
-                    }
-                    .padding(.bottom,-20)
-                    
+               
                     
                     
                     VStack {
+                        HStack{
+                            
+                            Text("Today's View")
+                                .font(.title2)
+                                .bold()
+                                .foregroundColor(.black)
+                                .padding(.top, 15)
+                                .padding(.leading,20)
+                            Spacer()
+                        }
+                        .padding(.bottom,-20)
+                        
                         
                         ZStack{
                             
@@ -435,12 +351,15 @@ struct dashboardView2: View {
                                     .padding(10)
                                     .shadow(color: Color.black.opacity(0.8), radius: 20, x: 2, y: 7)
                                 VStack {
+                                
                                     Chart(macros) { macro in
+                                        
+                                      
                                         BarMark(
                                             x: .value("Category", macro.name),
                                             y: .value("Value", macro.value)
                                         )
-                                        .foregroundStyle(by: .value("Name", macro.name))
+                                        .foregroundStyle(.green.opacity(0.8))
                                         .annotation(position: .top) {
                                             Text("\(macro.value)")
                                                 .font(.caption)
@@ -463,7 +382,7 @@ struct dashboardView2: View {
                                         let userEmissionRatio = Double(data.userEmission) / Double(nationalAverageEmission)
                                         HStack{
                                             Text("You emitted")
-                                            Text("\(String(format: "%.1f", userEmissionRatio))x").font(.title3).bold().foregroundColor(.red)
+                                            Text("\(String(format: "%.1f", userEmissionRatio))x").font(.title2).bold().foregroundColor(.mainGreen)
                                             Text("the national average today!")
                                             
                                         }.font(.subheadline)
@@ -506,6 +425,15 @@ struct dashboardView2: View {
                                                 .shadow(color: Color.black.opacity(0.8), radius: 20, x: 2, y: 7)
                                         
                                             HStack{
+                                                // Define custom colors for each vehicle type
+                                                let customColors: [String: Color] = [
+                                                    "Car": .mainGreen,
+                                                    "Auto": .mainGreen.opacity(0.7),
+                                                    "Bus": .green.opacity(0.4),
+                                                    "Train": .green
+                                                    // Add more colors for other vehicle types if needed
+                                                ]
+
                                                 Chart {
                                                     ForEach(historyData.documents.sorted(by: { $0.key < $1.key }), id: \.key) { documentID, documentData in
                                                         if let carDistance = documentData["car_distance"] as? Double,
@@ -518,37 +446,33 @@ struct dashboardView2: View {
                                                                 x: .value("Document \(documentID)", documentID),
                                                                 y: .value("Car Distance", carDistance), width: .fixed(22.0)
                                                             )
-                                                            .foregroundStyle(.blue)
+                                                            .foregroundStyle(customColors["Car", default: .green])
                                                             
-                                                            BarMark(
-                                                                x: .value("Document \(documentID)", documentID),
-                                                                y: .value("Car Pool Distance", carPoolDistance), width: .fixed(22.0)
-                                                            )
-                                                            .foregroundStyle(.blue)
                                                             
                                                             BarMark(
                                                                 x: .value("Document \(documentID)", documentID),
                                                                 y: .value("Train Distance", trainDistance), width: .fixed(22.0)
                                                             )
-                                                            .foregroundStyle(.purple)
+                                                            .foregroundStyle(customColors["Train", default: .purple])
                                                             
                                                             BarMark(
                                                                 x: .value("Document \(documentID)", documentID),
                                                                 y: .value("Bus Distance", busDistance), width: .fixed(22.0)
                                                             )
-                                                            .foregroundStyle(.orange)
+                                                            .foregroundStyle(customColors["Bus", default: .orange])
                                                             
                                                             BarMark(
                                                                 x: .value("Document \(documentID)", documentID),
                                                                 y: .value("Auto Distance", autoDistance), width: .fixed(22.0)
                                                             )
-                                                            .foregroundStyle(.green)
+                                                            .foregroundStyle(customColors["Auto", default: .green])
                                                         }
                                                     }
                                                 }
                                                 .chartScrollableAxes(.horizontal)
                                                 .frame(width: 260, height: 180)
                                                 .padding(.leading, 10)
+
                                                 
                                                 
                                                 
