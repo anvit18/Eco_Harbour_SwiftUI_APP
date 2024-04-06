@@ -109,7 +109,7 @@ struct dashboardView: View {
         return
         [
             .init(name: "You", value:Int(userData.userEmission)),
-            .init(name: "National Avg", value:625)
+            .init(name: "National Avg(2023)", value:625)
         ]}
     // Chart data
     //    var emissionsData = [
@@ -137,10 +137,10 @@ struct dashboardView: View {
         let acEmissions = distanceViewModel.acVDistance * 10
         
         emissionsData = [
-            CarbonEmissionByVehicle(vehicleType: "Car", emissions: privateCarEmissions + cabEmissions + carPoolEmissions, color: .blue),
-            CarbonEmissionByVehicle(vehicleType: "Auto", emissions: pillionEmissions + sharingEmissions + magicEmissions, color: .green),
-            CarbonEmissionByVehicle(vehicleType: "Bus", emissions: ordinaryEmissions + acEmissions + deluxeEmissions, color: .orange),
-            CarbonEmissionByVehicle(vehicleType: "Train", emissions: localTrainEmissions + metroEmissions, color: .purple),
+            CarbonEmissionByVehicle(vehicleType: "Car", emissions: privateCarEmissions + cabEmissions + carPoolEmissions, color: .mainGreen),
+            CarbonEmissionByVehicle(vehicleType: "Auto", emissions: pillionEmissions + sharingEmissions + magicEmissions, color: .mainGreen.opacity(0.7)),
+            CarbonEmissionByVehicle(vehicleType: "Bus", emissions: ordinaryEmissions + acEmissions + deluxeEmissions, color: .green.opacity(0.7)),
+            CarbonEmissionByVehicle(vehicleType: "Train", emissions: localTrainEmissions + metroEmissions, color: .green),
             //CarbonEmissionByVehicle(vehicleType: "", emissions: acBusEmissions, color: .cyan),
         ]
     }
@@ -164,28 +164,7 @@ struct dashboardView: View {
         ZStack {
             Color.white.ignoresSafeArea()
             VStack {
-//                
-//                List{
-//                    if let user = viewModel.user{
-//                        Text("UserId: \(user.userId)")
-//                        
-//                        if let dateCreated = user.dateCreated{
-//                            Text("Date Created: \(dateCreated)")
-//                        }else{
-//                            Text("Date not displaying")
-//                        }
-//                        
-//                        if let email = user.email{
-//                            Text("email: \(email)")
-//                        }
-//                    }
-//                    
-//                }
-//                .task{
-//                    try? await viewModel.loadCurrentUser()
-//                }
-                
-                
+
                     
                 ScrollView {
                     // Greetings and user information
@@ -205,7 +184,7 @@ struct dashboardView: View {
                     //                        .resizable()
                     //                        .frame(width: 240, height: 140)
                     
-                    Text("Your average daily carbon footprint is")
+                    Text("Your Carbon Footprint is")
                         .font(.subheadline)
                         .foregroundColor(.black)
                         .padding(.top, 15)
@@ -222,13 +201,14 @@ struct dashboardView: View {
                                             Text("\(data.emissions) ").bold()
                                                 .foregroundStyle(.white)
                                         }
-                                        .foregroundStyle(by: .value("Vehicle", data.vehicleType))
+                                        //  .foregroundStyle(by: .value("Vehicle", data.color))
                                 }
                             }
-                            .chartLegend(position: .bottom, spacing: 20)
+                            //.chartLegend(position: .bottom, spacing: 20)
+                            .scaledToFit()
                             .foregroundColor(.black)
                             .frame(height: 350)
-                            .chartXAxis(.hidden)
+                            //.chartXAxis(.hidden)
                             .onAppear {
                                 // Use the userEmission here or any additional setup when the view appears
                                 print("User Emission on Appear: \(userData.userEmission)")
@@ -241,7 +221,7 @@ struct dashboardView: View {
                                     .foregroundColor(.black)
                                     .fontWeight(.semibold)
                                 
-                                Text("Daily breakdown")
+                                Text("Day breakdown")
                                     .font(.footnote)
                                     .foregroundStyle(.gray)
                                 
@@ -268,19 +248,28 @@ struct dashboardView: View {
                                 .padding(.top, 20)
                             
                             Chart(macros, id:\.name){
-                                macro in BarMark(x: .value("Macros", macro.value), stacking: .normalized )
-                                    .foregroundStyle(by:.value("Name", macro.name)
-                                    )
-                                    .annotation(position: .overlay) {
-                                        Text("\(macro.value)").bold()
-                                            .foregroundStyle(.white)
+                                macro in 
+                                BarMark(
+                                    x: .value("Category", macro.name),
+                                    y: .value("Value", macro.value)
+                                )
+                                .foregroundStyle(.green)
+                                .annotation(position: .top) {
+                                    Text("\(macro.value)")
+                                        .font(.caption)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.black)
+                                        .padding(4)
+                                        .background(Color.white)
+                                        .cornerRadius(4)
+                                        .padding(4)
                                     }
-                                    .foregroundStyle(by: .value("Emission", macro.name))
+                                   
                             }
-                            .frame(height:48)
-                            .chartXAxis(.hidden)
+                            .frame(width:280, height:160)
                             
-                            Text("Your emissions are \(Int(userData.userEmission)/nationalAverageEmission)x the national average. You need to lower down!")
+                            
+                            Text("You emitted \(Int(userData.userEmission)/nationalAverageEmission)x the national average !")
                                 .font(.subheadline)
                                 .foregroundColor(.black)
                                 .padding(.top, 10)
@@ -375,7 +364,7 @@ struct dashboardView: View {
                             }.background(Color.red.opacity(0.1))
 
                         }
-                        Button("Log Data + ") {
+                        Button("Record Data + ") {
                             // Authenticate user
                             //printing all variables
                             print("Private Distance Travelled: \(privateDistance)")
