@@ -189,13 +189,13 @@ struct dashboardView2: View {
                         //.bold()
                         
                         Spacer()
-                    }
+                    }.foregroundColor(.gray)
                     
                     
                     
                     // Greetings and user information
                     HStack {
-                        Text("Greetings, \(userName)!")
+                        Text("Summary")
                             .font(.title)
                             .bold()
                             .foregroundColor(.black)
