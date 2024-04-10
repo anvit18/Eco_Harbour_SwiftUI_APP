@@ -174,18 +174,21 @@ struct dashboardView2: View {
                 ScrollView {
                     HStack {
                         Text("\(dayOfWeek(date: currentDate)), ")
-                            .font(.title2)
+                            .font(.title3)
                             .padding(.leading,20)
+                            .textCase(.uppercase)
                         //.bold()
                         
                         Text(monthOfYear(date: currentDate))
-                            .font(.title2)
+                            .font(.title3)
                             .padding(.leading,-10)
+                            .textCase(.uppercase)
                         // .bold()
                         
                         Text(dayOfMonth(date: currentDate))
-                            .font(.title2)
+                            .font(.title3)
                             .padding(.leading,-6)
+                            .textCase(.uppercase)
                         //.bold()
                         
                         Spacer()
@@ -195,9 +198,8 @@ struct dashboardView2: View {
                     
                     // Greetings and user information
                     HStack {
-                        Text("Summary")
-                            .font(.title)
-                            .bold()
+                        Text("Hi, Vishal")
+                            .font(.largeTitle)
                             .foregroundColor(.black)
                             .padding(.leading, 20)
                         
@@ -211,31 +213,30 @@ struct dashboardView2: View {
                     VStack {
                         HStack{
                             
-                            Text("Today's View")
+                            Text("Carbon Emissions")
                                 .font(.title2)
-                                .bold()
                                 .foregroundColor(.black)
                                 .padding(.top, 15)
                                 .padding(.leading,20)
                             Spacer()
                         }
-                        .padding(.bottom,-20)
+                        .padding(.bottom,-5)
                         
                         
                         ZStack{
                             
                             Rectangle()
-                                .fill(Color.gray.opacity(0.07))
-                                .cornerRadius(20)
-                                .frame(width:350, height: 230)
-                                .padding(10)
-                                .shadow(color: Color.black.opacity(0.8), radius: 20, x: 2, y: 7)
+                            .fill(Color.white) // Set the fill to clear to make the shadow visible
+                            .cornerRadius(20)
+                            .frame(width: 350, height: 230)
+                            .padding(10)
+                            .shadow(color: .black.opacity(0.1), radius: 5, x: 2, y: 2)
                             
                             HStack {
                                 VStack {
                                     VStack {
                                         Text("Day Breakdown")
-                                            .font(.callout)
+                                            .font(.body)
                                             .foregroundStyle(.gray)
                                         
                                         HStack(spacing: 0) {
@@ -298,7 +299,7 @@ struct dashboardView2: View {
                                     }
                                     // .font(.footnote)
                                     .padding(.horizontal)
-                                    .padding(.leading,-10)
+                                    .padding(.leading,-20)
                                     .foregroundColor(.black)
                                 }
                                 
@@ -333,23 +334,22 @@ struct dashboardView2: View {
                         
                         // Stat: National Average vs User Emissions
                         VStack {
-                            HStack{
-                                Text("Comparison with National Avg")
-                                    .font(.title2)
-                                    .foregroundColor(.black)
-                                    .bold()
-                                    .padding(.leading,20)
-                                //.fontWeight(.semibold)
-                                    .padding(.top, 20)
-                                Spacer()
-                            }.padding(.bottom,-20)
+//                            HStack{
+//                                Text("National Comparison")
+//                                    .font(.title2)
+//                                    .foregroundColor(.black)
+//                                    .padding(.leading,20)
+//                                //.fontWeight(.semibold)
+//                                    .padding(.top, 20)
+//                                Spacer()
+//                            }.padding(.bottom,-20)
                             ZStack{
-                                Rectangle()
-                                    .fill(Color.gray.opacity(0.07))
-                                    .cornerRadius(20)
-                                    .frame(width:350, height: 230)
-                                    .padding(10)
-                                    .shadow(color: Color.black.opacity(0.8), radius: 20, x: 2, y: 7)
+//                                Rectangle()
+//                                .fill(Color.white) // Set the fill to clear to make the shadow visible
+//                                .cornerRadius(20)
+//                                .frame(width: 350, height: 230)
+//                                .padding(10)
+//                                .shadow(color: .black.opacity(0.1), radius: 5, x: 2, y: 2)
                                 VStack {
                                 
                                     Chart(macros) { macro in
@@ -385,14 +385,14 @@ struct dashboardView2: View {
                                             Text("\(String(format: "%.1f", userEmissionRatio))x").font(.title2).bold().foregroundColor(.mainGreen)
                                             Text("the national average today!")
                                             
-                                        }.font(.subheadline)
+                                        }.font(.caption)
                                             .foregroundColor(.black)
                                             .padding(.top, 10)
                                     }
                                 }
                             }
                         }
-                        .padding()
+                        .padding(.vertical,20)
                         
                         
                         
@@ -405,24 +405,22 @@ struct dashboardView2: View {
                                     Text("Weekly Analysis")
                                         .font(.title2)
                                         .foregroundColor(.black)
-                                        .bold()
                                         .padding(.leading,20)
                                     //.fontWeight(.semibold)
                                         .padding(.top, 20)
                                     Spacer()
                                 }
-                                .padding(.leading, 20)
-                                .padding(.bottom,-20)
+                                .padding(.bottom,-5)
                                 
                                 
                                     if let historyData = historyViewModel.historyData {
                                         ZStack{
                                             Rectangle()
-                                                .fill(Color.gray.opacity(0.07))
-                                                .cornerRadius(10)
-                                                .frame(width: 350, height: 230)
-                                                .padding(10)
-                                                .shadow(color: Color.black.opacity(0.8), radius: 20, x: 2, y: 7)
+                                            .fill(Color.white) // Set the fill to clear to make the shadow visible
+                                            .cornerRadius(20)
+                                            .frame(width: 350, height: 230)
+                                            .padding(10)
+                                            .shadow(color: .black.opacity(0.1), radius: 5, x: 2, y: 2)
                                         
                                             HStack{
                                                 // Define custom colors for each vehicle type
