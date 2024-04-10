@@ -121,7 +121,7 @@ struct HomePageDashboardView2: View {
                                 .foregroundColor(.black)
                         }
                     
-                }
+                }.accentColor(.mainGreen)
                 
             }.navigationBarHidden(true)
         }
