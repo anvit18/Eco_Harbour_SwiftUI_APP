@@ -45,14 +45,14 @@ struct HomePageDashboardView2: View {
             VStack {
                 HStack(spacing: 0) {
                     Text("Eco")
-                        .font(.largeTitle)
+                        .font(.title)
                         .bold()
                         .foregroundColor(.green)
                         .padding(.leading, 20)
                     
                     Text("Track")
                         .foregroundStyle(Color.black)
-                        .font(.largeTitle)
+                        .font(.title)
                         .bold()
                     
                     Spacer()

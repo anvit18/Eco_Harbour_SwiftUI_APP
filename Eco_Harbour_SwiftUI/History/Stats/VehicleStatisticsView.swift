@@ -46,67 +46,79 @@ struct VehicleStatisticsView: View {
     
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Vehicle Type Statistics")
-                .font(.subheadline)
+        ZStack{
+            Rectangle()
+            .fill(Color.white) // Set the fill to clear to make the shadow visible
+            .cornerRadius(20)
+            .frame(width: 350, height: 600)
+            .padding(10)
+            .shadow(color: .black.opacity(0.1), radius: 5, x: 2, y: 2)
             
-            Text("\(emissionData.map { $0.emissions }.reduce(0, +))")
-                .font(.largeTitle)
+            
+            VStack(alignment: .leading) {
+                Text("Vehicle Statistics")
+                    .font(.title3)
+                
+                Text("\(emissionData.map { $0.emissions }.reduce(0, +))")
+                    .font(.largeTitle)
 
-            ForEach(emissionData.indices, id: \.self) { index in
-                let data = emissionData[index]
-                let percentage = Double(data.emissions) / cumulativeEmissions
-                
-                HStack {
-                    CircularProgressView(progress: percentage)
-                        .frame(width: 60, height: 60) // Adjust size as needed
-                        .padding()
+                ForEach(emissionData.indices, id: \.self) { index in
+                    let data = emissionData[index]
+                    let percentage = Double(data.emissions) / cumulativeEmissions
                     
-                    VStack(alignment: .leading) {
-                        Text(data.type.uppercased())
-                            .font(.headline)
-                        Text("\(data.emissions) Kg CO\u{2082}")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                    }
-                    
-                    Spacer()
-                    
-                    VStack(alignment: .trailing) {
-                        if index != emissionData.count {
-                            Image(systemName: "chevron.down")
-                                .foregroundColor(.gray)
-                                .onTapGesture {
-                                    expandedIndex = index == expandedIndex ? nil : index
-                                }
-                        }
-                    }
-                }
-                
-                if index != emissionData.count - 1 {
-                    Divider()
-                }
-                
-                if let expandedIndex = expandedIndex, expandedIndex == index {
-                            // Additional VStack for expanded content
-                            VStack {
-                                if data.type == "Car" {
-                                    CarStatisticsView()
-                                } else if data.type == "Auto" {
-                                    AutoStatisticsView()
-                                } else if data.type == "Bus" {
-                                    BusStatisticsView()
-                                } else if data.type == "Train" {
-                                    TrainStatisticsView()
-                                } else {
-                                    EmptyView()
-                                }
-                            }
+                    HStack {
+                        CircularProgressView(progress: percentage)
+                            .frame(width: 60, height: 60) // Adjust size as needed
                             .padding()
+                        
+                        VStack(alignment: .leading) {
+                            Text(data.type.uppercased())
+                                .font(.headline)
+                            Text("\(data.emissions) Kg CO\u{2082}")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
                         }
-            }
-        }
+                        
+                        Spacer()
+                        
+                        VStack(alignment: .trailing) {
+                            if index != emissionData.count {
+                                Image(systemName: "chevron.down")
+                                    .foregroundColor(.gray)
+                                    .onTapGesture {
+                                        expandedIndex = index == expandedIndex ? nil : index
+                                    }
+                            }
+                        }
+                    }
+                    
+                    if index != emissionData.count - 1 {
+                        Divider()
+                    }
+                    
+                    if let expandedIndex = expandedIndex, expandedIndex == index {
+                                // Additional VStack for expanded content
+                                VStack {
+                                    if data.type == "Car" {
+                                        CarStatisticsView()
+                                    } else if data.type == "Auto" {
+                                        AutoStatisticsView()
+                                    } else if data.type == "Bus" {
+                                        BusStatisticsView()
+                                    } else if data.type == "Train" {
+                                        TrainStatisticsView()
+                                    } else {
+                                        EmptyView()
+                                    }
+                                }
+                                .padding()
+                            }
+                    
+                }
+            }.frame(width: 320)
 
+        }
+        
 
         .onAppear {
             updateData()
