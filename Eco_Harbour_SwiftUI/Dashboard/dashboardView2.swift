@@ -399,7 +399,6 @@ struct dashboardView2: View {
                                 
                                 
                                 if let historyData = historyViewModel.historyData {
-                                    NavigationLink(destination: Statistics()){
                                     ZStack{
                                         Rectangle()
                                             .fill(Color.white) // Set the fill to clear to make the shadow visible
@@ -485,7 +484,7 @@ struct dashboardView2: View {
                                             }.padding(.leading,-10)
                                         }
                                         
-                                    }}
+                                    }
                                         //.BarWidth(0.5)
                                     } else {
                                         ProgressView()
