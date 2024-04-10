@@ -16,110 +16,113 @@ struct EmissionStatisticsView: View {
     }
     
     var body: some View {
-        VStack {
-            HStack{
-                Text("Emission Statistics")
-                    .font(.subheadline)
-                    .padding()
-                Spacer()
-                TimeRangeSelector(options: timeRangeOptions, selectedOptionIndex: $selectedOptionIndex)
-                    .padding(.horizontal)
-                    .onTapGesture {
-                        selectedOptionIndex = selectedOptionIndex == 0 ? 1 : 0
-                    }
-            }
+        ZStack{
+            Rectangle()
+            .fill(Color.white) // Set the fill to clear to make the shadow visible
+            .cornerRadius(20)
+            .frame(width: 350, height: 300)
+            .padding(10)
+            .shadow(color: .black.opacity(0.1), radius: 5, x: 2, y: 2)
             
             
-            if let historyData = historyViewModel.historyData {
+            VStack {
+                HStack{
+                    Text("Emission Statistics")
+                        .font(.title3)
+                        .padding(.leading)
+                    Spacer()
+                    TimeRangeSelector(options: timeRangeOptions, selectedOptionIndex: $selectedOptionIndex)
+                        .padding(.horizontal)
+                        .onTapGesture {
+                            selectedOptionIndex = selectedOptionIndex == 0 ? 1 : 0
+                        }
+                }
                 
                 
-                if selectedOptionIndex == 0 {
-                    Text("Displaying data for the last 7 days")
+                if let historyData = historyViewModel.historyData {
                     
                     
-                    //Temp
-                    Chart {
-                        ForEach(historyData.documents.filter { document in
-                            let dateString = document.key
-                            let dateFormatter = DateFormatter()
-                            dateFormatter.dateFormat = "d-MMM-yy"
-                            guard let documentDate = dateFormatter.date(from: dateString) else { return false }
-                            return Calendar.current.dateComponents([.day], from: documentDate, to: Date()).day ?? 0 <= 7
-                        }.sorted(by: { $0.key < $1.key }), id: \.key) { documentID, documentData in
-                            if let userEmissions = documentData["user_emissions"] as? Double {
-                                BarMark(
-                                    x: .value("Document \(documentID)", documentID), // Adjust the label as needed
-                                    y: .value("User Emissions", userEmissions),
-                                    width: .fixed(14.0)
-                                )
-                                .clipShape(Rectangle())
-                                .cornerRadius(20)
-                                .foregroundStyle(
-                                    LinearGradient(gradient: Gradient(colors: [
-                                        Color(red: 66/255, green: 152/255, blue: 13/255, opacity: 1),
-                                        Color(red: 66/255, green: 152/255, blue: 13/255, opacity: 0.3)
-                                    ]),
-                                                   startPoint: .top,
-                                                   endPoint: .bottom)
-                                )
+                    if selectedOptionIndex == 0 {
+                        
+                        //Temp
+                        Chart {
+                            ForEach(historyData.documents.filter { document in
+                                let dateString = document.key
+                                let dateFormatter = DateFormatter()
+                                dateFormatter.dateFormat = "d-MMM-yy"
+                                guard let documentDate = dateFormatter.date(from: dateString) else { return false }
+                                return Calendar.current.dateComponents([.day], from: documentDate, to: Date()).day ?? 0 <= 7
+                            }.sorted(by: { $0.key < $1.key }), id: \.key) { documentID, documentData in
+                                if let userEmissions = documentData["user_emissions"] as? Double {
+                                    BarMark(
+                                        x: .value("Document \(documentID)", documentID), // Adjust the label as needed
+                                        y: .value("User Emissions", userEmissions),
+                                        width: .fixed(14.0)
+                                    )
+                                    .clipShape(Rectangle())
+                                    .cornerRadius(20)
+                                    .foregroundStyle(
+                                        LinearGradient(gradient: Gradient(colors: [
+                                            Color(red: 66/255, green: 152/255, blue: 13/255, opacity: 1),
+                                            Color(red: 66/255, green: 152/255, blue: 13/255, opacity: 0.3)
+                                        ]),
+                                                       startPoint: .top,
+                                                       endPoint: .bottom)
+                                    )
+                                }
                             }
                         }
+                        .chartYAxis(.visible)
+                        .chartXAxis(.visible)
+                        .frame(maxWidth: .infinity)
+                        
+                        
+                        
                     }
-                    .chartYAxis(.visible)
-                    .chartXAxis(.visible)
-                    .frame(maxWidth: .infinity)
                     
                     
                     
-                }
-                
-                
-                
-                
-                else if selectedOptionIndex == 1 {
-                    Text("Displaying data for the last 1 Year")
                     
-                    Chart {
-                        ForEach(historyData.documents.sorted(by: { $0.key < $1.key }), id: \.key) { documentID, documentData in
-                            if let userEmissions = documentData["user_emissions"] as? Double {
-                                BarMark(
-                                    x: .value("Document \(documentID)", documentID), // Adjust the label as needed
-                                    y: .value("User Emissions", userEmissions),
-                                    width: .fixed(14.0)
-                                )
-                                .clipShape(Rectangle())
-                                .cornerRadius(20)
-                                .foregroundStyle(
-                                    LinearGradient(gradient: Gradient(colors: [
-                                        Color(red: 66/255, green: 152/255, blue: 13/255, opacity: 1),
-                                        Color(red: 66/255, green: 152/255, blue: 13/255, opacity: 0.3)
-                                    ]),
-                                                   startPoint: .top,
-                                                   endPoint: .bottom)
-                                )
+                    else if selectedOptionIndex == 1 {
+                        
+                        Chart {
+                            ForEach(historyData.documents.sorted(by: { $0.key < $1.key }), id: \.key) { documentID, documentData in
+                                if let userEmissions = documentData["user_emissions"] as? Double {
+                                    BarMark(
+                                        x: .value("Document \(documentID)", documentID), // Adjust the label as needed
+                                        y: .value("User Emissions", userEmissions),
+                                        width: .fixed(14.0)
+                                    )
+                                    .clipShape(Rectangle())
+                                    .cornerRadius(20)
+                                    .foregroundStyle(
+                                        LinearGradient(gradient: Gradient(colors: [
+                                            Color(red: 66/255, green: 152/255, blue: 13/255, opacity: 1),
+                                            Color(red: 66/255, green: 152/255, blue: 13/255, opacity: 0.3)
+                                        ]),
+                                                       startPoint: .top,
+                                                       endPoint: .bottom)
+                                    )
+                                }
                             }
                         }
+                        .chartYAxis(.visible)
+                        .chartXAxis(.visible)
+                        .frame(maxWidth: .infinity)
                     }
-                    .chartYAxis(.visible)
-                    .chartXAxis(.visible)
-                    .frame(maxWidth: .infinity)
+                    
+                    
+                    else {
+                        ProgressView()
+                    }
                 }
-                
-                
-                else {
-                    ProgressView()
-                }
-                
-                
-                
-                
-                
             }
-        }
-        .frame(height: 300)
-        .task {
+            .frame(width:350,height: 300)
+            
+        }.task {
             try? await historyViewModel.loadCurrentUser()
         }
+        
     }
 }
 
@@ -138,7 +141,7 @@ struct TimeRangeSelector: View {
                 }) {
                     Text(options[index])
                         .padding(10)
-                        .background(selectedOptionIndex == index ? Color.blue : Color.gray)
+                        .background(selectedOptionIndex == index ? Color.mainGreen : Color.gray)
                         .foregroundColor(.white)
                         .cornerRadius(8)
                 }
@@ -242,7 +245,7 @@ struct DropDownPicker: View {
                     Image(systemName: "checkmark")
                         .opacity(selection == option ? 1 : 0)
                 }
-                .foregroundStyle(selection == option ? Color.primary : Color.gray)
+                .foregroundStyle(selection == option ? Color(red: 66/255, green: 152/255, blue: 13/255, opacity: 1) : Color.gray)
                 .animation(.none, value: selection)
                 .frame(width: 150, height: 40)
                 .contentShape(.rect)

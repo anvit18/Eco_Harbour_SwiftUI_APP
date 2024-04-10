@@ -32,6 +32,15 @@ struct AppHistory: View {
             ZStack {
                 Color.white.ignoresSafeArea()
                 VStack{
+                    HStack {
+                        Text("Your Activity")
+                            .font(.largeTitle)
+                            .foregroundColor(.black)
+                            .bold()
+                            .padding(.leading, 20)
+                        Spacer()
+                    }
+                    .padding(.bottom, 20)
                     List {
                         //                        HStack {
                         //                            Text("Your Activity")
@@ -104,7 +113,6 @@ struct AppHistory: View {
                         }
                 }
             }
-            .navigationTitle("Your Activity")
         }
     }
 }

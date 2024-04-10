@@ -3,12 +3,15 @@ import SwiftUI
 struct Statistics: View {
     var body: some View {
         VStack {
-            HStack{
+            HStack {
                 Text("Statistics")
-                    .font(.title)
-                    .padding()
+                    .font(.largeTitle)
+                    .foregroundColor(.black)
+                    .bold()
+                    .padding(.leading, 20)
                 Spacer()
             }
+            .padding(.bottom, 20)
             
             
             List {
@@ -17,14 +20,14 @@ struct Statistics: View {
                         EmissionStatisticsView()
                     }
                 }
-                Section(header: Text("Vehicle Type Stats")) {
+                Section() {
                     VStack {
                         VehicleStatisticsView()
                     }
                 }
-            }/*.background(.white)*/
-//                .scrollContentBackground(.hidden)
-        }
+            }.background(.white)
+            
+            .scrollContentBackground(.hidden)        }
     }
 }
 
