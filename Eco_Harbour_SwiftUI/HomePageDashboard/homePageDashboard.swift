@@ -85,16 +85,6 @@ struct homePageDashboard: View {
                             Text("Home").foregroundColor(.black)
                         }
                     
-                    HistoryView()
-                        .tabItem {
-                            Image(systemName: "clock")
-                                .resizable()
-                                .foregroundColor(.black)
-                                .frame(width: 50, height: 50) // Adjust the icon size
-                            Text("History")
-                                .foregroundColor(.black)
-                        }
-                    
                     recordView(showSignInView: .constant(false))
                         .tabItem {
                             Image(systemName: "plus.app.fill")
@@ -111,7 +101,7 @@ struct homePageDashboard: View {
                         .environmentObject(userData)
                         .environmentObject(distanceViewModel)
                     
-                }
+                }.accentColor(.mainGreen)
                 
             }.navigationBarHidden(true)
         }

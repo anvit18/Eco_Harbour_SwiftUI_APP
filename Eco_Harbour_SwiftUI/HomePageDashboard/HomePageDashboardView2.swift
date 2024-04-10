@@ -85,16 +85,6 @@ struct HomePageDashboardView2: View {
                             Text("Home").foregroundColor(.black)
                         }
                     
-                    AppHistory()
-                        .tabItem {
-                            Image(systemName: "clock")
-                                .resizable()
-                                .foregroundColor(.black)
-                                .frame(width: 50, height: 50) // Adjust the icon size
-                            Text("History")
-                                .foregroundColor(.black)
-                        }
-                    
                     RecordView2(showSignInView: .constant(false))
                         .tabItem {
                             Image(systemName: "plus.app.fill")
@@ -121,7 +111,7 @@ struct HomePageDashboardView2: View {
                                 .foregroundColor(.black)
                         }
                     
-                }
+                }.accentColor(.mainGreen)
                 
             }.navigationBarHidden(true)
         }

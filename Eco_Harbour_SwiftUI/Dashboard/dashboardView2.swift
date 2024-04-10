@@ -222,15 +222,15 @@ struct dashboardView2: View {
                         }
                         .padding(.bottom,-5)
                         
-                        
+                        NavigationLink(destination: AppHistory()) {
                         ZStack{
                             
                             Rectangle()
-                            .fill(Color.white) // Set the fill to clear to make the shadow visible
-                            .cornerRadius(20)
-                            .frame(width: 350, height: 230)
-                            .padding(10)
-                            .shadow(color: .black.opacity(0.1), radius: 5, x: 2, y: 2)
+                                .fill(Color.white) // Set the fill to clear to make the shadow visible
+                                .cornerRadius(20)
+                                .frame(width: 350, height: 230)
+                                .padding(10)
+                                .shadow(color: .black.opacity(0.1), radius: 5, x: 2, y: 2)
                             
                             HStack {
                                 VStack {
@@ -329,27 +329,12 @@ struct dashboardView2: View {
                                 }
                                 
                             }
-                        }
+                        }}
                         
                         
                         // Stat: National Average vs User Emissions
                         VStack {
-//                            HStack{
-//                                Text("National Comparison")
-//                                    .font(.title2)
-//                                    .foregroundColor(.black)
-//                                    .padding(.leading,20)
-//                                //.fontWeight(.semibold)
-//                                    .padding(.top, 20)
-//                                Spacer()
-//                            }.padding(.bottom,-20)
                             ZStack{
-//                                Rectangle()
-//                                .fill(Color.white) // Set the fill to clear to make the shadow visible
-//                                .cornerRadius(20)
-//                                .frame(width: 350, height: 230)
-//                                .padding(10)
-//                                .shadow(color: .black.opacity(0.1), radius: 5, x: 2, y: 2)
                                 VStack {
                                 
                                     Chart(macros) { macro in
@@ -413,91 +398,91 @@ struct dashboardView2: View {
                                 .padding(.bottom,-5)
                                 
                                 
-                                    if let historyData = historyViewModel.historyData {
-                                        ZStack{
-                                            Rectangle()
+                                if let historyData = historyViewModel.historyData {
+                                    ZStack{
+                                        Rectangle()
                                             .fill(Color.white) // Set the fill to clear to make the shadow visible
                                             .cornerRadius(20)
                                             .frame(width: 350, height: 230)
                                             .padding(10)
                                             .shadow(color: .black.opacity(0.1), radius: 5, x: 2, y: 2)
                                         
-                                            HStack{
-                                                // Define custom colors for each vehicle type
-                                                let customColors: [String: Color] = [
-                                                    "Car": .mainGreen,
-                                                    "Auto": .mainGreen.opacity(0.7),
-                                                    "Bus": .green.opacity(0.4),
-                                                    "Train": .green
-                                                    // Add more colors for other vehicle types if needed
-                                                ]
-
-                                                Chart {
-                                                    ForEach(historyData.documents.sorted(by: { $0.key < $1.key }), id: \.key) { documentID, documentData in
-                                                        if let carDistance = documentData["car_distance"] as? Double,
-                                                           let carPoolDistance = documentData["car_pool_distance"] as? Double,
-                                                           let trainDistance = documentData["train_distance"] as? Double,
-                                                           let busDistance = documentData["bus_distance"] as? Double,
-                                                           let autoDistance = documentData["auto_distance"] as? Double {
-                                                            
-                                                            BarMark(
-                                                                x: .value("Document \(documentID)", documentID),
-                                                                y: .value("Car Distance", carDistance), width: .fixed(22.0)
-                                                            )
-                                                            .foregroundStyle(customColors["Car", default: .green])
-                                                            
-                                                            
-                                                            BarMark(
-                                                                x: .value("Document \(documentID)", documentID),
-                                                                y: .value("Train Distance", trainDistance), width: .fixed(22.0)
-                                                            )
-                                                            .foregroundStyle(customColors["Train", default: .purple])
-                                                            
-                                                            BarMark(
-                                                                x: .value("Document \(documentID)", documentID),
-                                                                y: .value("Bus Distance", busDistance), width: .fixed(22.0)
-                                                            )
-                                                            .foregroundStyle(customColors["Bus", default: .orange])
-                                                            
-                                                            BarMark(
-                                                                x: .value("Document \(documentID)", documentID),
-                                                                y: .value("Auto Distance", autoDistance), width: .fixed(22.0)
-                                                            )
-                                                            .foregroundStyle(customColors["Auto", default: .green])
-                                                        }
+                                        HStack{
+                                            // Define custom colors for each vehicle type
+                                            let customColors: [String: Color] = [
+                                                "Car": .mainGreen,
+                                                "Auto": .mainGreen.opacity(0.7),
+                                                "Bus": .green.opacity(0.4),
+                                                "Train": .green
+                                                // Add more colors for other vehicle types if needed
+                                            ]
+                                            
+                                            Chart {
+                                                ForEach(historyData.documents.sorted(by: { $0.key < $1.key }), id: \.key) { documentID, documentData in
+                                                    if let carDistance = documentData["car_distance"] as? Double,
+                                                       let carPoolDistance = documentData["car_pool_distance"] as? Double,
+                                                       let trainDistance = documentData["train_distance"] as? Double,
+                                                       let busDistance = documentData["bus_distance"] as? Double,
+                                                       let autoDistance = documentData["auto_distance"] as? Double {
+                                                        
+                                                        BarMark(
+                                                            x: .value("Document \(documentID)", documentID),
+                                                            y: .value("Car Distance", carDistance), width: .fixed(22.0)
+                                                        )
+                                                        .foregroundStyle(customColors["Car", default: .green])
+                                                        
+                                                        
+                                                        BarMark(
+                                                            x: .value("Document \(documentID)", documentID),
+                                                            y: .value("Train Distance", trainDistance), width: .fixed(22.0)
+                                                        )
+                                                        .foregroundStyle(customColors["Train", default: .purple])
+                                                        
+                                                        BarMark(
+                                                            x: .value("Document \(documentID)", documentID),
+                                                            y: .value("Bus Distance", busDistance), width: .fixed(22.0)
+                                                        )
+                                                        .foregroundStyle(customColors["Bus", default: .orange])
+                                                        
+                                                        BarMark(
+                                                            x: .value("Document \(documentID)", documentID),
+                                                            y: .value("Auto Distance", autoDistance), width: .fixed(22.0)
+                                                        )
+                                                        .foregroundStyle(customColors["Auto", default: .green])
                                                     }
                                                 }
-                                                .chartScrollableAxes(.horizontal)
-                                                .frame(width: 260, height: 180)
-                                                .padding(.leading, 10)
-
-                                                
-                                                
-                                                
-                                                //Spacer()
-                                                ZStack {
-                                                    Rectangle()
-                                                        .fill(Color.gray.opacity(0.09))
-                                                        .cornerRadius(8)
-                                                        .frame(width:80, height:230)
-                                                        .padding(10)
-                                                        .shadow(color: Color.black.opacity(0.8), radius: 20, x: 2, y: 7)
-                                                    
-                                                    VStack(alignment: .leading, spacing: 5) {
-                                                        ForEach(emissionsData) { data in
-                                                            HStack {
-                                                                Circle()
-                                                                    .fill(data.color)
-                                                                    .frame(width: 13, height: 13) // Make it square
-                                                                Text(data.vehicleType)
-                                                                    .font(.callout)
-                                                            }
-                                                        }
-                                                        .padding(.horizontal)
-                                                        .foregroundColor(.black)
-                                                    }
-                                                }.padding(.leading,-10)
                                             }
+                                            .chartScrollableAxes(.horizontal)
+                                            .frame(width: 260, height: 180)
+                                            .padding(.leading, 10)
+                                            
+                                            
+                                            
+                                            
+                                            //Spacer()
+                                            ZStack {
+                                                Rectangle()
+                                                    .fill(Color.gray.opacity(0.09))
+                                                    .cornerRadius(8)
+                                                    .frame(width:80, height:230)
+                                                    .padding(10)
+                                                    .shadow(color: Color.black.opacity(0.8), radius: 20, x: 2, y: 7)
+                                                
+                                                VStack(alignment: .leading, spacing: 5) {
+                                                    ForEach(emissionsData) { data in
+                                                        HStack {
+                                                            Circle()
+                                                                .fill(data.color)
+                                                                .frame(width: 13, height: 13) // Make it square
+                                                            Text(data.vehicleType)
+                                                                .font(.callout)
+                                                        }
+                                                    }
+                                                    .padding(.horizontal)
+                                                    .foregroundColor(.black)
+                                                }
+                                            }.padding(.leading,-10)
+                                        }
                                         
                                     }
                                         //.BarWidth(0.5)

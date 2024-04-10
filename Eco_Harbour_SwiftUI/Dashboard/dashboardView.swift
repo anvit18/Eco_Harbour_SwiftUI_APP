@@ -146,6 +146,8 @@ struct dashboardView: View {
     }
     // User and national average emissions
     let nationalAverageEmission = 625
+    let dateFormatter = DateFormatter()
+    let currentDate = Date()
     //let userEmissions = userEmission
     
     // Bars data
@@ -159,6 +161,24 @@ struct dashboardView: View {
     @State private var text = "Info"
     @State private var userLoggedIn = false
     
+    func dayOfWeek(date: Date) -> String {
+            dateFormatter.dateFormat = "EEEE"
+            return dateFormatter.string(from: date)
+        }
+        
+        // Function to get the month of the year
+        func monthOfYear(date: Date) -> String {
+            dateFormatter.dateFormat = "MMMM"
+            return dateFormatter.string(from: date)
+        }
+        
+        // Function to get the day of the month
+        func dayOfMonth(date: Date) -> String {
+            dateFormatter.dateFormat = "d"
+            return dateFormatter.string(from: date)
+        }
+
+    
     var body: some View {
         
         ZStack {
@@ -169,25 +189,39 @@ struct dashboardView: View {
                 ScrollView {
                     // Greetings and user information
                     HStack {
-                        Text("Greetings, \(userName)!")
+                        Text("\(dayOfWeek(date: currentDate)), ")
+                            .font(.title3)
+                            .padding(.leading,20)
+                            .textCase(.uppercase)
+                        //.bold()
+                        
+                        Text(monthOfYear(date: currentDate))
+                            .font(.title3)
+                            .padding(.leading,-10)
+                            .textCase(.uppercase)
+                        // .bold()
+                        
+                        Text(dayOfMonth(date: currentDate))
+                            .font(.title3)
+                            .padding(.leading,-6)
+                            .textCase(.uppercase)
+                        //.bold()
+                        
+                        Spacer()
+                    }.foregroundColor(.gray)
+                    
+                    
+                    
+                    // Greetings and user information
+                    HStack {
+                        Text("Hi, Guest")
                             .font(.largeTitle)
-                            .bold()
                             .foregroundColor(.black)
                             .padding(.leading, 20)
                         
                         Spacer()
                     }
-                    .padding(.bottom, -15)
-                    
-                    // User's carbon footprint breakdown chart
-                    //                 Image("transport_vector")
-                    //                        .resizable()
-                    //                        .frame(width: 240, height: 140)
-                    
-                    Text("Your Carbon Footprint is")
-                        .font(.subheadline)
-                        .foregroundColor(.black)
-                        .padding(.top, 15)
+                    .padding(.bottom, 15)
                     
                     VStack {
                         ZStack {
@@ -237,44 +271,6 @@ struct dashboardView: View {
                             }
                         }
                         
-                        // Stat: National Average vs User Emissions
-                        VStack {
-                            
-                            
-                            Text("Comparison with National Average")
-                                .font(.title2)
-                                .foregroundColor(.black)
-                                .fontWeight(.semibold)
-                                .padding(.top, 20)
-                            
-                            Chart(macros, id:\.name){
-                                macro in 
-                                BarMark(
-                                    x: .value("Category", macro.name),
-                                    y: .value("Value", macro.value)
-                                )
-                                .foregroundStyle(.green)
-                                .annotation(position: .top) {
-                                    Text("\(macro.value)")
-                                        .font(.caption)
-                                        .fontWeight(.bold)
-                                        .foregroundColor(.black)
-                                        .padding(4)
-                                        .background(Color.white)
-                                        .cornerRadius(4)
-                                        .padding(4)
-                                    }
-                                   
-                            }
-                            .frame(width:280, height:160)
-                            
-                            
-                            Text("You emitted \(Int(userData.userEmission)/nationalAverageEmission)x the national average !")
-                                .font(.subheadline)
-                                .foregroundColor(.black)
-                                .padding(.top, 10)
-                        }
-                        .padding()
                         
                         
                         if(showSignInView){
@@ -332,7 +328,7 @@ struct dashboardView: View {
                         else {
                             VStack {
                                 HStack{
-                                    Text("Login for Daily Records, Streaks, and Stats")
+                                    Text("Login for Daily Records and Statistics")
                                         .font(.headline)
                                         .foregroundColor(.black)
                                         .multilineTextAlignment(.center)
@@ -364,29 +360,6 @@ struct dashboardView: View {
                             }.background(Color.red.opacity(0.1))
 
                         }
-                        Button("Record Data + ") {
-                            // Authenticate user
-                            //printing all variables
-                            print("Private Distance Travelled: \(privateDistance)")
-                            print("Cabs Distance Travelled: \(cabsDistance)")
-                            print("Carpool Distance Travelled: \(carpoolDistance)")
-                            print("Local Train Distance Travelled: \(localTrainDistance)")
-                            print("Metro Distance Travelled: \(metroDistance)")
-                            print("Pillion Distance Travelled: \(pillionDistance)")
-                            print("Sharing Distance Travelled: \(sharingDistance)")
-                            print("Magic Distance Travelled: \(magicDistance)")
-                            print("Ordinary Distance Travelled: \(ordinaryDistance)")
-                            print("AC Distance Travelled: \(acDistance)")
-                            print("Deluxe Distance Travelled: \(deluxeDistance)")
-                            
-                            showingNextScreen.toggle()
-                        }
-                        .font(.headline)
-                        .foregroundColor(.black)
-                        .frame(width: 351, height: 44)
-                        .background(Color.gray.opacity(0.2))
-                        .cornerRadius(10)
-                        .padding(.top, 20)
                         
                         NavigationLink(destination: recordView(showSignInView: .constant(false)), isActive: $showingNextScreen) {
                             EmptyView()

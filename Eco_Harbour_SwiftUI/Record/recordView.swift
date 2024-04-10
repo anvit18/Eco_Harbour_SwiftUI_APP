@@ -242,7 +242,7 @@ struct recordView: View {
                 else {
                     VStack {
                         HStack{
-                            Text("Login for Daily Records, Streaks, and Stats")
+                            Text("Login for Daily Records and Statistics")
                                 .font(.headline)
                                 .foregroundColor(.black)
                                 .multilineTextAlignment(.center)
