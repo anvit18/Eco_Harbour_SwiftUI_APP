@@ -157,51 +157,60 @@ struct RecordView2: View {
                     if(showSignInView==false){
                         ScrollView{
                             HStack {
-                                Menu {
-                                    Button("Cancel", role: .destructive) {
-                                        // Do something
-                                    }
-                                    Button {
-                                        cityName = "Chennai"
-                                    }label: {
-                                        Label("Chennai", systemImage:  "")
-                                    }
-                                    Button {
-                                        cityName = "Mumbai"
+                                HStack {
+                                    Menu {
+                                        Button("Cancel", role: .destructive) {
+                                            // Do something
+                                        }
+                                        Button {
+                                            cityName = "Chennai"
+                                        } label: {
+                                            Label("Chennai", systemImage:  "")
+                                        }
+                                        Button {
+                                            cityName = "Mumbai"
+                                        } label: {
+                                            Label("Mumbai", systemImage: "")
+                                        }.disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                                        Button {
+                                            cityName = "Pune"
+                                        } label: {
+                                            Label("Pune", systemImage: "")
+                                        }.disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                                     } label: {
-                                        Label("Mumbai", systemImage: "")
-                                    }.disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                                    Button {
-                                        cityName = "Pune"
-                                    } label: {
-                                        Label("Pune", systemImage: "")
-                                    }.disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                                } label: {
-                                    TextField("Chennai", text: $cityName)
-                                        .padding()
-                                        .autocapitalization(.allCharacters)
-                                        .frame(width: 350, height: 40)
-                                        .foregroundColor(.black)
-                                        .background(Color.mainGreen.opacity(0.05))
-                                        .cornerRadius(10)
+                                        TextField("Chennai", text: $cityName)
+                                            .autocapitalization(.allCharacters)
+                                            .frame(height: 40)
+                                            .foregroundColor(.black)
+                                            .background(Color.mainGreen.opacity(0.05))
+                                            .cornerRadius(10)
+                                        
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    
                                 }
-                            }.padding(.bottom,20)
-                            
-                            HStack{
-                                DatePicker("",
-                                           selection: $selectedDate,
-                                           in: ...Date(),
-                                           displayedComponents: [.date]
-                                )
-                                .datePickerStyle(.compact)
-                                .frame(width: 200, height: 40)
-                                .background(Color.white)
-                                .foregroundColor(.black)
-                                .cornerRadius(10)
-                                .padding(.leading,-50)
-                                .padding(.trailing,40)
-                                Spacer()
+                                
+                                HStack {
+                                    DatePicker("",
+                                               selection: $selectedDate,
+                                               in: ...Date(),
+                                               displayedComponents: [.date]
+                                    )
+                                    .datePickerStyle(.compact)
+                                    .frame(height: 40)
+                                    .background(Color.white)
+                                    .foregroundColor(.black)
+                                    .cornerRadius(10)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    
+                                    Spacer()
+                                }
                             }
+                            .padding(.horizontal,16)
+
+                            
+                            
+                            
                             
                             Text("Select the modes of transport you used today")
                                 .font(.subheadline)
@@ -285,12 +294,10 @@ struct RecordView2: View {
                 Button("Cancel") {
                     //showingNextScreen.toggle()
                 }
-                .foregroundColor(.mainGreen)
-                .frame(width: 140, height: 50)
+                .frame(width: 170, height: 44)
                 .background(Color.mainGreen.opacity(0.09))
+                .foregroundColor(.black)
                 .cornerRadius(10)
-                .padding(.top, 10)
-                .padding(.trailing, 20)
 //                
                 
                 Button("Add") {
@@ -309,10 +316,9 @@ struct RecordView2: View {
                     showAlert = true
                 }
                 .foregroundColor(.white)
-                .frame(width: 140, height: 50)
+                .frame(width: 170, height: 44)
                 .background(Color.mainGreen)
                 .cornerRadius(10)
-                .padding(.top, 10)
                 // Add the alert
                 .alert(isPresented: $showAlert) {
                     Alert(
@@ -358,11 +364,12 @@ struct RecordView2: View {
         VStack(spacing: 0) {
             
             HStack{
-                Text("Vehicle Type :")
+                Text("Vehicle Type")
                     .foregroundStyle(Color.mainGreen)
-                    .padding(.leading, 30)
+                    .padding(.leading,7)
                     .padding(.bottom, 20)
-                    .font(.subheadline)
+                    .font(.system(size:17))
+                    .bold()
                 Spacer()
             }.padding(.bottom, -10)
             if selectedCategory == "Car" {
@@ -386,27 +393,30 @@ struct RecordView2: View {
                     }
                     
                 } label: {
-                    TextField("e.g. Cab" , text: $carType){ //fields.vehicleSize){
+                    TextField("Select Vehicle" , text: $carType){ //fields.vehicleSize){
                         
                     }
                     .multilineTextAlignment(.leading)
                     .padding(.leading,20)
                     .keyboardType(.numberPad)
-                    .frame(width: 300, height: 50)
+                    .frame(width: 350,height: 50)
                     .foregroundColor(Color.black)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
+                    
+                    
+                    
                     
                 }.padding(.bottom, 20)
                 
                 
                 HStack{
-                    Text("Distance Travelled :")
+                    Text("Distance Travelled")
                         .foregroundStyle(Color.mainGreen)
-                        .padding(.leading, 30)
                         .padding(.bottom, 20)
-                        .font(.subheadline)
-                    
+                        .padding(.leading,7)
+                        .font(.system(size:17))
+                        .bold()
                     Spacer()
                 }.padding(.bottom, -10)
                 
@@ -416,15 +426,14 @@ struct RecordView2: View {
                 
                 VStack {
                     Stepper(value: $carDistance, in: 0...100, step: 5) {
-                        Text("\(carDistance) KMS")
-                    }
-                    .padding(.horizontal)
+                        Text("\(carDistance) KMs")
+                    }.padding(.trailing)
                     
                 }.multilineTextAlignment(.leading)
                     .padding(.leading,20)
                 
                     .keyboardType(.numberPad)
-                    .frame(width: 300, height: 50)
+                    .frame(width: 350, height: 50)
                     .foregroundColor(Color.black)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
@@ -464,24 +473,25 @@ struct RecordView2: View {
                         Label("Deluxe", systemImage: "truck.pickup.side.fill")
                     }
                 } label: {
-                    TextField("e.g. Ordinary" , text: $busType){ //fields.vehicleSize){
+                    TextField("Select Vehicle" , text: $busType){ //fields.vehicleSize){
                         
                     }
                     .multilineTextAlignment(.leading)
                     .padding(.leading,20)
                     .keyboardType(.numberPad)
-                    .frame(width: 300, height: 50)
+                    .frame(width: 350, height: 50)
                     .foregroundColor(Color.black)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
                     
                 }.padding(.bottom, 20)
                 HStack{
-                    Text("Distance Travelled :")
+                    Text("Distance Travelled")
                         .foregroundStyle(Color.mainGreen)
-                        .padding(.leading, 30)
+                        .padding(.leading, 7)
                         .padding(.bottom, 20)
-                        .font(.subheadline)
+                        .font(.system(size:17))
+                        .bold()
                     
                     Spacer()
                 }.padding(.bottom, -10)
@@ -492,15 +502,15 @@ struct RecordView2: View {
                 
                 VStack {
                     Stepper(value: $busDistance, in: 0...100, step: 7) {
-                        Text("\(busDistance) KMS")
+                        Text("\(busDistance) KMs")
                     }
-                    .padding(.horizontal)
+                    .padding(.trailing)
                     
                 }.multilineTextAlignment(.leading)
                     .padding(.leading,20)
                 
                     .keyboardType(.numberPad)
-                    .frame(width: 300, height: 50)
+                    .frame(width: 350, height: 50)
                     .foregroundColor(Color.black)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
@@ -529,13 +539,13 @@ struct RecordView2: View {
                     }
                     
                 } label: {
-                    TextField("e.g. Local" , text: $trainType){ //fields.vehicleSize){
+                    TextField("Select Vehicle" , text: $trainType){ //fields.vehicleSize){
                         
                     }
                     .multilineTextAlignment(.leading)
                     .padding(.leading,20)
                     .keyboardType(.numberPad)
-                    .frame(width: 300, height: 50)
+                    .frame(width: 350, height: 50)
                     .foregroundColor(Color.black)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
@@ -544,11 +554,12 @@ struct RecordView2: View {
                 
                 
                 HStack{
-                    Text("Distance Travelled :")
+                    Text("Distance Travelled")
                         .foregroundStyle(Color.mainGreen)
-                        .padding(.leading, 30)
+                        .padding(.leading, 7)
                         .padding(.bottom, 20)
-                        .font(.subheadline)
+                        .font(.system(size:17))
+                        .bold()
                     
                     Spacer()
                 }.padding(.bottom, -10)
@@ -559,15 +570,15 @@ struct RecordView2: View {
                 
                 VStack {
                     Stepper(value: $trainDistance, in: 0...200, step:5) {
-                        Text("\(trainDistance) KMS")
+                        Text("\(trainDistance) KMs")
                     }
-                    .padding(.horizontal)
+                    .padding(.trailing)
                     
                 }.multilineTextAlignment(.leading)
                     .padding(.leading,20)
                 
                     .keyboardType(.numberPad)
-                    .frame(width: 300, height: 50)
+                    .frame(width: 350, height: 50)
                     .foregroundColor(Color.black)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
@@ -604,13 +615,13 @@ struct RecordView2: View {
                     }
                     
                 } label: {
-                    TextField("e.g. Share" , text: $autoType){ //fields.vehicleSize){
+                    TextField("Select Vehicle" , text: $autoType){ //fields.vehicleSize){
                         
                     }
                     .multilineTextAlignment(.leading)
                     .padding(.leading,20)
                     .keyboardType(.numberPad)
-                    .frame(width: 300, height: 50)
+                    .frame(width: 350, height: 50)
                     .foregroundColor(Color.black)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
@@ -619,11 +630,12 @@ struct RecordView2: View {
                 
                 
                 HStack{
-                    Text("Distance Travelled :")
+                    Text("Distance Travelled")
                         .foregroundStyle(Color.mainGreen)
-                        .padding(.leading, 30)
+                        .padding(.leading, 7)
                         .padding(.bottom, 20)
-                        .font(.subheadline)
+                        .font(.system(size:17))
+                        .bold()
                     
                     Spacer()
                 }.padding(.bottom, -10)
@@ -634,15 +646,15 @@ struct RecordView2: View {
                 
                 VStack {
                     Stepper(value: $autoDistance, in: 0...100, step: 5) {
-                        Text("\(autoDistance) KMS")
+                        Text("\(autoDistance) KMs")
                     }
-                    .padding(.horizontal)
+                    .padding(.trailing)
                     
                 }.multilineTextAlignment(.leading)
                     .padding(.leading,20)
                 
                     .keyboardType(.numberPad)
-                    .frame(width: 300, height: 50)
+                    .frame(width: 350, height: 50)
                     .foregroundColor(Color.black)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
@@ -669,13 +681,13 @@ struct RecordView2: View {
                     
                     
                 } label: {
-                    TextField("Car Pool" , text: $carPool){ //fields.vehicleSize){
+                    TextField("Select Vehicle" , text: $carPool){ //fields.vehicleSize){
                         
                     }
                     .multilineTextAlignment(.leading)
                     .padding(.leading,20)
                     .keyboardType(.numberPad)
-                    .frame(width: 300, height: 50)
+                    .frame(width: 350, height: 50)
                     .foregroundColor(Color.black)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
@@ -684,11 +696,12 @@ struct RecordView2: View {
                 
                 
                 HStack{
-                    Text("Distance Travelled :")
+                    Text("Distance Travelled")
                         .foregroundStyle(Color.mainGreen)
-                        .padding(.leading, 30)
+                        .padding(.leading, 7)
                         .padding(.bottom, 20)
-                        .font(.subheadline)
+                        .font(.system(size:17))
+                        .bold()
                     
                     Spacer()
                 }.padding(.bottom, -10)
@@ -699,15 +712,15 @@ struct RecordView2: View {
                 
                 VStack {
                     Stepper(value: $carPoolDistance, in: 0...100, step: 5) {
-                        Text("\(carPoolDistance) KMS")
+                        Text("\(carPoolDistance) KMs")
                     }
-                    .padding(.horizontal)
+                    .padding(.trailing)
                     
                 }.multilineTextAlignment(.leading)
                     .padding(.leading,20)
                 
                     .keyboardType(.numberPad)
-                    .frame(width: 300, height: 50)
+                    .frame(width: 350, height: 50)
                     .foregroundColor(Color.black)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
@@ -723,9 +736,10 @@ struct RecordView2: View {
                 HStack{
                     Text("Number of Passengers")
                         .foregroundStyle(Color.mainGreen)
-                        .padding(.leading, 30)
+                        .padding(.leading, 7)
                         .padding(.bottom, 20)
-                        .font(.subheadline)
+                        .font(.system(size:17))
+                        .bold()
                     Spacer()
                 }.padding(.bottom, -10)
                 Menu {
@@ -775,13 +789,13 @@ struct RecordView2: View {
                         Label("6", systemImage: "truck.pickup.side.fill")
                     }
                 } label: {
-                    TextField("e.g. 4" , text: $numberOfPassengers){ //fields.vehicleSize){
+                    TextField("Select Number of Passengers" , text: $numberOfPassengers){ //fields.vehicleSize){
                         
                     }
                     .multilineTextAlignment(.leading)
                     .padding(.leading,20)
                     .keyboardType(.numberPad)
-                    .frame(width: 300, height: 50)
+                    .frame(width: 350, height: 50)
                     .foregroundColor(Color.black)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
@@ -791,9 +805,10 @@ struct RecordView2: View {
                 HStack{
                     Text("Fuel Type")
                         .foregroundStyle(Color.mainGreen)
-                        .padding(.leading, 30)
+                        .padding(.leading, 7)
                         .padding(.bottom, 20)
-                        .font(.subheadline)
+                        .font(.system(size:17))
+                        .bold()
                     Spacer()
                 }.padding(.bottom, -10)
                 
@@ -823,13 +838,13 @@ struct RecordView2: View {
                         Label("Electric", systemImage: "leaf.arrow.circlepath")
                     }
                 } label: {
-                    TextField("e.g Petrol" , text: $fuel){
+                    TextField("Select Fuel Type" , text: $fuel){
                         
                     }
                     .multilineTextAlignment(.leading)
                     .padding(.leading,20)
                     .keyboardType(.numberPad)
-                    .frame(width: 300, height: 50)
+                    .frame(width: 350, height: 50)
                     .foregroundColor(Color.black)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)

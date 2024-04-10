@@ -57,7 +57,7 @@ struct Eco_Harbour_SwiftUIApp: App {
         WindowGroup {
 //            RootView()
             //let emissionDataViewModelWrapper = EmissionDataViewModelWrapper()
-
+//            RecordView2(showSignInView: .constant(false))
             SplashScreen()
                 .environmentObject(userData)
                 .environmentObject(distanceViewModel)
