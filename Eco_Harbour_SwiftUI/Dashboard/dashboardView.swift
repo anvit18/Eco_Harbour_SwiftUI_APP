@@ -224,54 +224,127 @@ struct dashboardView: View {
                     .padding(.bottom, 15)
                     
                     VStack {
-                        ZStack {
-                            // Chart showing emissions breakdown
-                            Chart {
-                                ForEach(emissionsData) { data in
-                                    SectorMark(angle: .value("Emissions", data.emissions), innerRadius: .ratio(0.69), angularInset: 1.5)
-                                        .cornerRadius(9)
-                                        .foregroundStyle(data.color)
-                                        .annotation(position: .overlay) {
-                                            Text("\(data.emissions) ").bold()
-                                                .foregroundStyle(.white)
-                                        }
-                                        //  .foregroundStyle(by: .value("Vehicle", data.color))
-                                }
-                            }
-                            //.chartLegend(position: .bottom, spacing: 20)
-                            .scaledToFit()
-                            .foregroundColor(.black)
-                            .frame(height: 350)
-                            //.chartXAxis(.hidden)
-                            .onAppear {
-                                // Use the userEmission here or any additional setup when the view appears
-                                print("User Emission on Appear: \(userData.userEmission)")
-                                print("check: \(distanceViewModel.privateVDistance) \(distanceViewModel.cabsVDistance) \(distanceViewModel.localTrainVDistance)")
-                            }
+                        HStack{
                             
-                            VStack {
-                                Text("Carbon Emissions")
-                                    .font(.title2)
-                                    .foregroundColor(.black)
-                                    .fontWeight(.semibold)
-                                
-                                Text("Day breakdown")
-                                    .font(.footnote)
-                                    .foregroundStyle(.gray)
-                                
-                                HStack(spacing: 0) {
-                                    Text("\(Int(userData.userEmission)) kg").foregroundColor(.black)
-                                    Text("CO").foregroundStyle(Color.green)
-                                    Text("2").foregroundStyle(Color.green)
-                                        .baselineOffset(-10)
-                                }
-                                .font(.title)
-                                .bold()
-                                .frame(width: 300, height: 50)
-                            }
+                            Text("Carbon Emissions")
+                                .font(.title2)
+                                .foregroundColor(.black)
+                                .padding(.top, 15)
+                                .padding(.leading,20)
+                            Spacer()
                         }
+                        .padding(.bottom,-5)
                         
-                        
+                       
+                            ZStack{
+                                
+                                Rectangle()
+                                    .fill(Color.white) // Set the fill to clear to make the shadow visible
+                                    .cornerRadius(20)
+                                    .frame(width: 350, height: 230)
+                                    .padding(10)
+                                    .shadow(color: .black.opacity(0.1), radius: 5, x: 2, y: 2)
+                                
+                                HStack {
+                                    VStack {
+                                        VStack {
+                                            Text("Day Breakdown")
+                                                .font(.body)
+                                                .foregroundStyle(.gray)
+                                            
+                                            HStack(spacing: 0) {
+                                               // if let data = viewModel.data {
+                                                    Text("\(Int(userData.userEmission)) KG").foregroundColor(.black).bold()
+                                                    Text("CO").foregroundStyle(Color.green)
+                                                    Text("2").foregroundStyle(Color.green)
+                                                        .baselineOffset(-10)
+                                               // }
+                                            }
+                                            .font(.title2)
+                                            
+                                            //.padding(.bottom, 20)
+                                        }
+                                        .padding(.leading,-10)
+                                        
+                                        HStack {
+                                            ForEach(emissionsData.prefix(2)) { data in
+                                                HStack {
+                                                    Spacer()
+                                                    Circle()
+                                                        .fill(data.color)
+                                                        .frame(width: 13, height: 13)
+                                                    //Spacer()
+                                                    VStack{
+                                                        Text(data.vehicleType)
+                                                            .font(.callout)
+                                                        //.bold()
+                                                        Text("\(data.emissions) kg")
+                                                            .font(.footnote)
+                                                            .foregroundStyle(.gray)
+                                                    }
+                                                }
+                                                //.padding(.vertical, 5)
+                                            }
+                                        }
+                                        // .font(.footnote)
+                                        .padding(.leading,-20)
+                                        .padding(.horizontal)
+                                        .foregroundColor(.black)
+                                        
+                                        HStack {
+                                            ForEach(emissionsData.dropFirst(2)) { data in
+                                                HStack {
+                                                    Spacer()
+                                                    Circle()
+                                                        .fill(data.color)
+                                                        .frame(width: 13, height: 13)
+                                                    VStack{
+                                                        Text(data.vehicleType)
+                                                            .font(.callout)
+                                                        //.bold()
+                                                        Text("\(data.emissions) kg")
+                                                            .font(.footnote)
+                                                            .foregroundStyle(.gray)
+                                                    }
+                                                }
+                                                //.padding(.vertical, 5)
+                                            }
+                                        }
+                                        // .font(.footnote)
+                                        .padding(.horizontal)
+                                        .padding(.leading,-20)
+                                        .foregroundColor(.black)
+                                    }
+                                    
+                                    
+                                    Chart {
+                                        ForEach(emissionsData) { data in
+                                            SectorMark(angle: .value("Emissions", data.emissions))
+                                                .cornerRadius(2)
+                                                .foregroundStyle(data.color)
+                                                .annotation(position: .overlay) {
+                                                    Text("\(data.emissions) ").bold()
+                                                        .foregroundStyle(.white)
+                                                }
+                                            //.foregroundStyle(by: .value("Vehicle", data.vehicleType))
+                                        }
+                                    }
+                                    // .chartLegend(position: .bottom, spacing: 20) // Remove this line to hide the legend
+                                    .foregroundColor(.black)
+                                    .scaledToFit()
+                                    .frame(width: 180, height: 150)
+                                    .padding(.trailing,20)
+                                    .padding(.leading,-15)
+                                    .onAppear {
+                                        // Use the userEmission here or any additional setup when the view appears
+                                        print("User Emission on Appear: \(userData.userEmission)")
+                                        print("check: \(distanceViewModel.privateVDistance) \(distanceViewModel.cabsVDistance) \(distanceViewModel.localTrainVDistance)")
+                                    }
+                                    
+                                }
+                         
+                        }
+
                         
                         if(showSignInView){
                             HStack(alignment: .bottom) {
