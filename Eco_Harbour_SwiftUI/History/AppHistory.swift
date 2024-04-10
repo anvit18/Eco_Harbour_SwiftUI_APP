@@ -33,15 +33,15 @@ struct AppHistory: View {
                 Color.white.ignoresSafeArea()
                 VStack{
                     List {
-//                        HStack {
-//                            Text("Your Activity")
-//                                .font(.title)
-//                                .bold()
-//                                .foregroundColor(.black)
-//                                .padding(.leading, 20)
-//                            
-//                            Spacer()
-//                        }.padding(.bottom, 15)
+                        //                        HStack {
+                        //                            Text("Your Activity")
+                        //                                .font(.title)
+                        //                                .bold()
+                        //                                .foregroundColor(.black)
+                        //                                .padding(.leading, 20)
+                        //
+                        //                            Spacer()
+                        //                        }.padding(.bottom, 15)
                         if let historyData = viewModel.historyData {
                             ForEach(historyData.documents.sorted(by: { $0.key > $1.key }), id: \.key) { documentID, documentData in
                                 if let userEmissions = documentData["user_emissions"] as? Double {
@@ -52,7 +52,7 @@ struct AppHistory: View {
                                                     Text("\(documentID)")
                                                         .font(.title3)
                                                         .bold()
-                                                    Text("\(Int(userEmissions)) KG CO2")
+                                                    Text("\(Int(userEmissions)) KG CO\u{2082}")
                                                         .font(.title2)
                                                         .bold()
                                                         .foregroundColor(.green)
@@ -89,7 +89,6 @@ struct AppHistory: View {
                                                 }
                                             }
                                         }
-                                        .padding()
                                         .background(Color(.systemBackground))
                                         .cornerRadius(10)
                                         //.shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
@@ -97,10 +96,12 @@ struct AppHistory: View {
                                 }
                             }
                         }
-                    }
-                    .task {
-                        try? await viewModel.loadCurrentUser()
-                    }
+                    }.background(.white)
+                    
+                        .scrollContentBackground(.hidden)
+                        .task {
+                            try? await viewModel.loadCurrentUser()
+                        }
                 }
             }
             .navigationTitle("Your Activity")
@@ -141,64 +142,64 @@ struct DetailView: View {
             Color.white.ignoresSafeArea()
             VStack(alignment: .center) { // Align content vertically at the center
                 
+                
+                
+                VStack {
+                    Text("\(documentID)")
+                        .font(.headline)
                     
                     
-                        VStack {
-                            Text("\(documentID)")
-                                .font(.headline)
+                    Chart {
+                        ForEach(documentData.filter({ keyLabels.keys.contains($0.key) }).sorted(by: { $0.key < $1.key }), id: \.key) { key, value in
+                            let distance = value as? Double ?? 0
+                            let label = keyLabels[key] ?? ""
+                            let vehicleType = label.replacingOccurrences(of: " Distance", with: "")
+                            let color = vehicleColors[vehicleType] ?? .black // Default color if not found
                             
-                            
-                            Chart {
-                                ForEach(documentData.filter({ keyLabels.keys.contains($0.key) }).sorted(by: { $0.key < $1.key }), id: \.key) { key, value in
-                                    let distance = value as? Double ?? 0
-                                    let label = keyLabels[key] ?? ""
-                                    let vehicleType = label.replacingOccurrences(of: " Distance", with: "")
-                                    let color = vehicleColors[vehicleType] ?? .black // Default color if not found
-                                    
-                                    SectorMark(angle: .value(label, distance), innerRadius: .ratio(0.55), angularInset: 1.3)
-                                        .cornerRadius(2)
-                                        .foregroundStyle(color)
-                                        .annotation(position: .overlay) {
-                                            Text("\(Int(distance)) ").font(.footnote)
-                                                .foregroundStyle(.white)
-                                        }
+                            SectorMark(angle: .value(label, distance), innerRadius: .ratio(0.55), angularInset: 1.3)
+                                .cornerRadius(2)
+                                .foregroundStyle(color)
+                                .annotation(position: .overlay) {
+                                    Text("\(Int(distance)) ").font(.footnote)
+                                        .foregroundStyle(.white)
                                 }
-                            }
-                            .chartLegend(position: .topTrailing, spacing: 20)
-                            .scaledToFit()
-                            .frame(width: 180, height: 180)
-                            .padding(.top, 10)
-                            .padding(.bottom, 5)
-                            
-                            
-                            
-                            ForEach(documentData.filter({ keyLabels.keys.contains($0.key) }).sorted(by: { $0.key < $1.key }), id: \.key) { key, value in
-                                if let label = keyLabels[key], let intValue = value as? Int, intValue > 0 {
-                                    ZStack {
-                                        HStack{
-                                            Text("\(label):")
-                                                .font(.subheadline)
-                                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 30)
-                                                .padding(.horizontal)
-                                                .background(Color.clear)
-                                                .border(Color.clear, width: 1) // Transparent border
-                                            Text("\(intValue) km")
-                                                .font(.subheadline)
-                                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 30)
-                                                .padding(.horizontal)
-                                                .background(Color.clear)
-                                                .border(Color.clear, width: 1) // Transparent border
-                                        }
-                                    }
-                                }
-                            }
-
                         }
-                        
+                    }
+                    .chartLegend(position: .topTrailing, spacing: 20)
+                    .scaledToFit()
+                    .frame(width: 180, height: 180)
+                    .padding(.top, 10)
+                    .padding(.bottom, 5)
+                    
+                    
+                    
+                    ForEach(documentData.filter({ keyLabels.keys.contains($0.key) }).sorted(by: { $0.key < $1.key }), id: \.key) { key, value in
+                        if let label = keyLabels[key], let intValue = value as? Int, intValue > 0 {
+                            ZStack {
+                                HStack{
+                                    Text("\(label):")
+                                        .font(.subheadline)
+                                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 30)
+                                        .padding(.horizontal)
+                                        .background(Color.clear)
+                                        .border(Color.clear, width: 1) // Transparent border
+                                    Text("\(intValue) km")
+                                        .font(.subheadline)
+                                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 30)
+                                        .padding(.horizontal)
+                                        .background(Color.clear)
+                                        .border(Color.clear, width: 1) // Transparent border
+                                }
+                            }
+                        }
+                    }
                     
                 }
+                
+                
             }
-            .padding()
         }
+        .padding()
+    }
     
 }
